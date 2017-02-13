@@ -20,9 +20,32 @@ Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 		useBytes <- FALSE;
 	}
 	
-	return(strsplit(x=Expression, split=Delimiter, fixed = FALSE, perl=TRUE, useBytes = useBytes));
+	return(strsplit(x=Expression, split=Delimiter, fixed=FALSE, perl=TRUE, useBytes=useBytes));
 }
 
 split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
 	return(Strings.Split(expression, delimiter, limit, compare));
+}
+
+# Public Shared Function Join(SourceArray As String(), Optional Delimiter As String =  ) As String
+#     Member of Microsoft.VisualBasic.Strings
+
+# Summary:
+# Returns a string created by joining a number of substrings contained in an array.
+
+# Parameters:
+# SourceArray: Required. One-dimensional array containing substrings to be joined.
+# Delimiter: Optional. Any string, used to separate the substrings in the returned string. If omitted, the space character (" ") is used. If Delimiter is a zero-length string ("") or Nothing, all items in the list are concatenated with no delimiters.
+
+# Returns:
+# Returns a string created by joining a number of substrings contained in an array.
+
+# Exceptions:
+# System.ArgumentException: SourceArray is not one dimensional.
+Strings.Join <- function(SourceArray, Delimiter = " " ) {
+	return(paste(SourceArray, collapse=Delimiter));
+}
+
+join <- function(sourceArray, delimiter) {
+	return(Strings.Join(sourceArray, delimiter));
 }
