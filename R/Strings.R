@@ -20,7 +20,10 @@ Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 		useBytes <- FALSE;
 	}
 	
-	return(strsplit(x=Expression, split=Delimiter, fixed=FALSE, perl=TRUE, useBytes=useBytes));
+	out <- strsplit(x=Expression, split=Delimiter, fixed=FALSE, perl=TRUE, useBytes=useBytes);
+	out <- as.vector(out[[1]]);
+	
+	return(out);
 }
 
 split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
@@ -43,9 +46,52 @@ split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
 # Exceptions:
 # System.ArgumentException: SourceArray is not one dimensional.
 Strings.Join <- function(SourceArray, Delimiter = " " ) {
-	return(paste(SourceArray, collapse=Delimiter));
+	return(paste(SourceArray, sep=Delimiter));
 }
 
 join <- function(sourceArray, delimiter) {
 	return(Strings.Join(sourceArray, delimiter));
+}
+
+# Public Shared Function LCase(Value As String) As String
+    # Member of Microsoft.VisualBasic.Strings
+
+# Summary:
+# Returns a string or character converted to lowercase.
+
+# Parameters:
+# Value: Required. Any valid String or Char expression.
+
+# Returns:
+# Returns a string or character converted to lowercase.
+Strings.LCase <- function(Value) {
+	return(tolower(Value));
+}
+
+lcase <- function(value) {
+	return(Strings.LCase(value));
+}
+
+
+# Public Shared Function UCase(Value As String) As String
+    # Member of Microsoft.VisualBasic.Strings
+
+# Summary:
+# Returns a string or character containing the specified string converted to uppercase.
+
+# Parameters:
+# Value: Required. Any valid String or Char expression.
+
+# Returns:
+# Returns a string or character containing the specified string converted to uppercase.
+Strings.UCase <- function(Value) {
+	return(toupper(Value));
+}
+
+ucase <- function(value) {
+	return(Strings.UCase(value));
+}
+
+Distinct <- function(words) {
+	return(unique(tolower(words)))
 }
