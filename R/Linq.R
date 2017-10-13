@@ -1,3 +1,8 @@
+`%=>%` <- function(x, y) { 
+	function(...) y(x, ...);   
+}
+
+
 Take <- function(enumerable, m) {
 	enumerable[1:m];
 }
