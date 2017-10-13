@@ -1,5 +1,9 @@
 Take <- function(enumerable, m) {
+	enumerable[1:m];
+}
 
+Skip <- function(enumerable, m) {
+	enumerable[m:length(enumerable)];
 }
 
 # group data.frame/list by keys
@@ -28,9 +32,9 @@ GroupBy.list <- function(list, key) {
     groups <- list();
 
     for (i in 1:length(list)) {
-        item <- list[[i]];
+        item      <- list[[i]];
         group.key <- item[[key]];
-        key.list <- groups[[group.key]];
+        key.list  <- groups[[group.key]];
         
         if (is.null(key.list)) {
             key.list <- list();
