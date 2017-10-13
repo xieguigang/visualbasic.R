@@ -11,6 +11,13 @@ Skip <- function(enumerable, m) {
 	enumerable[(m + 1):length(enumerable)];
 }
 
+
+# (c(5,6,7,8,9) %=>% Take)(2)
+# [1] 5 6
+
+# (c(5,6,7,8,9,1,2,3) %=>% Skip)(5)
+# [1] 1 2 3
+
 # group data.frame/list by keys
 #
 # @param enumerable The data source collection for the group operation, by default is ``data.frame`` type.
