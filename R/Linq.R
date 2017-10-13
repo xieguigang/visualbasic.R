@@ -8,7 +8,7 @@ Take <- function(enumerable, m) {
 }
 
 Skip <- function(enumerable, m) {
-	enumerable[m:length(enumerable)];
+	enumerable[(m + 1):length(enumerable)];
 }
 
 # group data.frame/list by keys
