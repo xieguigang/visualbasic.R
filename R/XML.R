@@ -22,10 +22,6 @@ SaveXML <- function(x, file.xml, root = "R-xml") {
 Vector.XML <- function(vector, indent, write) {
     # 现在假设向量里面的元素都是基本的元素
 
-}
-
-List.XML <- function(vector, indent, write) {
-
     # <numeric vector="" />
     # <logical vector="" />
     # <strings>
@@ -55,3 +51,6 @@ List.XML <- function(vector, indent, write) {
     write(line);
 }
 
+List.XML <- function(vector, indent, write) {
+    
+}
