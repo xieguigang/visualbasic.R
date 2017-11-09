@@ -14,12 +14,12 @@ push.x <- function(x, indent, write, name = "NULL") {
     if (is.list(x)) {
 
         # 是一个类似于字典对象的东西
-        List.XML(x, sprintf("  %s", indent), write);
+        List.XML(x, sprintf("  %s", indent), write, name);
 
     } else {
 
         # 是相同元素的vector
-        Vector.XML(x, sprintf("  %s", indent), write);
+        Vector.XML(x, sprintf("  %s", indent), write, name);
     }
 }
 
@@ -60,7 +60,7 @@ Vector.XML <- function(vector, indent, write, name = NULL) {
     write(line);
 }
 
-List.XML <- function(list, indent, write) {
+List.XML <- function(list, indent, write, node.name = NULL) {
     name.list <- names(list);
     name.xml  <- names(list);
 
@@ -68,6 +68,12 @@ List.XML <- function(list, indent, write) {
         # 只有数字来进行索引，没有名称
         name.list <- 1:length(list);
         name.xml  <- sprintf("node%s", name.list);
+    }  
+
+    node.indent = sprintf("%s%s", indent, indent);
+
+    if (!is.null(node.name)) {
+        write(sprintf("%s<%s>", indent, node.name));        
     }
 
     for (i in 1:length(list)) {
@@ -76,6 +82,10 @@ List.XML <- function(list, indent, write) {
         name  <- name.xml[i];
         x     <- list[[index]];
         
-        push.x(x, indent, write, name);
+        push.x(x, node.indent, write, name);
+    }
+
+    if (!is.null(node.name)) {
+        write(sprintf("%s</%s>", indent, node.name));
     }
 }
