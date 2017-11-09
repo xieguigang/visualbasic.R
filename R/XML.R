@@ -4,7 +4,7 @@ SaveXML <- function(x, file.xml, root = "R-xml") {
     
     write <- File.Open(file.txt = file.xml);
     write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-    write(sprintf("<%s>", root));
+    write(sprintf("<%s xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">", root));
     push.x(x, "", write);
     write(sprintf("</%s>", root));
 }
