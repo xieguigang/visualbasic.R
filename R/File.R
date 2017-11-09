@@ -19,3 +19,12 @@ Println <- function(file.txt, content) {
 File.Open <- function(file.txt) {
 	         function(content) Println(file.txt, content);
 }
+
+ReadAllText <- function(file.txt) {	
+	conn  <- file(file.txt, open = "r");
+	lines <- readLines(conn);	
+	close(conn);		
+	text <- paste0(lines, collapse = "\n");
+	
+	return(cat(text));
+}

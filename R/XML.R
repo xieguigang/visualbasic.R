@@ -1,8 +1,8 @@
 # 将任意的R对象序列化为XML文件保存
 
-GetXML <- function(x) {
-
-    xml <- tempfile("xml-");
+SaveXML <- function(x, file.xml) {
+    
+    write <- File.Open(file.txt = file.xml);
 
     if (is.list(x)) {
 
