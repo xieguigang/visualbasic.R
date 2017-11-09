@@ -1,6 +1,22 @@
-Take <- function(enumerable, m) {
-
+`%=>%` <- function(x, y) { 
+	function(...) y(x, ...);   
 }
+
+
+Take <- function(enumerable, m) {
+	enumerable[1:m];
+}
+
+Skip <- function(enumerable, m) {
+	enumerable[(m + 1):length(enumerable)];
+}
+
+
+# (c(5,6,7,8,9) %=>% Take)(2)
+# [1] 5 6
+
+# (c(5,6,7,8,9,1,2,3) %=>% Skip)(5)
+# [1] 1 2 3
 
 # group data.frame/list by keys
 #
@@ -28,9 +44,9 @@ GroupBy.list <- function(list, key) {
     groups <- list();
 
     for (i in 1:length(list)) {
-        item <- list[[i]];
+        item      <- list[[i]];
         group.key <- item[[key]];
-        key.list <- groups[[group.key]];
+        key.list  <- groups[[group.key]];
         
         if (is.null(key.list)) {
             key.list <- list();
