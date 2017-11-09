@@ -16,8 +16,17 @@ Println <- function(file.txt, content) {
 	
 }
 
-File.Open <- function(file.txt) {
-	         function(content) Println(file.txt, content);
+File.Open <- function(file.txt, append = FALSE) {
+	
+	try(dir.create(dirname(file.txt), recursive = TRUE));	
+	
+	if (!append) {
+		cat(NULL, file = file.txt, append = FALSE);
+	}
+	
+	return(function(content) {
+		Println(file.txt, content)
+	});
 }
 
 ReadAllText <- function(file.txt) {	

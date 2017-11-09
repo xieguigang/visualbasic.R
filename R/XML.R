@@ -9,7 +9,7 @@ SaveXML <- function(x, file.xml, root = "R-xml") {
     write(sprintf("</%s>", root));
 }
 
-push.x <- function(x, indent, write, name = "NULL") {
+push.x <- function(x, indent, write, name = NULL) {
 
     if (is.list(x)) {
 
@@ -70,10 +70,11 @@ List.XML <- function(list, indent, write, node.name = NULL) {
         name.xml  <- sprintf("node%s", name.list);
     }  
 
-    node.indent = sprintf("%s%s", indent, indent);
+    node.indent = indent;    
 
     if (!is.null(node.name)) {
         write(sprintf("%s<%s>", indent, node.name));        
+        node.indent = sprintf("%s%s", indent, indent);
     }
 
     for (i in 1:length(list)) {
