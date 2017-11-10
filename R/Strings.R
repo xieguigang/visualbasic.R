@@ -2,16 +2,25 @@
 #     Member of Microsoft.VisualBasic.Strings
 
 # Summary:
-# Returns a zero-based, one-dimensional array containing a specified number of substrings.
+# Returns a zero-based, one-dimensional array containing a specified number of 
+# substrings.
 
 # Parameters:
 # Expression: Required. String expression containing substrings and delimiters.
-# Delimiter: Optional. Any single character used to identify substring limits. If Delimiter is omitted, the space character (" ") is assumed to be the delimiter.
-# Limit: Optional. Maximum number of substrings into which the input string should be split. The default, –1, indicates that the input string should be split at every occurrence of the Delimiter string.
-# Compare: Optional. Numeric value indicating the comparison to use when evaluating substrings. See "Settings" for values.
+# Delimiter: Optional. Any single character used to identify substring limits. 
+#            If Delimiter is omitted, the space character (" ") is assumed to be 
+#            the delimiter.
+# Limit: Optional. Maximum number of substrings into which the input string 
+#        should be split. The default, –1, indicates that the input string should 
+#        be split at every occurrence of the Delimiter string.
+# Compare: Optional. Numeric value indicating the comparison to use when 
+#          evaluating substrings. See "Settings" for values.
 
 # Returns:
-# String array. If Expression is a zero-length string (""), Split returns a single-element array containing a zero-length string. If Delimiter is a zero-length string, or if it does not appear anywhere in Expression, Split returns a single-element array containing the entire Expression string.
+# String array. If Expression is a zero-length string (""), Split returns a 
+# single-element array containing a zero-length string. If Delimiter is a 
+# zero-length string, or if it does not appear anywhere in Expression, Split 
+# returns a single-element array containing the entire Expression string.
 Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 
 	useBytes <- TRUE;
@@ -34,14 +43,19 @@ split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
 #     Member of Microsoft.VisualBasic.Strings
 
 # Summary:
-# Returns a string created by joining a number of substrings contained in an array.
+# Returns a string created by joining a number of substrings contained in an 
+# array.
 
 # Parameters:
 # SourceArray: Required. One-dimensional array containing substrings to be joined.
-# Delimiter: Optional. Any string, used to separate the substrings in the returned string. If omitted, the space character (" ") is used. If Delimiter is a zero-length string ("") or Nothing, all items in the list are concatenated with no delimiters.
+# Delimiter: Optional. Any string, used to separate the substrings in the 
+#            returned string. If omitted, the space character (" ") is used. If 
+#            Delimiter is a zero-length string ("") or Nothing, all items in the 
+#            list are concatenated with no delimiters.
 
 # Returns:
-# Returns a string created by joining a number of substrings contained in an array.
+# Returns a string created by joining a number of substrings contained in an 
+# array.
 
 # Exceptions:
 # System.ArgumentException: SourceArray is not one dimensional.
@@ -94,4 +108,53 @@ ucase <- function(value) {
 
 Distinct <- function(words) {
 	return(unique(tolower(words)))
+}
+
+## ¼ÆËã³öÁ½¸ö´úÐ»ÎïµÄÃû×Ö×Ö·û´®µÄÏàËÆ¶È
+name.similarity <- function(sa, sb) {
+	l.max       <- max(nchar(c(sa, sb)));
+	similarity  <- (l.max - levenshtein.distance(sa,sb)) / l.max;
+	return(similarity);
+}
+
+### Compute Levenshtein distance between two strings
+###
+### @param source      Source string.
+### @param target      Target string.
+### @param type        Specifies the return type. 'distance' for a single 
+###                    distance value; 'matrix' for the matrix used during 
+###                    dynamic programming.
+### @param insert.fun  delete.fun, substitute.fun: Penalty functions of insert, 
+###                    delete and substitute operation, whose return value must 
+###                    be a single scalar value.
+###
+levenshtein.distance <- function(source, target, 
+	type           = c('distance','matrix'), 
+	insert.fun     = function(x) 1, 
+	delete.fun     = function(x) 1, 
+	substitute.fun = function(s,t) ifelse(s==t,0,1)) {
+	
+	type       <- match.arg(type);
+	source.vec <- strsplit(source,'')[[1]];
+	target.vec <- strsplit(target,'')[[1]];
+	if(length(source.vec)==0 & length(target.vec)==0) return(0);
+	if(length(source.vec)==0) return(sum(sapply(target.vec,insert.fun)));
+	if(length(target.vec)==0) return(sum(sapply(source.vec,delete.fun)));
+	
+	ns <- length(source.vec) + 1
+	nt <- length(target.vec) + 1	
+	
+	d     <- matrix(0, nrow=ns, ncol=nt, dimnames=list(c('#',source.vec),c('#',target.vec)));
+	d[,1] <- 0:(ns-1);
+	d[1,] <- 0:(nt-1);
+	
+	for(j in 2:nt) {
+		for(i in 2:ns) {
+			d[i,j] <- min( d[i-1,j] + delete.fun(source.vec[i-1]),
+						   d[i,j-1] + insert.fun(target.vec[j-1]),
+						   d[i-1,j-1] + substitute.fun(source.vec[i-1], target.vec[j-1]) );
+		}
+	}
+	
+	return( switch(type,'distance'=d[ns,nt],'matrix'=d) );
 }
