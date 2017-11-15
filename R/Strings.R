@@ -11,7 +11,7 @@
 #            If Delimiter is omitted, the space character (" ") is assumed to be 
 #            the delimiter.
 # Limit: Optional. Maximum number of substrings into which the input string 
-#        should be split. The default, –1, indicates that the input string should 
+#        should be split. The default, ?, indicates that the input string should 
 #        be split at every occurrence of the Delimiter string.
 # Compare: Optional. Numeric value indicating the comparison to use when 
 #          evaluating substrings. See "Settings" for values.
@@ -32,11 +32,11 @@ Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 	out <- strsplit(x=Expression, split=Delimiter, fixed=FALSE, perl=TRUE, useBytes=useBytes);
 	out <- as.vector(out[[1]]);
 	
-	return(out);
+	out;
 }
 
 split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
-	return(Strings.Split(expression, delimiter, limit, compare));
+	Strings.Split(expression, delimiter, limit, compare);
 }
 
 # Public Shared Function Join(SourceArray As String(), Optional Delimiter As String =  ) As String
@@ -59,12 +59,12 @@ split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
 
 # Exceptions:
 # System.ArgumentException: SourceArray is not one dimensional.
-Strings.Join <- function(SourceArray, Delimiter = " " ) {
-	return(paste(SourceArray, sep=Delimiter));
+Strings.Join <- function(SourceArray, Delimiter = " ") {
+	paste0(SourceArray, collapse = Delimiter);
 }
 
 join <- function(sourceArray, delimiter) {
-	return(Strings.Join(sourceArray, delimiter));
+	Strings.Join(sourceArray, delimiter);
 }
 
 # Public Shared Function LCase(Value As String) As String
@@ -79,11 +79,11 @@ join <- function(sourceArray, delimiter) {
 # Returns:
 # Returns a string or character converted to lowercase.
 Strings.LCase <- function(Value) {
-	return(tolower(Value));
+	tolower(Value);
 }
 
 lcase <- function(value) {
-	return(Strings.LCase(value));
+	Strings.LCase(value);
 }
 
 
@@ -99,22 +99,22 @@ lcase <- function(value) {
 # Returns:
 # Returns a string or character containing the specified string converted to uppercase.
 Strings.UCase <- function(Value) {
-	return(toupper(Value));
+	toupper(Value);
 }
 
 ucase <- function(value) {
-	return(Strings.UCase(value));
+	Strings.UCase(value);
 }
 
 Distinct <- function(words) {
-	return(unique(tolower(words)))
+	unique(tolower(words));
 }
 
-## ¼ÆËã³öÁ½¸ö´úÐ»ÎïµÄÃû×Ö×Ö·û´®µÄÏàËÆ¶È
+## è®¡ç®—å‡ºä¸¤ä¸ªä»£è°¢ç‰©çš„åå­—å­—ç¬¦ä¸²çš„ç›¸ä¼¼åº¦
 name.similarity <- function(sa, sb) {
 	l.max       <- max(nchar(c(sa, sb)));
 	similarity  <- (l.max - levenshtein.distance(sa,sb)) / l.max;
-	return(similarity);
+	similarity;
 }
 
 ### Compute Levenshtein distance between two strings
@@ -137,6 +137,7 @@ levenshtein.distance <- function(source, target,
 	type       <- match.arg(type);
 	source.vec <- strsplit(source,'')[[1]];
 	target.vec <- strsplit(target,'')[[1]];
+	
 	if(length(source.vec)==0 & length(target.vec)==0) return(0);
 	if(length(source.vec)==0) return(sum(sapply(target.vec,insert.fun)));
 	if(length(target.vec)==0) return(sum(sapply(source.vec,delete.fun)));
@@ -150,11 +151,13 @@ levenshtein.distance <- function(source, target,
 	
 	for(j in 2:nt) {
 		for(i in 2:ns) {
-			d[i,j] <- min( d[i-1,j] + delete.fun(source.vec[i-1]),
-						   d[i,j-1] + insert.fun(target.vec[j-1]),
-						   d[i-1,j-1] + substitute.fun(source.vec[i-1], target.vec[j-1]) );
+			d[i,j] <- min( d[i-1, j]   + delete.fun(source.vec[i-1]),
+						   d[i,   j-1] + insert.fun(target.vec[j-1]),
+						   d[i-1, j-1] + substitute.fun(source.vec[i-1], target.vec[j-1]) );
 		}
 	}
 	
-	return( switch(type,'distance'=d[ns,nt],'matrix'=d) );
+	switch(type,
+		'distance' = d[ns,nt],
+		'matrix'   = d);
 }
