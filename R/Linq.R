@@ -65,13 +65,13 @@ GroupBy.list <- function(list, key) {
 # @param key The column name for read the column data in target source as the group key.
 GroupBy.dataframe <- function(data.frame, key) {
     
-    groups      <- list();
-    key.index   <- which(colnames(data.frame) == key);
-
+    groups <- list();
+	keys   <- as.vector(unlist(data.frame[, key]));
+	
     for (i in 1:nrow(data.frame)) {
         row <- data.frame[i, ];
-        key <- row[key.index];
-        groups[key] <- rbind(group[[key]], row);
+        key <- keys[i];
+        groups[[key]] <- rbind(groups[[key]], row);
     }
 
     return(groups);
