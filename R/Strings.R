@@ -110,6 +110,15 @@ Distinct <- function(words) {
 	unique(tolower(words));
 }
 
+# 返回字符串查找的位置
+InStr <- function(s, substring) {
+	l       <- str_locate(s, substring);
+	start   <- as.vector(l[, "start"]);
+	indices <- which(!is.na(start));
+	
+	return(indices);
+}
+
 ## 计算出两个代谢物的名字字符串的相似度
 name.similarity <- function(sa, sb) {
 	l.max       <- max(nchar(c(sa, sb)));
