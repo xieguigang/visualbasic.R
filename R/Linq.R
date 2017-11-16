@@ -68,11 +68,19 @@ GroupBy.dataframe <- function(data.frame, key) {
     groups <- list();
 	keys   <- as.vector(unlist(data.frame[, key]));
 	
+	tick   <- tick.helper(nrow(data.frame)); 
+	cat("\n");
+	cat("  Progress%: ");
+	
     for (i in 1:nrow(data.frame)) {
         row <- data.frame[i, ];
         key <- keys[i];
         groups[[key]] <- rbind(groups[[key]], row);
+		tick();
     }
 
+	cat("\n");
+	cat("\n");
+	
     return(groups);
 }
