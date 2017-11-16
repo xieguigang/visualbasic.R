@@ -81,13 +81,14 @@ Matrix.XML <- function(matrix, indent, write, node.name = NULL) {
 	.list     <- .as.list(matrix);
     node.name <- node.name %||% "table";	
 	
-	write(sprintf('%s<%s nrow="%s">', indent, node.name, nrow(matrix)));
+	write('%s<%s nrow="%s">', indent, node.name, nrow(matrix));
 	
 	for (i in 1:nrow(matrix)) {
-		write(sprintf('%s%s<tr rowname="%s">', indent, indent, rownames[i]));
+		write('%s%s<tr rowname="%s">', indent, indent, rownames[i]);
+		tr <- .list[[i]];
 		
 		for (name in colnames) {
-			value <- .list[[name]][i];
+			value <- tr[[name]];
 			value <- sprintf('<td colname="%s" value="%s" />', name, value);
 			value <- sprintf("%s%s%s%s", indent, indent, indent, value);
 			

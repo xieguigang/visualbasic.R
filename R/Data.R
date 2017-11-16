@@ -1,13 +1,9 @@
 # data.frame rows to list collection
-.as.list <- function(d) {	
-	list  <- list();
-	names <- colnames(d);
-	
-	for (name in names) {
-		list[[name]] <- as.vector(d[, name]);
-	}
-	
+.as.list <- function(d) {
+
 	.list <- list();
+	list  <- .to.list(d);
+	names <- colnames(d);
 	
 	for (i in 1:nrow(d)) {
 		l <- list();
@@ -20,6 +16,17 @@
 	}
 	
 	.list;
+}
+
+.to.list <- function(d) {
+	list  <- list();
+	names <- colnames(d);
+	
+	for (name in names) {
+		list[[name]] <- as.vector(d[, name]);
+	}
+	
+	list;
 }
 
 # 有些时候dataframe取列的结果得到的是一个list？
