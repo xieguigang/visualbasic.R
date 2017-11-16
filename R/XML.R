@@ -11,7 +11,12 @@ SaveXML <- function(x, file.xml, root = "R-xml") {
 
 push.x <- function(x, indent, write, name = NULL) {
 
-    if (is.list(x)) {
+	if (is.data.frame(x) || is.matrix(x)) {
+		
+		# 使用表格的形式写入数据
+		Matrix.XML(x, sprintf("  %s", indent), write, name);
+		
+	} else if (is.list(x)) {
 
         # 是一个类似于字典对象的东西
         List.XML(x, sprintf("  %s", indent), write, name);
@@ -92,6 +97,7 @@ Matrix.XML <- function(matrix, indent, write, node.name = NULL) {
 }
 
 List.XML <- function(list, indent, write, node.name = NULL) {
+
     name.list <- names(list);
     name.xml  <- names(list);
 
