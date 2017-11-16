@@ -60,6 +60,37 @@ Vector.XML <- function(vector, indent, write, name = NULL) {
     write(line);
 }
 
+# 将matrix或者data.frame写为XML文件之中的某一个节点
+Matrix.XML <- function(matrix, indent, write, node.name = NULL) {
+
+	# <node.name nrows = ...>
+	#     <tr rowname = ...>
+	#         <td colname = >value</td>
+	#     </tr>
+	#     <tr>
+	#     </tr>
+	# </node.name>
+
+	colnames  <- colnames(matrix);
+	rownames  <- rownames(matrix);
+	.list     <- .as.list(matrix);
+    node.name <- node.name %||% "table";	
+	
+	write(sprintf('%s<%s nrow="%s">', indent, node.name, nrow(matrix)));
+	
+	for (i in 1:nrow(matrix)) {
+		write(sprintf('%s%s<tr rowname="%s">', indent, indent, rownames[i]));
+			for (name in colnames) {
+				value <- .list[[name]][i];
+				value <- sprintf('<td colname="%s" value="%s" />', name, value);
+				write(sprintf("%s%s%s%s", indent, indent, indent, value));
+			}
+		write(sprintf('%s%s</tr>', indent, indent));
+	}
+	
+	write(sprintf('%s</%s>', indent, node.name));
+}
+
 List.XML <- function(list, indent, write, node.name = NULL) {
     name.list <- names(list);
     name.xml  <- names(list);
