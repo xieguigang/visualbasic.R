@@ -14,20 +14,20 @@ push.x <- function(x, indent, write, name = NULL) {
 	if (is.data.frame(x) || is.matrix(x)) {
 		
 		# 使用表格的形式写入数据
-		Matrix.XML(x, sprintf("  %s", indent), write, name);
+		Matrix.XML(x, indent, write, name);
 		
 	} else if (is.list(x)) {
 
         # 是一个类似于字典对象的东西
-        List.XML(x, sprintf("  %s", indent), write, name);
+        List.XML(x, indent, write, name);
 
     } else {
 
         # 是相同元素的vector
 		if (length(x) == 1) {
-			write('  %s<%s value="%s" />', indent, name, x);
+			write('%s<%s value="%s" />', indent, name, x);
 		} else {
-			Vector.XML(x, sprintf("  %s", indent), write, name);
+			Vector.XML(x, indent, write, name);
 		}
     }
 }
