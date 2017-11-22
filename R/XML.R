@@ -1,12 +1,20 @@
 # 将任意的R对象序列化为XML文件保存
 
-SaveXML <- function(x, file.xml, root = "Rlang.xml") {
-    
-    write <- File.Open(file.txt = file.xml);
+SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {    	
+	XML.Framework(
+		write    = File.Open(file.txt = file.xml), 
+		do.write = function(write) {
+			push.x(x, "", write);
+		}, 
+		rootName = rootName
+	);
+}
+
+XML.Framework <- function(write, do.write, rootName) {
     write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-    write("<%s xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">", root);
-    push.x(x, "", write);
-    write("</%s>", root);
+    write("<%s xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">", rootName);
+    do.write(write);
+    write("</%s>", rootName);
 }
 
 push.x <- function(x, indent, write, name = NULL) {

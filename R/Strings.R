@@ -119,6 +119,12 @@ InStr <- function(s, substring) {
 	return(indices);
 }
 
+## Substring
+Mid <- function(s, start, length) {
+
+}
+
+## Determine that target string is null or empty or not??
 Strings.Empty <- function(s, NA.empty = FALSE) {
 	(is.null(s) || is.na(s) || s == "") || (NA.empty && s == "NA");
 }
