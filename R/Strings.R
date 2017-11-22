@@ -119,6 +119,10 @@ InStr <- function(s, substring) {
 	return(indices);
 }
 
+Strings.Empty <- function(s, NA.empty = FALSE) {
+	(is.null(s) || is.na(s) || s == "") || (NA.empty && s == "NA");
+}
+
 ## 计算出两个代谢物的名字字符串的相似度
 name.similarity <- function(sa, sb) {
 	l.max       <- max(nchar(c(sa, sb)));
