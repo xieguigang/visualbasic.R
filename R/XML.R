@@ -1,6 +1,6 @@
 # 将任意的R对象序列化为XML文件保存
 
-SaveXML <- function(x, file.xml, root = "R-xml") {
+SaveXML <- function(x, file.xml, root = "Rlang.xml") {
     
     write <- File.Open(file.txt = file.xml);
     write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
@@ -24,7 +24,11 @@ push.x <- function(x, indent, write, name = NULL) {
     } else {
 
         # 是相同元素的vector
-        Vector.XML(x, sprintf("  %s", indent), write, name);
+		if (length(x) == 1) {
+			write('  %s<%s value="%s" />', indent, name, x);
+		} else {
+			Vector.XML(x, sprintf("  %s", indent), write, name);
+		}
     }
 }
 
