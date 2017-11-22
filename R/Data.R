@@ -23,7 +23,7 @@
 	names <- colnames(d);
 	
 	for (name in names) {
-		list[[name]] <- as.vector(d[, name]);
+		list[[name]] <- as.vector(unlist(d[, name]));
 	}
 	
 	list;

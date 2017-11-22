@@ -1,5 +1,5 @@
 `%=>%` <- function(x, y) { 
-	function(...) y(x, ...);   
+	y(x);   
 }
 
 
@@ -41,7 +41,10 @@ GroupBy <- function(enumerable, key, type = c("data.frame", "list")) {
 # @param key The item property name in this list source collection.
 GroupBy.list <- function(list, key) {
     
-    groups <- list();
+	groups <- list();
+	tick   <- tick.helper(length(list)); 
+	cat("\n");
+	cat("  Progress%: ");
 
     for (i in 1:length(list)) {
         item      <- list[[i]];
@@ -54,8 +57,12 @@ GroupBy.list <- function(list, key) {
 
         key.list[[length(key.list) + 1]] <- item;
         groups[[group.key]] <- key.list;
+		tick();
     }
 
+	cat("\n");
+	cat("\n");
+	
     return(groups);
 }
 
