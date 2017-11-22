@@ -4,9 +4,9 @@ SaveXML <- function(x, file.xml, root = "R-xml") {
     
     write <- File.Open(file.txt = file.xml);
     write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-    write(sprintf("<%s xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">", root));
+    write("<%s xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">", root);
     push.x(x, "", write);
-    write(sprintf("</%s>", root));
+    write("</%s>", root);
 }
 
 push.x <- function(x, indent, write, name = NULL) {
@@ -54,7 +54,7 @@ Vector.XML <- function(vector, indent, write, name = NULL) {
         for (line in vector) {
             write(sprintf("%s%s<string>%s</string>", indent, indent, line));
         }
-        write(sprintf("%s</name>", indent, name));
+        write(sprintf("%s</%s>", indent, name));
 
         return(0);
     } else {
@@ -114,7 +114,7 @@ List.XML <- function(list, indent, write, node.name = NULL) {
     node.indent = indent;    
 
     if (!is.null(node.name)) {
-        write(sprintf("%s<%s>", indent, node.name));        
+        write('%s<item name=\"%s\">', indent, node.name);        
         node.indent = sprintf("%s%s", indent, indent);
     }
 
@@ -128,6 +128,6 @@ List.XML <- function(list, indent, write, node.name = NULL) {
     }
 
     if (!is.null(node.name)) {
-        write(sprintf("%s</%s>", indent, node.name));
+        write("%s</item>", indent);
     }
 }
