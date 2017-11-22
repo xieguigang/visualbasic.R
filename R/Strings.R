@@ -126,7 +126,7 @@ Mid <- function(s, start, length) {
 
 ## Determine that target string is null or empty or not??
 Strings.Empty <- function(s, NA.empty = FALSE) {
-	(is.null(s) || is.na(s) || s == "") || (NA.empty && s == "NA");
+	(IsNothing(s) || s == "") || (NA.empty && s == "NA");
 }
 
 ## 计算出两个代谢物的名字字符串的相似度

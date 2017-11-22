@@ -1,7 +1,8 @@
+# Linq helper in R language.
+
 `%=>%` <- function(x, y) { 
 	y(x);   
 }
-
 
 Take <- function(enumerable, m) {
 	enumerable[1:m];
@@ -11,6 +12,10 @@ Skip <- function(enumerable, m) {
 	enumerable[(m + 1):length(enumerable)];
 }
 
+WhichIsNotEmpty <- function(enumerable, assert = IsNothing) {
+	is.true <- sapply(enumerable, function(x) !assert(x));
+	which(is.true);
+}
 
 # (c(5,6,7,8,9) %=>% Take)(2)
 # [1] 5 6
@@ -91,3 +96,38 @@ GroupBy.dataframe <- function(data.frame, key) {
 	
     return(groups);
 }
+
+# Group the string collection
+Group <- function(seq, case.Sensitive = FALSE) {
+	
+	`%||%` <- function(x, y) if(case.Sensitive) x else y;
+	groups <- list();
+	
+	for (x in seq) {
+		key   <- x %||% tolower(x);
+		group <- groups[[key]];
+		
+		if (is.null(group)) {
+			groups[[key]] <- x;
+		} else {
+			groups[[key]] <- append(group, x);
+		}
+	}
+	
+	groups;
+}
+
+# Example:
+#
+# Group(c("A","B","C","c")) %=>% Count;
+#
+# $A: 1
+# $B: 1
+# $C: 2
+Count <- function(groups) {
+	names  <- names(groups);
+	counts <- lapply(names, function(key) length(groups[[key]]));
+	names(counts) <- names;
+	counts;
+}
+
