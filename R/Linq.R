@@ -124,6 +124,8 @@ Group <- function(seq, case.Sensitive = FALSE) {
 # $A: 1
 # $B: 1
 # $C: 2
+#
+# 这个函数通过是和Group函数构成一个流程来使用的
 Count <- function(groups) {
 	names  <- names(groups);
 	counts <- lapply(names, function(key) length(groups[[key]]));
