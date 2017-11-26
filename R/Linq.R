@@ -1,5 +1,6 @@
 # Linq helper in R language.
 
+# Extension method operator
 `%=>%` <- function(x, y) { 
 	y(x);   
 }
