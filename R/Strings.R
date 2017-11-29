@@ -88,6 +88,29 @@ lcase <- function(value) {
 	Strings.LCase(value);
 }
 
+# Public Shared Function Replace(Expression As String, Find As String, Replacement As String, Optional Start As Integer = 1, Optional Count As Integer = -1, Optional Compare As Microsoft.VisualBasic.CompareMethod = 0) As String
+#     Member of Microsoft.VisualBasic.Strings
+# 
+# Summary:
+# Returns a string in which a specified substring has been replaced with another substring a specified number of times.
+# 
+# Parameters:
+# Expression: Required. String expression containing substring to replace.
+# Find: Required. Substring being searched for.
+# Replacement: Required. Replacement substring.
+# Start: Optional. Position within Expression that starts a substring used for replacement. The return value of Replace is a string that begins at Start, with appropriate substitutions. If omitted, 1 is assumed.
+# Count: Optional. Number of substring substitutions to perform. If omitted, the default value is –1, which means "make all possible substitutions."
+# Compare: Optional. Numeric value indicating the kind of comparison to use when evaluating substrings. See Settings for values.
+# 
+# Returns:
+# Replace returns the following values.IfReplace returns Find is zero-length or NothingCopy of Expression Replace is zero-lengthCopy of Expression with no occurrences of Find Expression is zero-length or Nothing, or Start is greater than length of Expression Nothing Count is 0Copy of Expression
+# 
+# Exceptions:
+# System.ArgumentException: Count < -1 or Start <= 0.
+
+Strings.Replace <- function(Expression, Find, Replacement) {
+	gsub(Find, Replacement, Expression, fixed = TRUE)
+}
 
 # Public Shared Function UCase(Value As String) As String
     # Member of Microsoft.VisualBasic.Strings
