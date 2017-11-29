@@ -53,7 +53,7 @@
 }
 
 ## @param path: list(obj, "/path/ref");
-':=' <- function(path, value) {
+`%<=%` <- function(path, value) {
 	
 	# get parent environment
 	.globalEnvir <- parent.frame();
@@ -75,4 +75,37 @@
 	do.call(`rm`, list(t), envir = .globalEnvir);
 	
 	return(invisible(NULL)) 
+}
+
+# tuple syntax helper
+#
+# example:
+#
+# f <- function() list(TRUE, c(1,1,1,1,1));
+#
+# c(x,y) := f();
+#
+# > x
+# [1] TRUE
+# > y
+# [1] 1 1 1 1 1
+#
+# https://stackoverflow.com/questions/1826519/how-to-assign-from-a-function-which-returns-more-than-one-value
+#
+':=' <- function(lhs, rhs) {
+  frame <- parent.frame()
+  lhs <- as.list(substitute(lhs))
+  if (length(lhs) > 1)
+    lhs <- lhs[-1]
+  if (length(lhs) == 1) {
+    do.call(`=`, list(lhs[[1]], rhs), envir=frame)
+    return(invisible(NULL)) 
+  }
+  if (is.function(rhs) || is(rhs, 'formula'))
+    rhs <- list(rhs)
+  if (length(lhs) > length(rhs))
+    rhs <- c(rhs, rep(list(NULL), length(lhs) - length(rhs)))
+  for (i in 1:length(lhs))
+    do.call(`=`, list(lhs[[i]], rhs[[i]]), envir=frame)
+  return(invisible(NULL)) 
 }
