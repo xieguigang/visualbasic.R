@@ -1,5 +1,12 @@
-# 将任意的R对象序列化为XML文件保存
+#
+#
+#
 
+# 将任意的R对象序列化为XML文件保存
+#
+# @param x: The R object in any type
+# @param file.xml: The file path of the XML file dump data will be saved.
+# @param rootName: The name of the generated xml root node.
 SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {    	
 	XML.Framework(
 		write    = File.Open(file.txt = file.xml), 
@@ -10,6 +17,10 @@ SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {
 	);
 }
 
+#
+# @param write: The file write handle from the ``File.Open`` function
+# @param do.write: A function pointer that used for describ how to build the output xml file
+# @param rootName: The node name of the generated xml root node.
 XML.Framework <- function(write, do.write, rootName) {
     write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
     write("<%s xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">", rootName);
@@ -17,6 +28,7 @@ XML.Framework <- function(write, do.write, rootName) {
     write("</%s>", rootName);
 }
 
+# Choose different XML write function based on the input object type.
 push.x <- function(x, indent, write, name = NULL) {
 
 	if (is.data.frame(x) || is.matrix(x)) {
@@ -40,6 +52,9 @@ push.x <- function(x, indent, write, name = NULL) {
     }
 }
 
+# Write the vector as the xml node, If the vector type is characters, then 
+# this function will generates the resulted xml in a list format; If the vector
+# type is numeric or logical, then the vector will be saved as xml attribute
 Vector.XML <- function(vector, indent, write, name = NULL) {
     # 现在假设向量里面的元素都是基本的元素
 

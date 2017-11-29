@@ -1,3 +1,5 @@
+# Strings Helper function from Microsoft.VisualBasic.Strings namespace.
+
 # Public Shared Function Split(Expression As String, Optional Delimiter As String =  , Optional Limit As Integer = -1, Optional Compare As Microsoft.VisualBasic.CompareMethod = 0) As String()
 #     Member of Microsoft.VisualBasic.Strings
 

@@ -1,4 +1,5 @@
 # 任务运行的时长很长的时候，需要使用这个进度条函数来显示执行进度
+# Only avaliable for single thread R app
 tick.helper <- function(total, step = 5 / 100) {
 		
 	# 因为R语言的closure里面的变量都是局部变量，所以修改局部变量并不会影响全局的记录进度的变量
