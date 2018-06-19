@@ -64,3 +64,11 @@ binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, 
         NULL;
     }
 }
+
+sort.list <- function(list, key, compares = function(a, b) a - b) {
+
+}
+
+sort.dataframe <- function(dataframe, key, compares = function(a, b) a - b) {
+    
+}
