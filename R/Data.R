@@ -109,3 +109,22 @@
     do.call(`=`, list(lhs[[i]], rhs[[i]]), envir=frame)
   return(invisible(NULL)) 
 }
+
+## 函数返回primitiveTypes枚举之中的某一个类型
+GetType <- function(x) {
+	if (is.data.frame(x) || is.matrix(x)) {
+		primitiveTypes()$data.frame;
+	} else if (is.list(x)) {
+		primitiveTypes()$list;
+	} else if (is.vector(x)){
+		primitiveTypes()$vector;
+	} else {
+		primitiveTypes()$object;
+	}
+}
+
+## 枚举出R语言之中的一些基础的数据类型，枚举值有：
+## object, data.frame, list, vector
+primitiveTypes <- function() {
+	list(object = 0, data.frame = 1, list = 2, vector = 3);
+}
