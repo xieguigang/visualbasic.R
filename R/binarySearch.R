@@ -17,7 +17,30 @@ binarySearch <- function(source, find, key, compares = function(a, b) a - b) {
 }
 
 binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) {
-    
+    L <- 1;
+    R <- length(list);
+    i <- -1;
+
+    while(L <= R) {
+        m <- floor((L + R) / 2);
+        x <- key(list[[m]]);
+        c <- compares(x, find);
+
+        if (c < 0) {
+            L <- m + 1;
+        } else if (c > 0) {
+            R <- m - 1;
+        } else {
+            i <- m;
+            break;
+        }
+    }
+
+    if (i > -1) {
+        list[[i]];
+    } else {
+        NULL;
+    }
 } 
 
 binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, b) a - b) {
