@@ -21,7 +21,8 @@ binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) 
         function(i) key(list[[i]]), 
         length(list), 
         find, 
-        compares);
+        compares
+    );
 
     if (i > -1) {
         list[[i]];
