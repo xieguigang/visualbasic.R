@@ -29,18 +29,14 @@ enumerator <- function(src) {
 		} else if (type == types$list) {			
 			
 			names <- names(src)
-			test  <- sapply(names, function(name) assert(src[[name]])) 
-				%=>% which 
-				%=>% as.integer;
+			test  <- sapply(names, function(name) assert(src[[name]])) %=>% which %=>% as.integer;
 			list  <- src[names[test]];  
 					
 			list;
 			
 		} else if (type == types$vector) {
 			
-			test <- sapply(src, function(x) assert(x)) 
-				%=>% which 
-				%=>% as.integer;
+			test <- sapply(src, function(x) assert(x)) %=>% which %=>% as.integer;
 			list <- src[test];  
 			
 		} else {

@@ -94,6 +94,10 @@ microsoft.visualbasic.language <- function() {
 		invisible(NULL);
 	}
 	
+	'->' <- function(x, f) {
+		f(x, ...);
+	}
+	
 	# Extension method operator
 	`%=>%` <- function(x, y) { 
 		y(x);   
@@ -102,7 +106,8 @@ microsoft.visualbasic.language <- function() {
 	list("%||%" = get("%||%"), 
 		 "%<=%" = get("%<=%"), 
 		 ":="   = get(":="),
-		 "%=>%" = get("%=>%")
+		 "%=>%" = get("%=>%"),
+		 "->"   = get("->")
 	);
 }
 

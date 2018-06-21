@@ -13,6 +13,6 @@ l[["G"]] <- list(a1 = "G", x = 4349);
 l[["H"]] <- list(x = 99, a1 = "H");
 
 
-from(l)$where(function(x) x$x > 0)
-	   $select(function(x) x$a1)
-	   $toarray();
+from(l)->where(function(x) x$x > 0)
+	   ->select(function(x) x$a1)
+	   ->toarray();
