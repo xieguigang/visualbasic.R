@@ -10,6 +10,10 @@ enumerator(src)
 }
 \arguments{
 \item{src}{A generic type data sequence, which can be a \code{dataframe}, \code{list}, or \code{vector}.}
+
+\item{key}{Can be a string name which can select the property of
+the list object or a lambda function for evaluate the
+element object to numeric value.}
 }
 \value{
 A generic enumerator list object, which it contains:
@@ -18,7 +22,10 @@ A generic enumerator list object, which it contains:
         \item \code{where} Extension function for select values by test on condition for each element if they are true
         \item \code{select} Project the input data sequence source to another form.
         \item \code{toarray} Get the input source data sequence.
+        \item \code{orderBy}
+        \item \code{orderByDescending}
         }
+Reorder the elements in the source sequence by a given \code{key}
 }
 \description{
 Enumerator object constructor function for create a VB.NET linq like data sequence wrapper.

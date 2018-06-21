@@ -18,4 +18,8 @@ binarySearch(source, find, key, compares = function(a, b) a - b)
 \description{
 对一个已经进行排序的序列进行二分法查�<U+FFFD>
 }
+\details{
+If there are duplicated items in the \code{source} sequence, then
+         you should group the items at first and then perfamence the binary search.
+}
 
