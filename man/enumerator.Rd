@@ -13,10 +13,12 @@ enumerator(src)
 }
 \value{
 A generic enumerator list object, which it contains:
-        + \code{src} The generic data sequence input
-        + \code{where} Extension function for select values by test on condition for each element if they are true
-        + \code{select} Project the input data sequence source to another form.
-        + \code{toarray} Get the input source data sequence.
+        \enumerate{
+        \item \code{src} The generic data sequence input
+        \item \code{where} Extension function for select values by test on condition for each element if they are true
+        \item \code{select} Project the input data sequence source to another form.
+        \item \code{toarray} Get the input source data sequence.
+        }
 }
 \description{
 Enumerator object constructor function for create a VB.NET linq like data sequence wrapper.

@@ -5,10 +5,14 @@
 #' @param src A generic type data sequence, which can be a \code{dataframe}, \code{list}, or \code{vector}.
 #'
 #' @return A generic enumerator list object, which it contains:
-#'         + \code{src} The generic data sequence input
-#'         + \code{where} Extension function for select values by test on condition for each element if they are true
-#'         + \code{select} Project the input data sequence source to another form.
-#'         + \code{toarray} Get the input source data sequence.
+#'         \enumerate{
+#'         \item \code{src} The generic data sequence input
+#'         \item \code{where} Extension function for select values by test on condition for each element if they are true
+#'         \item \code{select} Project the input data sequence source to another form.
+#'         \item \code{toarray} Get the input source data sequence.
+#'         \item \code{orderBy}
+#'         \item \code{orderByDescending}
+#'         }
 enumerator <- function(src) {
 
 	imports("microsoft.visualbasic.language");
@@ -55,11 +59,26 @@ enumerator <- function(src) {
 		}
 	}
 
+	#' Reorder the elements in the source sequence by a given \code{key}
+	#'
+	#' @param key Can be a string name which can select the property of
+	#'            the list object or a lambda function for evaluate the
+	#'            element object to numeric value.
+	.orderBy <- function(key, key.numeric = function(x) as.numeric(x)) {
+    sort.list(src, key, key.numeric, FALSE);
+	}
+
+	.orderByDescending <- function(key, key.numeric = function(x) as.numeric(x)) {
+	  sort.list(src, key, key.numeric, TRUE);
+	}
+
 	#endregion
 
-	list(src     = src,
+	list(src   = src,
 		 select  = function(project) enumerator(.select(project)),
 		 where   = function(assert) enumerator(.where(assert)),
+		 orderBy = function(key, key.numeric = as.numeric) enumerator(.orderBy(key, key.numeric)),
+		 orderByDescending = function(key, key.numeric = as.numeric) enumerator(.orderBy(key, key.numeric, TRUE)),
 		 toarray = function() src
 	);
 }

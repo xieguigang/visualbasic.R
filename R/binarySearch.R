@@ -4,6 +4,9 @@
 #' @param find 查找的目标key
 #' @param compares find待查找目标键key和source之中的对象的key的比较方式，默认是按照数值大小进行比较
 #' @param key 用于描述如何从source之中的一个元素得到进行比较的key的lambda表达式方法
+#'
+#' @details If there are duplicated items in the \code{source} sequence, then
+#'          you should group the items at first and then perfamence the binary search.
 binarySearch <- function(source, find, key, compares = function(a, b) a - b) {
     type <- GetType(source);
 
@@ -16,6 +19,7 @@ binarySearch <- function(source, find, key, compares = function(a, b) a - b) {
     }
 }
 
+#' @seealso \code{\link{.binarySearch.impl.generic}}
 binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) {
     i <- .binarySearch.impl.generic(
         function(i) key(list[[i]]),
@@ -31,6 +35,8 @@ binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) 
     }
 }
 
+#' A internal private function which find the index of the element in the
+#' input sequence which match a specific target key.
 #' 这个查找函数返回序列的下标i
 .binarySearch.impl.generic <- function(ikey, .length, find, compares) {
     L <- 1;
@@ -54,6 +60,7 @@ binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) 
     i;
 }
 
+#' @seealso \code{\link{.binarySearch.impl.generic}}
 binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, b) a - b) {
     # 获取得到索引列，这个索引列应该是进行了升序排序了的
     key <- as.vector(dataframe[, key]);
