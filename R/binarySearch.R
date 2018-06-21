@@ -66,10 +66,30 @@ binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, 
     }
 }
 
-sort.list <- function(list, key, compares = function(a, b) a - b) {
+## 我们假设在这里的list是里面的所有的元素都是list对象，并且元素的名称都相同
+sort.list <- function(list, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {
+    if (!is.function(key)) {
+        key <- function(x) x[[key]];
+    }
 
+    listnames <- names(list);
+    keys  <- sapply(listnames, function(name) {
+        x <- list[[name]];
+        key.numeric(key(x));
+    });
+    orders <- order(as.numeric(keys), decreasing = desc);
+    listnames <- listnames[orders];
+    list <- list[orders];
+    names(list) <- listnames;
+
+    list;
 }
 
-sort.dataframe <- function(dataframe, key, compares = function(a, b) a - b) {
-    
+## 对数据框按照指定的列进行排序
+##
+## @param {key} 数据框之中的列名称或者列的索引编号
+## @param {key.numeric} 这个lambda函数描述了如何将所指定的列的值转换为用来进行排序所需要的数值依据的过程
+## @param {desc} 是否执行降序排序？默认是升序排序
+sort.dataframe <- function(dataframe, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {
+    dataframe[order(key.numeric(dataframe[, key]), decreasing = desc), ];
 }
