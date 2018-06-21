@@ -69,17 +69,19 @@ binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, 
 ## 我们假设在这里的list是里面的所有的元素都是list对象，并且元素的名称都相同
 sort.list <- function(list, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {
     if (!is.function(key)) {
-        key <- function(x) x[[key]];
-    }
+        getkey <- function(x) x[[key]];
+    } else {
+		getkey <- key;
+	}
 
     listnames <- names(list);
     keys  <- sapply(listnames, function(name) {
         x <- list[[name]];
-        key.numeric(key(x));
+        key.numeric(getkey(x));
     });
     orders <- order(as.numeric(keys), decreasing = desc);
-    listnames <- listnames[orders];
-    list <- list[orders];
+    listnames   <- listnames[orders];
+    list        <- list[orders];
     names(list) <- listnames;
 
     list;

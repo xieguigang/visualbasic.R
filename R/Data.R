@@ -52,6 +52,19 @@
 	d;
 }
 
+as.dataframe <- function(list) {
+	d <- NULL;
+	list.names <- names(list);
+	
+	for (name in list.names) {
+		x <- list[[name]];
+		d <- rbind(d, x);
+	}
+	
+	rownames(d) <- list.names;
+	d;
+}
+
 ## @param path: list(obj, "/path/ref");
 `%<=%` <- function(path, value) {
 	
