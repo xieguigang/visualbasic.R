@@ -52,16 +52,46 @@
 	d;
 }
 
+SelectMany <- function(list, project) {
+	v <- NULL;
+	
+	for(x in list) {
+		v <- append(v, project(x));
+	}
+	
+	v;
+}
+
+list.project <- function(list, fields) {
+	l <- list();
+	
+	for (name in fields) {
+		x <- list[[name]];
+		
+		if (is.null(x)) {
+			l[[name]] <- NA;
+		} else {
+			l[[name]] <- x;
+		}
+	}
+	
+	l;
+} 
+
 as.dataframe <- function(list) {
 	d <- NULL;
 	list.names <- names(list);
+	all.prop <- SelectMany(list, function(x) names(x)); 
+	all.prop <- unique(all.prop);
 	
 	for (name in list.names) {
 		x <- list[[name]];
+		x <- list.project(x, all.prop);
 		d <- rbind(d, x);
 	}
 	
 	rownames(d) <- list.names;
+	colnames(d) <- all.prop;
 	d;
 }
 

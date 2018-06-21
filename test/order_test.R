@@ -1,19 +1,18 @@
-l[["A"]] <- list(a1 = "A", x = 90000099);
+l[["A"]] <- list(a1 = "A", x = 90000099, d = 5678);
 l[["B"]] <- list(a1 = "B", x = 19);
-l[["C"]] <- list(a1 = "C", x = -98999);
+l[["C"]] <- list(a1 = "C", x = -98999, c = TRUE);
 l[["D"]] <- list(a1 = "D", x = -999);
-l[["E"]] <- list(a1 = "E", x = 1999);
-l[["F"]] <- list(a1 = "F", x = 934499);
+l[["E"]] <- list(x = 1999, a1 = "E" );
+l[["F"]] <- list(a1 = "F", x = 934499, c = FALSE);
 l[["G"]] <- list(a1 = "G", x = 4349);
-l[["H"]] <- list(a1 = "H", x = 99);
+l[["H"]] <- list(x = 99, a1 = "H");
 
-print(l)
-print(sort.list(l, "x"));
+print(str(l))
+print(str(sort.list(l, "x")));
 
 
-d <- as.data.frame(l);
+d <- as.dataframe(l);
 
 print(d)
 print(sort.dataframe(d, "x", desc = TRUE));
 
-as.dataframe <-

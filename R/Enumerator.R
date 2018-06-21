@@ -1,0 +1,1 @@
+Enumerator <- setClass("Enumerator", slots = c(src = "object"));
