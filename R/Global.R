@@ -94,22 +94,30 @@ microsoft.visualbasic.language <- function() {
 		invisible(NULL);
 	}
 	
+	# Extension method operator
+	`%=>%` <- function(x, y) { 
+		y(x);   
+	}
+	
 	list("%||%" = get("%||%"), 
 		 "%<=%" = get("%<=%"), 
-		 ":="   = get(":=")
+		 ":="   = get(":="),
+		 "%=>%" = get("%=>%")
 	);
 }
 
 ## 函数返回primitiveTypes枚举之中的某一个类型
 GetType <- function(x) {
+	types <- primitiveTypes();
+
 	if (is.data.frame(x) || is.matrix(x)) {
-		primitiveTypes()$data.frame;
+		types$data.frame;
 	} else if (is.list(x)) {
-		primitiveTypes()$list;
+		types$list;
 	} else if (is.vector(x)){
-		primitiveTypes()$vector;
+		types$vector;
 	} else {
-		primitiveTypes()$object;
+		types$object;
 	}
 }
 

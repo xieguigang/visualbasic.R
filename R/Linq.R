@@ -1,10 +1,5 @@
 # Linq helper in R language.
 
-# Extension method operator
-`%=>%` <- function(x, y) { 
-	y(x);   
-}
-
 Take <- function(enumerable, m) {
 	enumerable[1:m];
 }
