@@ -1,16 +1,17 @@
-## 这个函数是为了兼容脚本模式和R包模式下的引用问题
+#' 这个函数是为了兼容脚本模式和R包模式下的引用问题
 include <- function(R) {
 	if (file.exists(R)) {
 		source(R);
 	}
 }
 
+#' Load all of the R script in current working directory.
 flash_load <- function() {
 
 	# 查找当前文件夹下面的所有的R脚本
 	# 然后进行加载操作
 	scripts <- list.files(
-		getwd(), 
+		getwd(),
 		recursive  = F,
 		pattern    = "\\.[Rr]",
 		full.names = T
@@ -20,7 +21,7 @@ flash_load <- function() {
 		if (basename(script) != "script_loader") {
 			source(script);
 		}
-		
+
 		print(script);
 	}
 }
