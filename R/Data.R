@@ -153,17 +153,7 @@ as.dataframe <- function(list) {
   return(invisible(NULL)) 
 }
 
-Imports <- function(namespace) {
-	frame  <- parent.frame();
-	module <- get(namespace, envir = frame);
-	func.list <- module();
-	
-	for (name in names(func.list)) {
-		do.call(`=`, list(name, func.list[[name]]), envir=frame);
-	}
-	
-	return(invisible(NULL)) ;
-}
+
 
 test.ddd <- function() {
 
