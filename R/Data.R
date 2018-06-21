@@ -153,6 +153,24 @@ as.dataframe <- function(list) {
   return(invisible(NULL)) 
 }
 
+Imports <- function(namespace) {
+	frame  <- parent.frame();
+	module <- get(namespace, envir = frame);
+	func.list <- module();
+	
+	for (name in names(func.list)) {
+		do.call(`=`, list(name, func.list[[name]]), envir=frame);
+	}
+	
+	return(invisible(NULL)) ;
+}
+
+test.ddd <- function() {
+
+list(utils1 = function() 666, abc = function() "abc");
+
+}
+
 ## 函数返回primitiveTypes枚举之中的某一个类型
 GetType <- function(x) {
 	if (is.data.frame(x) || is.matrix(x)) {
