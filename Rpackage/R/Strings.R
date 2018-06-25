@@ -161,17 +161,17 @@ name.similarity <- function(sa, sb) {
 	similarity;
 }
 
-### Compute Levenshtein distance between two strings
-###
-### @param source      Source string.
-### @param target      Target string.
-### @param type        Specifies the return type. 'distance' for a single
-###                    distance value; 'matrix' for the matrix used during
-###                    dynamic programming.
-### @param insert.fun  delete.fun, substitute.fun: Penalty functions of insert,
-###                    delete and substitute operation, whose return value must
-###                    be a single scalar value.
-###
+#' Compute Levenshtein distance between two strings
+#'
+#' @param source      Source string.
+#' @param target      Target string.
+#' @param type        Specifies the return type. 'distance' for a single
+#'                    distance value; 'matrix' for the matrix used during
+#'                    dynamic programming.
+#' @param insert.fun  delete.fun, substitute.fun: Penalty functions of insert,
+#'                    delete and substitute operation, whose return value must
+#'                    be a single scalar value.
+#'
 levenshtein.distance <- function(source, target,
 	type           = c('distance','matrix'),
 	insert.fun     = function(x) 1,

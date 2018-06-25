@@ -1,3 +1,4 @@
+#' Get the file name of a given file path without extension name
 basename <- function(path) {
 
     file <- base::basename(path)
@@ -23,8 +24,11 @@ Println <- function(file.txt, content) {
 	return(invisible(NULL));
 }
 
-## 打开一个文件句柄，然后返回一个函数指针用来以``sprintf``格式化
-## 的形式向文件以追加的形式写入数据
+#' 打开一个文件句柄，然后返回一个函数指针用来以\code{sprintf}格式化
+#' 的形式向文件以追加的形式写入数据
+#'
+#' @param file.txt Target file path for write in text mode.
+#' @param append A logical flag to indicate append the data to target file or not?
 File.Open <- function(file.txt, append = FALSE) {
 
 	try(dir.create(dirname(file.txt), recursive = TRUE));
@@ -39,6 +43,9 @@ File.Open <- function(file.txt, append = FALSE) {
 	});
 }
 
+#' Read all text from a specific file
+#'
+#' @param file.txt The target file path for read
 ReadAllText <- function(file.txt) {
 	conn  <- file(file.txt, open = "r");
 	lines <- readLines(conn);
