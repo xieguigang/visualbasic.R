@@ -46,3 +46,4 @@ vignettes/*.pdf
 *.ide-wal
 *.dtbcache
 /Utils/AutoVersion/obj
+*.zip

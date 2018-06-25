@@ -41,6 +41,9 @@ imports <- function(namespace, overrides = FALSE, silent = TRUE) {
 #'
 #' @param x Object with any type for determine that its value is null
 #'           or empty or not?
+#' @param stringAsFactor A logical flag that indicated that should treated
+#'                       the string value like \code{NULL}, \code{NA}, etc
+#'                       as Nothing?
 #'
 #' @details 判断对象是否为空，在这个函数里面，空值，NA值，长度为零的向量，
 #'          列表等都会被当作为空值
@@ -66,6 +69,14 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 	}
 }
 
+#' Returns the object size
+#'
+#' @param x R object in any type
+#'
+#' @return A list with element: \code{rows} and \code{cols} to indicate the object size.
+#'         for x is \code{data.frame}, these two element value will be \code{\link{nrows}} and \code{\link{ncols}}
+#'         for x is \code{list} or \code{vector}, these two element value will be \code{rows = 1} and \code{cols = \link{length}(x)}
+#'         for x is object like S4 class, these two element value will be \code{[1,1]}
 Size <- function(x) {
   type <- GetType(x);
 
