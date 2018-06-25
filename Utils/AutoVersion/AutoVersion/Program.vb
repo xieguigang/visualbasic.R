@@ -1,26 +1,36 @@
 ﻿Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.Language
 
 Module Program
 
+    <Extension>
+    Private Function versioning(ver%(), Optional i% = -1) As Integer()
+        If i = -1 Then
+            i = ver.Length - 1
+        End If
+
+        If i > 0 AndAlso ver(i) = 999 Then
+            ver(i) = 0
+            ver = versioning(ver, i - 1)
+        Else
+            ver(i) += 1
+        End If
+
+        Return ver
+    End Function
+
     Sub Main()
         Dim template$ = App.CommandLine.Name
         Dim version As Value(Of String) = template.ParentPath & "/version.txt"
-        Dim ver#() = version.Value _
+        Dim ver%() = version.Value _
             .ReadAllText _
             .Split("."c) _
-            .Select(AddressOf Val) _
+            .Select(Function(t) CInt(Val(t))) _
             .ToArray
 
-        For i As Integer = ver.Length - 1 To 0 Step -1
-            If i > 0 AndAlso ver(i) = 999 Then
-                ver(i) = 0
-                ver(i - 1) += 1
-            End If
-        Next
-
         With CType(version, String)
-            Call (version = ver.JoinBy(".")).SaveTo(.ByRef)
+            Call (version = ver.versioning().JoinBy(".")).SaveTo(.ByRef)
         End With
 
         Dim description = template _
