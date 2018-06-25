@@ -44,19 +44,24 @@ imports <- function(namespace, overrides = FALSE, silent = TRUE) {
 #'
 #' @details 判断对象是否为空，在这个函数里面，空值，NA值，长度为零的向量，
 #'          列表等都会被当作为空值
-IsNothing <- function(x) {
+IsNothing <- function(x, stringAsFactor = FALSE) {
 	
 	if (is.null(x) || is.na(x) || length(x) == 0) {
 		TRUE;
-	} else {
-	
+
 		# 2018-6-25 空字符串无法直接和S4对象进行比较
 		# 所以下面会需要先进行一次类型比较再判断空字符串
 		# Error in x == "" : 只能比较(1)基元或串列种类
-		if (is.character(x) && x == "") {
+	} else if (!is.character(x)) {
+		FALSE;
+	} else {
+		
+		if (x == "") {
 			TRUE;
-		} else {
+		} else if (!stringAsFactor) {
 			FALSE;
+		} else {
+			return (x %in% c("NULL", "null", "na", "NA"));
 		}
 	}	
 }
