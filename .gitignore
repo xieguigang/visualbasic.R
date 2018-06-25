@@ -36,3 +36,7 @@ vignettes/*.pdf
 /.vs
 /.vs
 .Rproj.user
+*.suo
+/Utils/AutoVersion/AutoVersion/obj
+/Utils/AutoVersion/AutoVersion/bin/Release
+/Utils/App
