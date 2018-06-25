@@ -4,8 +4,8 @@ Title: VisualBasic.NET function port to R language.
 Version: 0.1.31
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
-Description: Linq like common data operation for R and common string helper from
-    VB language.
+Description: Linq like common data operation for R and common string helper 
+ from VB language.
 License: MIT License
 Encoding: UTF-8
 LazyData: true
