@@ -17,7 +17,7 @@ REM build R package
 REM By default the R compiler is located at "D:\R\bin\x64\Rcmd.exe"
 REM in the environment on my computer
 if "%compiler%" == "" (
-	CALL %default%  build ./
+	CALL %default%  build ./Rpackage/
 ) else (
-	CALL %compiler% build ./
+	CALL %compiler% build ./Rpackage/
 )
