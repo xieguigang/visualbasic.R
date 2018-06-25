@@ -9,6 +9,8 @@ tick.helper(total, step = 5/100)
 }
 \arguments{
 \item{total}{The total elements in the Long time run task that will be processing}
+
+\item{step}{The tick interval value for report the task progress value, default is 5%.}
 }
 \value{
 A lambda function that using for report the task progress.

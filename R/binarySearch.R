@@ -23,9 +23,9 @@ binarySearch <- function(source, find, key, compares = function(a, b) a - b) {
     }
 }
 
-#' @seealso \code{\link{.binarySearch.impl.generic}}
+#' @seealso \code{\link{binarySearch.impl.generic}}
 binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) {
-    i <- .binarySearch.impl.generic(
+    i <- binarySearch.impl.generic(
         function(i) key(list[[i]]),
         length(list),
         find,
@@ -42,7 +42,7 @@ binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) 
 #' A internal private function which find the index of the element in the
 #' input sequence which match a specific target key.
 #' This function returns the index i of the input sequence.
-.binarySearch.impl.generic <- function(ikey, .length, find, compares) {
+binarySearch.impl.generic <- function(ikey, .length, find, compares) {
     L <- 1;
     R <- .length;
     i <- -1;
@@ -64,11 +64,11 @@ binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) 
     i;
 }
 
-#' @seealso \code{\link{.binarySearch.impl.generic}}
+#' @seealso \code{\link{binarySearch.impl.generic}}
 binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, b) a - b) {
     # 获取得到索引列，这个索引列应该是进行了升序排序了的
     key <- as.vector(dataframe[, key]);
-    i   <- .binarySearch.impl.generic(function(i) key[i], length(key), find, compares);
+    i   <- binarySearch.impl.generic(function(i) key[i], length(key), find, compares);
 
     if (i > -1) {
         dataframe[i, ];
