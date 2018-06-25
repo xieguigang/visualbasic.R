@@ -2,15 +2,14 @@
 % Please edit documentation in R/XML.R
 \name{Vector.XML}
 \alias{Vector.XML}
-\title{Write the vector as the xml node, If the vector type is characters, then
-this function will generates the resulted xml in a list format; If the vector
-type is numeric or logical, then the vector will be saved as xml attribute}
+\title{Write the vector as the xml node}
 \usage{
 Vector.XML(vector, indent, write, name = NULL)
 }
 \description{
-Write the vector as the xml node, If the vector type is characters, then
-this function will generates the resulted xml in a list format; If the vector
-type is numeric or logical, then the vector will be saved as xml attribute
+Write the vector as the xml node, If the vector type is characters,
+then this function will generates the resulted xml in a list format;
+If the vector type is numeric or logical, then the vector will be saved as
+xml attribute
 }
 

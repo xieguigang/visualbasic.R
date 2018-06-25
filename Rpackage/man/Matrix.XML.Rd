@@ -2,8 +2,7 @@
 % Please edit documentation in R/XML.R
 \name{Matrix.XML}
 \alias{Matrix.XML}
-\title{Write the variable object of \code{matrix}/\code{data.frame} type
-as a node in XML document.}
+\title{Write the matrix/dataframe as XML node}
 \usage{
 Matrix.XML(matrix, indent, write, node.name = NULL)
 }

@@ -1,6 +1,8 @@
-#' Enumerator object constructor function for create a VB.NET linq like data sequence wrapper.
-#' This constructor function will create a list which contains a sequence source and sevral
-#' linq data helper extension functions
+#' Enumerator object constructor
+#'
+#' @description Enumerator object constructor function for create a VB.NET linq like data
+#' sequence wrapper. This constructor function will create a list which contains a sequence
+#' source and sevral linq data helper extension functions
 #'
 #' @param src A generic type data sequence, which can be a \code{dataframe}, \code{list}, or \code{vector}.
 #'

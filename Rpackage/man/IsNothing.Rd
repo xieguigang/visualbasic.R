@@ -2,8 +2,7 @@
 % Please edit documentation in R/Global.R
 \name{IsNothing}
 \alias{IsNothing}
-\title{Determine that target \code{is.null} or \code{is.na} or \code{length}
-equals to ZERO?}
+\title{Determine that target is Nothing in VB way}
 \usage{
 IsNothing(x, stringAsFactor = FALSE)
 }
@@ -16,8 +15,9 @@ the string value like \code{NULL}, \code{NA}, etc
 as Nothing?}
 }
 \description{
-Determine that target \code{is.null} or \code{is.na} or \code{length}
-equals to ZERO?
+Determine that target is Nothing in VB way.
+             \code{is.null} or \code{is.na} or \code{length} equals to ZERO?
+             All of these situation will be treated as Nothing.
 }
 \details{
 <U+5224><U+65AD><U+5BF9><U+8C61><U+662F><U+5426><U+4E3A><U+7A7A>,<U+5728><U+8FD9><U+4E2A><U+51FD><U+6570><U+91CC><U+9762>,<U+7A7A><U+503C>,NA<U+503C>,<U+957F><U+5EA6><U+4E3A><U+96F6><U+7684><U+5411><U+91CF>,

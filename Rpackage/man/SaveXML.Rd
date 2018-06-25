@@ -2,8 +2,7 @@
 % Please edit documentation in R/XML.R
 \name{SaveXML}
 \alias{SaveXML}
-\title{Serialize any R object to a specific XML file, for save data in a more
-human readable format.}
+\title{Serialize any R object to a specific XML file}
 \usage{
 SaveXML(x, file.xml, rootName = "Rlang.xml")
 }

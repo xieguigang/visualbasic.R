@@ -1,5 +1,7 @@
 
-#' Serialize any R object to a specific XML file, for save data in a more
+#' Serialize any R object to a specific XML file
+#'
+#' @description Serialize any R object to a specific XML file, for save data in a more
 #' human readable format.
 #'
 #' @param x The R object in any type
@@ -51,9 +53,12 @@ push.x <- function(x, indent, write, name = NULL) {
     }
 }
 
-#' Write the vector as the xml node, If the vector type is characters, then
-#' this function will generates the resulted xml in a list format; If the vector
-#' type is numeric or logical, then the vector will be saved as xml attribute
+#' Write the vector as the xml node
+#'
+#' @description Write the vector as the xml node, If the vector type is characters,
+#' then this function will generates the resulted xml in a list format;
+#' If the vector type is numeric or logical, then the vector will be saved as
+#' xml attribute
 Vector.XML <- function(vector, indent, write, name = NULL) {
     # 现在假设向量里面的元素都是基本的元素
 
@@ -91,7 +96,9 @@ Vector.XML <- function(vector, indent, write, name = NULL) {
     write(line);
 }
 
-#' Write the variable object of \code{matrix}/\code{data.frame} type
+#' Write the matrix/dataframe as XML node
+#'
+#' @description Write the variable object of \code{matrix}/\code{data.frame} type
 #' as a node in XML document.
 Matrix.XML <- function(matrix, indent, write, node.name = NULL) {
 
@@ -127,6 +134,7 @@ Matrix.XML <- function(matrix, indent, write, node.name = NULL) {
 	write('%s</table>', indent);
 }
 
+#' Write the \code{list} as XML node
 List.XML <- function(list, indent, write, node.name = NULL) {
 
     name.list <- names(list);

@@ -24,7 +24,9 @@ Println <- function(file.txt, content) {
 	return(invisible(NULL));
 }
 
-#' 打开一个文件句柄，然后返回一个函数指针用来以\code{sprintf}格式化
+#' Open a text file for write in text mode
+#'
+#' @description 打开一个文件句柄，然后返回一个函数指针用来以\code{sprintf}格式化
 #' 的形式向文件以追加的形式写入数据
 #'
 #' @param file.txt Target file path for write in text mode.

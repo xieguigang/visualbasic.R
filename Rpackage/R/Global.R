@@ -36,8 +36,11 @@ imports <- function(namespace, overrides = FALSE, silent = TRUE) {
 	}
 }
 
-#' Determine that target \code{is.null} or \code{is.na} or \code{length}
-#' equals to ZERO?
+#' Determine that target is Nothing in VB way
+#'
+#' @description Determine that target is Nothing in VB way.
+#'              \code{is.null} or \code{is.na} or \code{length} equals to ZERO?
+#'              All of these situation will be treated as Nothing.
 #'
 #' @param x Object with any type for determine that its value is null
 #'           or empty or not?
