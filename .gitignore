@@ -40,3 +40,9 @@ vignettes/*.pdf
 /Utils/AutoVersion/AutoVersion/obj
 /Utils/AutoVersion/AutoVersion/bin/Release
 /Utils/App
+*.lock
+*.ide
+*.ide-shm
+*.ide-wal
+*.dtbcache
+/Utils/AutoVersion/obj
