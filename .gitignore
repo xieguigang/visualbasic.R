@@ -39,3 +39,4 @@ vignettes/*.pdf
 *.suo
 /Utils/AutoVersion/AutoVersion/obj
 /Utils/AutoVersion/AutoVersion/bin/Release
+/Utils/App
