@@ -1,11 +1,20 @@
-#' 这个函数是为了兼容脚本模式和R包模式下的引用问题
+#' This function is using for solving the code compatibility
+#' between the R package and R script.
+#'
+#' @param R R script file path.
+#'
+#' @return Nothing
 include <- function(R) {
 	if (file.exists(R)) {
 		source(R);
 	}
+
+  invisible(NULL);
 }
 
 #' Load all of the R script in current working directory.
+#'
+#' @return Nothing.
 flash_load <- function() {
 
 	# 查找当前文件夹下面的所有的R脚本
@@ -24,6 +33,8 @@ flash_load <- function() {
 
 		print(script);
 	}
+
+	invisible(NULL);
 }
 
 # flash_load();

@@ -45,7 +45,7 @@ imports <- function(namespace, overrides = FALSE, silent = TRUE) {
 #' @details 判断对象是否为空，在这个函数里面，空值，NA值，长度为零的向量，
 #'          列表等都会被当作为空值
 IsNothing <- function(x, stringAsFactor = FALSE) {
-	
+
 	if (is.null(x) || is.na(x) || length(x) == 0) {
 		TRUE;
 
@@ -55,7 +55,7 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 	} else if (!is.character(x)) {
 		FALSE;
 	} else {
-		
+
 		if (x == "") {
 			TRUE;
 		} else if (!stringAsFactor) {
@@ -63,11 +63,53 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 		} else {
 			return (x %in% c("NULL", "null", "na", "NA"));
 		}
-	}	
+	}
 }
 
-#' 模拟C语言的打印函数
+Size <- function(x) {
+  type <- GetType(x);
+
+  if (type == primitiveTypes()$data.frame) {
+    list(rows = nrows(x), cols = ncols(x));
+  } else if (type == primitiveTypes()$list || type == primitiveTypes()$vector) {
+    list(rows = 1, cols = length(x));
+  } else {
+    list(rows = 1, cols = 1);
+  }
+}
+
+#' Simulate the C printf function
 printf <- function(...) invisible(print(sprintf(...)));
+
+#' Logging error log file.
+#'
+#' @param ex Can be error exception or error string text
+#' @param logFile File path for save the log data
+#' @param append a logical flag that indicate clear the content
+#'               before write the log file or not.
+#'
+#' @return Nothing
+LogException <- function(ex, logFile, append = FALSE) {
+  dir <- dirname(logFile);
+
+  if (!file.exists(dir)) {
+    dir.create(dir, recursive = TRUE);
+  }
+
+  if (is.character(ex)) {
+    msg <- ex;
+  } else {
+    msg <- toString(ex);
+  }
+
+  cat(msg,
+      file   = logFile,
+      sep    = "\n",
+      append = append
+  );
+
+  invisible(NULL);
+}
 
 #' syntax tweaks
 microsoft.visualbasic.language <- function() {
@@ -149,7 +191,14 @@ microsoft.visualbasic.language <- function() {
 	);
 }
 
-#' 函数返回\code{\link{primitiveTypes}}枚举之中的某一个类型
+#' This function returns on of the member value from enumeration function
+#' \code{\link{primitiveTypes}}
+#' based on the type of the variable \code{x}
+#'
+#' @param x Any variable
+#'
+#' @return One of the value member from enumeration function
+#'         \code{\link{primitiveTypes}}.
 GetType <- function(x) {
 	types <- primitiveTypes();
 
@@ -164,7 +213,8 @@ GetType <- function(x) {
 	}
 }
 
-#' 枚举出R语言之中的一些基础的数据类型，枚举值有：
+#' Enumerate some primitive type in R language, these enumeration value have:
+#'
 #' \enumerate{
 #' \item \code{object} = 0
 #' \item \code{data.frame} = 1

@@ -6,6 +6,9 @@
 \usage{
 flash_load()
 }
+\value{
+Nothing.
+}
 \description{
 Load all of the R script in current working directory.
 }

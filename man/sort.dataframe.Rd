@@ -2,19 +2,22 @@
 % Please edit documentation in R/binarySearch.R
 \name{sort.dataframe}
 \alias{sort.dataframe}
-\title{对数据框按照指定的列进行排序}
+\title{Sort a dataframe by a specific given column name or key indexer.}
 \usage{
 \method{sort}{dataframe}(dataframe, key, key.numeric = function(v)
   as.numeric(v), desc = FALSE)
 }
 \arguments{
-\item{key}{数据框之中的列名称或者列的索引编�<U+FFFD>}
+\item{key}{The key column name or a lambda function to summary the
+rows to a specific key}
 
-\item{key.numeric}{这个lambda函数描述了如何将所指定的列的值转换为用来进行排序所需要的数值依据的过程}
+\item{key.numeric}{This lambda function describ how to converts the specific key
+column/indexer values to the numeric values which is use for
+sort the rows based on these numeric value comparsion.}
 
-\item{desc}{是否执行降序排序？默认是升序排序}
+\item{desc}{Sort in descending order? by default is not.}
 }
 \description{
-对数据框按照指定的列进行排序
+Sort a dataframe by a specific given column name or key indexer.
 }
 

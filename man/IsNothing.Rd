@@ -5,10 +5,10 @@
 \title{Determine that target \code{is.null} or \code{is.na} or \code{length}
 equals to ZERO?}
 \usage{
-IsNothing(x.)
+IsNothing(x, stringAsFactor = FALSE)
 }
 \arguments{
-\item{x.}{Object with any type for determine that its value is null
+\item{x}{Object with any type for determine that its value is null
 or empty or not?}
 }
 \description{

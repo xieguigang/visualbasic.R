@@ -2,21 +2,25 @@
 % Please edit documentation in R/binarySearch.R
 \name{binarySearch}
 \alias{binarySearch}
-\title{对一个已经进行排序的序列进行二分法查�<U+FFFD>}
+\title{Perform binary search on a sortted sequence.}
 \usage{
 binarySearch(source, find, key, compares = function(a, b) a - b)
 }
 \arguments{
-\item{source}{必须要对查找的键进行了升序排序操�<U+FFFD>}
+\item{source}{The input sequence, this input source sequence must in sorted in
+asc or desc order.}
 
-\item{find}{查找的目标key}
+\item{find}{Target key for find the target element in the input source sequence.}
 
-\item{key}{用于描述如何从source之中的一个元素得到进行比较的key的lambda表达式方�<U+FFFD>}
+\item{key}{A lambda function that describ how to abstract the key indexer value
+from the elements of the input source sequence.}
 
-\item{compares}{find待查找目标键key和source之中的对象的key的比较方式，默认是按照数值大小进行比�<U+FFFD>}
+\item{compares}{The comparision method that using for find target element by compares
+the target key and the key indexer values from the source sequence, by
+default is comparision based on their numeric values.}
 }
 \description{
-对一个已经进行排序的序列进行二分法查�<U+FFFD>
+Perform binary search on a sortted sequence.
 }
 \details{
 If there are duplicated items in the \code{source} sequence, then

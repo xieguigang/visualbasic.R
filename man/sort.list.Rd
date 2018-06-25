@@ -2,7 +2,8 @@
 % Please edit documentation in R/binarySearch.R
 \name{sort.list}
 \alias{sort.list}
-\title{我们假设在这里的list是里面的所有的元素都是list对象，并且元素的名称都相�<U+FFFD>}
+\title{We assume that all of the elements in the input list is list object, and the key attribute
+should exists in each list element.}
 \usage{
 \method{sort}{list}(list, key, key.numeric = function(v) as.numeric(v),
   desc = FALSE)
@@ -10,7 +11,8 @@
 \arguments{
 \item{list}{The input list object}
 
-\item{key}{A lambda function or property name string for get key value for the sort operation.}
+\item{key}{A lambda function or property name string for get key value for the sort
+operation.}
 
 \item{key.numeric}{A lambda function for evaluate the key value to numeric value}
 
@@ -20,6 +22,7 @@
 A data sequence which its elements has been reordered.
 }
 \description{
-我们假设在这里的list是里面的所有的元素都是list对象，并且元素的名称都相�<U+FFFD>
+We assume that all of the elements in the input list is list object, and the key attribute
+should exists in each list element.
 }
 

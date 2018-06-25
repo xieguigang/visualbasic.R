@@ -2,11 +2,22 @@
 % Please edit documentation in R/Global.R
 \name{GetType}
 \alias{GetType}
-\title{函数返回\code{\link{primitiveTypes}}枚举之中的某一个类�<U+FFFD>}
+\title{This function returns on of the member value from enumeration function
+\code{\link{primitiveTypes}}
+based on the type of the variable \code{x}}
 \usage{
 GetType(x)
 }
+\arguments{
+\item{x}{Any variable}
+}
+\value{
+One of the value member from enumeration function
+        \code{\link{primitiveTypes}}.
+}
 \description{
-函数返回\code{\link{primitiveTypes}}枚举之中的某一个类�<U+FFFD>
+This function returns on of the member value from enumeration function
+\code{\link{primitiveTypes}}
+based on the type of the variable \code{x}
 }
 

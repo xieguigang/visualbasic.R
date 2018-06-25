@@ -2,18 +2,11 @@
 % Please edit documentation in R/Global.R
 \name{primitiveTypes}
 \alias{primitiveTypes}
-\title{枚举出R语言之中的一些基础的数据类型，枚举值有�<U+FFFD>
-\enumerate{
-\item \code{object} = 0
-\item \code{data.frame} = 1
-\item \code{list} = 2
-\item \code{vector} = 3
-}}
+\title{Enumerate some primitive type in R language, these enumeration value have:}
 \usage{
 primitiveTypes()
 }
 \description{
-枚举出R语言之中的一些基础的数据类型，枚举值有�<U+FFFD>
 \enumerate{
 \item \code{object} = 0
 \item \code{data.frame} = 1

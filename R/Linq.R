@@ -1,5 +1,4 @@
-# Linq helper in R language.
-
+#' Linq helper in R language.
 microsoft.visualbasic.data.linq <- function() {
 
 	Take <- function(enumerable, m) {
@@ -43,9 +42,9 @@ microsoft.visualbasic.data.linq <- function() {
 	# @param list The data source in list type
 	# @param key The item property name in this list source collection.
 	GroupBy.list <- function(list, key) {
-		
+
 		groups <- list();
-		tick   <- tick.helper(length(list)); 
+		tick   <- tick.helper(length(list));
 		cat("\n");
 		cat("  Progress%: ");
 
@@ -53,7 +52,7 @@ microsoft.visualbasic.data.linq <- function() {
 			item      <- list[[i]];
 			group.key <- item[[key]];
 			key.list  <- groups[[group.key]];
-			
+
 			if (is.null(key.list)) {
 				key.list <- list();
 			}
@@ -65,7 +64,7 @@ microsoft.visualbasic.data.linq <- function() {
 
 		cat("\n");
 		cat("\n");
-		
+
 		return(groups);
 	}
 
@@ -74,14 +73,14 @@ microsoft.visualbasic.data.linq <- function() {
 	# @param data.frame The data source in data.frame type
 	# @param key The column name for read the column data in target source as the group key.
 	GroupBy.dataframe <- function(data.frame, key) {
-		
+
 		groups <- list();
 		keys   <- as.vector(unlist(data.frame[, key]));
-		
-		tick   <- tick.helper(nrow(data.frame)); 
+
+		tick   <- tick.helper(nrow(data.frame));
 		cat("\n");
 		cat("  Progress%: ");
-		
+
 		for (i in 1:nrow(data.frame)) {
 			row <- data.frame[i, ];
 			key <- keys[i];
@@ -91,27 +90,27 @@ microsoft.visualbasic.data.linq <- function() {
 
 		cat("\n");
 		cat("\n");
-		
+
 		return(groups);
 	}
 
 	# Group the string collection
 	Group <- function(seq, case.Sensitive = FALSE) {
-		
+
 		`%||%` <- function(x, y) if(case.Sensitive) x else y;
 		groups <- list();
-		
+
 		for (x in seq) {
 			key   <- x %||% tolower(x);
 			group <- groups[[key]];
-			
+
 			if (is.null(group)) {
 				groups[[key]] <- x;
 			} else {
 				groups[[key]] <- append(group, x);
 			}
 		}
-		
+
 		groups;
 	}
 

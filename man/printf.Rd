@@ -2,11 +2,11 @@
 % Please edit documentation in R/Global.R
 \name{printf}
 \alias{printf}
-\title{模拟C语言的打印函�<U+FFFD>}
+\title{Simulate the C printf function}
 \usage{
 printf(...)
 }
 \description{
-模拟C语言的打印函�<U+FFFD>
+Simulate the C printf function
 }
 

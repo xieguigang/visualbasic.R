@@ -2,11 +2,19 @@
 % Please edit documentation in R/script_loader.R
 \name{include}
 \alias{include}
-\title{这个函数是为了兼容脚本模式和R包模式下的引用问�<U+FFFD>}
+\title{This function is using for solving the code compatibility
+between the R package and R script.}
 \usage{
 include(R)
 }
+\arguments{
+\item{R}{R script file path.}
+}
+\value{
+Nothing
+}
 \description{
-这个函数是为了兼容脚本模式和R包模式下的引用问�<U+FFFD>
+This function is using for solving the code compatibility
+between the R package and R script.
 }
 

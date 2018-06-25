@@ -1,9 +1,13 @@
-#' 对一个已经进行排序的序列进行二分法查找
+#' Perform binary search on a sortted sequence.
 #'
-#' @param source 必须要对查找的键进行了升序排序操作
-#' @param find 查找的目标key
-#' @param compares find待查找目标键key和source之中的对象的key的比较方式，默认是按照数值大小进行比较
-#' @param key 用于描述如何从source之中的一个元素得到进行比较的key的lambda表达式方法
+#' @param source The input sequence, this input source sequence must in sorted in
+#'               asc or desc order.
+#' @param find Target key for find the target element in the input source sequence.
+#' @param compares The comparision method that using for find target element by compares
+#'                 the target key and the key indexer values from the source sequence, by
+#'                 default is comparision based on their numeric values.
+#' @param key A lambda function that describ how to abstract the key indexer value
+#'            from the elements of the input source sequence.
 #'
 #' @details If there are duplicated items in the \code{source} sequence, then
 #'          you should group the items at first and then perfamence the binary search.
@@ -37,7 +41,7 @@ binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) 
 
 #' A internal private function which find the index of the element in the
 #' input sequence which match a specific target key.
-#' 这个查找函数返回序列的下标i
+#' This function returns the index i of the input sequence.
 .binarySearch.impl.generic <- function(ikey, .length, find, compares) {
     L <- 1;
     R <- .length;
@@ -73,10 +77,12 @@ binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, 
     }
 }
 
-#' 我们假设在这里的list是里面的所有的元素都是list对象，并且元素的名称都相同
+#' We assume that all of the elements in the input list is list object, and the key attribute
+#' should exists in each list element.
 #'
 #' @param list The input list object
-#' @param key A lambda function or property name string for get key value for the sort operation.
+#' @param key A lambda function or property name string for get key value for the sort
+#'            operation.
 #' @param key.numeric A lambda function for evaluate the key value to numeric value
 #' @param desc A logical flag to indicated that sort the input sequence in ASC or DESC mode?
 #'
@@ -101,11 +107,14 @@ sort.list <- function(list, key, key.numeric = function(v) as.numeric(v), desc =
     list;
 }
 
-#' 对数据框按照指定的列进行排序
+#' Sort a dataframe by a specific given column name or key indexer.
 #'
-#' @param key 数据框之中的列名称或者列的索引编号
-#' @param key.numeric 这个lambda函数描述了如何将所指定的列的值转换为用来进行排序所需要的数值依据的过程
-#' @param desc 是否执行降序排序？默认是升序排序
+#' @param key The key column name or a lambda function to summary the
+#'            rows to a specific key
+#' @param key.numeric This lambda function describ how to converts the specific key
+#'                    column/indexer values to the numeric values which is use for
+#'                    sort the rows based on these numeric value comparsion.
+#' @param desc Sort in descending order? by default is not.
 sort.dataframe <- function(dataframe, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {
     dataframe[order(key.numeric(dataframe[, key]), decreasing = desc), ];
 }
