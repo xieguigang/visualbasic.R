@@ -2,8 +2,7 @@
 % Please edit documentation in R/binarySearch.R
 \name{sort.list}
 \alias{sort.list}
-\title{We assume that all of the elements in the input list is list object, and the key attribute
-should exists in each list element.}
+\title{Sort the \code{list} object}
 \usage{
 \method{sort}{list}(list, key, key.numeric = function(v) as.numeric(v),
   desc = FALSE)

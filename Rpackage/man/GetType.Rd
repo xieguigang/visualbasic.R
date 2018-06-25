@@ -2,9 +2,7 @@
 % Please edit documentation in R/Global.R
 \name{GetType}
 \alias{GetType}
-\title{This function returns on of the member value from enumeration function
-\code{\link{primitiveTypes}}
-based on the type of the variable \code{x}}
+\title{Determine the R object type}
 \usage{
 GetType(x)
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/binarySearch.R
 \name{sort.dataframe}
 \alias{sort.dataframe}
-\title{Sort a dataframe by a specific given column name or key indexer.}
+\title{Sort the \code{dataframe}}
 \usage{
 \method{sort}{dataframe}(dataframe, key, key.numeric = function(v)
   as.numeric(v), desc = FALSE)

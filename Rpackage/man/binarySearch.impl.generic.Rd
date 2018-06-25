@@ -2,9 +2,7 @@
 % Please edit documentation in R/binarySearch.R
 \name{binarySearch.impl.generic}
 \alias{binarySearch.impl.generic}
-\title{A internal private function which find the index of the element in the
-input sequence which match a specific target key.
-This function returns the index i of the input sequence.}
+\title{A generic function for sort sequence}
 \usage{
 binarySearch.impl.generic(ikey, .length, find, compares)
 }

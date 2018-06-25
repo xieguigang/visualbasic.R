@@ -39,7 +39,9 @@ binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) 
     }
 }
 
-#' A internal private function which find the index of the element in the
+#' A generic function for sort sequence
+#'
+#' @description A internal private function which find the index of the element in the
 #' input sequence which match a specific target key.
 #' This function returns the index i of the input sequence.
 binarySearch.impl.generic <- function(ikey, .length, find, compares) {
@@ -77,7 +79,9 @@ binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, 
     }
 }
 
-#' We assume that all of the elements in the input list is list object, and the key attribute
+#' Sort the \code{list} object
+#'
+#' @description We assume that all of the elements in the input list is list object, and the key attribute
 #' should exists in each list element.
 #'
 #' @param list The input list object
@@ -107,7 +111,9 @@ sort.list <- function(list, key, key.numeric = function(v) as.numeric(v), desc =
     list;
 }
 
-#' Sort a dataframe by a specific given column name or key indexer.
+#' Sort the \code{dataframe}
+#'
+#' @description Sort a dataframe by a specific given column name or key indexer.
 #'
 #' @param key The key column name or a lambda function to summary the
 #'            rows to a specific key

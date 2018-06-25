@@ -6,6 +6,9 @@
 \usage{
 printf(...)
 }
+\arguments{
+\item{...}{Function parameter for function \code{\link{sprintf}}}
+}
 \description{
 Simulate the C printf function
 }

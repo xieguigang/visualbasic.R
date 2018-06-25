@@ -2,11 +2,12 @@
 % Please edit documentation in R/Global.R
 \name{primitiveTypes}
 \alias{primitiveTypes}
-\title{Enumerate some primitive type in R language, these enumeration value have:}
+\title{Enumerate some primitive type in R language}
 \usage{
 primitiveTypes()
 }
 \description{
+Enumerate some primitive type in R language, these enumeration value have:
 \enumerate{
 \item \code{object} = 0
 \item \code{data.frame} = 1

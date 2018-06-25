@@ -93,6 +93,8 @@ Size <- function(x) {
 }
 
 #' Simulate the C printf function
+#'
+#' @param ... Function parameter for function \code{\link{sprintf}}
 printf <- function(...) invisible(print(sprintf(...)));
 
 #' Logging error log file.
@@ -125,7 +127,9 @@ LogException <- function(ex, logFile, append = FALSE) {
   invisible(NULL);
 }
 
-#' This function returns on of the member value from enumeration function
+#' Determine the R object type
+#'
+#' @description This function returns on of the member value from enumeration function
 #' \code{\link{primitiveTypes}}
 #' based on the type of the variable \code{x}
 #'
@@ -147,8 +151,9 @@ GetType <- function(x) {
 	}
 }
 
-#' Enumerate some primitive type in R language, these enumeration value have:
+#' Enumerate some primitive type in R language
 #'
+#' @description Enumerate some primitive type in R language, these enumeration value have:
 #' \enumerate{
 #' \item \code{object} = 0
 #' \item \code{data.frame} = 1
