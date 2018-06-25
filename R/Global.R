@@ -39,12 +39,28 @@ imports <- function(namespace, overrides = FALSE, silent = TRUE) {
 #' Determine that target \code{is.null} or \code{is.na} or \code{length}
 #' equals to ZERO?
 #'
-#' @param x. Object with any type for determine that its value is null
+#' @param x Object with any type for determine that its value is null
 #'           or empty or not?
 #'
 #' @details 判断对象是否为空，在这个函数里面，空值，NA值，长度为零的向量，
 #'          列表等都会被当作为空值
-IsNothing <- function(x.) is.null(x.) || is.na(x.) || length(x.) == 0;
+IsNothing <- function(x) {
+	
+	if (is.null(x) || is.na(x) || length(x) == 0) {
+		TRUE;
+	} else {
+	
+		# 2018-6-25 空字符串无法直接和S4对象进行比较
+		# 所以下面会需要先进行一次类型比较再判断空字符串
+		# Error in x == "" : 只能比较(1)基元或串列种类
+		if (is.character(x) && x == "") {
+			TRUE;
+		} else {
+			FALSE;
+		}
+	}	
+}
+
 #' 模拟C语言的打印函数
 printf <- function(...) invisible(print(sprintf(...)));
 
