@@ -40,7 +40,7 @@ Module Program
                         Return l.GetTagValue(":", trim:=True)
                     End Function)
 
-        With New StringWriter(Console.OpenStandardOutput)
+        With New StreamWriter(Console.OpenStandardOutput)
             For Each tuple In description
                 If tuple.Name.TextEquals("version") Then
                     Call .WriteLine($"Version: {version}")
