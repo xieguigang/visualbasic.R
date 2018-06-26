@@ -5,7 +5,7 @@ basename <- function(path) {
     file   <- base::basename(path);
 	tokens <- Strings.Split(file, "\\.");
 	tokens <- Linq$Take(tokens, length(tokens) - 1);
-	
+
 	Strings.Join(tokens, ".");
 }
 
@@ -18,6 +18,8 @@ File.ExtensionName <- function(path) {
 	Linq$Last(tokens);
 }
 
+#' Determine path end with a given extension name
+#'
 #' @description Case insensitive
 File.WithExtension <- function(path, ext) {
 	ext.parsed <- File.ExtensionName(path);
