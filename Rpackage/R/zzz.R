@@ -14,8 +14,12 @@
 			Where(function(name) InStr(name, "Microsoft.VisualBasic") > 0)$
 			Where(function(name) is.function(get(name)));
 
-		for(namespace in list$ToArray) {
-			print(namespace);
+		for(namespace in list$ToArray()) {
+			namespace <- do.call(namespace, list());
+			cat(namespace$namespace);
+			cat("\t\t");
+			cat(namespace$description);
+			cat("\n");
 		}
 	})
 }
