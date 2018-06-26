@@ -16,8 +16,8 @@
 
 		x && y;
 	});
-	predicted <- as.vector(is.namespace);
-	func.list <- as.vector(func.list)[predicted];
+	predicate <- as.vector(is.namespace);
+	func.list <- as.vector(func.list)[predicate];
 
 	for(namespace in func.list) {
 		namespace <- do.call(namespace, list());
