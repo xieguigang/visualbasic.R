@@ -34,7 +34,7 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
 	}
 
 	if (!silent) {
-		print(sprintf("Imports VisualBasic.R::{%s}", namespace));
+		cat(sprintf("Imports VisualBasic.R::{%s}\n", namespace));
 		print(names(func.list));
 	}
 

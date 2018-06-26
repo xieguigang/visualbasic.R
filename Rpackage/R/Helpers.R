@@ -6,7 +6,7 @@
 #'              Only avaliable for single thread R app
 #'
 #' @param total The total elements in the Long time run task that will be processing
-#' @param step The tick interval value for report the task progress value, default is \code{5%}.
+#' @param step The tick interval value for report the task progress value, default is \code{5/100}.
 #'
 #' @return A lambda function that using for report the task progress.
 tick.helper <- function(total, step = 5 / 100) {

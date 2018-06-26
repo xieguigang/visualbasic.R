@@ -12,7 +12,7 @@ File.Open(file.txt, append = FALSE)
 \item{append}{A logical flag to indicate append the data to target file or not?}
 }
 \description{
-打开一个文件句柄，然后返回一个函数指针用来以\code{sprintf}格式�<U+FFFD>
-的形式向文件以追加的形式写入数据
+<U+6253><U+5F00><U+4E00><U+4E2A><U+6587><U+4EF6><U+53E5><U+67C4>,<U+7136><U+540E><U+8FD4><U+56DE><U+4E00><U+4E2A><U+51FD><U+6570><U+6307><U+9488><U+7528><U+6765><U+4EE5>\code{sprintf}<U+683C><U+5F0F><U+5316>
+<U+7684><U+5F62><U+5F0F><U+5411><U+6587><U+4EF6><U+4EE5><U+8FFD><U+52A0><U+7684><U+5F62><U+5F0F><U+5199><U+5165><U+6570><U+636E>
 }
 
