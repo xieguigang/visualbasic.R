@@ -28,6 +28,11 @@ imports <- function(namespace, overrides = FALSE, silent = TRUE) {
 		do.call(`=`, assign, envir = frame);
 	}
 
+	if (!silent) {
+		printf("Imports VisualBasic::(%s)", namespace);
+		print(func.list);
+	}
+	
 	# invisible(NULL);
 	if (silent) {
 	  invisible(NULL);
