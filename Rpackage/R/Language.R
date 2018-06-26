@@ -1,6 +1,6 @@
 
 #' syntax tweaks helper
-microsoft.visualbasic.language <- function() {
+Microsoft.VisualBasic.Language <- function() {
 
 	# 如果对象为空则取默认值
 	`%||%` <- function(x, y) if(IsNothing(x)) y else x;
@@ -72,9 +72,12 @@ microsoft.visualbasic.language <- function() {
 		y(x);
 	}
 
-	list("%||%" = get("%||%"),
-		 "%<=%" = get("%<=%"),
-		 ":="   = get(":="),
-		 "%=>%" = get("%=>%")
-	);
+	list(namespace = GetCurrentFunc(), 
+		 description = "", 
+		 methods = list(
+			 "%||%" = get("%||%"),
+		     "%<=%" = get("%<=%"),
+		     ":="   = get(":="),
+		     "%=>%" = get("%=>%")
+	));
 }

@@ -1,5 +1,5 @@
 #' Namespace that contains for some common data operation helper function
-microsoft.visualbasic.data <- function() {
+Microsoft.VisualBasic.Data <- function() {
 
 	# data.frame rows to list collection
 	.as.list <- function(d) {
@@ -99,11 +99,14 @@ microsoft.visualbasic.data <- function() {
 	}
 
 	# register function for namespace export
-    list(.as.list     = .as.list,
-		 .to.list     = .to.list,
-		 .as.matrix   = .as.matrix,
-		 .selectMany  = selectMany,
-		 list.project = list.project,
-		 as.dataframe = as.dataframe
-	);
+    list(namespace = GetCurrentFunc(), 
+		 description = "", 
+		 methods = list(
+			 .as.list     = .as.list,
+		 	 .to.list     = .to.list,
+		 	 .as.matrix   = .as.matrix,
+		 	 .selectMany  = selectMany,
+		 	 list.project = list.project,
+		 	 as.dataframe = as.dataframe
+	));
 }

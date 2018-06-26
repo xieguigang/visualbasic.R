@@ -7,5 +7,5 @@
 .onLoad <- function(libname, pkgname){
 	# 在这里执行一些初始化工作
 	
-	imports("microsoft.visualbasic.language");
+	imports("Microsoft.VisualBasic.Language", frame = parent.frame(), silent = FALSE);
 }

@@ -15,7 +15,7 @@
 #'         \item \code{orderBy}
 #'         \item \code{orderByDescending}
 #'         }
-enumerator <- function(src) {
+Enumerator <- function(src) {
 
 	imports("microsoft.visualbasic.language");
 

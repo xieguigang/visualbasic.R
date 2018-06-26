@@ -151,15 +151,17 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 
 	from <- function(source) enumerator(source);
 
-	list(
-		from    = get("from"), 
-		Take    = get("Take"),
-		Skip    = get("Skip"),
-		Count   = get("Count"),
-		Group   = get("Group"),
-		Last    = get("Last"),
-		GroupBy = get("GroupBy")
-	);
+	list(namespace = GetCurrentFunc(), 
+		 description = "", 
+		 methods = list( 
+			from    = get("from"), 
+			Take    = get("Take"),
+			Skip    = get("Skip"),
+			Count   = get("Count"),
+			Group   = get("Group"),
+			Last    = get("Last"),
+			GroupBy = get("GroupBy")
+	));
 }
 
 
