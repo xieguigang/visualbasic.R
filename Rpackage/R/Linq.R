@@ -1,5 +1,5 @@
 #' Linq helper in R language.
-microsoft.visualbasic.data.linq <- function() {
+Microsoft.VisualBasic.Data.Linq <- function() {
 
 	Take <- function(enumerable, m) {
 		enumerable[1:m];
