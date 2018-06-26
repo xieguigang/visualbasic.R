@@ -18,6 +18,7 @@
 Enumerator <- function(src) {
 
 	Imports("Microsoft.VisualBasic.Language");
+  Imports("Microsoft.VisualBasic.Data");
 
 	type  <- GetType(src);
 	types <- primitiveTypes();
@@ -31,7 +32,7 @@ Enumerator <- function(src) {
 			if (is.function(project)) {
 				lapply(src, project);
 			} else {
-				Microsoft.VisualBasic.Data()$list.project(src, project);
+				list.project(src, project);
 			}
 		} else if (type == types$vector) {
 			lapply(src, project);

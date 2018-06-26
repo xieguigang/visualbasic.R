@@ -102,7 +102,7 @@ Size <- function(x) {
   }
 }
 
-#' Simulate the C printf function
+#' Simulate the C \code{printf} function
 #'
 #' @param ... Function parameter for function \code{\link{sprintf}}
 printf <- function(...) invisible(print(sprintf(...)));
@@ -161,7 +161,7 @@ GetType <- function(x) {
 	}
 }
 
-#' Enumerate some primitive type in R language
+#' Enumerate some primitive type in R
 #'
 #' @description Enumerate some primitive type in R language, these enumeration value have:
 #' \enumerate{

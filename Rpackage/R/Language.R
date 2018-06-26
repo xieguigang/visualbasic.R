@@ -1,5 +1,5 @@
 
-#' syntax tweaks helper
+#' Syntax tweaks helpers
 Microsoft.VisualBasic.Language <- function() {
 
 	# 如果对象为空则取默认值
@@ -72,12 +72,12 @@ Microsoft.VisualBasic.Language <- function() {
 		y(x);
 	}
 
-	list(namespace = GetCurrentFunc(), 
-		 description = "", 
+	list(namespace = GetCurrentFunc(),
+		 description = "R language syntax helpers",
 		 methods = list(
 			 "%||%" = get("%||%"),
-		     "%<=%" = get("%<=%"),
-		     ":="   = get(":="),
-		     "%=>%" = get("%=>%")
+		   "%<=%" = get("%<=%"),
+		   ":="   = get(":="),
+		   "%=>%" = get("%=>%")
 	));
 }

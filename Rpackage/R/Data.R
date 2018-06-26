@@ -1,4 +1,4 @@
-#' Namespace that contains for some common data operation helper function
+#' Common data operation helper function
 Microsoft.VisualBasic.Data <- function() {
 
 	# data.frame rows to list collection
@@ -99,8 +99,8 @@ Microsoft.VisualBasic.Data <- function() {
 	}
 
 	# register function for namespace export
-    list(namespace = GetCurrentFunc(), 
-		 description = "", 
+    list(namespace = GetCurrentFunc(),
+		 description = "Namespace contains some common data operation helpers.",
 		 methods = list(
 			 .as.list     = .as.list,
 		 	 .to.list     = .to.list,

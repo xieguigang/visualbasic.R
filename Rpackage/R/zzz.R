@@ -24,7 +24,7 @@
   for (namespace in index) {
     module <- do.call(namespace, list());
     cat(module$namespace);
-    cat("\t\t");
+    cat("\t");
     cat(module$description);
     cat("\n");
   }

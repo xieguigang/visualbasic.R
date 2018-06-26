@@ -2,7 +2,7 @@
 % Please edit documentation in R/Global.R
 \name{primitiveTypes}
 \alias{primitiveTypes}
-\title{Enumerate some primitive type in R language}
+\title{Enumerate some primitive type in R}
 \usage{
 primitiveTypes()
 }

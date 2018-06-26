@@ -2,7 +2,7 @@
 % Please edit documentation in R/Global.R
 \name{printf}
 \alias{printf}
-\title{Simulate the C printf function}
+\title{Simulate the C \code{printf} function}
 \usage{
 printf(...)
 }
@@ -10,6 +10,6 @@ printf(...)
 \item{...}{Function parameter for function \code{\link{sprintf}}}
 }
 \description{
-Simulate the C printf function
+Simulate the C \code{printf} function
 }
 

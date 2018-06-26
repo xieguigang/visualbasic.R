@@ -2,11 +2,11 @@
 % Please edit documentation in R/Language.R
 \name{Microsoft.VisualBasic.Language}
 \alias{Microsoft.VisualBasic.Language}
-\title{syntax tweaks helper}
+\title{Syntax tweaks helpers}
 \usage{
 Microsoft.VisualBasic.Language()
 }
 \description{
-syntax tweaks helper
+Syntax tweaks helpers
 }
 

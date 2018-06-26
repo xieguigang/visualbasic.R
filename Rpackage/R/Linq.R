@@ -17,7 +17,7 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 			return(NULL);
 		}
 
-		if (type == types$vector) {			
+		if (type == types$vector) {
 			enumerable[length(enumerable)];
 		} else if (type == types$list) {
 			enumerable[[length(enumerable)]];
@@ -151,10 +151,10 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 
 	from <- function(source) Enumerator(source);
 
-	list(namespace = GetCurrentFunc(), 
-		 description = "", 
-		 methods = list( 
-			from    = get("from"), 
+	list(namespace = GetCurrentFunc(),
+		 description = "Linq helper function in R language.",
+		 methods = list(
+			from    = get("from"),
 			Take    = get("Take"),
 			Skip    = get("Skip"),
 			Count   = get("Count"),

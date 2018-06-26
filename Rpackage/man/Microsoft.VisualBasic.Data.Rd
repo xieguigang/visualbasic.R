@@ -2,11 +2,11 @@
 % Please edit documentation in R/Data.R
 \name{Microsoft.VisualBasic.Data}
 \alias{Microsoft.VisualBasic.Data}
-\title{Namespace that contains for some common data operation helper function}
+\title{Common data operation helper function}
 \usage{
 Microsoft.VisualBasic.Data()
 }
 \description{
-Namespace that contains for some common data operation helper function
+Common data operation helper function
 }
 
