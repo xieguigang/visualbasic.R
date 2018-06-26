@@ -9,17 +9,21 @@
 	# 在这里执行一些初始化工作	
 	Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = FALSE);
 
-	try({
-		list <- Enumerator(getNamespaceExports("VisualBasic.R"))$ 
-			Where(function(name) InStr(name, "Microsoft.VisualBasic") > 0)$
-			Where(function(name) is.function(get(name)));
+	func.list    <- getNamespaceExports("VisualBasic.R")
+	is.namespace <- sapply(func.list, function(name) {
+		x <- (InStr(name, "Microsoft.VisualBasic") > 0);
+		y <- is.function(get(name));
 
-		for(namespace in list$ToArray()) {
-			namespace <- do.call(namespace, list());
-			cat(namespace$namespace);
-			cat("\t\t");
-			cat(namespace$description);
-			cat("\n");
-		}
-	})
+		x && y;
+	});
+	predicted <- as.vector(is.namespace);
+	func.list <- as.vector(func.list)[predicted];
+
+	for(namespace in func.list) {
+		namespace <- do.call(namespace, list());
+		cat(namespace$namespace);
+		cat("\t\t");
+		cat(namespace$description);
+		cat("\n");
+	}
 }
