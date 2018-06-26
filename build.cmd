@@ -13,6 +13,9 @@ REM echo %default%
 REM overrides back the NAMESPACE file which is damaged by the roxygen2 package
 echo exportPattern("^[[:alpha:]]+") > "Rpackage\NAMESPACE"
 
+REM Synchronous update license file
+type LICENSE > "Rpackage/LICENSE"
+
 REM build R package
 REM By default the R compiler is located at "D:\R\bin\x64\Rcmd.exe"
 REM in the environment on my computer
