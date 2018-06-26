@@ -4,8 +4,18 @@
 # to be performed when the package is loaded, such as loading libraries and compiled 
 # code. For example you can create a zzz.R file where you create this function:
 
-.onLoad <- function(libname, pkgname){
-	# 在这里执行一些初始化工作
+.onLoad <- function(libname, pkgname) {
 	
-	imports("Microsoft.VisualBasic.Language", frame = parent.frame(), silent = FALSE);
+	# 在这里执行一些初始化工作	
+	Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = FALSE);
+
+	try({
+		list <- Enumerator(getNamespaceExports("VisualBasic.R"))$ 
+			Where(function(name) InStr(name, "Microsoft.VisualBasic") > 0)$
+			Where(function(name) is.function(get(name)));
+
+		for(namespace in list$ToArray) {
+			print(namespace);
+		}
+	})
 }

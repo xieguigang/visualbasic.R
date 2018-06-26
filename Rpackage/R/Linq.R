@@ -149,7 +149,7 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 		counts;
 	}
 
-	from <- function(source) enumerator(source);
+	from <- function(source) Enumerator(source);
 
 	list(namespace = GetCurrentFunc(), 
 		 description = "", 

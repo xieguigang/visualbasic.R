@@ -17,10 +17,10 @@
 #'         }
 Enumerator <- function(src) {
 
-	imports("microsoft.visualbasic.language");
+	Imports("Microsoft.VisualBasic.Language");
 
-	type   <- GetType(src);
-	types  <- primitiveTypes();
+	type  <- GetType(src);
+	types <- primitiveTypes();
 
 	#region "linq functions"
 
@@ -31,7 +31,7 @@ Enumerator <- function(src) {
 			if (is.function(project)) {
 				lapply(src, project);
 			} else {
-				microsoft.visualbasic.data()$list.project(src, project);
+				Microsoft.VisualBasic.Data()$list.project(src, project);
 			}
 		} else if (type == types$vector) {
 			lapply(src, project);
@@ -53,7 +53,7 @@ Enumerator <- function(src) {
 
 		} else if (type == types$vector) {
 
-			test <- sapply(src, function(x) assert(x)) %=>% which %=>% as.integer;
+			test <- sapply(src, function(x) assert(x)) %=>% as.vector %=>% which %=>% as.integer;
 			list <- src[test];
 
 		} else {
@@ -77,10 +77,10 @@ Enumerator <- function(src) {
 	#endregion
 
 	list(src   = src,
-		 select  = function(project) enumerator(.select(project)),
-		 where   = function(assert) enumerator(.where(assert)),
-		 orderBy = function(key, key.numeric = as.numeric) enumerator(.orderBy(key, key.numeric)),
-		 orderByDescending = function(key, key.numeric = as.numeric) enumerator(.orderBy(key, key.numeric, TRUE)),
-		 toarray = function() src
+		 Select  = function(project) Enumerator(.select(project)),
+		 Where   = function(assert) Enumerator(.where(assert)),
+		 OrderBy = function(key, key.numeric = as.numeric) Enumerator(.orderBy(key, key.numeric)),
+		 OrderByDescending = function(key, key.numeric = as.numeric) Enumerator(.orderBy(key, key.numeric, TRUE)),
+		 ToArray = function() src
 	);
 }

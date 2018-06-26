@@ -9,13 +9,13 @@
 #'
 #' @return A string vector contains all of the function names from this namespace
 #'         function that imported to current environment.
-imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {
-	module      <- get(namespace, envir = frame)();
+Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {
+	module <- get(namespace)();
 
 	if (!("methods" %in% names(module))) {
 		func.list <- module;
 	} else {
-		func.list   <- module$methods;
+		func.list <- module$methods;
 	}
 
 	overrideMsg <- "overrides '%s' from namespace `%s`";
@@ -34,10 +34,10 @@ imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
 	}
 
 	if (!silent) {
-		printf("Imports VisualBasic::(%s)", namespace);
-		print(func.list);
+		print(sprintf("Imports VisualBasic.R::{%s}", namespace));
+		print(names(func.list));
 	}
-	
+
 	# invisible(NULL);
 	if (silent) {
 	  invisible(NULL);
@@ -87,7 +87,7 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 #' @param x R object in any type
 #'
 #' @return A list with element: \code{rows} and \code{cols} to indicate the object size.
-#'         for x is \code{data.frame}, these two element value will be \code{\link{nrows}} and \code{\link{ncols}}
+#'         for x is \code{data.frame}, these two element value will be \code{\link{base::nrows}} and \code{\link{base::ncols}}
 #'         for x is \code{list} or \code{vector}, these two element value will be \code{rows = 1} and \code{cols = \link{length}(x)}
 #'         for x is object like S4 class, these two element value will be \code{[1,1]}
 Size <- function(x) {

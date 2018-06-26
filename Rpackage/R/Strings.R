@@ -135,13 +135,12 @@ Distinct <- function(words) {
 	unique(tolower(words));
 }
 
-# 返回字符串查找的位置
+#' Locate substring position
+#' 
+#' @return -1 means no match
 InStr <- function(s, substring) {
-	l       <- str_locate(s, substring);
-	start   <- as.vector(l[, "start"]);
-	indices <- which(!is.na(start));
-
-	return(indices);
+	match <- regexpr(substring, s);
+	match[1];
 }
 
 #' Substring
