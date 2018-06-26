@@ -9,6 +9,25 @@ microsoft.visualbasic.data.linq <- function() {
 		enumerable[(m + 1):length(enumerable)];
 	}
 
+	Last <- function(enumerable) {
+		type  <- GetType(enumerable);
+		types <- primitiveTypes();
+
+		if (IsNothing(enumerable)) {
+			return(NULL);
+		}
+
+		if (type == types$vector) {			
+			enumerable[length(enumerable)];
+		} else if (type == types$list) {
+			enumerable[[length(enumerable)]];
+		} else if (type == type$data.frame) {
+			enumerable[nrow(enumerable), ];
+		} else {
+			stop("Object is not a enumerable type!");
+		}
+	}
+
 	WhichIsNotEmpty <- function(enumerable, assert = IsNothing) {
 		is.true <- sapply(enumerable, function(x) !assert(x));
 		which(is.true);
@@ -133,11 +152,12 @@ microsoft.visualbasic.data.linq <- function() {
 	from <- function(source) enumerator(source);
 
 	list(
-		from = get("from"), 
-		Take = get("Take"),
-		Skip = get("Skip"),
+		from  = get("from"), 
+		Take  = get("Take"),
+		Skip  = get("Skip"),
 		Count = get("Count"),
-		Group = get("Group")
+		Group = get("Group"),
+		Last  = get("Last")
 	);
 }
 

@@ -9,6 +9,21 @@ basename <- function(path) {
 	Strings.Join(tokens, ".");
 }
 
+#' Get file extension name
+File.ExtensionName <- function(path) {
+	Linq   <- microsoft.visualbasic.data.linq();
+    file   <- base::basename(path);
+	tokens <- Strings.Split(file, "\\.");
+
+	Linq$Last(tokens);
+}
+
+#' @description Case insensitive
+File.WithExtension <- function(path, ext) {
+	ext.parsed <- File.ExtensionName(path);
+	tolower(ext.parsed) == tolower(ext);
+}
+
 #' Append text content to a specific text file.
 #'
 #' @param file.txt File path

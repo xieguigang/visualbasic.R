@@ -27,7 +27,7 @@ flash_load <- function() {
 	);
 
 	for (script in scripts) {
-		if (basename(script) != "script_loader") {
+		if (basename(script) != "script_loader" && File.WithExtension(script, "R")) {
 			tryCatch({
 				source(script);
 			}, error = function(ex) {
