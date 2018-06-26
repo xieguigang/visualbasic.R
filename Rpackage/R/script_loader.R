@@ -9,7 +9,7 @@ include <- function(R) {
 		source(R);
 	}
 
-  invisible(NULL);
+	invisible(NULL);
 }
 
 #' Load all of the R script in current working directory.

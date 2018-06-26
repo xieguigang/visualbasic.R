@@ -1,12 +1,12 @@
 #' Get the file name of a given file path without extension name
 basename <- function(path) {
 
-    file <- base::basename(path)
-	tokens <- Strings.Split(file, "\\.")
-	tokens <- Take(tokens, length(tokens) - 1)
-	file <- Strings.Join(tokens, ".")
-
-	return(file)
+	Linq   <- microsoft.visualbasic.data.linq();
+    file   <- base::basename(path);
+	tokens <- Strings.Split(file, "\\.");
+	tokens <- Linq$Take(tokens, length(tokens) - 1);
+	
+	Strings.Join(tokens, ".");
 }
 
 #' Append text content to a specific text file.
