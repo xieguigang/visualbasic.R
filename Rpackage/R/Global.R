@@ -9,9 +9,15 @@
 #'
 #' @return A string vector contains all of the function names from this namespace
 #'         function that imported to current environment.
-imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {	
-	module      <- get(namespace, envir = frame);
-	func.list   <- module()$methods;
+imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {
+	module      <- get(namespace, envir = frame)();
+
+	if (!("methods" %in% names(module))) {
+		func.list <- module;
+	} else {
+		func.list   <- module$methods;
+	}
+
 	overrideMsg <- "overrides '%s' from namespace `%s`";
 
 	for (name in names(func.list)) {
