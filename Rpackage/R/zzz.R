@@ -6,14 +6,15 @@
 
 .onLoad <- function(libname, pkgname) {
 
+  cat("\n");
+
 	# 在这里执行一些初始化工作
 	Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = FALSE);
 
 	# https://stackoverflow.com/questions/45983899/getnamespaceexports-called-from-within-onload-package-function
   # .onLoad函数是发生在当前的程序包加载之前的
-  index <- base::system.file("INDEX", package="VisualBasic.R");
-  index <- readLines(index);
-  index <- Enumerator(index)$
+  index <- base::system.file("INDEX", package="VisualBasic.R") %=>% readLines %=>% Enumerator;
+  index <- index$
     Where(function(line) InStr(line, "Microsoft.VisualBasic") > 0)$
     Select(function(line) Strings.Split(line)[1])$
     ToArray();
@@ -24,7 +25,7 @@
   for (namespace in index) {
     module <- do.call(namespace, list());
     cat(module$namespace);
-    cat("\t");
+    cat("\t\t");
     cat(module$description);
     cat("\n");
   }
@@ -33,7 +34,7 @@
   cat("If any problem with this package, open an issue on github:\n\n");
   cat("    https://github.com/xieguigang/visualbasic.R");
   cat("\n\n");
-  cat("Or contact author: \n\n");
+  cat("Or contact the author: \n\n");
   cat("    xieguigang <xie.guigang@gcmodeller.org>");
   cat("\n\n");
 }
