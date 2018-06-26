@@ -28,7 +28,12 @@ flash_load <- function() {
 
 	for (script in scripts) {
 		if (basename(script) != "script_loader") {
-			source(script);
+			tryCatch({
+				source(script);
+			}, error = function(ex) {
+				printf("Error while loading script: %s", script);
+				print(toString(ex));
+			});			
 		}
 
 		print(script);
