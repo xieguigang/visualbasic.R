@@ -152,12 +152,13 @@ microsoft.visualbasic.data.linq <- function() {
 	from <- function(source) enumerator(source);
 
 	list(
-		from  = get("from"), 
-		Take  = get("Take"),
-		Skip  = get("Skip"),
-		Count = get("Count"),
-		Group = get("Group"),
-		Last  = get("Last")
+		from    = get("from"), 
+		Take    = get("Take"),
+		Skip    = get("Skip"),
+		Count   = get("Count"),
+		Group   = get("Group"),
+		Last    = get("Last"),
+		GroupBy = get("GroupBy")
 	);
 }
 
