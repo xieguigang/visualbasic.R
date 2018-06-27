@@ -155,7 +155,6 @@ Mid <- function(s, start, length) {
 #'       equals to \code{chr("NA")} as empty too? Default is not.
 #'
 #' @description Determine that target string is null or empty or not??
-#' @aliases IsNothing
 #'
 #' @return Logical vector
 Strings.Empty <- function(s, NA.empty = FALSE) {

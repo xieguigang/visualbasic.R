@@ -84,6 +84,8 @@ MyList <- function() {
 #'
 #' @details 判断对象是否为空，在这个函数里面，空值，NA值，长度为零的向量，
 #'          列表等都会被当作为空值
+#'
+#' @aliases is.nothing
 IsNothing <- function(x, stringAsFactor = FALSE) {
 
 	if (is.null(x) || is.na(x) || length(x) == 0) {
@@ -105,6 +107,9 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 		}
 	}
 }
+
+#' Determine that target is Nothing in VB way
+is.nothing <- function(x, stringAsFactor = FALSE) IsNothing(x, stringAsFactor);
 
 #' Returns the object size
 #'
