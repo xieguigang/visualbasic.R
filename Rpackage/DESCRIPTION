@@ -1,7 +1,7 @@
 Package: VisualBasic.R
 Type: Package
 Title: VisualBasic.NET function port to R language.
-Version: 1.0.53
+Version: 1.0.54
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
 Description: Linq like common data operation for R and common string helper
