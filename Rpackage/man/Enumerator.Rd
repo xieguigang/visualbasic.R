@@ -26,8 +26,8 @@ A generic enumerator list object, which it contains:
 Reorder the elements in the source sequence by a given \code{key}
 }
 \description{
-Enumerator object constructor function for create a VB.NET linq like data
-sequence wrapper. This constructor function will create a list which contains a sequence
-source and sevral linq data helper extension functions
+Enumerator object constructor function for create a VB.NET Linq like data
+    sequence wrapper. This constructor function will create a list which contains a
+    sequence source and sevral linq data helper extension functions
 }
 

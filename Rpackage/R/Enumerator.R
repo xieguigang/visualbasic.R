@@ -1,8 +1,8 @@
 #' Enumerator object constructor
 #'
-#' @description Enumerator object constructor function for create a VB.NET linq like data
-#' sequence wrapper. This constructor function will create a list which contains a sequence
-#' source and sevral linq data helper extension functions
+#' @description Enumerator object constructor function for create a VB.NET Linq like data
+#'     sequence wrapper. This constructor function will create a list which contains a
+#'     sequence source and sevral linq data helper extension functions
 #'
 #' @param src A generic type data sequence, which can be a \code{dataframe}, \code{list}, or \code{vector}.
 #'
@@ -17,11 +17,12 @@
 #'         }
 Enumerator <- function(src) {
 
-	Imports("Microsoft.VisualBasic.Language");
   Imports("Microsoft.VisualBasic.Data");
+  Imports("Microsoft.VisualBasic.Language");
 
 	type  <- GetType(src);
 	types <- primitiveTypes();
+  Linq  <- Microsoft.VisualBasic.Data.Linq()$methods;
 
 	#region "linq functions"
 
@@ -78,10 +79,24 @@ Enumerator <- function(src) {
 	#endregion
 
 	list(src   = src,
-		 Select  = function(project) Enumerator(.select(project)),
-		 Where   = function(assert) Enumerator(.where(assert)),
-		 OrderBy = function(key, key.numeric = as.numeric) Enumerator(.orderBy(key, key.numeric)),
-		 OrderByDescending = function(key, key.numeric = as.numeric) Enumerator(.orderBy(key, key.numeric, TRUE)),
-		 ToArray = function() src
+		 Select  = function(project) .select(project)               %=>% Enumerator,
+		 Where   = function(assert) .where(assert)                  %=>% Enumerator,
+		 OrderBy = function(key, key.numeric = as.numeric) {
+		    .orderBy(key, key.numeric)                              %=>% Enumerator
+		 },
+		 OrderByDescending = function(key, key.numeric = as.numeric) {
+		    .orderBy(key, key.numeric, TRUE)                        %=>% Enumerator
+		 },
+		 ToArray = function() src,
+		 Take    = function(n) Linq$Take(src, n)                    %=>% Enumerator,
+		 Skip    = function(n) Linq$Skip(src, n)                    %=>% Enumerator,
+		 GroupBy = function(key, type) Linq$GroupBy(src, key, type) %=>% Enumerator,
+		 Any     = function(predicate = NULL) {
+		    if (predicate) {
+		      Linq$Any(src, predicate);
+		    } else {
+		      !IsNothing(src);
+		    }
+		 }
 	);
 }
