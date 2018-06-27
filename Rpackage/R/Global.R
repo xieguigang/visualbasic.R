@@ -70,6 +70,30 @@ MyList <- function() {
     ToArray() %=>% unlist;
 }
 
+#' Set variable in global
+#'
+#' @description Set variables into the global environment.
+#'
+#' @examples
+#' Set(a = 500, b = TRUE, c = list(a= 50, b = FALSE));
+#' list(x11 = 15555, y22 = FALSE) %=>% Set
+Set <- function(...) {
+
+  x      <- list(...);
+  global <- globalenv();
+
+  if (length(x) == 1 && GetType(x) == primitiveTypes()$list) {
+    x <- x[[1]];
+  }
+
+  for (var in names(x)) {
+    assign <- list(var, x[[var]]);
+    do.call(`=`, assign, envir = global);
+  }
+
+  invisible(NULL);
+}
+
 #' Determine that target is Nothing in VB way
 #'
 #' @description Determine that target is Nothing in VB way.
