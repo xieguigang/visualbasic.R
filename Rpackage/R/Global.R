@@ -59,6 +59,17 @@ MyHelp <- function(namespace) {
   invisible(NULL);
 }
 
+#' List all VisualBasic namespace
+MyList <- function() {
+  index <- base::system.file("INDEX", package="VisualBasic.R") %=>% readLines %=>% Enumerator;
+
+  # Linq pipeline
+  index$
+    Where(function(line) InStr(line, "Microsoft.VisualBasic") > 0)$
+    Select(function(line) Strings.Split(line)[1])$
+    ToArray() %=>% unlist;
+}
+
 #' Determine that target is Nothing in VB way
 #'
 #' @description Determine that target is Nothing in VB way.
