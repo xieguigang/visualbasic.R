@@ -160,7 +160,8 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 			Count   = get("Count"),
 			Group   = get("Group"),
 			Last    = get("Last"),
-			GroupBy = get("GroupBy")
+			GroupBy = get("GroupBy"),
+			WhichIsNotEmpty = get("WhichIsNotEmpty")
 	));
 }
 
