@@ -3,26 +3,25 @@
 # Public Shared Function Split(Expression As String, Optional Delimiter As String =  , Optional Limit As Integer = -1, Optional Compare As Microsoft.VisualBasic.CompareMethod = 0) As String()
 #     Member of Microsoft.VisualBasic.Strings
 
-# Summary:
-# Returns a zero-based, one-dimensional array containing a specified number of
-# substrings.
-
-# Parameters:
-# Expression: Required. String expression containing substrings and delimiters.
-# Delimiter: Optional. Any single character used to identify substring limits.
-#            If Delimiter is omitted, the space character (" ") is assumed to be
-#            the delimiter.
-# Limit: Optional. Maximum number of substrings into which the input string
-#        should be split. The default, ?, indicates that the input string should
-#        be split at every occurrence of the Delimiter string.
-# Compare: Optional. Numeric value indicating the comparison to use when
-#          evaluating substrings. See "Settings" for values.
-
-# Returns:
-# String array. If Expression is a zero-length string (""), Split returns a
-# single-element array containing a zero-length string. If Delimiter is a
-# zero-length string, or if it does not appear anywhere in Expression, Split
-# returns a single-element array containing the entire Expression string.
+#' Split string using regexp
+#'
+#' @description Returns a zero-based, one-dimensional array containing a specified
+#'              number of substrings.
+#'
+#' @param Expression Required. String expression containing substrings and delimiters.
+#' @param Delimiter Optional. Any single character used to identify substring limits.
+#'            If Delimiter is omitted, the space character (" ") is assumed to be
+#'            the delimiter.
+#' @param Limit Optional. Maximum number of substrings into which the input string
+#'        should be split. The default, ?, indicates that the input string should
+#'        be split at every occurrence of the Delimiter string.
+#' @param Compare Optional. Numeric value indicating the comparison to use when
+#'          evaluating substrings. See "Settings" for values.
+#'
+#' @return String array. If Expression is a zero-length string (""), Split returns a
+#'        single-element array containing a zero-length string. If Delimiter is a
+#'        zero-length string, or if it does not appear anywhere in Expression, Split
+#'        returns a single-element array containing the entire Expression string.
 Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 
 	useBytes <- TRUE;
@@ -44,23 +43,19 @@ split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
 # Public Shared Function Join(SourceArray As String(), Optional Delimiter As String =  ) As String
 #     Member of Microsoft.VisualBasic.Strings
 
-# Summary:
-# Returns a string created by joining a number of substrings contained in an
-# array.
-
-# Parameters:
-# SourceArray: Required. One-dimensional array containing substrings to be joined.
-# Delimiter: Optional. Any string, used to separate the substrings in the
-#            returned string. If omitted, the space character (" ") is used. If
-#            Delimiter is a zero-length string ("") or Nothing, all items in the
-#            list are concatenated with no delimiters.
-
-# Returns:
-# Returns a string created by joining a number of substrings contained in an
-# array.
-
-# Exceptions:
-# System.ArgumentException: SourceArray is not one dimensional.
+#' Contact string tokens
+#'
+#' @description Returns a string created by joining a number of substrings
+#'              contained in an array.
+#'
+#' @param SourceArray Required. One-dimensional array containing substrings to be joined.
+#' @param Delimiter Optional. Any string, used to separate the substrings in the
+#'            returned string. If omitted, the space character (" ") is used. If
+#'           Delimiter is a zero-length string ("") or Nothing, all items in the
+#'            list are concatenated with no delimiters.
+#'
+#' @return Returns a string created by joining a number of substrings contained in an
+#'      array.
 Strings.Join <- function(SourceArray, Delimiter = " ") {
 	paste0(SourceArray, collapse = Delimiter);
 }
@@ -72,14 +67,13 @@ join <- function(sourceArray, delimiter) {
 # Public Shared Function LCase(Value As String) As String
     # Member of Microsoft.VisualBasic.Strings
 
-# Summary:
-# Returns a string or character converted to lowercase.
-
-# Parameters:
-# Value: Required. Any valid String or Char expression.
-
-# Returns:
-# Returns a string or character converted to lowercase.
+#' String to lowercase
+#'
+#' @description Returns a string or character converted to lowercase.
+#'
+#' @param Value Required. Any valid String or Char expression.
+#'
+#' @return Returns a string or character converted to lowercase.
 Strings.LCase <- function(Value) {
 	tolower(Value);
 }
@@ -136,7 +130,7 @@ Distinct <- function(words) {
 }
 
 #' Locate substring position
-#' 
+#'
 #' @return -1 means no match
 InStr <- function(s, substring) {
 	match <- regexpr(substring, s);
