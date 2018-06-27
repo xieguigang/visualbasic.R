@@ -84,24 +84,29 @@ lcase <- function(value) {
 
 # Public Shared Function Replace(Expression As String, Find As String, Replacement As String, Optional Start As Integer = 1, Optional Count As Integer = -1, Optional Compare As Microsoft.VisualBasic.CompareMethod = 0) As String
 #     Member of Microsoft.VisualBasic.Strings
-#
-# Summary:
-# Returns a string in which a specified substring has been replaced with another substring a specified number of times.
-#
-# Parameters:
-# Expression: Required. String expression containing substring to replace.
-# Find: Required. Substring being searched for.
-# Replacement: Required. Replacement substring.
-# Start: Optional. Position within Expression that starts a substring used for replacement. The return value of Replace is a string that begins at Start, with appropriate substitutions. If omitted, 1 is assumed.
-# Count: Optional. Number of substring substitutions to perform. If omitted, the default value is –1, which means "make all possible substitutions."
-# Compare: Optional. Numeric value indicating the kind of comparison to use when evaluating substrings. See Settings for values.
-#
-# Returns:
-# Replace returns the following values.IfReplace returns Find is zero-length or NothingCopy of Expression Replace is zero-lengthCopy of Expression with no occurrences of Find Expression is zero-length or Nothing, or Start is greater than length of Expression Nothing Count is 0Copy of Expression
-#
-# Exceptions:
-# System.ArgumentException: Count < -1 or Start <= 0.
 
+#' Text replacement
+#'
+#' @description Returns a string in which a specified substring has been
+#'          replaced with another substring a specified number of times.
+#'
+#' @param Expression Required. String expression containing substring to replace.
+#' @param Find Required. Substring being searched for.
+#' @param Replacement Required. Replacement substring.
+#' @param Start Optional. Position within Expression that starts a substring
+#'     used for replacement. The return value of Replace is a string that begins
+#'     at Start, with appropriate substitutions. If omitted, 1 is assumed.
+#' @param Count Optional. Number of substring substitutions to perform.
+#'     If omitted, the default value is –1, which means "make all possible
+#'     substitutions."
+#' @param Compare Optional. Numeric value indicating the kind of comparison
+#'     to use when evaluating substrings. See Settings for values.
+#'
+#' @return Replace returns the following values.IfReplace returns Find
+#'        is zero-length or NothingCopy of Expression Replace is zero-length
+#'        Copy of Expression with no occurrences of Find Expression is zero-length
+#'        or Nothing, or Start is greater than length of Expression Nothing Count is 0
+#'        Copy of Expression
 Strings.Replace <- function(Expression, Find, Replacement) {
 	gsub(Find, Replacement, Expression, fixed = TRUE)
 }
@@ -109,14 +114,15 @@ Strings.Replace <- function(Expression, Find, Replacement) {
 # Public Shared Function UCase(Value As String) As String
     # Member of Microsoft.VisualBasic.Strings
 
-# Summary:
-# Returns a string or character containing the specified string converted to uppercase.
-
-# Parameters:
-# Value: Required. Any valid String or Char expression.
-
-# Returns:
-# Returns a string or character containing the specified string converted to uppercase.
+#' String in uppercase
+#'
+#' @description Returns a string or character containing the specified string
+#'         converted to uppercase.
+#'
+#' @param Value Required. Any valid String or Char expression.
+#'
+#' @return Returns a string or character containing the specified string
+#'         converted to uppercase.
 Strings.UCase <- function(Value) {
 	toupper(Value);
 }
@@ -142,12 +148,14 @@ Mid <- function(s, start, length) {
 
 }
 
-#' Determine that target string is null or empty or not??
+#' A given string is empty?
+#'
+#' @description Determine that target string is null or empty or not??
 Strings.Empty <- function(s, NA.empty = FALSE) {
 	(IsNothing(s) || s == "") || (NA.empty && s == "NA");
 }
 
-## 计算出两个代谢物的名字字符串的相似度
+#' Text similarity score
 name.similarity <- function(sa, sb) {
 	l.max       <- max(nchar(c(sa, sb)));
 	similarity  <- (l.max - levenshtein.distance(sa,sb)) / l.max;

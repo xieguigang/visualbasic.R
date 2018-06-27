@@ -154,7 +154,7 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 	list(namespace = GetCurrentFunc(),
 		 description = "Linq helper function in R language.",
 		 methods = list(
-			from    = get("from"),
+			From    = get("from"),
 			Take    = get("Take"),
 			Skip    = get("Skip"),
 			Count   = get("Count"),

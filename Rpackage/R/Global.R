@@ -46,6 +46,19 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
 	}
 }
 
+#' Print namespace help
+#'
+#' @description \code{\link{Imports}}
+#'
+#' @param namespace The VisualBasic namespace
+#'
+#' @return Nothing
+MyHelp <- function(namespace) {
+  module <- get(namespace)();
+  str(module);
+  invisible(NULL);
+}
+
 #' Determine that target is Nothing in VB way
 #'
 #' @description Determine that target is Nothing in VB way.

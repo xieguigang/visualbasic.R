@@ -2,7 +2,7 @@
 % Please edit documentation in R/Strings.R
 \name{Strings.Empty}
 \alias{Strings.Empty}
-\title{Determine that target string is null or empty or not??}
+\title{A given string is empty?}
 \usage{
 Strings.Empty(s, NA.empty = FALSE)
 }
