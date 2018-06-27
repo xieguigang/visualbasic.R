@@ -143,9 +143,24 @@ InStr <- function(s, substring) {
 	match[1];
 }
 
-#' Substring
+#' Substring from left
+#'
+#' @param s A given string vector
+#' @param start The substring start location on \code{s}
+#' @param length The length of the substring
+#'
 Mid <- function(s, start, length) {
+  substr(s, start, length);
+}
 
+#' Substring from right
+#'
+#' @description This function working in the reverse direction of function \code{\link{Mid}}
+#'
+#' @param x A given string vector
+#' @param n Length of the substring
+substr.Right <- function(x, n) {
+  substr(x, nchar(x) - n + 1, nchar(x));
 }
 
 #' A given string is empty?

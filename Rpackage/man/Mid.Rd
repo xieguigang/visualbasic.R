@@ -2,11 +2,18 @@
 % Please edit documentation in R/Strings.R
 \name{Mid}
 \alias{Mid}
-\title{Substring}
+\title{Substring from left}
 \usage{
 Mid(s, start, length)
 }
+\arguments{
+\item{s}{A given string vector}
+
+\item{start}{The substring start location on \code{s}}
+
+\item{length}{The length of the substring}
+}
 \description{
-Substring
+Substring from left
 }
 
