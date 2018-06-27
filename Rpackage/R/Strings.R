@@ -150,9 +150,18 @@ Mid <- function(s, start, length) {
 
 #' A given string is empty?
 #'
+#' @param s A given string vector that using for measurement
+#' @param NA.empty This logical flag indicate that should treat the text which is
+#'       equals to \code{chr("NA")} as empty too? Default is not.
+#'
 #' @description Determine that target string is null or empty or not??
+#' @aliases IsNothing
+#'
+#' @return Logical vector
 Strings.Empty <- function(s, NA.empty = FALSE) {
-	(IsNothing(s) || s == "") || (NA.empty && s == "NA");
+	sapply(s, function(x) {
+	  IsNothing(x, stringAsFactor = NA.empty);
+	}) %=>% as.logical;
 }
 
 #' Text similarity score

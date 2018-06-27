@@ -96,10 +96,10 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 		FALSE;
 	} else {
 
-		if (x == "") {
-			TRUE;
-		} else if (!stringAsFactor) {
+		if (!stringAsFactor) {
 			FALSE;
+		} else if (x == "") {
+			TRUE;
 		} else {
 			return (x %in% c("NULL", "null", "na", "NA"));
 		}

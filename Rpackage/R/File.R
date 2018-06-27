@@ -1,21 +1,21 @@
 #' Get the file name of a given file path without extension name
 basename <- function(path) {
 
-	Linq   <- microsoft.visualbasic.data.linq();
+	Linq   <- Microsoft.VisualBasic.Data.Linq();
     file   <- base::basename(path);
 	tokens <- Strings.Split(file, "\\.");
-	tokens <- Linq$Take(tokens, length(tokens) - 1);
+	tokens <- Linq$methods$Take(tokens, length(tokens) - 1);
 
 	Strings.Join(tokens, ".");
 }
 
 #' Get file extension name
 File.ExtensionName <- function(path) {
-	Linq   <- microsoft.visualbasic.data.linq();
+	Linq   <- Microsoft.VisualBasic.Data.Linq();
     file   <- base::basename(path);
 	tokens <- Strings.Split(file, "\\.");
 
-	Linq$Last(tokens);
+	Linq$methods$Last(tokens);
 }
 
 #' Determine path end with a given extension name
