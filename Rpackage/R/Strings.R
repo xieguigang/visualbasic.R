@@ -163,6 +163,21 @@ substr.Right <- function(x, n) {
   substr(x, nchar(x) - n + 1, nchar(x));
 }
 
+GetTagValue <- function(s, tag = " ") {
+  sapply(s, function(str) {
+    i <- InStr(str, tag);
+
+    if (i <= 0) {
+      list(name = "", value = str);
+    } else {
+      name = Mid(str, 1, i);
+      value = Mid(str, i + length(tag));
+
+      list(name = name, value = value);
+    }
+  });
+}
+
 #' A given string is empty?
 #'
 #' @param s A given string vector that using for measurement
