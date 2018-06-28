@@ -33,10 +33,17 @@ flash_load <- function() {
 			}, error = function(ex) {
 				printf("Error while loading script: %s", script);
 				print(toString(ex));
-			});			
+			});
 		}
 
 		print(script);
+	}
+
+	# run .onload in zzz.R
+	zzz.R <- sprintf("%s/zzz.R", getwd());
+
+	if (file.exists(zzz.R) && exists(".onLoad")) {
+	  do.call(".onLoad", list("", ""));
 	}
 
 	invisible(NULL);
