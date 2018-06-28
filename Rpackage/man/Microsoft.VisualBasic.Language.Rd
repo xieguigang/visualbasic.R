@@ -3,12 +3,29 @@
 \name{Microsoft.VisualBasic.Language}
 \alias{Microsoft.VisualBasic.Language}
 \title{Syntax tweaks helpers
-Union two collection}
+Extension method operator}
 \usage{
 Microsoft.VisualBasic.Language()
 }
+\arguments{
+\item{x}{Function parameter}
+
+\item{y}{Function with one parameter}
+
+\item{x}{vectors (of the same mode) containing a sequence
+of items (conceptually) with no duplicated values.}
+
+\item{y}{vectors (of the same mode) containing a sequence
+of items (conceptually) with no duplicated values.}
+}
+\value{
+The function value.
+Union two collection
+
+A vector of the same mode as x or y for a common mode for \code{union}.
+}
 \description{
 Syntax tweaks helpers
-Union two collection
+Extension method operator
 }
 

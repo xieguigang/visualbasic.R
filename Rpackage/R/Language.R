@@ -67,12 +67,24 @@ Microsoft.VisualBasic.Language <- function() {
 		invisible(NULL);
 	}
 
-	# Extension method operator
+	#' Extension method operator
+	#'
+	#' @param x Function parameter
+	#' @param y Function with one parameter
+	#'
+	#' @return The function value.
 	`%=>%` <- function(x, y) {
 		y(x);
 	}
 
 	#' Union two collection
+	#'
+	#' @param x vectors (of the same mode) containing a sequence
+	#'        of items (conceptually) with no duplicated values.
+	#' @param y vectors (of the same mode) containing a sequence
+	#'        of items (conceptually) with no duplicated values.
+	#'
+	#' @return A vector of the same mode as x or y for a common mode for \code{union}.
 	`%+%` <- function(x, y) {
     union(x, y);
 	}
