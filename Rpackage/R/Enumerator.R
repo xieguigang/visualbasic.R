@@ -76,27 +76,41 @@ Enumerator <- function(src) {
 	  sort.list(src, key, key.numeric, TRUE);
 	}
 
+	.count <- function(predicate) {
+	  if (predicate) {
+	    test <- sapply(src, predicate);
+	    sum(test);
+	  } else {
+      length(src);
+	  }
+	}
+
 	#endregion
 
 	list(src   = src,
+	   # source enumerator
 		 Select  = function(project) .select(project)               %=>% Enumerator,
 		 Where   = function(assert) .where(assert)                  %=>% Enumerator,
 		 OrderBy = function(key, key.numeric = as.numeric) {
 		    .orderBy(key, key.numeric)                              %=>% Enumerator
 		 },
 		 OrderByDescending = function(key, key.numeric = as.numeric) {
-		    .orderBy(key, key.numeric, TRUE)                        %=>% Enumerator
+		    .orderByDescending(key, key.numeric)                    %=>% Enumerator
 		 },
 		 ToArray = function() src,
 		 Take    = function(n) Linq$Take(src, n)                    %=>% Enumerator,
 		 Skip    = function(n) Linq$Skip(src, n)                    %=>% Enumerator,
 		 GroupBy = function(key, type) Linq$GroupBy(src, key, type) %=>% Enumerator,
+		 # Logical predicates
 		 Any     = function(predicate = NULL) {
 		    if (predicate) {
 		      Linq$Any(src, predicate);
 		    } else {
 		      !IsNothing(src);
 		    }
+		 },
+		 All     = function(predicate) {
+        .count() == .count(predicate);
 		 }
 	);
 }

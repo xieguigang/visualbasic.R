@@ -72,12 +72,18 @@ Microsoft.VisualBasic.Language <- function() {
 		y(x);
 	}
 
+	#' Union two collection
+	`%+%` <- function(x, y) {
+    union(x, y);
+	}
+
 	list(namespace = GetCurrentFunc(),
 		 description = "R language syntax helpers",
 		 methods = list(
 			 "%||%" = get("%||%"),
 		   "%<=%" = get("%<=%"),
 		   ":="   = get(":="),
-		   "%=>%" = get("%=>%")
+		   "%=>%" = get("%=>%"),
+			 "%+%"  = get("%+%")
 	));
 }
