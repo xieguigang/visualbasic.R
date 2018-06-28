@@ -51,7 +51,7 @@ flash_load <- function() {
 	  # 非程序包的状态下，zzz.R之中的.onLoad无法自动运行
 	  # 因为.onLoad可能与其他的程序包中的.onLoad函数冲突
 	  # 所以在这里改为调用.flashLoad函数
-	  do.call(".flashLoad", list("", ""));
+	  do.call(".flashLoad", list());
 	}
 
 	invisible(NULL);
