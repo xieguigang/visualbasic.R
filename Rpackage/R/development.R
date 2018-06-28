@@ -1,4 +1,4 @@
-#' Parse package DESCRIPTION file
+#' Parse DESCRIPTION file
 #'
 #' @param file \code{DESCRIPTION} file handle
 #'
@@ -28,6 +28,12 @@ parse.package.description <- function(file = base::system.file("DESCRIPTION", pa
     description;
 }
 
+#' Parse package DESCRIPTION file
+#'
+#' @param packagename The R package name
+#'
+#' @description This function is an alias of function
+#'     \code{\link{parse.package.description}}
 DESCRIPTION <- function(packageName) {
     parse.package.description(base::system.file("DESCRIPTION", package=packageName));
 }
