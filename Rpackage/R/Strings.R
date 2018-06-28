@@ -153,6 +153,18 @@ Strings.Len <- function(s) {
   }) %=>% as.vector;
 }
 
+Trim <- function(str) {
+  gsub("^\\s+|\\s+$", "", str);
+}
+
+LTrim <- function(str) {
+  sub("^\\s+", "", str);
+}
+
+RTrim <- function(str) {
+  sub("\\s+$", "", str);
+}
+
 #' Substring from left
 #'
 #' @description Substring from left with a specific length.
@@ -192,7 +204,7 @@ GetTagValue <- function(s, tag = " ") {
       list(name = "", value = str);
     } else {
       name = Mid(str, 1, i - 1);
-      value = Mid(str, i + length(tag));
+      value = Mid(str, i + length(tag)) %=>% Trim;
 
       list(name = name, value = value);
     }
