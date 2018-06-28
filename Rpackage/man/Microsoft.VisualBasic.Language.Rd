@@ -2,8 +2,7 @@
 % Please edit documentation in R/Language.R
 \name{Microsoft.VisualBasic.Language}
 \alias{Microsoft.VisualBasic.Language}
-\title{Syntax tweaks helpers
-Extension method operator}
+\title{Syntax tweaks helpers}
 \usage{
 Microsoft.VisualBasic.Language()
 }
@@ -19,13 +18,25 @@ of items (conceptually) with no duplicated values.}
 of items (conceptually) with no duplicated values.}
 }
 \value{
-The function value.
+Namespace module with exports:
+    \enumerate{
+       \item \code{\%||\%} The \code{OR} default value operator
+       \item \code{\%:=\%} The tuple syntax
+       \item \code{\%=>\%} Forward pipeline operator
+       \item \code{\%+\%}  Set union operator
+    }
+The \code{OR} default expression
+
+\code{\%||\%}: The target given value or default value is
+    target value \code{\link{IsNothing}}.
+Extension method operator
+
+\code{\%=>\%}: The function value.
 Union two collection
 
-A vector of the same mode as x or y for a common mode for \code{union}.
+\code{\%+\%}: A vector of the same mode as x or y for a common mode for \code{union}.
 }
 \description{
 Syntax tweaks helpers
-Extension method operator
 }
 

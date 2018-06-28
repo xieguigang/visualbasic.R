@@ -1,8 +1,19 @@
 
 #' Syntax tweaks helpers
+#'
+#' @return Namespace module with exports:
+#'     \enumerate{
+#'        \item \code{\%||\%} The \code{OR} default value operator
+#'        \item \code{\%:=\%} The tuple syntax
+#'        \item \code{\%=>\%} Forward pipeline operator
+#'        \item \code{\%+\%}  Set union operator
+#'     }
 Microsoft.VisualBasic.Language <- function() {
 
-	# 如果对象为空则取默认值
+	#' The \code{OR} default expression
+	#'
+	#' @return \code{\%||\%}: The target given value or default value is
+	#'     target value \code{\link{IsNothing}}.
 	`%||%` <- function(x, y) if(IsNothing(x)) y else x;
 
 	## @param path: list(obj, "/path/ref");
@@ -72,7 +83,7 @@ Microsoft.VisualBasic.Language <- function() {
 	#' @param x Function parameter
 	#' @param y Function with one parameter
 	#'
-	#' @return The function value.
+	#' @return \code{\%=>\%}: The function value.
 	`%=>%` <- function(x, y) {
 		y(x);
 	}
@@ -84,7 +95,7 @@ Microsoft.VisualBasic.Language <- function() {
 	#' @param y vectors (of the same mode) containing a sequence
 	#'        of items (conceptually) with no duplicated values.
 	#'
-	#' @return A vector of the same mode as x or y for a common mode for \code{union}.
+	#' @return \code{\%+\%}: A vector of the same mode as x or y for a common mode for \code{union}.
 	`%+%` <- function(x, y) {
     union(x, y);
 	}
