@@ -1,3 +1,9 @@
+#' Parse package DESCRIPTION file
+#'
+#' @param file \code{DESCRIPTION} file handle
+#'
+#' @return Returns a list of named value that parsed from the \code{DESCRIPTION}
+#'      file in a specific package.
 parse.package.description <- function(file = base::system.file("DESCRIPTION", package="VisualBasic.R")) {
     description <- list();
     last <- "";
@@ -10,7 +16,7 @@ parse.package.description <- function(file = base::system.file("DESCRIPTION", pa
         } else {
             if (name != "") {
                 description[[name]] = last;
-            }            
+            }
             c(name, last) := GetTagValue(line, ":");
         }
     }
