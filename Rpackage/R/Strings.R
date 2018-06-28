@@ -178,7 +178,7 @@ GetTagValue <- function(s, tag = " ") {
     if (i <= 0) {
       list(name = "", value = str);
     } else {
-      name = Mid(str, 1, i);
+      name = Mid(str, 1, i - 1);
       value = Mid(str, i + length(tag));
 
       list(name = name, value = value);
