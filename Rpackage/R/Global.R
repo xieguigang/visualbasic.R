@@ -6,6 +6,7 @@
 #'                  name. By default is can not. If this parameter is set to true,
 #'                  then a warning message will be generated for mention you that
 #'                  which functions are overrided.
+#' @param frame The envrionment location, by default is current function scope
 #'
 #' @return A string vector contains all of the function names from this namespace
 #'         function that imported to current environment.

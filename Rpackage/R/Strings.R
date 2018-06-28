@@ -143,6 +143,16 @@ InStr <- function(s, substring) {
 	match[1];
 }
 
+Strings.Len <- function(s) {
+  sapply(s, function(str) {
+    if (IsNothing(str)) {
+      0;
+    } else {
+      nchar(str);
+    }
+  }) %=>% as.vector;
+}
+
 #' Substring from left
 #'
 #' @description Substring from left with a specific length.
@@ -156,9 +166,12 @@ InStr <- function(s, substring) {
 #' @return Parsed sub-string
 Mid <- function(s, start, length = NA) {
   if (IsNothing(length)) {
-    length = length(s) - start;
+    stop <- Strings.Len(s);
+  } else {
+    stop <- start + length;
   }
-  substr(s, start, length);
+
+  substr(s, start, stop);
 }
 
 #' Substring from right

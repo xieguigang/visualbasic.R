@@ -15,6 +15,8 @@ can overrides the previous function which they have the same
 name. By default is can not. If this parameter is set to true,
 then a warning message will be generated for mention you that
 which functions are overrided.}
+
+\item{frame}{The envrionment location, by default is current function scope}
 }
 \value{
 A string vector contains all of the function names from this namespace
