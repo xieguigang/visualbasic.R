@@ -1,11 +1,16 @@
 Package: VisualBasic.R
 Type: Package
-Title: VisualBasic.NET function port to R language.
-Version: 0.1.31
+Title: VisualBasic.NET function port to R
+Version: {$version}
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
-Description: Linq like common data operation for R and common string helper 
- from VB language.
+Description: This package provides some common programming feature in VB.NET 
+  to R language, these includes,
+     1. Syntax tweaks for R language
+     2. Linq like common data operation for R
+     3. Common string helper functions
+     4. R Package development tools 
+     5. File format helper tools, like XML.
 License: MIT License
 Encoding: UTF-8
 LazyData: true
