@@ -143,6 +143,11 @@ InStr <- function(s, substring) {
 	match[1];
 }
 
+#' String length
+#'
+#' @param s String vector
+#'
+#' @return A numeric vector for string length.
 Strings.Len <- function(s) {
   sapply(s, function(str) {
     if (IsNothing(str)) {
@@ -153,14 +158,23 @@ Strings.Len <- function(s) {
   }) %=>% as.vector;
 }
 
+#' Returns string w/o leading or trailing whitespace
+#'
+#' @description https://stackoverflow.com/questions/2261079/how-to-trim-leading-and-trailing-whitespace-in-r
 Trim <- function(str) {
   gsub("^\\s+|\\s+$", "", str);
 }
 
+#' Returns string w/o leading whitespace
+#'
+#' @description https://stackoverflow.com/questions/2261079/how-to-trim-leading-and-trailing-whitespace-in-r
 LTrim <- function(str) {
   sub("^\\s+", "", str);
 }
 
+#' Returns string w/o trailing whitespace
+#'
+#' @description https://stackoverflow.com/questions/2261079/how-to-trim-leading-and-trailing-whitespace-in-r
 RTrim <- function(str) {
   sub("\\s+$", "", str);
 }

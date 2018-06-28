@@ -2,7 +2,7 @@
 % Please edit documentation in R/development.R
 \name{parse.package.description}
 \alias{parse.package.description}
-\title{Parse package DESCRIPTION file}
+\title{Parse DESCRIPTION file}
 \usage{
 parse.package.description(file = base::system.file("DESCRIPTION", package =
   "VisualBasic.R"))
@@ -15,6 +15,6 @@ Returns a list of named value that parsed from the \code{DESCRIPTION}
      file in a specific package.
 }
 \description{
-Parse package DESCRIPTION file
+Parse DESCRIPTION file
 }
 
