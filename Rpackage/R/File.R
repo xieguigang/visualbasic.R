@@ -1,12 +1,19 @@
-#' Get the file name of a given file path without extension name
+#' File name without extension name
+#'
+#' @description Get the file name of a given file path without extension name.
+#'
+#' @param path File path string.
+#'
 basename <- function(path) {
-
 	Linq   <- Microsoft.VisualBasic.Data.Linq();
-    file   <- base::basename(path);
-	tokens <- Strings.Split(file, "\\.");
-	tokens <- Linq$methods$Take(tokens, length(tokens) - 1);
 
-	Strings.Join(tokens, ".");
+	sapply(path, function(file.path) {
+	  file   <- base::basename(file.path);
+	  tokens <- Strings.Split(file, "\\.");
+	  tokens <- Linq$methods$Take(tokens, length(tokens) - 1);
+
+	  Strings.Join(tokens, ".");
+	}) %=>% as.character;
 }
 
 #' Get file extension name

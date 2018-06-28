@@ -37,3 +37,33 @@ parse.package.description <- function(file = base::system.file("DESCRIPTION", pa
 DESCRIPTION <- function(packageName) {
     parse.package.description(base::system.file("DESCRIPTION", package=packageName));
 }
+
+#' Load \code{rda} data in a unified method
+#'
+#' @param rda The \code{*.rda} file path or package data name
+#'
+xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
+
+  if (file.exists(rdaName)) {
+    load(rdaName, envir = envir);
+
+    if (verbose) {
+      printf(" -> load_from_file::%s", rdaName);
+    }
+  } else if (file.exists(sprintf("data/%s", rdaName))) {
+    load(sprintf("data/%s", rdaName), envir = envir);
+
+    if (verbose) {
+      printf(" -> load_from_file::data/%s", rdaName);
+    }
+  } else {
+    name <- basename(name);
+    data(list = name, envir = envir);
+
+    if (verbose) {
+      printf(" -> data_from_dataset::%s", name);
+    }
+  }
+
+  invisible(NULL);
+}

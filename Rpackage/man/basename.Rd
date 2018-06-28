@@ -2,11 +2,14 @@
 % Please edit documentation in R/File.R
 \name{basename}
 \alias{basename}
-\title{Get the file name of a given file path without extension name}
+\title{File name without extension name}
 \usage{
 basename(path)
 }
+\arguments{
+\item{path}{File path string.}
+}
 \description{
-Get the file name of a given file path without extension name
+Get the file name of a given file path without extension name.
 }
 
