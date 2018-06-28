@@ -12,7 +12,9 @@ include <- function(R) {
 	invisible(NULL);
 }
 
-#' Load all of the R script in current working directory.
+#' Load R script in current directory
+#'
+#' @description Load all of the R script in current working directory.
 #'
 #' @return Nothing.
 flash_load <- function() {
@@ -42,8 +44,14 @@ flash_load <- function() {
 	# run .onload in zzz.R
 	zzz.R <- sprintf("%s/zzz.R", getwd());
 
-	if (file.exists(zzz.R) && exists(".onLoad")) {
-	  do.call(".onLoad", list("", ""));
+	# 如果存在.flashLoad这个函数，表示会需要运行该zzz.R脚本之中的初始化过程
+	# .flashLoad函数应该是只包含有.onLoad的直接调用代码的
+	# .flashLoad() <- function() .onLoad(NULL, NULL);
+	if (file.exists(zzz.R) && exists(".flashLoad")) {
+	  # 非程序包的状态下，zzz.R之中的.onLoad无法自动运行
+	  # 因为.onLoad可能与其他的程序包中的.onLoad函数冲突
+	  # 所以在这里改为调用.flashLoad函数
+	  do.call(".flashLoad", list("", ""));
 	}
 
 	invisible(NULL);

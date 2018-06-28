@@ -2,7 +2,7 @@
 % Please edit documentation in R/script_loader.R
 \name{flash_load}
 \alias{flash_load}
-\title{Load all of the R script in current working directory.}
+\title{Load R script in current directory}
 \usage{
 flash_load()
 }
