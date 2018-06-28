@@ -4,16 +4,21 @@
 \alias{Mid}
 \title{Substring from left}
 \usage{
-Mid(s, start, length)
+Mid(s, start, length = NA)
 }
 \arguments{
 \item{s}{A given string vector}
 
 \item{start}{The substring start location on \code{s}}
 
-\item{length}{The length of the substring}
+\item{length}{The length of the substring, if this parameter is ommited,
+then the rest of the string from \code{start} to end will
+be parsed.}
+}
+\value{
+Parsed sub-string
 }
 \description{
-Substring from left
+Substring from left with a specific length.
 }
 

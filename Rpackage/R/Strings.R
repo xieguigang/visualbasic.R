@@ -145,11 +145,19 @@ InStr <- function(s, substring) {
 
 #' Substring from left
 #'
+#' @description Substring from left with a specific length.
+#'
 #' @param s A given string vector
 #' @param start The substring start location on \code{s}
-#' @param length The length of the substring
+#' @param length The length of the substring, if this parameter is ommited,
+#'               then the rest of the string from \code{start} to end will
+#'               be parsed.
 #'
-Mid <- function(s, start, length) {
+#' @return Parsed sub-string
+Mid <- function(s, start, length = NA) {
+  if (IsNothing(length)) {
+    length = length(s) - start;
+  }
   substr(s, start, length);
 }
 
