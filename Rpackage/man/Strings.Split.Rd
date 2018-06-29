@@ -10,7 +10,7 @@ Strings.Split(Expression, Delimiter = " ", Compare = 0)
 \item{Expression}{Required. String expression containing substrings and delimiters.}
 
 \item{Delimiter}{Optional. Any single character used to identify substring limits.
-If Delimiter is omitted, the space character (" ") is assumed to be
+If Delimiter is omitted, the space character (\code{" "}) is assumed to be
 the delimiter.}
 
 \item{Compare}{Optional. Numeric value indicating the comparison to use when
@@ -21,8 +21,8 @@ should be split. The default, ?, indicates that the input string should
 be split at every occurrence of the Delimiter string.}
 }
 \value{
-String array. If Expression is a zero-length string (""), Split returns a
-       single-element array containing a zero-length string. If Delimiter is a
+String array. If Expression is a zero-length string (\code{""}), Split returns
+       a single-element array containing a zero-length string. If Delimiter is a
        zero-length string, or if it does not appear anywhere in Expression, Split
        returns a single-element array containing the entire Expression string.
 }

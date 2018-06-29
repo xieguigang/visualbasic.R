@@ -10,7 +10,7 @@
 #'
 #' @param Expression Required. String expression containing substrings and delimiters.
 #' @param Delimiter Optional. Any single character used to identify substring limits.
-#'            If Delimiter is omitted, the space character (" ") is assumed to be
+#'            If Delimiter is omitted, the space character (\code{" "}) is assumed to be
 #'            the delimiter.
 #' @param Limit Optional. Maximum number of substrings into which the input string
 #'        should be split. The default, ?, indicates that the input string should
@@ -18,8 +18,8 @@
 #' @param Compare Optional. Numeric value indicating the comparison to use when
 #'          evaluating substrings. See "Settings" for values.
 #'
-#' @return String array. If Expression is a zero-length string (""), Split returns a
-#'        single-element array containing a zero-length string. If Delimiter is a
+#' @return String array. If Expression is a zero-length string (\code{""}), Split returns
+#'        a single-element array containing a zero-length string. If Delimiter is a
 #'        zero-length string, or if it does not appear anywhere in Expression, Split
 #'        returns a single-element array containing the entire Expression string.
 Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
@@ -202,7 +202,8 @@ Mid <- function(s, start, length = NA) {
 
 #' Substring from right
 #'
-#' @description This function working in the reverse direction of function \code{\link{Mid}}
+#' @description This function working in the reverse direction of function
+#'      \code{\link{Mid}}
 #'
 #' @param x A given string vector
 #' @param n Length of the substring
