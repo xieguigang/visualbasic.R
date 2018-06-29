@@ -97,7 +97,7 @@ lcase <- function(value) {
 #'     used for replacement. The return value of Replace is a string that begins
 #'     at Start, with appropriate substitutions. If omitted, 1 is assumed.
 #' @param Count Optional. Number of substring substitutions to perform.
-#'     If omitted, the default value is –1, which means "make all possible
+#'     If omitted, the default value is -1, which means "make all possible
 #'     substitutions."
 #' @param Compare Optional. Numeric value indicating the kind of comparison
 #'     to use when evaluating substrings. See Settings for values.

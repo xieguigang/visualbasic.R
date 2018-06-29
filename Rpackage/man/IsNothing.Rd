@@ -21,7 +21,9 @@ Determine that target is Nothing in VB way.
              All of these situation will be treated as Nothing.
 }
 \details{
-判断对象是否为空，在这个函数里面，空值，NA值，长度为零的向量，
-         列表等都会被当作为空�<U+FFFD>
+Determine that target object is nothing or not, by using predicates: \code{is.null},
+   \code{is.na}, \code{length(x) == 0}. And if the function parameter \code{stringAsFactor} is
+   true, then string comparision for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} will
+   be applied.
 }
 

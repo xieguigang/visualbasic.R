@@ -107,8 +107,10 @@ Set <- function(...) {
 #'                       the string value like \code{NULL}, \code{NA}, etc
 #'                       as Nothing?
 #'
-#' @details 判断对象是否为空，在这个函数里面，空值，NA值，长度为零的向量，
-#'          列表等都会被当作为空值
+#' @details Determine that target object is nothing or not, by using predicates: \code{is.null},
+#'    \code{is.na}, \code{length(x) == 0}. And if the function parameter \code{stringAsFactor} is
+#'    true, then string comparision for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} will
+#'    be applied.
 #'
 #' @aliases is.nothing
 IsNothing <- function(x, stringAsFactor = FALSE) {
