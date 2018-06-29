@@ -12,6 +12,7 @@ substr.Right(x, n)
 \item{n}{Length of the substring}
 }
 \description{
-This function working in the reverse direction of function \code{\link{Mid}}
+This function working in the reverse direction of function
+     \code{\link{Mid}}
 }
 

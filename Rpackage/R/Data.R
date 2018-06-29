@@ -81,7 +81,7 @@ Microsoft.VisualBasic.Data <- function() {
 		l;
 	}
 
-	as.dataframe <- function(list) {
+	.as.dataframe <- function(list) {
 		d <- NULL;
 		list.names <- names(list);
 		all.prop <- selectMany(list, function(x) names(x));
@@ -98,6 +98,19 @@ Microsoft.VisualBasic.Data <- function() {
 		d;
 	}
 
+	## 确保结果数据是一个dataframe来的
+	## 因为有时候对dataframe取子集的时候，假若最终的子集和只有一行数据，
+	## 那么结果数据可能会被转换为一个vector，从而无法再被当做为dataframe
+	## 使用，使用这个函数来确保取子集的结果全部都是dataframe
+	.ensure.dataframe <- function(data, col.names) {
+	  if (is.null(nrow(data))) {
+	    data <- rbind(NULL, data);
+	    colnames(data) <- col.names;
+	  }
+
+	  data;
+	}
+
 	# register function for namespace export
     list(namespace = GetCurrentFunc(),
 		 description = "Namespace contains some common data operation helpers.",
@@ -107,6 +120,7 @@ Microsoft.VisualBasic.Data <- function() {
 		 	 .as.matrix   = .as.matrix,
 		 	 .selectMany  = selectMany,
 		 	 list.project = list.project,
-		 	 as.dataframe = as.dataframe
+		 	 as.dataframe = .as.dataframe,
+			 ensure.dataframe = .ensure.dataframe
 	));
 }

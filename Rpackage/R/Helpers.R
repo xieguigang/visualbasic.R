@@ -31,3 +31,34 @@ tick.helper <- function(total, step = 5 / 100) {
 		}
 	});
 }
+
+#' Display progress for elements' action
+#'
+#' @description Only works on the \code{vector} or \code{list}
+#'
+#' @param sequence A list or vector object.
+#' @param action A function that will applied on each element
+#'    in the input sequence.
+#'
+#' @return action result on each elements
+#'
+#' @details \code{\link{tick.helper}}
+#'
+tick.each <- function(sequence, action) {
+  out  <- list();
+  tick <- tick.helper(length(sequence));
+  i <- 1;
+
+  cat("\n");
+  cat("  Progress%: ");
+
+  for (x in sequence) {
+    out[[i]] <- action(x);
+    tick();
+  }
+
+  cat("\n");
+  cat("\n");
+
+  out;
+}
