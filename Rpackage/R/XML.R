@@ -2,16 +2,17 @@
 #' Serialize any R object to a specific XML file
 #'
 #' @description Serialize any R object to a specific XML file, for save data in a more
-#' human readable format.
+#'   human readable format.
 #'
 #' @param x The R object in any type
 #' @param file.xml The file path of the XML file dump data will be saved.
 #' @param rootName The name of the generated xml root node.
+#'
 SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {
 	XML.Framework(
 		write    = File.Open(file.txt = file.xml),
 		do.write = function(write) {
-			push.x(x, "", write);
+		  Xml.Write.Any(x, "", write);
 		},
 		rootName = rootName
 	);
@@ -22,6 +23,7 @@ SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {
 #' @param write The file write handle from the \code{\link{File.Open}} function
 #' @param do.write A function pointer that used for describ how to build the output xml file
 #' @param rootName The node name of the generated xml root node.
+#'
 XML.Framework <- function(write, do.write, rootName) {
     write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
     write("<%s xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">", rootName);
@@ -29,37 +31,53 @@ XML.Framework <- function(write, do.write, rootName) {
     write("</%s>", rootName);
 }
 
-#' Choose different XML write function based on the input object type.
-push.x <- function(x, indent, write, name = NULL) {
+#' Write R object to Xml
+#'
+#' @description Choose different XML write function based on the input object
+#'    type.
+#'
+#' @param x Type is limited to \code{vector}, \code{list} and
+#'    \code{data.frame}/\code{matrix}.
+#' @param indent The xml node indent, whitespace numbers.
+#' @param write Text file write handle, which is created from \code{\link{File.Open}}
+#' @param name Using this function parameter to overrides the node name.
+#'
+Xml.Write.Any <- function(x, indent, write, name = NULL) {
 
 	if (is.data.frame(x) || is.matrix(x)) {
 
 		# 使用表格的形式写入数据
-		Matrix.XML(x, indent, write, name);
+	  Xml.Write.Matrix(x, indent, write, name);
 
 	} else if (is.list(x)) {
 
-        # 是一个类似于字典对象的东西
-        List.XML(x, indent, write, name);
+    # 是一个类似于字典对象的东西
+    Xml.Write.List(x, indent, write, name);
 
-    } else {
+  } else {
 
-        # 是相同元素的vector
-		if (length(x) == 1) {
-			write('%s<%s value="%s" />', indent, name, x);
-		} else {
-			Vector.XML(x, indent, write, name);
-		}
-    }
+    # 是相同元素的vector
+  	if (length(x) == 1) {
+  		write('%s<%s value="%s" />', indent, name, x);
+  	} else {
+  	  Xml.Write.Vector(x, indent, write, name);
+  	}
+  }
+
+  invisible(NULL);
 }
 
 #' Write the vector as the xml node
 #'
-#' @description Write the vector as the xml node, If the vector type is characters,
-#' then this function will generates the resulted xml in a list format;
-#' If the vector type is numeric or logical, then the vector will be saved as
-#' xml attribute
-Vector.XML <- function(vector, indent, write, name = NULL) {
+#' @description Write the vector as the xml node:
+#'
+#'   If the vector type is characters, then this function will generates the
+#'   resulted xml in a list format;
+#'
+#'   If the vector type is numeric or logical, then the vector will be saved
+#'   as xml attribute.
+#'
+Xml.Write.Vector <- function(vector, indent, write, name = NULL) {
     # 现在假设向量里面的元素都是基本的元素
 
     # <numeric vector="" />
@@ -98,9 +116,10 @@ Vector.XML <- function(vector, indent, write, name = NULL) {
 
 #' Write the matrix/dataframe as XML node
 #'
-#' @description Write the variable object of \code{matrix}/\code{data.frame} type
-#' as a node in XML document.
-Matrix.XML <- function(matrix, indent, write, node.name = NULL) {
+#' @description Write the variable object of \code{matrix}/\code{data.frame}
+#'   type as a node in XML document.
+#'
+Xml.Write.Matrix <- function(matrix, indent, write, node.name = NULL) {
 
 	# <node.name nrows = ...>
 	#     <tr rowname = ...>
@@ -135,7 +154,10 @@ Matrix.XML <- function(matrix, indent, write, node.name = NULL) {
 }
 
 #' Write the \code{list} as XML node
-List.XML <- function(list, indent, write, node.name = NULL) {
+#'
+#' @details A R list object is a kind of dictionary object in VB.NET
+#'
+Xml.Write.List <- function(list, indent, write, node.name = NULL) {
 
     name.list <- names(list);
     name.xml  <- names(list);
@@ -159,7 +181,7 @@ List.XML <- function(list, indent, write, node.name = NULL) {
         name  <- name.xml[i];
         x     <- list[[index]];
 
-        push.x(x, node.indent, write, name);
+        Xml.Write.Any(x, node.indent, write, name);
     }
 
     if (!is.null(node.name)) {
