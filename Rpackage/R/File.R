@@ -48,13 +48,16 @@ Println <- function(file.txt, content) {
 	return(invisible(NULL));
 }
 
-#' Open a text file for write in text mode
+#' Open a file for write in text mode
 #'
-#' @description 打开一个文件句柄，然后返回一个函数指针用来以\code{sprintf}格式化
-#' 的形式向文件以追加的形式写入数据
+#' @description Open a given file and returns the handle for write this file in text mode.
+#'   The returned lambda function is a wrapper for function \code{link{sprintf}} and
+#'   \code{cat} function.
 #'
 #' @param file.txt Target file path for write in text mode.
 #' @param append A logical flag to indicate append the data to target file or not?
+#'
+#' @return A lambda function for write text data to file.
 File.Open <- function(file.txt, append = FALSE) {
 
 	try(dir.create(dirname(file.txt), recursive = TRUE));
@@ -72,6 +75,9 @@ File.Open <- function(file.txt, append = FALSE) {
 #' Read all text from a specific file
 #'
 #' @param file.txt The target file path for read
+#'
+#' @return Returns the text file content in one piece, not split in lines.
+#'
 ReadAllText <- function(file.txt) {
 	conn  <- file(file.txt, open = "r");
 	lines <- readLines(conn);

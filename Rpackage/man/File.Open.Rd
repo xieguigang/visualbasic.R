@@ -2,7 +2,7 @@
 % Please edit documentation in R/File.R
 \name{File.Open}
 \alias{File.Open}
-\title{Open a text file for write in text mode}
+\title{Open a file for write in text mode}
 \usage{
 File.Open(file.txt, append = FALSE)
 }
@@ -11,8 +11,12 @@ File.Open(file.txt, append = FALSE)
 
 \item{append}{A logical flag to indicate append the data to target file or not?}
 }
+\value{
+A lambda function for write text data to file.
+}
 \description{
-打开一个文件句柄，然后返回一个函数指针用来以\code{sprintf}格式�<U+FFFD>
-的形式向文件以追加的形式写入数据
+Open a given file and returns the handle for write this file in text mode.
+  The returned lambda function is a wrapper for function \code{link{sprintf}} and
+  \code{cat} function.
 }
 
