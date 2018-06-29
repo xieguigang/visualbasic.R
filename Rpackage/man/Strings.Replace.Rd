@@ -18,7 +18,7 @@ used for replacement. The return value of Replace is a string that begins
 at Start, with appropriate substitutions. If omitted, 1 is assumed.}
 
 \item{Count}{Optional. Number of substring substitutions to perform.
-If omitted, the default value is –1, which means "make all possible
+If omitted, the default value is â€<U+FFFD>1, which means "make all possible
 substitutions."}
 
 \item{Compare}{Optional. Numeric value indicating the kind of comparison
