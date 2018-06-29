@@ -54,6 +54,7 @@ tick.each <- function(sequence, action) {
 
   for (x in sequence) {
     out[[i]] <- action(x);
+    i = i + 1;
     tick();
   }
 
