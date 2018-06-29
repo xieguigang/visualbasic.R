@@ -13,4 +13,7 @@ Set variables into the global environment.
 Set(a = 500, b = TRUE, c = list(a= 50, b = FALSE));
 list(x11 = 15555, y22 = FALSE) \%=>\% Set
 }
+\seealso{
+\code{\link{Push}}
+}
 

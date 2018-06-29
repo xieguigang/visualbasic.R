@@ -11,9 +11,6 @@
 #' @return A lambda function that using for report the task progress.
 tick.helper <- function(total, step = 5 / 100) {
 
-	# 因为R语言的closure里面的变量都是局部变量，所以修改局部变量并不会影响全局的记录进度的变量
-	# 所以在这里必须要使用全局变量赋值来实现进度的记录
-
 	tick.helper.i  <<- 0;
 	tick.helper.p5 <<- total * step;
 	tick.helper.progress <<- 0;

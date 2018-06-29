@@ -10,4 +10,19 @@ Xml.Write.Matrix(matrix, indent, write, node.name = NULL)
 Write the variable object of \code{matrix}/\code{data.frame}
   type as a node in XML document.
 }
+\details{
+Output the xml node in format like:
+
+\code{
+
+   <node.name nrows = ...>\cr
+      <tr rowname = ...>\cr
+         <td colname = >value</td>\cr
+      </tr>\cr
+      <tr>\cr
+      </tr>\cr
+   </node.name>
+
+}
+}
 

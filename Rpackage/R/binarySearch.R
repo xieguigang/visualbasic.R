@@ -66,9 +66,25 @@ binarySearch.impl.generic <- function(ikey, .length, find, compares) {
     i;
 }
 
+#' Binary Search on a \code{dataframe}
+#'
+#' @param dataframe A dataframe object
+#' @param key The name of the key indexer column. And this key index column value should be ASC ordered.
+#' @param compares A lambda function that generates the comparision numeric value between the
+#'     \code{key} indexer element values.
+#'
+#' @details For the \code{compares} lambda function, it should accept two parameter and in format like:
+#'
+#'     \code{compares = function(a, b) a - b}
+#'
+#'     And this function should generates a numeric value for indicate the object comparision result:
+#'
+#'      0: means \code{a} equals to \code{b}\cr
+#'      1: means \code{a} greater than \code{b} \cr
+#'     -1: means \code{a} less than \code{b}
+#'
 #' @seealso \code{\link{binarySearch.impl.generic}}
 binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, b) a - b) {
-    # 获取得到索引列，这个索引列应该是进行了升序排序了的
     key <- as.vector(dataframe[, key]);
     i   <- binarySearch.impl.generic(function(i) key[i], length(key), find, compares);
 

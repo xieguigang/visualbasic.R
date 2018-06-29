@@ -46,17 +46,13 @@ Xml.Write.Any <- function(x, indent, write, name = NULL) {
 
 	if (is.data.frame(x) || is.matrix(x)) {
 
-		# 使用表格的形式写入数据
 	  Xml.Write.Matrix(x, indent, write, name);
 
 	} else if (is.list(x)) {
 
-    # 是一个类似于字典对象的东西
     Xml.Write.List(x, indent, write, name);
 
   } else {
-
-    # 是相同元素的vector
   	if (length(x) == 1) {
   		write('%s<%s value="%s" />', indent, name, x);
   	} else {
@@ -72,20 +68,34 @@ Xml.Write.Any <- function(x, indent, write, name = NULL) {
 #' @description Write the vector as the xml node:
 #'
 #'   If the vector type is characters, then this function will generates the
-#'   resulted xml in a list format;
+#'   resulted xml in a list format;\cr
 #'
 #'   If the vector type is numeric or logical, then the vector will be saved
 #'   as xml attribute.
 #'
+#' @param vector All of the elements in this vector should be in the same mode.
+#'    And elements type should also be the primitive types like: \code{numeric},
+#'    \code{character} or \code{logical}, etc.
+#'
+#' @details
+#'
+#'   For numeric vector:
+#'
+#'   \code{<numeric vector="" />}
+#'
+#'   For logical vector:
+#'
+#'   \code{<logical vector="" />}
+#'
+#'   For character vector:
+#'
+#'   \code{
+#'     <strings>\cr
+#         <string></string>\cr
+#      </strings>
+#'   }
+#'
 Xml.Write.Vector <- function(vector, indent, write, name = NULL) {
-    # 现在假设向量里面的元素都是基本的元素
-
-    # <numeric vector="" />
-    # <logical vector="" />
-    # <strings>
-    #     <string></string>
-    # </strings>
-
     if (is.numeric(vector)) {
         if (is.null(name)) name = "numeric";
 
@@ -119,15 +129,21 @@ Xml.Write.Vector <- function(vector, indent, write, name = NULL) {
 #' @description Write the variable object of \code{matrix}/\code{data.frame}
 #'   type as a node in XML document.
 #'
+#' @details Output the xml node in format like:
+#'
+#' \code{
+#'
+#'    <node.name nrows = ...>\cr
+#'       <tr rowname = ...>\cr
+#'          <td colname = >value</td>\cr
+#'       </tr>\cr
+#'       <tr>\cr
+#'       </tr>\cr
+#'    </node.name>
+#'
+#' }
+#'
 Xml.Write.Matrix <- function(matrix, indent, write, node.name = NULL) {
-
-	# <node.name nrows = ...>
-	#     <tr rowname = ...>
-	#         <td colname = >value</td>
-	#     </tr>
-	#     <tr>
-	#     </tr>
-	# </node.name>
 
 	colnames  <- colnames(matrix);
 	rownames  <- rownames(matrix);
@@ -163,7 +179,7 @@ Xml.Write.List <- function(list, indent, write, node.name = NULL) {
     name.xml  <- names(list);
 
     if (is.null(name.list) || is.na(name.list)) {
-        # 只有数字来进行索引，没有名称
+        # Indexing by index numeric value, when without names
         name.list <- 1:length(list);
         name.xml  <- sprintf("node%s", name.list);
     }

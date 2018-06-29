@@ -1,4 +1,8 @@
 #' Linq helper in R language.
+#'
+#' @return \enumerate{
+#'     \item \code{WhichIsNotEmpty} returns the index in the input \code{vector}/\code{list} sequence where is not nothing.
+#' }
 Microsoft.VisualBasic.Data.Linq <- function() {
 
 	Take <- function(enumerable, m) {
@@ -29,8 +33,7 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 	}
 
 	WhichIsNotEmpty <- function(enumerable, assert = IsNothing) {
-		is.true <- sapply(enumerable, function(x) !assert(x));
-		which(is.true);
+		(!sapply(enumerable, assert)) %=>% which;
 	}
 
 	# (c(5,6,7,8,9) %=>% Take)(2)
@@ -133,15 +136,17 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 		groups;
 	}
 
-	# Example:
-	#
-	# Group(c("A","B","C","c")) %=>% Count;
-	#
-	# $A: 1
-	# $B: 1
-	# $C: 2
-	#
-	# 这个函数通过是和Group函数构成一个流程来使用的
+	#' Example:
+	#'
+	#' \code{
+	#'   Group(c("A","B","C","c")) %=>% Count;\cr\cr
+	#'
+	#'   $A: 1\cr
+	#'   $B: 1\cr
+	#'   $C: 2\cr
+	#' }
+	#'
+	#' This function is usually piped with the \code{Group} function
 	Count <- function(groups) {
 		names  <- names(groups);
 		counts <- lapply(names, function(key) length(groups[[key]]));

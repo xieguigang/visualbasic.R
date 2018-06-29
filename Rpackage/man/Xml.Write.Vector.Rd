@@ -6,13 +6,33 @@
 \usage{
 Xml.Write.Vector(vector, indent, write, name = NULL)
 }
+\arguments{
+\item{vector}{All of the elements in this vector should be in the same mode.
+And elements type should also be the primitive types like: \code{numeric},
+\code{character} or \code{logical}, etc.}
+}
 \description{
 Write the vector as the xml node:
 
   If the vector type is characters, then this function will generates the
-  resulted xml in a list format;
+  resulted xml in a list format;\cr
 
   If the vector type is numeric or logical, then the vector will be saved
   as xml attribute.
+}
+\details{
+For numeric vector:
+
+  \code{<numeric vector="" />}
+
+  For logical vector:
+
+  \code{<logical vector="" />}
+
+  For character vector:
+
+  \code{
+    <strings>\cr
+  }
 }
 

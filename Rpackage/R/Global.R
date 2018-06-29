@@ -75,24 +75,36 @@ MyList <- function() {
 #'
 #' @description Set variables into the global environment.
 #'
+#' @seealso \code{\link{Push}}
+#'
 #' @examples
 #' Set(a = 500, b = TRUE, c = list(a= 50, b = FALSE));
 #' list(x11 = 15555, y22 = FALSE) %=>% Set
-Set <- function(...) {
+Set <- function(...) (globalenv() %=>% Push)(...);
 
-  x      <- list(...);
-  global <- globalenv();
+#' Push variable to a given environment
+#'
+#' @return This function returns a lambda function that can used for assign variable value
+#'    to a given environment.
+#'
+#' @details For push to current environment, then you can using code for assign \code{envir}
+#'   parameter: \code{curEnv=environment()}
+Push <- function(envir = parent.frame()) {
 
-  if (length(x) == 1 && GetType(x) == primitiveTypes()$list) {
-    x <- x[[1]];
-  }
+   function(...) {
+     x <- list(...);
 
-  for (var in names(x)) {
-    assign <- list(var, x[[var]]);
-    do.call(`=`, assign, envir = global);
-  }
+     if (length(x) == 1 && GetType(x) == primitiveTypes()$list) {
+       x <- x[[1]];
+     }
 
-  invisible(NULL);
+     for (var in names(x)) {
+       assign <- list(var, x[[var]]);
+       do.call(`=`, assign, envir = envir);
+     }
+
+     invisible(NULL);
+   }
 }
 
 #' Determine that target is Nothing in VB way

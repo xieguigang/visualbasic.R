@@ -6,6 +6,22 @@
 \usage{
 Microsoft.VisualBasic.Data.Linq()
 }
+\value{
+\enumerate{
+    \item \code{WhichIsNotEmpty} returns the index in the input \code{vector}/\code{list} sequence where is not nothing.
+}
+Example:
+
+\code{
+  Group(c("A","B","C","c")) %=>% Count;\cr\cr
+
+  $A: 1\cr
+  $B: 1\cr
+  $C: 2\cr
+}
+
+This function is usually piped with the \code{Group} function
+}
 \description{
 Linq helper in R language.
 }
