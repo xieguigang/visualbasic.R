@@ -35,24 +35,31 @@ Microsoft.VisualBasic.Data <- function() {
 	# 有些时候dataframe取列的结果得到的是一个list？
 	# 这是一个什么bug？？？
 	# 尝试使用这个函数来消除这个需要调用unlist的bug
-	.as.matrix <- function(d) {
+	.as.matrix <- function(d, character = FALSE) {
 
-		names   <- colnames(d);
-		columns <- lapply(names, function(col) {
-			col <- d[, col];
+	  names   <- colnames(d);
+	  columns <- lapply(names, function(col) {
+	    col    <- d[, col];
+	    vector <- NULL;
 
-			if (is.list(col)) {
-				as.vector(unlist(col));
-			} else {
-				as.vector(col);
-			}
-		});
+	    if (is.list(col)) {
+	      vector <- as.vector(unlist(col));
+	    } else {
+	      vector <- as.vector(col);
+	    }
 
-				 d  <- as.data.frame(columns);
-		colnames(d) <- names;
-		rownames(d) <- as.character(1:nrow(d));
+	    if (character) {
+	      as.character(vector);
+	    } else {
+	      vector;
+	    }
+	  });
 
-		d;
+	  d  <- as.data.frame(columns);
+	  colnames(d) <- names;
+	  rownames(d) <- as.character(1:nrow(d));
+
+	  d;
 	}
 
 	selectMany <- function(list, project) {
