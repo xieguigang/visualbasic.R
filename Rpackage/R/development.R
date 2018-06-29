@@ -57,7 +57,7 @@ xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
       printf(" -> load_from_file::data/%s", rdaName);
     }
   } else {
-    name <- basename(name);
+    name <- basename(rdaName);
     data(list = name, envir = envir);
 
     if (verbose) {
