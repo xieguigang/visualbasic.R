@@ -91,9 +91,11 @@ Set <- function(...) (globalenv() %=>% Push)(...);
 #'   parameter: \code{curEnv=environment()}
 Push <- function(envir = parent.frame()) {
 
+   print(envir)
+
    function(...) {
      x <- list(...);
-
+print(x)
      if (length(x) == 1 && GetType(x) == primitiveTypes()$list) {
        x <- x[[1]];
      }
