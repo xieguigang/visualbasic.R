@@ -90,13 +90,13 @@ Set <- function(...) (globalenv() %=>% Push)(...);
 #' @details For push to current environment, then you can using code for assign \code{envir}
 #'   parameter: \code{curEnv=environment()}
 Push <- function(envir = parent.frame()) {
-
-   print(envir)
-
    function(...) {
      x <- list(...);
-print(x)
-     if (length(x) == 1 && GetType(x) == primitiveTypes()$list) {
+
+     if ((length(x) == 1)                      &&
+         (GetType(x) == primitiveTypes()$list) &&
+         (names(x) %=>% IsNothing)) {
+
        x <- x[[1]];
      }
 
