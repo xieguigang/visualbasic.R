@@ -11,17 +11,19 @@
 #' @return A lambda function that using for report the task progress.
 tick.helper <- function(total, step = 5 / 100) {
 
-	tick.helper.i  <<- 0;
-	tick.helper.p5 <<- total * step;
-	tick.helper.progress <<- 0;
+  h <- Push(envir = environment());
+	h(tick.helper.i        = 0,
+	  tick.helper.p5       = total * step,
+	  tick.helper.progress = 0
+	);
 
 	return(function() {
-		tick.helper.i <<- tick.helper.i + 1;
+		h(tick.helper.i = tick.helper.i + 1);
 
 		if (tick.helper.i >= tick.helper.p5) {
-			tick.helper.i <<- 1;
-			tick.helper.progress <<- tick.helper.progress + step * 100;
-			tick.helper.progress <<- round(tick.helper.progress, 0);
+			h(tick.helper.i  = 1);
+			h(tick.helper.progress = tick.helper.progress + step * 100);
+			h(tick.helper.progress = round(tick.helper.progress, 0));
 
 			cat(tick.helper.progress);
 			cat(" ");
