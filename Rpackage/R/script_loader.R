@@ -19,8 +19,8 @@ include <- function(R) {
 #' @return Nothing.
 flash_load <- function() {
 
-	# 查找当前文件夹下面的所有的R脚本
-	# 然后进行加载操作
+	# Scan all of the *.R script in current workspace
+	# And then source load each R script.
 	scripts <- list.files(
 		getwd(),
 		recursive  = F,

@@ -1,4 +1,13 @@
 #' Common data operation helper function
+#'
+#' @details \enumerate{
+#'    \item \code{ensure.dataframe} Fix for a bug in R language: for ensure that
+#'          when get one row from a dataframe didn't output a list object, this
+#'          function make sure the subset of a dataframe is always output a
+#'          dataframe object.
+#'    \item \code{.as.list} Converts the \code{data.frame} object to a set of
+#'          \code{list} object from each rows data.
+#' }
 Microsoft.VisualBasic.Data <- function() {
 
 	# data.frame rows to list collection
