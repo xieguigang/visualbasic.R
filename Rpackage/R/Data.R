@@ -127,6 +127,15 @@ Microsoft.VisualBasic.Data <- function() {
 	  data;
 	}
 
+	.load.dataset <- function(file) {
+	  d           <- read.csv(file);
+	  rowNames    <- d[, 1] %=>% as.character;
+	  d[, 1]      <- NULL;
+	  rownames(d) <- rowNames;
+
+	  d;
+	}
+
 	# register function for namespace export
     list(namespace = GetCurrentFunc(),
 		 description = "Namespace contains some common data operation helpers.",
@@ -137,6 +146,7 @@ Microsoft.VisualBasic.Data <- function() {
 		 	 .selectMany  = selectMany,
 		 	 list.project = list.project,
 		 	 as.dataframe = .as.dataframe,
-			 ensure.dataframe = .ensure.dataframe
+			 ensure.dataframe = .ensure.dataframe,
+			 load.dataset     = .load.dataset
 	));
 }
