@@ -147,6 +147,6 @@ Microsoft.VisualBasic.Data <- function() {
 		 	 list.project = list.project,
 		 	 as.dataframe = .as.dataframe,
 			 ensure.dataframe = .ensure.dataframe,
-			 load.dataset     = .load.dataset
+			 read.dataset     = .load.dataset
 	));
 }
