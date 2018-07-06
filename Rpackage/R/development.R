@@ -44,18 +44,31 @@ DESCRIPTION <- function(packageName) {
 #'
 xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
 
+  # ./
   if (file.exists(rdaName)) {
     load(rdaName, envir = envir);
 
     if (verbose) {
       printf(" -> load_from_file::%s", rdaName);
     }
+
+  # ./data/
   } else if (file.exists(sprintf("data/%s", rdaName))) {
     load(sprintf("data/%s", rdaName), envir = envir);
 
     if (verbose) {
       printf(" -> load_from_file::data/%s", rdaName);
     }
+
+  # ../R/
+  # ../data/
+  } else if (file.exists(sprintf("../data/%s", rdaName))) {
+    load(sprintf("../data/%s", rdaName), envir = envir);
+
+    if (verbose) {
+      printf(" -> load_from_file::../data/%s", rdaName);
+    }
+
   } else {
     name <- basename(rdaName);
     data(list = name, envir = envir);
