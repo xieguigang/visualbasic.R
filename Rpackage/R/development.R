@@ -44,38 +44,27 @@ DESCRIPTION <- function(packageName) {
 #'
 xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
 
-  # ./
-  if (file.exists(rdaName)) {
-    load(rdaName, envir = envir);
+  search.path <- c(".", "./data", "../data");
 
-    if (verbose) {
-      printf(" -> load_from_file::%s", rdaName);
+  for(directory in search.path) {
+    rda <- sprintf("%s/%s", directory, rdaName);
+
+    if (file.exists(rda)) {
+      load(rda, envir = envir);
+
+      if (verbose) {
+        printf(" -> load_from_file::%s", rda);
+      }
+
+      return(NULL);
     }
+  }
 
-  # ./data/
-  } else if (file.exists(sprintf("data/%s", rdaName))) {
-    load(sprintf("data/%s", rdaName), envir = envir);
+  name <- basename(rdaName);
+  data(list = name, envir = envir);
 
-    if (verbose) {
-      printf(" -> load_from_file::data/%s", rdaName);
-    }
-
-  # ../R/
-  # ../data/
-  } else if (file.exists(sprintf("../data/%s", rdaName))) {
-    load(sprintf("../data/%s", rdaName), envir = envir);
-
-    if (verbose) {
-      printf(" -> load_from_file::../data/%s", rdaName);
-    }
-
-  } else {
-    name <- basename(rdaName);
-    data(list = name, envir = envir);
-
-    if (verbose) {
-      printf(" -> data_from_dataset::%s", name);
-    }
+  if (verbose) {
+    printf(" => data_from_dataset::%s", name);
   }
 
   invisible(NULL);
