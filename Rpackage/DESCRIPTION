@@ -1,7 +1,7 @@
 Package: VisualBasic.R
 Type: Package
 Title: VisualBasic.NET function port to R
-Version: 1.0.74
+Version: 1.0.75
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
 Description: This package provides some common programming feature in VB.NET
