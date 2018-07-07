@@ -4,9 +4,15 @@
 \alias{is.nothing}
 \title{Determine that target is Nothing in VB way}
 \usage{
-is.nothing(x, stringAsFactor = FALSE)
+is.nothing(...)
 }
 \description{
 Determine that target is Nothing in VB way
+}
+\details{
+This function is an alias of the \code{\link{IsNothing}} function.
+}
+\seealso{
+\code{\link{IsNothing}}
 }
 

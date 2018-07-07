@@ -2,7 +2,6 @@
 % Please edit documentation in R/Global.R
 \name{IsNothing}
 \alias{IsNothing}
-\alias{is.nothing}
 \title{Determine that target is Nothing in VB way}
 \usage{
 IsNothing(x, stringAsFactor = FALSE)
@@ -25,5 +24,8 @@ Determine that target object is nothing or not, by using predicates: \code{is.nu
    \code{is.na}, \code{length(x) == 0}. And if the function parameter \code{stringAsFactor} is
    true, then string comparision for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} will
    be applied.
+}
+\seealso{
+This function has an alias name: \code{\link{is.nothing}}.
 }
 

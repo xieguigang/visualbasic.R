@@ -61,6 +61,9 @@ MyHelp <- function(namespace) {
 }
 
 #' List all VisualBasic namespace
+#'
+#' @return Returns a function name character vector which its name is stared by token like:
+#'     \code{Microsoft.VisualBasic}.
 MyList <- function() {
   index <- base::system.file("INDEX", package="VisualBasic.R") %=>% readLines %=>% Enumerator;
 
@@ -126,7 +129,8 @@ Push <- function(envir = parent.frame()) {
 #'    true, then string comparision for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} will
 #'    be applied.
 #'
-#' @aliases is.nothing
+#' @seealso This function has an alias name: \code{\link{is.nothing}}.
+#'
 IsNothing <- function(x, stringAsFactor = FALSE) {
 
 	if (is.null(x) || is.na(x) || length(x) == 0) {
@@ -150,16 +154,23 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 }
 
 #' Determine that target is Nothing in VB way
-is.nothing <- function(x, stringAsFactor = FALSE) IsNothing(x, stringAsFactor);
+#'
+#' @seealso \code{\link{IsNothing}}
+#'
+#' @details This function is an alias of the \code{\link{IsNothing}} function.
+#'
+is.nothing <- function(...) IsNothing(...);
 
 #' Returns the object size
 #'
 #' @param x R object in any type
 #'
-#' @return A list with element: \code{rows} and \code{cols} to indicate the object size.
-#'         for x is \code{data.frame}, these two element value will be \code{\link{base::nrows}} and \code{\link{base::ncols}}
-#'         for x is \code{list} or \code{vector}, these two element value will be \code{rows = 1} and \code{cols = \link{length}(x)}
-#'         for x is object like S4 class, these two element value will be \code{[1,1]}
+#' @return A list with element: \code{rows} and \code{cols} to indicate the object size.\cr\cr
+#'
+#'         for x is \code{data.frame}, these two element value will be \code{\link{base::nrows}} and \code{\link{base::ncols}}\cr
+#'         for x is \code{list} or \code{vector}, these two element value will be \code{rows = 1} and \code{cols = \link{length}(x)}\cr
+#'         for x is object like S4 class, these two element value will be \code{[1,1]}\cr
+#'
 Size <- function(x) {
   type <- GetType(x);
 
@@ -175,7 +186,13 @@ Size <- function(x) {
 #' Simulate the C \code{printf} function
 #'
 #' @param ... Function parameter for function \code{\link{sprintf}}
-printf <- function(...) invisible(print(sprintf(...)));
+#'
+printf <- function(...) {
+  cat(sprintf(...));
+  cat("\n");
+
+  invisible(NULL);
+};
 
 #' Logging error log file.
 #'

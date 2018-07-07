@@ -6,6 +6,10 @@
 \usage{
 MyList()
 }
+\value{
+Returns a function name character vector which its name is stared by token like:
+    \code{Microsoft.VisualBasic}.
+}
 \description{
 List all VisualBasic namespace
 }
