@@ -8,6 +8,22 @@
 #'        \item \code{\%=>\%} Forward pipeline operator
 #'        \item \code{\%+\%}  Set union operator
 #'     }
+#'
+#' @details
+#'
+#' @examples
+#'
+#' 1. Tuple syntax:\cr
+#'
+#' \code{
+#' f <- function() list(TRUE, c(1,1,1,1,1));
+#' c(x,y) := f();
+#'
+#' # > x
+#' # [1] TRUE
+#' # > y
+#' # [1] 1 1 1 1 1
+#' }
 Microsoft.VisualBasic.Language <- function() {
 
 	#' The \code{OR} default expression
