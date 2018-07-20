@@ -25,7 +25,6 @@ Namespace module with exports:
        \item \code{\%=>\%} Forward pipeline operator
        \item \code{\%+\%}  Set union operator
     }
-The \code{OR} default expression
 
 \code{\%||\%}: The target given value or default value is
     target value \code{\link{IsNothing}}.
@@ -38,5 +37,24 @@ Union two collection
 }
 \description{
 Syntax tweaks helpers
+}
+\details{
+
+}
+\examples{
+
+1. Tuple syntax:\\cr
+
+\\code{
+f <- function() list(TRUE, c(1,1,1,1,1));
+c(x,y) := f();
+
+# > x
+# [1] TRUE
+# > y
+# [1] 1 1 1 1 1
+}
+The \\code{OR} default expression
+
 }
 
