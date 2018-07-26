@@ -14,4 +14,11 @@
 #'
 swap <- function(a, b) list(a = b, b = a);
 
-
+#' Get current Linux user
+#'
+#' @description Get user name of current linux login user by bash shell
+#'   This function only works on Linux platform.
+user <- function() {
+  cli = "echo \"echo $USER\" | bash";
+  system(cli, intern = TRUE);
+}
