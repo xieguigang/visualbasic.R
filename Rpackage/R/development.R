@@ -34,6 +34,9 @@ parse.package.description <- function(file = base::system.file("DESCRIPTION", pa
 #'    integer value for represent the package version string. So this may cause bugs.
 #'    This function using string for represent the package version to avoid the bugs.
 #'
+#'    This function require the package should be loaded into environment before you
+#'    calling this function.
+#'
 #' @param package The package name
 #'
 #' @return Function returns the package version string value. If the package is not exists,
@@ -43,7 +46,15 @@ package.version <- function(package = "VisualBasic.R") {
   if (package %=>% package.is_missing) {
     return(NA);
   } else {
-    require(package);
+    # 2018-08-20
+
+    # Loading required package: package
+    #
+    # Warning message:
+    #   In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,:
+    #   there is no package called ‘package’
+
+    # require(package);
   }
 
   loaded <- sessionInfo()$otherPkgs;

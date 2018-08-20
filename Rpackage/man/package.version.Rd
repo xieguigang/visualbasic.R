@@ -17,5 +17,8 @@ Function returns the package version string value. If the package is not exists,
 Due to the reason of the systen function \code{package_version} using
    integer value for represent the package version string. So this may cause bugs.
    This function using string for represent the package version to avoid the bugs.
+
+   This function require the package should be loaded into environment before you
+   calling this function.
 }
 
