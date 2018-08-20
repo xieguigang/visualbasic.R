@@ -59,7 +59,7 @@ package.version <- function(package = "VisualBasic.R") {
 #'    current environment or not?
 #'
 package.is_missing <- function(package) {
-  package %in% (installed.packages()[,"Package"] %=>% as.character);
+  !(package %in% (installed.packages()[,"Package"] %=>% as.character));
 }
 
 #' Determine the missing packages
