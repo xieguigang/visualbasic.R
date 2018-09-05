@@ -91,3 +91,28 @@ argv <- function() {
 
   list(argv = cli, commandName = name, args = args);
 }
+
+#' R logging helper by \code{sink}
+#'
+#' @description This function can create the parent dir for the given
+#'    log file safely.
+#'
+#' @param file.path The \code{*.log} log file path.
+#'
+log.open <- function(file.path) {
+  file.path %=>% dirname %=>% ensure_dir_exists;
+  sink(file.path, append = FALSE, split = TRUE);
+
+  cat(sprintf("Start @ %s", Now()));
+}
+
+Now <- function() {
+  format(Sys.time(), "%d/%b/%Y, %a %X");
+}
+
+#' Close current log file
+#'
+log.close <- function() {
+  cat(sprintf("---------------EndOfLog @ %s-----------------", Now()));
+  sink();
+}
