@@ -103,7 +103,7 @@ log.open <- function(file.path) {
   file.path %=>% dirname %=>% ensure_dir_exists;
   sink(file.path, append = FALSE, split = TRUE);
 
-  cat(sprintf("Start @ %s", Now()));
+  cat(sprintf("\nStart @ %s\n\n", Now()));
 }
 
 Now <- function() {
@@ -113,6 +113,6 @@ Now <- function() {
 #' Close current log file
 #'
 log.close <- function() {
-  cat(sprintf("---------------EndOfLog @ %s-----------------", Now()));
+  cat(sprintf("\n---------------EndOfLog @ %s-----------------\n\n", Now()));
   sink();
 }
