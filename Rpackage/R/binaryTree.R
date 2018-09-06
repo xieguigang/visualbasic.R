@@ -11,4 +11,29 @@ binaryTree <- function(src, key, key.numeric = as.numeric) {
 
 }
 
+numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {
+  seq    <- sort(seq);
+  groups <- list();
+  a      <- seq[1];
+  block  <- c(a);
 
+  for (i in 2:length(seq)) {
+    x <- seq[i];
+
+    if (assert(a, x)) {
+      block <- append(block, x);
+    } else {
+      key           <- mean(block) %=>% as.character;
+      groups[[key]] <- block;
+      block         <- c(x);
+      a             <- x;
+    }
+  }
+
+  if (length(block) > 0) {
+    key           <- mean(block) %=>% as.character;
+    groups[[key]] <- block;
+  }
+
+  groups;
+}
