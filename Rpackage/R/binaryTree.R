@@ -20,6 +20,20 @@ binaryTree <- function(src, key, key.numeric = as.numeric) {
 #'               of the current group or not?
 #'
 numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {
+  len = seq %=>% length;
+
+  if ((len == 0) || (seq %=>% IsNothing)) {
+    list();
+  } else if (len == 1) {
+    single <- list();
+    single[[as.character(seq)]] = seq;
+    single;
+  } else {
+    numeric.group.impl(seq, assert);
+  }
+}
+
+numeric.group.impl <- function(seq, assert) {
   seq    <- sort(seq);
   groups <- list();
   a      <- seq[1];
