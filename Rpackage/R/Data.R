@@ -5,8 +5,13 @@
 #'          when get one row from a dataframe didn't output a list object, this
 #'          function make sure the subset of a dataframe is always output a
 #'          dataframe object.
+#'
 #'    \item \code{.as.list} Converts the \code{data.frame} object to a set of
 #'          \code{list} object from each rows data.
+#'
+#'    \item \code{read.dataset} Read the csv file as matrix, the first column from
+#'          the csv file will be using as the rownames and the first row will be
+#'          using as the colnames.
 #' }
 Microsoft.VisualBasic.Data <- function() {
 

@@ -1,0 +1,3 @@
+[submodule "Utils/runtime/VisualBasic"]
+	path = Utils/runtime/VisualBasic
+	url = https://github.com/xieguigang/sciBASIC.Core.git

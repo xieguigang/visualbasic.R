@@ -28,6 +28,62 @@ parse.package.description <- function(file = base::system.file("DESCRIPTION", pa
     description;
 }
 
+#' Get version string for package
+#'
+#' @description Due to the reason of the systen function \code{package_version} using
+#'    integer value for represent the package version string. So this may cause bugs.
+#'    This function using string for represent the package version to avoid the bugs.
+#'
+#'    This function require the package should be loaded into environment before you
+#'    calling this function.
+#'
+#' @param package The package name
+#'
+#' @return Function returns the package version string value. If the package is not exists,
+#'    then this function returns \code{NA} value.
+#'
+package.version <- function(package = "VisualBasic.R") {
+  if (package %=>% package.is_missing) {
+    return(NA);
+  } else {
+    # 2018-08-20
+
+    # Loading required package: package
+    #
+    # Warning message:
+    #   In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,:
+    #   there is no package called ‘package’
+
+    # require(package);
+  }
+
+  loaded <- sessionInfo()$otherPkgs;
+  package <- loaded[[package]];
+  package[["Version"]];
+}
+
+#' Determine a given package is missing?
+#'
+#' @param package A package name string
+#'
+#' @return A logical value to indicate that the given package is missing from
+#'    current environment or not?
+#'
+package.is_missing <- function(package) {
+  !(package %in% (installed.packages()[,"Package"] %=>% as.character));
+}
+
+#' Determine the missing packages
+#'
+#' @param package A character vector of the package names.
+#'
+#' @return Function returns the name list of the missing packages.
+#'
+package.missing <- function(package) {
+  installed <- installed.packages()[,"Package"] %=>% as.character;
+  package[!(package %in% installed)];
+}
+
 #' Parse package DESCRIPTION file
 #'
 #' @param packagename The R package name

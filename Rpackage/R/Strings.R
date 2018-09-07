@@ -36,6 +36,8 @@ Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 	out;
 }
 
+#' Split string using regexp
+#'
 split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
 	Strings.Split(expression, delimiter, limit, compare);
 }
@@ -60,6 +62,8 @@ Strings.Join <- function(SourceArray, Delimiter = " ") {
 	paste0(SourceArray, collapse = Delimiter);
 }
 
+#' Contact string tokens
+#'
 join <- function(sourceArray, delimiter) {
 	Strings.Join(sourceArray, delimiter);
 }
@@ -78,6 +82,8 @@ Strings.LCase <- function(Value) {
 	tolower(Value);
 }
 
+#' String to lowercase
+#'
 lcase <- function(value) {
 	Strings.LCase(value);
 }
@@ -131,6 +137,8 @@ ucase <- function(value) {
 	Strings.UCase(value);
 }
 
+#' Get unique string
+#'
 Distinct <- function(words) {
 	unique(tolower(words));
 }
@@ -138,6 +146,7 @@ Distinct <- function(words) {
 #' Locate substring position
 #'
 #' @return -1 means no match
+#'
 InStr <- function(s, substring) {
 	match <- regexpr(substring, s);
 	match[1];

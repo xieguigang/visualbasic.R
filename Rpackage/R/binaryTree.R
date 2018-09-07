@@ -11,4 +11,51 @@ binaryTree <- function(src, key, key.numeric = as.numeric) {
 
 }
 
+#' Group a numeric vector
+#'
+#' @description Group a numeric vector elements by a given test condition
+#'
+#' @param seq A numeric sequence
+#' @param assert A given test condition for test if a number is a member
+#'               of the current group or not?
+#'
+numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {
+  len = seq %=>% length;
 
+  if ((len == 0) || (seq %=>% IsNothing)) {
+    list();
+  } else if (len == 1) {
+    single <- list();
+    single[[as.character(seq)]] = seq;
+    single;
+  } else {
+    numeric.group.impl(seq, assert);
+  }
+}
+
+numeric.group.impl <- function(seq, assert) {
+  seq    <- sort(seq);
+  groups <- list();
+  a      <- seq[1];
+  block  <- c(a);
+
+  for (i in 2:length(seq)) {
+    x <- seq[i];
+
+    if (assert(a, x)) {
+      block <- append(block, x);
+    } else {
+      key           <- mean(block) %=>% as.character;
+      groups[[key]] <- block;
+      block         <- c(x);
+      a             <- x;
+    }
+  }
+
+  if (length(block) > 0) {
+    key           <- mean(block) %=>% as.character;
+    groups[[key]] <- block;
+  }
+
+  groups;
+}

@@ -72,6 +72,13 @@ File.Open <- function(file.txt, append = FALSE) {
 	});
 }
 
+#' Ensure the dir exists
+ensure_dir_exists <- function(path) {
+  if (!dir.exists(path)) {
+    dir.create(path, recursive = TRUE);
+  }
+}
+
 #' Read all text from a specific file
 #'
 #' @param file.txt The target file path for read
