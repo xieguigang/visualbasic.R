@@ -106,6 +106,8 @@ log.open <- function(file.path) {
   cat(sprintf("\nStart @ %s\n\n", Now()));
 }
 
+#' Gets current time string value
+#'
 Now <- function() {
   format(Sys.time(), "%d/%b/%Y, %a %X");
 }
@@ -115,4 +117,15 @@ Now <- function() {
 log.close <- function() {
   cat(sprintf("\n---------------EndOfLog @ %s-----------------\n\n", Now()));
   sink();
+}
+
+#' Print a log text onto screen
+#'
+#' @param ... Parameters for \code{sprintf} function.
+#'
+log.echo <- function(...) {
+  msg <- sprintf(...);
+  msg <- sprintf("[%s] %s\n", Now(), msg);
+
+  cat(msg);
 }
