@@ -4,7 +4,7 @@ Imports Microsoft.VisualBasic.Text
 
 Module RFileHeader
 
-    Const RFuncDeclare$ = "\S+\s*<-\s*function\(.+\)\s*\{"
+    Const RFuncDeclare$ = "\S+\s*[<][-]\s*function\(.+?\)\s*\{"
 
     ''' <summary>
     ''' 
@@ -16,12 +16,12 @@ Module RFileHeader
             .ReadAllText _
             .StringReplace("#Region ""Microsoft\.ROpen.+?"".+?#End Region", "", RegexOptions.Singleline) _
             .Trim(" "c, ASCII.TAB, ASCII.CR, ASCII.LF)
-        Dim funcs = r.Matches(RFuncDeclare, RegexICSng) _
+        Dim funcs = Rscript.Matches(RFuncDeclare, RegexICSng) _
                      .Select(Function(f)
                                  Return f.LineTokens.JoinBy(" ")
                              End Function) _
                      .ToArray
-        Dim md5$ = r.MD5
+        Dim md5$ = Rscript.MD5
         Dim header As New StringBuilder
 
         Call header.AppendLine($"#Region ""Microsoft.ROpen::{md5}, {relativePath}""")

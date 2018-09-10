@@ -3,4 +3,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <StartArguments>"D:\visualbasic.R\DESCRIPTION.template"</StartArguments>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <StartArguments>/summary /src "D:\visualbasic.R\Rpackage\R" /out "D:\Resources\R"</StartArguments>
+  </PropertyGroup>
 </Project>

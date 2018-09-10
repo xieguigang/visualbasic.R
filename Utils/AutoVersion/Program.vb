@@ -71,7 +71,11 @@ Module Program
         Dim out$ = args!out Or src
 
         For Each path As String In ls - l - r - "*.R" <= src
-            Dim relativePath$ = ProgramPathSearchTool.RelativePath(pcFrom:=src, pcTo:=path)
+            Dim relativePath$ = ProgramPathSearchTool.RelativePath(
+                pcFrom:=src,
+                pcTo:=path,
+                appendParent:=False
+            )
             Dim output$ = $"{out}/{relativePath}"
 
             Call RFileHeader.Summary(path, src) _
