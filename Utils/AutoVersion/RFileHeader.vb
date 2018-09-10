@@ -11,7 +11,7 @@ Module RFileHeader
     ''' </summary>
     ''' <param name="r">脚本的文件路径</param>
     ''' <returns></returns>
-    Public Function Summary(r As String) As String
+    Public Function Summary(r$, relativePath$) As String
         Dim Rscript As String = r _
             .ReadAllText _
             .StringReplace("#Region ""Microsoft\.ROpen.+?"".+?#End Region", "", RegexOptions.Singleline) _
@@ -24,7 +24,7 @@ Module RFileHeader
         Dim md5$ = r.MD5
         Dim header As New StringBuilder
 
-        Call header.AppendLine($"#Region ""Microsoft.ROpen::{md5}, {r.FileName}""")
+        Call header.AppendLine($"#Region ""Microsoft.ROpen::{md5}, {relativePath}""")
         Call header.AppendLine()
         Call header.AppendLine($"    # Summaries:")
         Call header.AppendLine()
@@ -35,6 +35,8 @@ Module RFileHeader
 
         Call header.AppendLine()
         Call header.AppendLine($"#End Region")
+        Call header.AppendLine()
+        Call header.AppendLine(Rscript)
 
         Return header.ToString
     End Function

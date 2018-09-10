@@ -1,6 +1,11 @@
-﻿Imports System.IO
+﻿Imports System.ComponentModel
+Imports System.IO
 Imports System.Runtime.CompilerServices
+Imports Microsoft.VisualBasic.CommandLine
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Language.UnixBash
+Imports Microsoft.VisualBasic.Text
 
 Module Program
 
@@ -20,7 +25,7 @@ Module Program
         Return ver
     End Function
 
-    Sub Main()
+    Private Function Versioning(args As CommandLine) As Integer
         Dim template$ = App.CommandLine.Name
         Dim version As Value(Of String) = template.ParentPath & "/version.txt"
         Dim ver%() = version.Value _
@@ -54,5 +59,31 @@ Module Program
             Call .Flush()
             Call .Dispose()
         End With
-    End Sub
+
+        Return 0
+    End Function
+
+    <ExportAPI("/summary")>
+    <Description("Add Rscript file summary header")>
+    <Usage("/summary /src <*.R directory> [/out <*.R directory, default=""/src"">]")>
+    Public Function Summary(args As CommandLine) As Integer
+        Dim src$ = args <= "/src"
+        Dim out$ = args!out Or src
+
+        For Each path As String In ls - l - r - "*.R" <= src
+            Dim relativePath$ = ProgramPathSearchTool.RelativePath(pcFrom:=src, pcTo:=path)
+            Dim output$ = $"{out}/{relativePath}"
+
+            Call RFileHeader.Summary(path, src) _
+                            .SaveTo(path:=output,
+                                    encoding:=Encodings.UTF8WithoutBOM.CodePage
+                             )
+        Next
+
+        Return 0
+    End Function
+
+    Public Function Main() As Integer
+        Return GetType(Program).RunCLI(App.CommandLine, Nothing, executeNotFound:=AddressOf Versioning)
+    End Function
 End Module
