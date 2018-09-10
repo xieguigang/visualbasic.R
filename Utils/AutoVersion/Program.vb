@@ -82,6 +82,7 @@ Module Program
                             .SaveTo(path:=output,
                                     encoding:=Encodings.UTF8WithoutBOM.CodePage
                              )
+            Call relativePath.__INFO_ECHO
         Next
 
         Return 0
