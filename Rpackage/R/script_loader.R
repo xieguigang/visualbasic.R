@@ -1,3 +1,12 @@
+#Region "Microsoft.ROpen::a37c73ef74db53ec43e22491158f4a8b, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # include <- function(R) { 	if (file.exists(R)) {
+    # flash_load <- function() {
+
+#End Region
+
 #' This function is using for solving the code compatibility
 #' between the R package and R script.
 #'

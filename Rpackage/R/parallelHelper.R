@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::87208e26d6e966e78433be2f96af171c, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # getClusterCores <- function(level = c("full", "half", "parallel", "single")) {   if (IsNothing(level)) {
+
+#End Region
+
 getClusterCores <- function(level = c("full", "half", "parallel", "single")) {
   if (IsNothing(level)) {
     level = "full";

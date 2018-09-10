@@ -1,3 +1,18 @@
+#Region "Microsoft.ROpen::d1aea603c72a879d237002c8112c1404, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # Microsoft.VisualBasic.Data <- function() {  	# data.frame rows to list collection 	.as.list <- function(d) {
+    # .to.list <- function(d) {
+    # .as.matrix <- function(d, character = FALSE) {
+    # selectMany <- function(list, project) {
+    # list.project <- function(list, fields) {
+    # .as.dataframe <- function(list) {
+    # .ensure.dataframe <- function(data, col.names) { 	  if (is.null(nrow(data))) {
+    # .load.dataset <- function(file) {
+
+#End Region
+
 #' Common data operation helper function
 #'
 #' @details \enumerate{

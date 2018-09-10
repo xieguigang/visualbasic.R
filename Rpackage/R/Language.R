@@ -1,3 +1,14 @@
+#Region "Microsoft.ROpen::a868a4b898f81bda444d252652741219, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # Microsoft.VisualBasic.Language <- function() {
+    # `%<=%` <- function(path, value) {
+    # ':=' <- function(lhs, rhs) {
+    # `%=>%` <- function(x, y) {
+    # `%+%` <- function(x, y) {
+
+#End Region
 
 #' Syntax tweaks helpers
 #'

@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::b78417ec82ea3627960014c50529d898, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # .onLoad <- function(libname, pkgname) {
+
+#End Region
+
 # https://stackoverflow.com/questions/20223601/r-how-to-run-some-code-on-load-of-package
 
 # There is usually a "processing function" (traditionally called zzz.R) with tasks

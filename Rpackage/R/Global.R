@@ -1,3 +1,20 @@
+#Region "Microsoft.ROpen::29e66e7eac18f77f4dadf67b95788c53, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {
+    # MyHelp <- function(namespace) {
+    # MyList <- function() {
+    # Push <- function(envir = parent.frame()) {    function(...) {
+    # IsNothing <- function(x, stringAsFactor = FALSE) {  	if (is.null(x) || is.na(x) || length(x) == 0) {
+    # Size <- function(x) {
+    # printf <- function(...) {
+    # LogException <- function(ex, logFile, append = FALSE) {
+    # GetType <- function(x) {
+    # primitiveTypes <- function() {
+
+#End Region
+
 #' VisualBasic namespace imports helper
 #'
 #' @param namespace The namespace function name

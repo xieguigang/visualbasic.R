@@ -1,3 +1,16 @@
+#Region "Microsoft.ROpen::8c5fabb7b0cf8a1c72f3a6c3a94fe715, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # user <- function() {
+    # argv <- function() {
+    # is.argName <- function(x) {     if (x %=>% IsNothing) {
+    # log.open <- function(file.path) {
+    # Now <- function() {
+    # log.close <- function() {
+    # log.echo <- function(...) {
+
+#End Region
 
 #' Swap two variable
 #'

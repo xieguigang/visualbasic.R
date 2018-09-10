@@ -1,3 +1,17 @@
+#Region "Microsoft.ROpen::e5e59e8971ede79c0dfa3fe2e4932b6c, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # basename <- function(path) {
+    # File.ExtensionName <- function(path) {
+    # File.WithExtension <- function(path, ext) {
+    # Println <- function(file.txt, content) {
+    # File.Open <- function(file.txt, append = FALSE) {
+    # ensure_dir_exists <- function(path) {   if (!dir.exists(path)) {
+    # ReadAllText <- function(file.txt) {
+
+#End Region
+
 #' File name without extension name
 #'
 #' @description Get the file name of a given file path without extension name.

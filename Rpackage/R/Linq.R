@@ -1,3 +1,19 @@
+#Region "Microsoft.ROpen::267ff99943ad56555bfbe40905a93505, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # Microsoft.VisualBasic.Data.Linq <- function() {  	Take <- function(enumerable, m) {
+    # Skip <- function(enumerable, m) {
+    # Last <- function(enumerable) {
+    # WhichIsNotEmpty <- function(enumerable, assert = IsNothing) {
+    # GroupBy <- function(enumerable, key, type = c("data.frame", "list")) {  		if (type == "data.frame") {
+    # GroupBy.list <- function(list, key) {
+    # GroupBy.dataframe <- function(data.frame, key) {
+    # Group <- function(seq, case.Sensitive = FALSE) {
+    # Count <- function(groups) {
+
+#End Region
+
 #' Linq helper in R language.
 #'
 #' @return \enumerate{
@@ -169,6 +185,3 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 			WhichIsNotEmpty = get("WhichIsNotEmpty")
 	));
 }
-
-
-

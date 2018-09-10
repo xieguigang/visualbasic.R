@@ -1,3 +1,12 @@
+#Region "Microsoft.ROpen::d988edd3609567644b8c6010b5c95573, D:\visualbasic.R\Rpackage\R"
+
+    # Summaries:
+
+    # tick.helper <- function(total, step = 5 / 100) {
+    # tick.each <- function(sequence, action) {
+
+#End Region
+
 #' Progress tick on console
 #'
 #' @description Helper function for display the progress in percentage value of a

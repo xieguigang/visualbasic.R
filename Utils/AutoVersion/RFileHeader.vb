@@ -18,7 +18,7 @@ Module RFileHeader
             .Trim(" "c, ASCII.TAB, ASCII.CR, ASCII.LF)
         Dim funcs = Rscript.Matches(RFuncDeclare, RegexICSng) _
                      .Select(Function(f)
-                                 Return f.LineTokens.JoinBy(" ")
+                                 Return f.LineTokens.JoinBy(" ").StringReplace("\s{2,}", "") & "..."
                              End Function) _
                      .ToArray
         Dim md5$ = Rscript.MD5
