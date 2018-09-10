@@ -1,13 +1,13 @@
-#Region "Microsoft.ROpen::15bf913e6175373658439f4e14132bdc, D:\visualbasic.R\Rpackage\R"
+#Region "Microsoft.ROpen::15bf913e6175373658439f4e14132bdc, development.R"
 
     # Summaries:
 
-    # parse.package.description <- function(file = base::system.file("DESCRIPTION", package="VisualBasic.R")) {
-    # package.version <- function(package = "VisualBasic.R") {   if (package %=>% package.is_missing) {
-    # package.is_missing <- function(package) {
-    # package.missing <- function(package) {
-    # DESCRIPTION <- function(packageName) {
-    # xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
+    # parse.package.description <- function(file = base::system.file("DESCRIPTION", package="VisualBasic.R")) {...
+    # package.version <- function(package = "VisualBasic.R") {if (package %=>% package.is_missing) {...
+    # package.is_missing <- function(package) {...
+    # package.missing <- function(package) {...
+    # DESCRIPTION <- function(packageName) {...
+    # xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {...
 
 #End Region
 

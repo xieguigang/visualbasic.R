@@ -1,8 +1,8 @@
-#Region "Microsoft.ROpen::b78417ec82ea3627960014c50529d898, D:\visualbasic.R\Rpackage\R"
+#Region "Microsoft.ROpen::b78417ec82ea3627960014c50529d898, zzz.R"
 
     # Summaries:
 
-    # .onLoad <- function(libname, pkgname) {
+    # .onLoad <- function(libname, pkgname) {...
 
 #End Region
 

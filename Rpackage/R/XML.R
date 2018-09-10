@@ -1,13 +1,13 @@
-#Region "Microsoft.ROpen::30ebfa21d44b346a525d91d2489a4bf6, D:\visualbasic.R\Rpackage\R"
+#Region "Microsoft.ROpen::30ebfa21d44b346a525d91d2489a4bf6, XML.R"
 
     # Summaries:
 
-    # SaveXML <- function(x, file.xml, rootName = "Rlang.xml") { 	XML.Framework( 		write    = File.Open(file.txt = file.xml), 		do.write = function(write) {
-    # XML.Framework <- function(write, do.write, rootName) {
-    # Xml.Write.Any <- function(x, indent, write, name = NULL) {  	if (is.data.frame(x) || is.matrix(x)) {
-    # Xml.Write.Vector <- function(vector, indent, write, name = NULL) {     if (is.numeric(vector)) {
-    # Xml.Write.Matrix <- function(matrix, indent, write, node.name = NULL) {
-    # Xml.Write.List <- function(list, indent, write, node.name = NULL) {
+    # SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {XML.Framework(	write= File.Open(file.txt = file.xml),	do.write = function(write) {...
+    # XML.Framework <- function(write, do.write, rootName) {...
+    # Xml.Write.Any <- function(x, indent, write, name = NULL) {if (is.data.frame(x) || is.matrix(x)) {...
+    # Xml.Write.Vector <- function(vector, indent, write, name = NULL) {if (is.numeric(vector)) {...
+    # Xml.Write.Matrix <- function(matrix, indent, write, node.name = NULL) {...
+    # Xml.Write.List <- function(list, indent, write, node.name = NULL) {...
 
 #End Region
 

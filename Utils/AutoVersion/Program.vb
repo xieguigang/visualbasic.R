@@ -78,7 +78,7 @@ Module Program
             )
             Dim output$ = $"{out}/{relativePath}"
 
-            Call RFileHeader.Summary(path, src) _
+            Call RFileHeader.Summary(path, relativePath) _
                             .SaveTo(path:=output,
                                     encoding:=Encodings.UTF8WithoutBOM.CodePage
                              )

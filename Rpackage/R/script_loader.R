@@ -1,9 +1,9 @@
-#Region "Microsoft.ROpen::a37c73ef74db53ec43e22491158f4a8b, D:\visualbasic.R\Rpackage\R"
+#Region "Microsoft.ROpen::a37c73ef74db53ec43e22491158f4a8b, script_loader.R"
 
     # Summaries:
 
-    # include <- function(R) { 	if (file.exists(R)) {
-    # flash_load <- function() {
+    # include <- function(R) {if (file.exists(R)) {...
+    # flash_load <- function() {...
 
 #End Region
 

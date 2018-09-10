@@ -1,13 +1,13 @@
-#Region "Microsoft.ROpen::f8fa48fb9540f25761f96b97a3477437, D:\visualbasic.R\Rpackage\R"
+#Region "Microsoft.ROpen::f8fa48fb9540f25761f96b97a3477437, Enumerator.R"
 
     # Summaries:
 
-    # Enumerator <- function(src) {
-    # .select <- function(project) { 		if (type == types$data.frame) {
-    # .where <- function(assert) { 		if (type == types$data.frame) {
-    # .orderBy <- function(key, key.numeric = function(x) as.numeric(x)) {
-    # .orderByDescending <- function(key, key.numeric = function(x) as.numeric(x)) {
-    # .count <- function(predicate) { 	  if (predicate) {
+    # Enumerator <- function(src) {...
+    # .select <- function(project) {if (type == types$data.frame) {...
+    # .where <- function(assert) {if (type == types$data.frame) {...
+    # .orderBy <- function(key, key.numeric = function(x) as.numeric(x)) {...
+    # .orderByDescending <- function(key, key.numeric = function(x) as.numeric(x)) {...
+    # .count <- function(predicate) {if (predicate) {...
 
 #End Region
 

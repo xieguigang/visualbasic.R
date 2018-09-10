@@ -1,13 +1,13 @@
-#Region "Microsoft.ROpen::0e3657d33644d2fb057d076b0043867c, D:\visualbasic.R\Rpackage\R"
+#Region "Microsoft.ROpen::0e3657d33644d2fb057d076b0043867c, binarySearch.R"
 
     # Summaries:
 
-    # binarySearch <- function(source, find, key, compares = function(a, b) a - b) {
-    # binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) {
-    # binarySearch.impl.generic <- function(ikey, .length, find, compares) {
-    # binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, b) a - b) {
-    # sort.list <- function(list, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {     if (!is.function(key)) {
-    # sort.dataframe <- function(dataframe, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {
+    # binarySearch <- function(source, find, key, compares = function(a, b) a - b) {...
+    # binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) {...
+    # binarySearch.impl.generic <- function(ikey, .length, find, compares) {...
+    # binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, b) a - b) {...
+    # sort.list <- function(list, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {if (!is.function(key)) {...
+    # sort.dataframe <- function(dataframe, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {...
 
 #End Region
 
