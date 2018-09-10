@@ -4,7 +4,7 @@ Imports Microsoft.VisualBasic.Text
 
 Module RFileHeader
 
-    Const RFuncDeclare$ = "\S+\s*[<][-]\s*function\(.+?\)\s*\{"
+    Const RFuncDeclare$ = "\S+\s*[<][-]\s*function\([^;]*\)\s*\{"
 
     ''' <summary>
     ''' 
