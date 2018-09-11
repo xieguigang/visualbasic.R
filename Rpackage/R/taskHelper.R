@@ -69,3 +69,24 @@ tick.each <- function(sequence, action) {
 
   out;
 }
+
+#' Benchmark helper
+#'
+benchmark <- function() {
+  start <- unix.timestamp();
+  uid   <- sprintf("Tbenchmark_%s", start);
+  last  <- sprintf("%s_last", uid);
+
+  global(last, start);
+
+  function() {
+    d.last  <- unix.timestamp() - get(last, envir = globalenv());
+    d.start <- unix.timestamp() - start;
+
+    global(last, unix.timestamp());
+
+    list(last_checkpoint = d.last,
+         since_start     = d.start
+    );
+  }
+}

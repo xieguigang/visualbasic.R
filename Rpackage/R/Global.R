@@ -102,6 +102,11 @@ MyList <- function() {
 #' list(x11 = 15555, y22 = FALSE) %=>% Set
 Set <- function(...) (globalenv() %=>% Push)(...);
 
+global <- function(name = NULL, value = NULL) {
+  assign <- list(name, value);
+  do.call(`=`, assign, envir = globalenv());
+}
+
 #' Push variable to a given environment
 #'
 #' @return This function returns a lambda function that can used for assign variable value

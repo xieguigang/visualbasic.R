@@ -142,3 +142,13 @@ log.echo <- function(...) {
 
   cat(msg);
 }
+
+#' Current unix timestamp in milliseconds
+#'
+#' @description https://stackoverflow.com/questions/40059573/r-get-current-time-in-milliseconds
+#'
+#' @return timestamp in milliseconds
+#'
+unix.timestamp <- function() {
+  as.numeric(Sys.time()) * 1000;
+}
