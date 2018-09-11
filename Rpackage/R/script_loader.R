@@ -57,7 +57,7 @@ flash_load <- function(dir = getwd()) {
 	}
 
 	# run .onload in zzz.R
-	zzz.R <- sprintf("%s/zzz.R", getwd());
+	zzz.R <- sprintf("%s/zzz.R", dir);
 
 	# 如果存在.flashLoad这个函数，表示会需要运行该zzz.R脚本之中的初始化过程
 	# .flashLoad函数应该是只包含有.onLoad的直接调用代码的
