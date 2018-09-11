@@ -1,9 +1,9 @@
-#Region "Microsoft.ROpen::a37c73ef74db53ec43e22491158f4a8b, script_loader.R"
+#Region "Microsoft.ROpen::83ecf2e28f3fc5842d753cde5923674f, script_loader.R"
 
     # Summaries:
 
     # include <- function(R) {if (file.exists(R)) {...
-    # flash_load <- function() {...
+    # flash_load <- function(dir = getwd()) {...
 
 #End Region
 
@@ -16,22 +16,28 @@
 include <- function(R) {
 	if (file.exists(R)) {
 		source(R);
+	} else {
+	  warning(sprintf("Missing '%s'", R));
 	}
 
 	invisible(NULL);
 }
 
-#' Load R script in current directory
+#' Load R script in directory
 #'
-#' @description Load all of the R script in current working directory.
+#' @description Load all of the R script in a given working directory,
+#'    by default is load all script in current directory.
+#'
+#' @param dir The script source directory, by default is current workspace.
 #'
 #' @return Nothing.
-flash_load <- function() {
+#'
+flash_load <- function(dir = getwd()) {
 
 	# Scan all of the *.R script in current workspace
 	# And then source load each R script.
 	scripts <- list.files(
-		getwd(),
+		dir,
 		recursive  = F,
 		pattern    = "\\.[Rr]",
 		full.names = T
