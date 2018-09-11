@@ -80,13 +80,16 @@ benchmark <- function() {
   global(last, start);
 
   function() {
-    d.last  <- unix.timestamp() - get(last, envir = globalenv());
+    t.last  <- get(last, envir = globalenv());
+    d.last  <- unix.timestamp() - t.last;
     d.start <- unix.timestamp() - start;
 
     global(last, unix.timestamp());
 
-    list(last_checkpoint = d.last,
-         since_start     = d.start
+    list(since_last      = d.last,
+         since_start     = d.start,
+         start_timestamp = start,
+         last_checkpoint = t.last
     );
   }
 }
