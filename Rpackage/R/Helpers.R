@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::8c5fabb7b0cf8a1c72f3a6c3a94fe715, Helpers.R"
+#Region "Microsoft.ROpen::3b5ac16f57117355921fe53732d0ee8e, Helpers.R"
 
     # Summaries:
 
@@ -9,6 +9,7 @@
     # Now <- function() {...
     # log.close <- function() {...
     # log.echo <- function(...) {...
+    # unix.timestamp <- function() {...
 
 #End Region
 
