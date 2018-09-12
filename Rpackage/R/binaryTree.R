@@ -7,15 +7,25 @@
 
 #End Region
 
-#' This function build a binary tree object
+#' Build a binary tree list
+#'
+#' @description This function build a binary tree list.
 #'
 #' @param src the input data sequence, which can be \code{data.frame}, \code{list} or
 #'            \code{vector}
 #' @param key An object indexer for get the key value for the elements
-#' @param key.numeric Convert the key value to numeric value for comparasions.
+#' @param key.compares A function to compare two key, this function
+#'     should returns a integer value:
+#'
+#'     \enumerate{
+#'        \item \code{0} The two tree node key is equals to each other.
+#'        \item \code{1} The \code{key1} is greater than \code{key2}.
+#'        \item \code{-1} The \code{key1} is less than \code{key2}.
+#'     }
 #'
 #' @return A binary tree S4 class object
-binaryTree <- function(src, key, key.numeric = as.numeric) {
+#'
+binaryTree <- function(src, key, key.compares) {
 
 }
 

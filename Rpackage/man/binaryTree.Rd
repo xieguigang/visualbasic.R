@@ -2,9 +2,9 @@
 % Please edit documentation in R/binaryTree.R
 \name{binaryTree}
 \alias{binaryTree}
-\title{This function build a binary tree object}
+\title{Build a binary tree list}
 \usage{
-binaryTree(src, key, key.numeric = as.numeric)
+binaryTree(src, key, key.compares)
 }
 \arguments{
 \item{src}{the input data sequence, which can be \code{data.frame}, \code{list} or
@@ -12,12 +12,19 @@ binaryTree(src, key, key.numeric = as.numeric)
 
 \item{key}{An object indexer for get the key value for the elements}
 
-\item{key.numeric}{Convert the key value to numeric value for comparasions.}
+\item{key.compares}{A function to compare two key, this function
+    should returns a integer value:
+
+    \enumerate{
+       \item \code{0} The two tree node key is equals to each other.
+       \item \code{1} The \code{key1} is greater than \code{key2}.
+       \item \code{-1} The \code{key1} is less than \code{key2}.
+    }}
 }
 \value{
 A binary tree S4 class object
 }
 \description{
-This function build a binary tree object
+This function build a binary tree list.
 }
 
