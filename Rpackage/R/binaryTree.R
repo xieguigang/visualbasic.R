@@ -26,17 +26,38 @@
 #' @return A binary tree S4 class object
 #'
 binaryTree <- function(src, key, key.compares) {
-  tree     <- list();
-  namelist <- src %=>% names;
+  tree    <- list();
+  popX    <- NULL;
+  popName <- NULL;
+
+  if (is.list(src)) {
+    # is list
+    namelist <- src %=>% names;
+    popX <- function(i) {
+      name <- namelist[i];
+      src[[name]];
+    }
+    popName <- function(i) {
+      namelist[i];
+    }
+  } else {
+    # is array
+    popX <- function(i) {
+      src[i];
+    }
+    popName <- function(i) {
+      sprintf("X%s", i);
+    }
+  }
 
   # the root node
-  x           <- src[[namelist[1]]];
-  tree[["1"]] <- .node(key(x), x, namelist[1]);
+  x           <- popX(1);
+  tree[["1"]] <- .node(key(x), x, popName(i));
 
   for(i in 2:length(src)) {
-    name <- namelist[i];
-    x    <- src[[name]];
+    x    <- popX(i);
     xkey <- key(x);
+    name <- popName(i);
 
     # The first element is always the
     # root element.
