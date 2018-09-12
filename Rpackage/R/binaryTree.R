@@ -1,8 +1,8 @@
-#Region "Microsoft.ROpen::4d3e509f9e533256a426f874479e5d6f, binaryTree.R"
+#Region "Microsoft.ROpen::bcd481e9cc0327e8eb0eeeed5ea9e306, binaryTree.R"
 
     # Summaries:
 
-    # binaryTree <- function(src, key, key.numeric = as.numeric) {}#' Group a numeric vector #' #' @description Group a numeric vector elements by a given test condition #' #' @param seq A numeric sequence #' @param assert A given test condition for test if a number is a member #' of the current group or not? #' numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {...
+    # binaryTree <- function(src, key, key.compares) {}#' Group a numeric vector #' #' @description Group a numeric vector elements by a given test condition #' #' @param seq A numeric sequence #' @param assert A given test condition for test if a number is a member #' of the current group or not? #' numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {...
     # numeric.group.impl <- function(seq, assert) {...
 
 #End Region
@@ -26,7 +26,79 @@
 #' @return A binary tree S4 class object
 #'
 binaryTree <- function(src, key, key.compares) {
+  tree     <- list();
+  namelist <- src %=>% names;
 
+  # the root node
+  x           <- src[[namelist[1]]];
+  tree[["1"]] <- .node(key(x), x, namelist[1]);
+
+  for(i in 2:length(src)) {
+    name <- namelist[i];
+    x    <- src[[name]];
+    xkey <- key(x);
+
+    # The first element is always the
+    # root element.
+    pnext <- "1";
+
+    while (TRUE) {
+      xnext <- tree[[pnext]];
+      compare <- key.compares(xnext$key, xkey);
+
+      if (compare == 0) {
+        # current element is equals to current tree node.
+        # append current tree node value
+        list <- xnext$members;
+        list[[name]]  <- x;
+        xnext$members <- list;
+        tree[[pnext]] <- xnext;
+
+        # exit current loop
+        break;
+      } else if (compare > 0) {
+        # left
+        if (xnext$left == -1) {
+          # append to left;
+          node <- .node(xkey, x, name);
+          tree[[as.character(i)]] <- node;
+
+          # exit current loop
+          break;
+        } else {
+          pnext <- xnext$left;
+        }
+      } else {
+        # right
+        if (xnext$right == -1) {
+          # append to right
+          node <- .node(xkey, x, name);
+          tree[[as.character(i)]] <- node;
+
+          # exit current loop
+          break;
+        } else {
+          pnext <- xnext$right;
+        }
+      }
+    }
+  }
+
+  # return the constructed binary tree list.
+  tree;
+}
+
+#' Create a new tree node
+#'
+.node <- function(key, x, name) {
+  values         <- list();
+  values[[name]] <- x;
+
+  list(key     = key,
+       members = values,
+       left    = -1,
+       right   = -1
+  );
 }
 
 #' Group a numeric vector
