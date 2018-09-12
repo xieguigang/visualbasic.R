@@ -45,14 +45,14 @@ binaryTree <- function(src, key, key.compares) {
     popX <- function(i) {
       src[i];
     }
-    popName <- function(i) {
-      sprintf("X%s", i);
+    popName <- function(index) {
+      sprintf("X%s", index);
     }
   }
 
   # the root node
   x           <- popX(1);
-  tree[["1"]] <- .node(key(x), x, popName(i));
+  tree[["1"]] <- .node(key(x), x, popName(1));
 
   for(i in 2:length(src)) {
     x    <- popX(i);
