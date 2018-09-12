@@ -4,7 +4,7 @@
 \alias{tick.helper}
 \title{Progress tick on console}
 \usage{
-tick.helper(total, step = 5/100)
+tick.helper(total, disp.number = TRUE, step = 5/100)
 }
 \arguments{
 \item{total}{The total elements in the Long time run task that will be processing}

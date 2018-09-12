@@ -19,7 +19,8 @@
 #' @param step The tick interval value for report the task progress value, default is \code{5/100}.
 #'
 #' @return A lambda function that using for report the task progress.
-tick.helper <- function(total, step = 5 / 100) {
+#'
+tick.helper <- function(total, disp.number = TRUE, step = 5 / 100) {
 
   progress.i   <<- 0;
 	progress.p5  <<- total * step;
@@ -33,7 +34,12 @@ tick.helper <- function(total, step = 5 / 100) {
 			progress.cur <<- progress.cur + step * 100;
 			progress.cur <<- round(progress.cur);
 
-			cat(progress.cur);
+			if (disp.number) {
+			  cat(progress.cur);
+			} else {
+			  cat(".");
+			}
+
 			cat(" ");
 		}
 	});
