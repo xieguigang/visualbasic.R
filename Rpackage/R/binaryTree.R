@@ -149,6 +149,10 @@ node.left <- function(tree, node) {
   }
 }
 
+node.is_leaf <- function(node) {
+  node$left == -1 && node$right == -1;
+}
+
 #' Find a node value by a given search key
 #'
 #' @param search Object key for search a tree node.
