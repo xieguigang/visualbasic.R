@@ -83,7 +83,9 @@ binaryTree <- function(src, key, key.compares) {
           # append to left;
           node <- .node(xkey, x, name);
           tree[[as.character(i)]] <- node;
-
+		  xnext$left <- as.character(i);
+		  tree[[pnext]] <- xnext;
+		  
           # exit current loop
           break;
         } else {
@@ -95,6 +97,8 @@ binaryTree <- function(src, key, key.compares) {
           # append to right
           node <- .node(xkey, x, name);
           tree[[as.character(i)]] <- node;
+		  xnext$right <- as.character(i);
+		  tree[[pnext]] <- xnext;
 
           # exit current loop
           break;
