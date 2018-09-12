@@ -85,7 +85,7 @@ binaryTree <- function(src, key, key.compares) {
           tree[[as.character(i)]] <- node;
 		  xnext$left <- as.character(i);
 		  tree[[pnext]] <- xnext;
-		  
+
           # exit current loop
           break;
         } else {
@@ -124,6 +124,73 @@ binaryTree <- function(src, key, key.compares) {
        left    = -1,
        right   = -1
   );
+}
+
+#' Get the right node of current node
+#'
+#' @param node The current tree node
+#' @param tree The binary tree list object.
+#'
+node.right <- function(tree, node) {
+  if (node$right == -1) {
+    NULL;
+  } else {
+    pnext <- node$right;
+    tree[[pnext]];
+  }
+}
+
+node.left <- function(tree, node) {
+  if (node$left == -1) {
+    NULL;
+  } else {
+    pnext <- node$left;
+    tree[[pnext]];
+  }
+}
+
+#' Find a node value by a given search key
+#'
+#' @param search Object key for search a tree node.
+#'
+node.find <- function(tree, search, key.compares) {
+  # The first element is always the
+  # root element.
+  pnext <- "1";
+
+  while(TRUE) {
+    node    <- tree[[pnext]];
+    key     <- node$key;
+    compare <- key.compares(key, search);
+
+    if (compare == 0) {
+      # find target node;
+      return(node);
+    } else if (compare > 0) {
+      # left
+      pnext <- node$left;
+
+      if (pnext == -1) {
+        # no result
+        break;
+      } else {
+        # continue
+      }
+    } else {
+      # right
+      pnext <- node$right;
+
+      if (pnext == -1) {
+        # node result
+        break;
+      } else {
+        # continue
+      }
+    }
+  }
+
+  # no result
+  NULL;
 }
 
 #' Group a numeric vector
