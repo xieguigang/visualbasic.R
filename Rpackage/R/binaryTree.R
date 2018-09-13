@@ -1,12 +1,13 @@
-#Region "Microsoft.ROpen::c816973a0e54c50053b26310f11183ef, binaryTree.R"
+#Region "Microsoft.ROpen::17212824dacf2a2fc0eef976cde1ec8c, binaryTree.R"
 
     # Summaries:
 
-    # binaryTree <- function(src, key, key.compares) {...
+    # binaryTree <- function(src, key, key.compares, debug = FALSE) {...
     # popX <- function(i) {...
     # popName <- function(i) {...
     # popX <- function(i) {...
     # popName <- function(index) {...
+    # binaryTree.construct.impl <- function(tree, popX, popName, src,key = NULL,key.compares = NULL,debug = TRUE) { if (debug) {...
     # .node <- function(key, x, name) {...
     # node.keys <- function(tree) {...
     # node.right <- function(tree, node) {if (node$right == -1) {...
@@ -36,10 +37,11 @@
 #'
 #' @return A binary tree S4 class object
 #'
-binaryTree <- function(src, key, key.compares) {
+binaryTree <- function(src, key, key.compares, debug = FALSE) {
   tree    <- list();
   popX    <- NULL;
   popName <- NULL;
+  len     <- length(src);
 
   if (is.list(src)) {
     # is list
@@ -65,6 +67,28 @@ binaryTree <- function(src, key, key.compares) {
   x           <- popX(1);
   tree[["1"]] <- .node(key(x), x, popName(1));
 
+  if (len == 1) {
+    tree;
+  } else {
+    binaryTree.construct.impl(tree, popX, popName, src, key, key.compares, debug);
+  }
+}
+
+#' Binary tree build implementation
+#'
+binaryTree.construct.impl <- function(tree, popX, popName, src,
+  key = NULL,
+  key.compares = NULL,
+  debug = TRUE) {
+
+  if (debug) {
+    tick <- tick.helper(length(src) - 1);
+    cat("\n\n");
+    cat("Progress  ");
+  }
+
+  # The first element is already include as root node
+  # so for loop start from the second element.
   for(i in 2:length(src)) {
     x    <- popX(i);
     xkey <- key(x);
@@ -95,7 +119,7 @@ binaryTree <- function(src, key, key.compares) {
           node <- .node(xkey, x, name);
           xkey <- as.character(i);
           tree[[xkey]] <- node;
-		      tree[[pnext]]$left <- xkey;
+          tree[[pnext]]$left <- xkey;
 
           # exit current loop
           break;
@@ -109,7 +133,7 @@ binaryTree <- function(src, key, key.compares) {
           node <- .node(xkey, x, name);
           xkey <- as.character(i);
           tree[[xkey]] <- node;
-		      tree[[pnext]]$right <- xkey;
+          tree[[pnext]]$right <- xkey;
 
           # exit current loop
           break;
@@ -118,6 +142,14 @@ binaryTree <- function(src, key, key.compares) {
         }
       }
     }
+
+    if (debug) {
+      tick();
+    }
+  }
+
+  if (debug) {
+    cat("\n\n");
   }
 
   # return the constructed binary tree list.

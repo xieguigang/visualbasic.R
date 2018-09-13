@@ -4,7 +4,7 @@
 \alias{binaryTree}
 \title{Build a binary tree list}
 \usage{
-binaryTree(src, key, key.compares)
+binaryTree(src, key, key.compares, debug = FALSE)
 }
 \arguments{
 \item{src}{the input data sequence, which can be \code{data.frame}, \code{list} or
