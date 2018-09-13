@@ -36,11 +36,10 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100) {
 
 			if (disp.number) {
 			  cat(progress.cur);
+			  cat(" ");
 			} else {
 			  cat(".");
 			}
-
-			cat(" ");
 		}
 	});
 }
