@@ -5,7 +5,7 @@
 \title{Binary tree build implementation}
 \usage{
 binaryTree.construct.impl(tree, popX, popName, src, key = NULL,
-  key.compares = NULL, debug = TRUE)
+  key.compares = NULL, debug = TRUE, progressHeader = TRUE)
 }
 \description{
 Binary tree build implementation
