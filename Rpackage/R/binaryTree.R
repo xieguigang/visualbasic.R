@@ -91,8 +91,8 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
     tick <- tick.helper(length(src) - 1);
 	
 	if (progressHeader) {
-		cat("\n\n");
-		cat("Progress  ");
+		cat("\n");
+		cat(" Progress  ");
 	} else {
 		cat("  ");
 	}    
