@@ -37,7 +37,7 @@
 #'
 #' @return A binary tree S4 class object
 #'
-binaryTree <- function(src, key, key.compares, debug = FALSE) {
+binaryTree <- function(src, key, key.compares, debug = FALSE, progressHeader = TRUE) {
   tree    <- list();
   popX    <- NULL;
   popName <- NULL;
@@ -70,21 +70,32 @@ binaryTree <- function(src, key, key.compares, debug = FALSE) {
   if (len == 1) {
     tree;
   } else {
-    binaryTree.construct.impl(tree, popX, popName, src, key, key.compares, debug);
+    binaryTree.construct.impl(tree, popX, popName, 
+		src, 
+		key, 
+		key.compares, 
+		debug, progressHeader
+	);
   }
 }
 
 #' Binary tree build implementation
 #'
 binaryTree.construct.impl <- function(tree, popX, popName, src,
-  key = NULL,
-  key.compares = NULL,
-  debug = TRUE) {
+  key            = NULL,
+  key.compares   = NULL,
+  debug          = TRUE,
+  progressHeader = TRUE) {
 
   if (debug) {
     tick <- tick.helper(length(src) - 1);
-    cat("\n\n");
-    cat("Progress  ");
+	
+	if (progressHeader) {
+		cat("\n\n");
+		cat("Progress  ");
+	} else {
+		cat("  ");
+	}    
   }
 
   # The first element is already include as root node
@@ -149,7 +160,11 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
   }
 
   if (debug) {
-    cat("\n\n");
+	if (progressHeader) {
+		cat("\n\n");
+	} else {
+		cat(" ");
+	}    
   }
 
   # return the constructed binary tree list.
