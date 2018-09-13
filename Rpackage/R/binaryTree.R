@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::108ccd2c6dc1cfb9b48663d1557ef9cf, binaryTree.R"
+#Region "Microsoft.ROpen::c816973a0e54c50053b26310f11183ef, binaryTree.R"
 
     # Summaries:
 
@@ -8,6 +8,7 @@
     # popX <- function(i) {...
     # popName <- function(index) {...
     # .node <- function(key, x, name) {...
+    # node.keys <- function(tree) {...
     # node.right <- function(tree, node) {if (node$right == -1) {...
     # node.left <- function(tree, node) {if (node$left == -1) {...
     # node.is_leaf <- function(node) {...
@@ -134,6 +135,10 @@ binaryTree <- function(src, key, key.compares) {
        left    = -1,
        right   = -1
   );
+}
+
+node.keys <- function(tree) {
+  lapply(names(tree), function(name) tree[[name]]$key);
 }
 
 #' Get the right node of current node
