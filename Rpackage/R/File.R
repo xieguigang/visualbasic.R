@@ -100,10 +100,15 @@ ensure_dir_exists <- function(path) {
 #' @return Returns the text file content in one piece, not split in lines.
 #'
 ReadAllText <- function(file.txt) {
-	conn  <- file(file.txt, open = "r");
-	lines <- readLines(conn);
-	close(conn);
-	text <- paste0(lines, collapse = "\n");
-
+	text <- paste0(file.txt %=>% ReadAllLines, collapse = "\n");
 	return(cat(text));
+}
+
+ReadAllLines <- function(file.txt) {
+  conn  <- file(file.txt, open = "r");
+  lines <- readLines(conn);
+
+  conn %=>% close;
+
+  lines;
 }
