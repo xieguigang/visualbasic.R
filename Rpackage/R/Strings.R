@@ -58,7 +58,7 @@ Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 	}
 
 	out <- strsplit(x=Expression, split=Delimiter, fixed=FALSE, perl=TRUE, useBytes=useBytes);
-	out <- as.vector(out[[1]]);
+	out <- out[[1]] %=>% as.vector;
 
 	out;
 }
@@ -141,7 +141,7 @@ lcase <- function(value) {
 #'        or Nothing, or Start is greater than length of Expression Nothing Count is 0
 #'        Copy of Expression
 Strings.Replace <- function(Expression, Find, Replacement) {
-	gsub(Find, Replacement, Expression, fixed = TRUE)
+	gsub(Find, Replacement, Expression, fixed = TRUE);
 }
 
 # Public Shared Function UCase(Value As String) As String
@@ -160,6 +160,8 @@ Strings.UCase <- function(Value) {
 	toupper(Value);
 }
 
+#' String in uppercase
+#'
 ucase <- function(value) {
 	Strings.UCase(value);
 }
