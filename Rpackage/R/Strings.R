@@ -58,7 +58,7 @@ Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 	}
 
 	out <- strsplit(x=Expression, split=Delimiter, fixed=FALSE, perl=TRUE, useBytes=useBytes);
-	out <- out[[1]] %=>% as.vector;
+	out <- as.vector(out[[1]]);
 
 	out;
 }
