@@ -4,7 +4,7 @@
 \alias{File.Open}
 \title{Open a file for write in text mode}
 \usage{
-File.Open(file.txt, append = FALSE)
+File.Open(file.txt, append = FALSE, format = TRUE)
 }
 \arguments{
 \item{file.txt}{Target file path for write in text mode.}
