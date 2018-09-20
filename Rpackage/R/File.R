@@ -74,8 +74,11 @@ Println <- function(file.txt, content) {
 #'
 #' @return A lambda function for write text data to file.
 File.Open <- function(file.txt, append = FALSE) {
+  dir <- dirname(file.txt);
 
-	try(dir.create(dirname(file.txt), recursive = TRUE));
+  if (dir != ".") {
+    try(dir.create(dir, recursive = TRUE));
+  }
 
 	if (!append) {
 		cat(NULL, file = file.txt, append = FALSE);
@@ -101,8 +104,7 @@ ensure_dir_exists <- function(path) {
 #' @return Returns the text file content in one piece, not split in lines.
 #'
 ReadAllText <- function(file.txt) {
-	text <- paste0(file.txt %=>% ReadAllLines, collapse = "\n");
-	return(cat(text));
+	paste0(file.txt %=>% ReadAllLines, collapse = "\n");
 }
 
 ReadAllLines <- function(file.txt) {
