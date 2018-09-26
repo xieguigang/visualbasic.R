@@ -118,7 +118,7 @@ global <- function(name = NULL, value = NULL) {
 Push <- function(envir = parent.frame()) {
    function(...) {
      x <- list(...);
-
+print(x);
      if ((length(x) == 1)                      &&
          (GetType(x) == primitiveTypes()$list) &&
          (names(x) %=>% IsNothing)) {

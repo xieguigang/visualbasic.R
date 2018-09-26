@@ -138,3 +138,17 @@ xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
 
   invisible(NULL);
 }
+
+#' list module helper
+#'
+#' @param module A function to create a \code{list} object a \code{list} object.
+#'
+#' @return If the module argument is a list, then it will returns directly,
+#'   or the function will be evaluate for produce a list value.
+Eval <- function(module, ...) {
+  if (module %=>% is.list) {
+    module;
+  } else {
+    module(...);
+  }
+}
