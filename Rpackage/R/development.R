@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::15bf913e6175373658439f4e14132bdc, development.R"
+#Region "Microsoft.ROpen::ec088ee70aafc1b15b8790d65da06de7, development.R"
 
     # Summaries:
 
@@ -8,6 +8,7 @@
     # package.missing <- function(package) {...
     # DESCRIPTION <- function(packageName) {...
     # xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {...
+    # Eval <- function(module, ...) {if (module %=>% is.list) {...
 
 #End Region
 
