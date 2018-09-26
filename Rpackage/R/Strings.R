@@ -187,6 +187,7 @@ InStr <- function(s, substring) {
 #' @param s String vector
 #'
 #' @return A numeric vector for string length.
+#'
 Strings.Len <- function(s) {
   sapply(s, function(str) {
     if (IsNothing(str)) {
@@ -330,4 +331,24 @@ levenshtein.distance <- function(source, target,
 	switch(type,
 		'distance' = d[ns,nt],
 		'matrix'   = d);
+}
+
+#' Regex string helpers
+#'
+System.Text.RegularExpressions <- function() {
+  .matches <- function(str, pattern) {
+    m <- regexpr(pattern, str, perl=TRUE);
+    regmatches(str, m);
+  }
+
+  regex.methods <- list(
+    Matches = .matches
+  );
+
+  list(namespace = GetCurrentFunc(),
+       description = "Regex string helpers",
+       methods = regex.methods,
+       modules = list(
+         Regex = regex.methods
+       ));
 }
