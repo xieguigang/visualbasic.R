@@ -28,6 +28,19 @@
 
 # Strings Helper function from Microsoft.VisualBasic.Strings namespace.
 
+#' Convert the ascii code vector to character vector
+#'
+Chr <- function(ascii) {
+  mode(ascii) <- "raw";
+  sapply(ascii, rawToChar);
+}
+
+#' Convert the utf8 code vector to character vector
+#'
+ChrW <- function(code) {
+  sapply(code, intToUtf8);
+}
+
 # Public Shared Function Split(Expression As String, Optional Delimiter As String =  , Optional Limit As Integer = -1, Optional Compare As Microsoft.VisualBasic.CompareMethod = 0) As String()
 #     Member of Microsoft.VisualBasic.Strings
 
