@@ -2,7 +2,7 @@
 % Please edit documentation in R/File.R
 \name{Println}
 \alias{Println}
-\title{Append text content to a specific text file.}
+\title{Append text content to file}
 \usage{
 Println(file.txt, content)
 }

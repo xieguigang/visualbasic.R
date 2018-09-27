@@ -17,7 +17,7 @@
 #'
 #' @description Get the file name of a given file path without extension name.
 #'
-#' @param path File path string.
+#' @param path File path string vector.
 #'
 basename <- function(path) {
 	Linq   <- Microsoft.VisualBasic.Data.Linq();
@@ -32,6 +32,7 @@ basename <- function(path) {
 }
 
 #' Get file extension name
+#'
 File.ExtensionName <- function(path) {
 	Linq   <- Microsoft.VisualBasic.Data.Linq();
     file   <- base::basename(path);
@@ -43,12 +44,15 @@ File.ExtensionName <- function(path) {
 #' Determine path end with a given extension name
 #'
 #' @description Case insensitive
+#'
 File.WithExtension <- function(path, ext) {
 	ext.parsed <- File.ExtensionName(path);
 	tolower(ext.parsed) == tolower(ext);
 }
 
-#' Append text content to a specific text file.
+#' Append text content to file
+#'
+#' @description Append text content to a specific text file.
 #'
 #' @param file.txt File path
 #' @param content The text content that will be write to
@@ -97,6 +101,10 @@ File.Open <- function(file.txt, append = FALSE, format = TRUE) {
 }
 
 #' Ensure the dir exists
+#'
+#' @description If the directory path is not exists on
+#' the file system, then this function will create it.
+#'
 ensure_dir_exists <- function(path) {
   if (!dir.exists(path)) {
     dir.create(path, recursive = TRUE);
@@ -113,6 +121,10 @@ ReadAllText <- function(file.txt) {
 	paste0(file.txt %=>% ReadAllLines, collapse = "\n");
 }
 
+#' Read all text line
+#'
+#' @description Read all text lines from a specific text file.
+#'
 ReadAllLines <- function(file.txt) {
   conn  <- file(file.txt, open = "r");
   lines <- readLines(conn);
