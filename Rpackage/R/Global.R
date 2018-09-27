@@ -52,6 +52,24 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
 		do.call(`=`, assign, envir = frame);
 	}
 
+	if ("modules" %in% names(module)) {
+	  # Is also contains export variable modules
+    modules <- module$modules;
+
+    for(name in names(modules)) {
+      if (exists(name, envir = frame)) {
+        if (overrides) {
+          warning(sprintf(overrideMsg, name, namespace));
+        } else {
+          next;
+        }
+      }
+
+      assign <- list(name, modules[[name]]);
+      do.call(`=`, assign, envir = frame);
+    }
+	}
+
 	if (!silent) {
 		cat(sprintf("Imports VisualBasic.R::{%s}\n\n", namespace));
 		print(names(func.list));
