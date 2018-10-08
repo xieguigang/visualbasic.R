@@ -112,24 +112,47 @@ DESCRIPTION <- function(packageName) {
 #'
 #' @param rda The \code{*.rda} file path or package data name
 #'
+#' @details The file path string value of the \code{rdaName} could be
+#' a relative path or an absolute path.
+#' When the file path is a relative path, then the R script will try to
+#' search the given rda file in directories:
+#'
+#' \enumerate{
+#'   \item \code{.} Current workspace.
+#'   \item \code{./data} The \code{data} folder in the current workspace.
+#'   \item \code{../data} The \code{data} folder in current workspace's parent directory.
+#' }
+#'
 xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
 
+  load.file <- function(rda) {
+    load(rda, envir = envir);
+
+    if (verbose) {
+      printf(" -> load_from_file::%s", rda);
+    }
+
+    NULL;
+  }
+
+  if (file.exists(rdaName)) {
+    # Try it as absolute path at first
+    return(rdaName %=>% load.file);
+  }
+
+  # And then search as relative path mode
+  # If the file is not found in absolute path mode.
   search.path <- c(".", "./data", "../data");
 
   for(directory in search.path) {
     rda <- sprintf("%s/%s", directory, rdaName);
 
     if (file.exists(rda)) {
-      load(rda, envir = envir);
-
-      if (verbose) {
-        printf(" -> load_from_file::%s", rda);
-      }
-
-      return(NULL);
+      return(rda %=>% load.file);
     }
   }
 
+  # It is a package internal data file.
   name <- basename(rdaName);
   data(list = name, envir = envir);
 
