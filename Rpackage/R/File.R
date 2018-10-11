@@ -57,12 +57,15 @@ File.WithExtension <- function(path, ext) {
 #' @param file.txt File path
 #' @param content The text content that will be write to
 #'                target text file.
+#'                It can be a string lines vector.
 #'
 #' @return Nothing
 Println <- function(file.txt, content) {
 
-	cat(content, file = file.txt, append = TRUE);
-	cat("\n",    file = file.txt, append = TRUE);
+  for(line in content) {
+    cat(line, file = file.txt, append = TRUE);
+    cat("\n", file = file.txt, append = TRUE);
+  }
 
 	return(invisible(NULL));
 }

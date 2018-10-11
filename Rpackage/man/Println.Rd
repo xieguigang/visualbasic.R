@@ -10,7 +10,8 @@ Println(file.txt, content)
 \item{file.txt}{File path}
 
 \item{content}{The text content that will be write to
-target text file.}
+target text file.
+It can be a string lines vector.}
 }
 \value{
 Nothing
