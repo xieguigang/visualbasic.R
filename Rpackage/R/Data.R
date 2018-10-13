@@ -31,7 +31,7 @@
 Microsoft.VisualBasic.Data <- function() {
 
 	# data.frame rows to list collection
-	.as.list <- function(d) {
+	.as.list <- function(d, rowname.as.listname = FALSE) {
 
 		.list <- list();
 		list  <- .to.list(d);
@@ -45,6 +45,14 @@ Microsoft.VisualBasic.Data <- function() {
 			}
 
 			.list[[i]] <- l;
+		}
+
+		if (rowname.as.listname) {
+		  names <- rownames(d);
+
+		  if (!IsNothing(names)) {
+		    names(.list) <- names;
+		  }
 		}
 
 		.list;
@@ -126,7 +134,7 @@ Microsoft.VisualBasic.Data <- function() {
 		for (name in list.names) {
 			x <- list[[name]];
 			x <- list.project(x, all.prop);
-			d <- rbind(d, x);
+			d <- rbind(d, x %=>% as.vector);
 		}
 
 		rownames(d) <- list.names;
