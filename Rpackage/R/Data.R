@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::e4ad8607a4f3411c806758af65eb27ee, Data.R"
+#Region "Microsoft.ROpen::9fe811d5f90fdc39f73675a82ac976c6, Data.R"
 
     # Summaries:
 
@@ -146,8 +146,8 @@ Microsoft.VisualBasic.Data <- function() {
 
 		d <- NULL;
 
-		for (name in names(vectors)) {
-		  col <- vectors[[name]];
+		for (i in 1:length(vectors)) {
+		  col <- vectors[[i]];
 		  d   <- cbind(d, col);
 		}
 
