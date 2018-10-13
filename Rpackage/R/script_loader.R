@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::18721066fd635988e5e47f0c0025d653, script_loader.R"
+#Region "Microsoft.ROpen::1bb73991f55446cd11cf820d3e8e1f4f, script_loader.R"
 
     # Summaries:
 
@@ -59,13 +59,17 @@ flash_load <- function(dir = getwd()) {
 	# run .onload in zzz.R
 	zzz.R <- sprintf("%s/zzz.R", dir);
 
-	# 如果存在.flashLoad这个函数，表示会需要运行该zzz.R脚本之中的初始化过程
-	# .flashLoad函数应该是只包含有.onLoad的直接调用代码的
+	# If a function which named .flashLoad is exists after source script file
+	# Then it means required run the on load function in this zzz.R script file.
+	# The function .flashLoad should only contains the direct calls of the
+	# function .onLoad.
 	# .flashLoad() <- function() .onLoad(NULL, NULL);
 	if (file.exists(zzz.R) && exists(".flashLoad")) {
-	  # 非程序包的状态下，zzz.R之中的.onLoad无法自动运行
-	  # 因为.onLoad可能与其他的程序包中的.onLoad函数冲突
-	  # 所以在这里改为调用.flashLoad函数
+	  # In non-package status, the .onLoad function in zzz.R script file can not
+	  # running automatically.
+	  # Due to the reason of function .onLoad could be conflicts with the magic
+	  # function .onLoad that from other package.
+	  # So we call another magic function .flashLoad at here.
 	  do.call(".flashLoad", list());
 	}
 

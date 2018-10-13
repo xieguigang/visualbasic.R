@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::198d2b2e1fd2c173b880c3b6b585bef5, Data.R"
+#Region "Microsoft.ROpen::e4ad8607a4f3411c806758af65eb27ee, Data.R"
 
     # Summaries:
 
@@ -133,26 +133,37 @@ Microsoft.VisualBasic.Data <- function() {
 			list.names <- 1:length(list);
 		}
 
+		# Get all slot name in list members
 		all.prop <- selectMany(list, function(x) names(x));
 		all.prop <- unique(all.prop);
 
+		vectors <- lapply(all.prop, function(col) {
+		  sapply(list.names, function(i) {
+		    m <- list[[i]];
+		    m[[col]];
+		  }) %=>% as.vector;
+		})
+
 		d <- NULL;
 
-		for (name in list.names) {
-			x <- list[[name]];
-			x <- list.project(x, all.prop);
-			d <- rbind(d, x %=>% as.vector);
+		for (name in names(vectors)) {
+		  col <- vectors[[name]];
+		  d   <- cbind(d, col);
 		}
 
-		rownames(d) <- list.names;
 		colnames(d) <- all.prop;
+		rownames(d) <- list.names;
 		d;
 	}
 
-	## 确保结果数据是一个dataframe来的
-	## 因为有时候对dataframe取子集的时候，假若最终的子集和只有一行数据，
-	## 那么结果数据可能会被转换为一个vector，从而无法再被当做为dataframe
-	## 使用，使用这个函数来确保取子集的结果全部都是dataframe
+	#' ensure the result is a dataframe object
+	#'
+	#' There is a bug in R dataframe subset operation:
+	#' If the subset result just one row,
+	#' Then the subset result will be convert a vector automatically,
+	#' not a dataframe any more. This will cause bugs and code inconsist.
+	#' Using this function to ensure all of your dataframe subset result
+	#' is a dataframe object, not a vector.
 	.ensure.dataframe <- function(data, col.names) {
 	  if (is.null(nrow(data))) {
 	    data <- rbind(NULL, data);
