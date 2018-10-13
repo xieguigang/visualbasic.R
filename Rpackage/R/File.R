@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::e5e59e8971ede79c0dfa3fe2e4932b6c, File.R"
+#Region "Microsoft.ROpen::0fdd6e6c918a3b515e4fcd44314fd44e, File.R"
 
     # Summaries:
 
@@ -6,9 +6,10 @@
     # File.ExtensionName <- function(path) {...
     # File.WithExtension <- function(path, ext) {...
     # Println <- function(file.txt, content) {...
-    # File.Open <- function(file.txt, append = FALSE) {...
+    # File.Open <- function(file.txt, append = FALSE, format = TRUE) {...
     # ensure_dir_exists <- function(path) {if (!dir.exists(path)) {...
     # ReadAllText <- function(file.txt) {...
+    # ReadAllLines <- function(file.txt) {...
 
 #End Region
 
@@ -16,7 +17,7 @@
 #'
 #' @description Get the file name of a given file path without extension name.
 #'
-#' @param path File path string.
+#' @param path File path string vector.
 #'
 basename <- function(path) {
 	Linq   <- Microsoft.VisualBasic.Data.Linq();
@@ -31,6 +32,7 @@ basename <- function(path) {
 }
 
 #' Get file extension name
+#'
 File.ExtensionName <- function(path) {
 	Linq   <- Microsoft.VisualBasic.Data.Linq();
     file   <- base::basename(path);
@@ -42,22 +44,28 @@ File.ExtensionName <- function(path) {
 #' Determine path end with a given extension name
 #'
 #' @description Case insensitive
+#'
 File.WithExtension <- function(path, ext) {
 	ext.parsed <- File.ExtensionName(path);
 	tolower(ext.parsed) == tolower(ext);
 }
 
-#' Append text content to a specific text file.
+#' Append text content to file
+#'
+#' @description Append text content to a specific text file.
 #'
 #' @param file.txt File path
 #' @param content The text content that will be write to
 #'                target text file.
+#'                It can be a string lines vector.
 #'
 #' @return Nothing
 Println <- function(file.txt, content) {
 
-	cat(content, file = file.txt, append = TRUE);
-	cat("\n",    file = file.txt, append = TRUE);
+  for(line in content) {
+    cat(line, file = file.txt, append = TRUE);
+    cat("\n", file = file.txt, append = TRUE);
+  }
 
 	return(invisible(NULL));
 }
@@ -72,21 +80,34 @@ Println <- function(file.txt, content) {
 #' @param append A logical flag to indicate append the data to target file or not?
 #'
 #' @return A lambda function for write text data to file.
-File.Open <- function(file.txt, append = FALSE) {
+File.Open <- function(file.txt, append = FALSE, format = TRUE) {
+  dir <- dirname(file.txt);
 
-	try(dir.create(dirname(file.txt), recursive = TRUE));
+  if (dir != ".") {
+    try(dir.create(dir, recursive = TRUE));
+  }
 
 	if (!append) {
 		cat(NULL, file = file.txt, append = FALSE);
 	}
 
 	# printf <- function(...) invisible(print(sprintf(...)));
-	return(function(...) {
-		invisible(Println(file.txt, sprintf(...)));
-	});
+  if (format) {
+    function(...) {
+      invisible(Println(file.txt, sprintf(...)));
+    };
+  } else {
+    function(str) {
+      invisible(Println(file.txt, str));
+    }
+  }
 }
 
 #' Ensure the dir exists
+#'
+#' @description If the directory path is not exists on
+#' the file system, then this function will create it.
+#'
 ensure_dir_exists <- function(path) {
   if (!dir.exists(path)) {
     dir.create(path, recursive = TRUE);
@@ -100,10 +121,18 @@ ensure_dir_exists <- function(path) {
 #' @return Returns the text file content in one piece, not split in lines.
 #'
 ReadAllText <- function(file.txt) {
-	conn  <- file(file.txt, open = "r");
-	lines <- readLines(conn);
-	close(conn);
-	text <- paste0(lines, collapse = "\n");
+	paste0(file.txt %=>% ReadAllLines, collapse = "\n");
+}
 
-	return(cat(text));
+#' Read all text line
+#'
+#' @description Read all text lines from a specific text file.
+#'
+ReadAllLines <- function(file.txt) {
+  conn  <- file(file.txt, open = "r");
+  lines <- readLines(conn);
+
+  conn %=>% close;
+
+  lines;
 }

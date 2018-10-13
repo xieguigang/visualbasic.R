@@ -12,4 +12,16 @@ xLoad(rdaName, envir = globalenv(), verbose = FALSE)
 \description{
 Load \code{rda} data in a unified method
 }
+\details{
+The file path string value of the \code{rdaName} could be
+a relative path or an absolute path.
+When the file path is a relative path, then the R script will try to
+search the given rda file in directories:
+
+\enumerate{
+  \item \code{.} Current workspace.
+  \item \code{./data} The \code{data} folder in the current workspace.
+  \item \code{../data} The \code{data} folder in current workspace's parent directory.
+}
+}
 

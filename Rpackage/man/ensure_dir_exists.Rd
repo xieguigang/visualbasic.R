@@ -7,6 +7,7 @@
 ensure_dir_exists(path)
 }
 \description{
-Ensure the dir exists
+If the directory path is not exists on
+the file system, then this function will create it.
 }
 

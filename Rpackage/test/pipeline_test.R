@@ -1,0 +1,1 @@
+"test.txt" %=>% ReadAllText %=>% File.Open("file_copy.txt"); 

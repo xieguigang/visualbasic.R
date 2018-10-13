@@ -1,14 +1,17 @@
-#Region "Microsoft.ROpen::ddab88e06afdeb586667f7c8f3598521, Strings.R"
+#Region "Microsoft.ROpen::f5ef3f2e06e5ee15e063ccf0ec37fc35, Strings.R"
 
     # Summaries:
 
+    # Chr <- function(ascii) {...
+    # ChrW <- function(code) {...
     # Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {...
     # split <- function(expression, delimiter = " ", limit = -1, compare = 0) {...
     # Strings.Join <- function(SourceArray, Delimiter = " ") {...
     # join <- function(sourceArray, delimiter) {...
     # Strings.LCase <- function(Value) {...
     # lcase <- function(value) {...
-    # Strings.Replace <- function(Expression, Find, Replacement) {gsub(Find, Replacement, Expression, fixed = TRUE) }# Public Shared Function UCase(Value As String) As String # Member of Microsoft.VisualBasic.Strings#' String in uppercase #' #' @description Returns a string or character containing the specified string #' converted to uppercase. #' #' @param Value Required. Any valid String or Char expression. #' #' @return Returns a string or character containing the specified string #' converted to uppercase. Strings.UCase <- function(Value) {...
+    # Strings.Replace <- function(Expression, Find, Replacement) {...
+    # Strings.UCase <- function(Value) {...
     # ucase <- function(value) {...
     # Distinct <- function(words) {...
     # InStr <- function(s, substring) {...
@@ -22,10 +25,24 @@
     # Strings.Empty <- function(s, NA.empty = FALSE) {sapply(s, function(x) {...
     # name.similarity <- function(sa, sb) {...
     # levenshtein.distance <- function(source, target,type= c('distance','matrix'),insert.fun= function(x) 1,delete.fun= function(x) 1,substitute.fun = function(s,t) ifelse(s==t,0,1)) {...
+    # System.Text.RegularExpressions <- function() {.matches <- function(str, pattern) {...
 
 #End Region
 
 # Strings Helper function from Microsoft.VisualBasic.Strings namespace.
+
+#' Convert the ascii code vector to character vector
+#'
+Chr <- function(ascii) {
+  mode(ascii) <- "raw";
+  sapply(ascii, rawToChar);
+}
+
+#' Convert the utf8 code vector to character vector
+#'
+ChrW <- function(code) {
+  sapply(code, intToUtf8);
+}
 
 # Public Shared Function Split(Expression As String, Optional Delimiter As String =  , Optional Limit As Integer = -1, Optional Compare As Microsoft.VisualBasic.CompareMethod = 0) As String()
 #     Member of Microsoft.VisualBasic.Strings
@@ -141,7 +158,7 @@ lcase <- function(value) {
 #'        or Nothing, or Start is greater than length of Expression Nothing Count is 0
 #'        Copy of Expression
 Strings.Replace <- function(Expression, Find, Replacement) {
-	gsub(Find, Replacement, Expression, fixed = TRUE)
+	gsub(Find, Replacement, Expression, fixed = TRUE);
 }
 
 # Public Shared Function UCase(Value As String) As String
@@ -160,6 +177,8 @@ Strings.UCase <- function(Value) {
 	toupper(Value);
 }
 
+#' String in uppercase
+#'
 ucase <- function(value) {
 	Strings.UCase(value);
 }
@@ -184,6 +203,7 @@ InStr <- function(s, substring) {
 #' @param s String vector
 #'
 #' @return A numeric vector for string length.
+#'
 Strings.Len <- function(s) {
   sapply(s, function(str) {
     if (IsNothing(str)) {
@@ -197,6 +217,7 @@ Strings.Len <- function(s) {
 #' Returns string w/o leading or trailing whitespace
 #'
 #' @description https://stackoverflow.com/questions/2261079/how-to-trim-leading-and-trailing-whitespace-in-r
+#'
 Trim <- function(str) {
   gsub("^\\s+|\\s+$", "", str);
 }
@@ -204,6 +225,7 @@ Trim <- function(str) {
 #' Returns string w/o leading whitespace
 #'
 #' @description https://stackoverflow.com/questions/2261079/how-to-trim-leading-and-trailing-whitespace-in-r
+#'
 LTrim <- function(str) {
   sub("^\\s+", "", str);
 }
@@ -211,6 +233,7 @@ LTrim <- function(str) {
 #' Returns string w/o trailing whitespace
 #'
 #' @description https://stackoverflow.com/questions/2261079/how-to-trim-leading-and-trailing-whitespace-in-r
+#'
 RTrim <- function(str) {
   sub("\\s+$", "", str);
 }
@@ -327,4 +350,24 @@ levenshtein.distance <- function(source, target,
 	switch(type,
 		'distance' = d[ns,nt],
 		'matrix'   = d);
+}
+
+#' Regex string helpers
+#'
+System.Text.RegularExpressions <- function() {
+  .matches <- function(str, pattern) {
+    m <- regexpr(pattern, str, perl=TRUE);
+    regmatches(str, m);
+  }
+
+  regex.methods <- list(
+    Matches = .matches
+  );
+
+  list(namespace = GetCurrentFunc(),
+       description = "Regex string helpers",
+       methods = regex.methods,
+       modules = list(
+         Regex = regex.methods
+       ));
 }

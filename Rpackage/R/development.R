@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::15bf913e6175373658439f4e14132bdc, development.R"
+#Region "Microsoft.ROpen::ec088ee70aafc1b15b8790d65da06de7, development.R"
 
     # Summaries:
 
@@ -8,6 +8,7 @@
     # package.missing <- function(package) {...
     # DESCRIPTION <- function(packageName) {...
     # xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {...
+    # Eval <- function(module, ...) {if (module %=>% is.list) {...
 
 #End Region
 
@@ -111,24 +112,47 @@ DESCRIPTION <- function(packageName) {
 #'
 #' @param rda The \code{*.rda} file path or package data name
 #'
+#' @details The file path string value of the \code{rdaName} could be
+#' a relative path or an absolute path.
+#' When the file path is a relative path, then the R script will try to
+#' search the given rda file in directories:
+#'
+#' \enumerate{
+#'   \item \code{.} Current workspace.
+#'   \item \code{./data} The \code{data} folder in the current workspace.
+#'   \item \code{../data} The \code{data} folder in current workspace's parent directory.
+#' }
+#'
 xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
 
+  load.file <- function(rda) {
+    load(rda, envir = envir);
+
+    if (verbose) {
+      printf(" -> load_from_file::%s", rda);
+    }
+
+    NULL;
+  }
+
+  if (file.exists(rdaName)) {
+    # Try it as absolute path at first
+    return(rdaName %=>% load.file);
+  }
+
+  # And then search as relative path mode
+  # If the file is not found in absolute path mode.
   search.path <- c(".", "./data", "../data");
 
   for(directory in search.path) {
     rda <- sprintf("%s/%s", directory, rdaName);
 
     if (file.exists(rda)) {
-      load(rda, envir = envir);
-
-      if (verbose) {
-        printf(" -> load_from_file::%s", rda);
-      }
-
-      return(NULL);
+      return(rda %=>% load.file);
     }
   }
 
+  # It is a package internal data file.
   name <- basename(rdaName);
   data(list = name, envir = envir);
 
@@ -137,4 +161,18 @@ xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
   }
 
   invisible(NULL);
+}
+
+#' list module helper
+#'
+#' @param module A function to create a \code{list} object a \code{list} object.
+#'
+#' @return If the module argument is a list, then it will returns directly,
+#'   or the function will be evaluate for produce a list value.
+Eval <- function(module, ...) {
+  if (module %=>% is.list) {
+    module;
+  } else {
+    module(...);
+  }
 }

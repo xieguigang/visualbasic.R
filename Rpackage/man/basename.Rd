@@ -7,7 +7,7 @@
 basename(path)
 }
 \arguments{
-\item{path}{File path string.}
+\item{path}{File path string vector.}
 }
 \description{
 Get the file name of a given file path without extension name.

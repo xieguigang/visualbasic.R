@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::d1aea603c72a879d237002c8112c1404, Data.R"
+#Region "Microsoft.ROpen::7d5eafa70539a0c6bf207c9c3d90137d, Data.R"
 
     # Summaries:
 
@@ -69,9 +69,10 @@ Microsoft.VisualBasic.Data <- function() {
 		list;
 	}
 
-	# 有些时候dataframe取列的结果得到的是一个list？
-	# 这是一个什么bug？？？
-	# 尝试使用这个函数来消除这个需要调用unlist的bug
+	# There is a bug in R language dataframe subset:
+	# The column value in a dataframe is a list sometimes?
+	#
+	# This function trying to eliminate this subset bug.
 	.as.matrix <- function(d, character = FALSE) {
 
 	  names   <- colnames(d);
@@ -126,10 +127,16 @@ Microsoft.VisualBasic.Data <- function() {
 	}
 
 	.as.dataframe <- function(list) {
-		d <- NULL;
 		list.names <- names(list);
+
+		if (list.names %=>% IsNothing) {
+			list.names <- 1:length(list);
+		}
+
 		all.prop <- selectMany(list, function(x) names(x));
 		all.prop <- unique(all.prop);
+
+		d <- NULL;
 
 		for (name in list.names) {
 			x <- list[[name]];

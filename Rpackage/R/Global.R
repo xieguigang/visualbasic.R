@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::44f52c4fd3034a98592508489ae64b76, Global.R"
+#Region "Microsoft.ROpen::ae96a871255deb0884dc0b95bac3bb04, Global.R"
 
     # Summaries:
 
@@ -50,6 +50,24 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
 
 		assign <- list(name, func.list[[name]]);
 		do.call(`=`, assign, envir = frame);
+	}
+
+	if ("modules" %in% names(module)) {
+	  # Is also contains export variable modules
+    modules <- module$modules;
+
+    for(name in names(modules)) {
+      if (exists(name, envir = frame)) {
+        if (overrides) {
+          warning(sprintf(overrideMsg, name, namespace));
+        } else {
+          next;
+        }
+      }
+
+      assign <- list(name, modules[[name]]);
+      do.call(`=`, assign, envir = frame);
+    }
 	}
 
 	if (!silent) {
