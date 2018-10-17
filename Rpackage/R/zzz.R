@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::b78417ec82ea3627960014c50529d898, zzz.R"
+#Region "Microsoft.ROpen::7eea6abc1e0de71b1c19a1777e78d572, zzz.R"
 
     # Summaries:
 
@@ -16,11 +16,13 @@
 
   cat("\n");
 
-	# 在这里执行一些初始化工作
+	# Doing some initialize work at here
 	Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = FALSE);
 
 	# https://stackoverflow.com/questions/45983899/getnamespaceexports-called-from-within-onload-package-function
-  # .onLoad函数是发生在当前的程序包加载之前的
+  # .onLoad function is running before current package loaded
+  # So a lot of the helper function in current loadding package can
+  # not be called directly.
   index <- base::system.file("INDEX", package="VisualBasic.R") %=>% readLines %=>% Enumerator;
   index <- index$
     Where(function(line) InStr(line, "Microsoft.VisualBasic") > 0)$

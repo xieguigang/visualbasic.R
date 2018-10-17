@@ -1,8 +1,8 @@
-#Region "Microsoft.ROpen::7d5eafa70539a0c6bf207c9c3d90137d, Data.R"
+#Region "Microsoft.ROpen::9fe811d5f90fdc39f73675a82ac976c6, Data.R"
 
     # Summaries:
 
-    # Microsoft.VisualBasic.Data <- function() {# data.frame rows to list collection.as.list <- function(d) {...
+    # Microsoft.VisualBasic.Data <- function() {# data.frame rows to list collection.as.list <- function(d, rowname.as.listname = FALSE) {...
     # .to.list <- function(d) {...
     # .as.matrix <- function(d, character = FALSE) {...
     # selectMany <- function(list, project) {...
@@ -31,7 +31,7 @@
 Microsoft.VisualBasic.Data <- function() {
 
 	# data.frame rows to list collection
-	.as.list <- function(d) {
+	.as.list <- function(d, rowname.as.listname = FALSE) {
 
 		.list <- list();
 		list  <- .to.list(d);
@@ -45,6 +45,14 @@ Microsoft.VisualBasic.Data <- function() {
 			}
 
 			.list[[i]] <- l;
+		}
+
+		if (rowname.as.listname) {
+		  names <- rownames(d);
+
+		  if (!IsNothing(names)) {
+		    names(.list) <- names;
+		  }
 		}
 
 		.list;
@@ -125,26 +133,37 @@ Microsoft.VisualBasic.Data <- function() {
 			list.names <- 1:length(list);
 		}
 
+		# Get all slot name in list members
 		all.prop <- selectMany(list, function(x) names(x));
 		all.prop <- unique(all.prop);
 
+		vectors <- lapply(all.prop, function(col) {
+		  sapply(list.names, function(i) {
+		    m <- list[[i]];
+		    m[[col]];
+		  }) %=>% as.vector;
+		})
+
 		d <- NULL;
 
-		for (name in list.names) {
-			x <- list[[name]];
-			x <- list.project(x, all.prop);
-			d <- rbind(d, x);
+		for (i in 1:length(vectors)) {
+		  col <- vectors[[i]];
+		  d   <- cbind(d, col);
 		}
 
-		rownames(d) <- list.names;
 		colnames(d) <- all.prop;
+		rownames(d) <- list.names;
 		d;
 	}
 
-	## 确保结果数据是一个dataframe来的
-	## 因为有时候对dataframe取子集的时候，假若最终的子集和只有一行数据，
-	## 那么结果数据可能会被转换为一个vector，从而无法再被当做为dataframe
-	## 使用，使用这个函数来确保取子集的结果全部都是dataframe
+	#' ensure the result is a dataframe object
+	#'
+	#' There is a bug in R dataframe subset operation:
+	#' If the subset result just one row,
+	#' Then the subset result will be convert a vector automatically,
+	#' not a dataframe any more. This will cause bugs and code inconsist.
+	#' Using this function to ensure all of your dataframe subset result
+	#' is a dataframe object, not a vector.
 	.ensure.dataframe <- function(data, col.names) {
 	  if (is.null(nrow(data))) {
 	    data <- rbind(NULL, data);

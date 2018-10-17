@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::3b5ac16f57117355921fe53732d0ee8e, Helpers.R"
+#Region "Microsoft.ROpen::02890b1542d810cf6fecbf27f7de560f, Helpers.R"
 
     # Summaries:
 
@@ -94,8 +94,8 @@ argv <- function() {
     argName = cli[i];
 
     if (cli[i + 1] %=>% is.argName) {
-      # 下一个元素是命令参数名称
-      # 则当前的这个参数就是一个逻辑开关
+      # If the next element is the command argument name
+      # then the current element is a logical flag
       args[argName] = TRUE;
     } else {
       args[argName] = cli[i + 1];

@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::ae96a871255deb0884dc0b95bac3bb04, Global.R"
+#Region "Microsoft.ROpen::7be56db58cec160fa4b9e70965846d2e, Global.R"
 
     # Summaries:
 
@@ -177,9 +177,10 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 	if (is.null(x) || is.na(x) || length(x) == 0) {
 		TRUE;
 
-		# 2018-6-25 空字符串无法直接和S4对象进行比较
-		# 所以下面会需要先进行一次类型比较再判断空字符串
-		# Error in x == "" : 只能比较(1)基元或串列种类
+		# 2018-6-25 Empty string object can not compare with S4 directly.
+		# So this function will determine the data type of X at first and
+	  # then perfermance the compares.
+		# Error in x == "" : Only compares (1)vector or list type
 	} else if (!is.character(x)) {
 		FALSE;
 	} else {
