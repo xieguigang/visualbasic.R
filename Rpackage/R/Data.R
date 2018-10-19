@@ -182,6 +182,29 @@ Microsoft.VisualBasic.Data <- function() {
 	  d;
 	}
 
+	cmode <- function(meta, col, mode, col.copy = NULL) {
+	  meta.names <- colnames(meta);
+
+	  # ensure col is exists
+	  if (!(col %in% meta.names)) {
+	    if (!IsNothing(col.copy)) {
+	      meta           <- cbind(meta, meta[, col.copy]);
+	      meta.names     <- append(meta.names, col);
+	      colnames(meta) <- meta.names;
+	    } else {
+	      return(meta);
+	    }
+	  }
+
+	  if (mode == "character") {
+	    meta[, col] <- sapply(meta[, col], as.character) %=>% as.vector;
+	  } else if (mode == "numeric") {
+	    meta[, col] <- sapply(meta[, col], as.character) %=>% as.numeric;
+	  }
+
+	  meta;
+	}
+
 	# register function for namespace export
     list(namespace = GetCurrentFunc(),
 		 description = "Namespace contains some common data operation helpers.",
@@ -193,6 +216,7 @@ Microsoft.VisualBasic.Data <- function() {
 		 	 list.project = list.project,
 		 	 as.dataframe = .as.dataframe,
 			 ensure.dataframe = .ensure.dataframe,
-			 read.dataset     = .load.dataset
+			 read.dataset     = .load.dataset,
+			 cmode            = cmode
 	));
 }
