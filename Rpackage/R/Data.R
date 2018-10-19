@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::5c849b214bcf10748c602dff84d8fbb5, Data.R"
+#Region "Microsoft.ROpen::cfb6139d42ed5780f08df4e61b5fd73d, Data.R"
 
     # Summaries:
 
@@ -10,6 +10,7 @@
     # .as.dataframe <- function(list) {...
     # .ensure.dataframe <- function(data, col.names) {if (is.null(nrow(data))) {...
     # .load.dataset <- function(file) {...
+    # cmode <- function(meta, col, mode, col.copy = NULL) {...
 
 #End Region
 
