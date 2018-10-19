@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::02890b1542d810cf6fecbf27f7de560f, Helpers.R"
+#Region "Microsoft.ROpen::6174f2a9c58d1ece2f6adde531b7fc02, Helpers.R"
 
     # Summaries:
 
@@ -7,7 +7,7 @@
     # is.argName <- function(x) {if (x %=>% IsNothing) {...
     # log.open <- function(file.path) {...
     # Now <- function() {...
-    # log.close <- function() {...
+    # log.close <- function(print.warnings = FALSE) {if (print.warnings) {...
     # log.echo <- function(...) {...
     # unix.timestamp <- function() {...
 
@@ -128,9 +128,19 @@ Now <- function() {
 
 #' Close current log file
 #'
-log.close <- function() {
-  cat(sprintf("\n---------------EndOfLog @ %s-----------------\n\n", Now()));
-  sink();
+#' @param print.warnings Print all of the warnings before close 
+#'        the log writer? Default is not print warnings.
+#'
+log.close <- function(print.warnings = FALSE) {
+	
+	if (print.warnings) {
+		cat("\n\n");
+		print(warnings());
+		cat("\n\n");
+	}	
+
+	cat(sprintf("\n---------------EndOfLog @ %s-----------------\n\n", Now()));
+	sink();
 }
 
 #' Print a log text onto screen
