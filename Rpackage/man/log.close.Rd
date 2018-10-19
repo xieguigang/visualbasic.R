@@ -4,7 +4,11 @@
 \alias{log.close}
 \title{Close current log file}
 \usage{
-\method{log}{close}()
+\method{log}{close}(print.warnings = FALSE)
+}
+\arguments{
+\item{print.warnings}{Print all of the warnings before close 
+the log writer? Default is not print warnings.}
 }
 \description{
 Close current log file
