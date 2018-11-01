@@ -7,7 +7,10 @@
 xLoad(rdaName, envir = globalenv(), verbose = FALSE)
 }
 \arguments{
-\item{rda}{The \code{*.rda} file path or package data name}
+\item{rdaName}{The \code{*.rda} file path or package data name.
+If this parameter is empty string, then load function will
+throw error;
+If the rda data object could not be found, this function just givens warnings.}
 }
 \description{
 Load \code{rda} data in a unified method
