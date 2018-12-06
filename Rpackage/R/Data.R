@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::56c3ea3158229fd1666684689825480e, Data.R"
+#Region "Microsoft.ROpen::3dde8f283905577eea4cb66a18ac7ba2, Data.R"
 
     # Summaries:
 
@@ -11,6 +11,7 @@
     # .ensure.dataframe <- function(data, col.names) {if (is.null(nrow(data))) {...
     # .load.dataset <- function(file) {...
     # cmode <- function(meta, col, mode, col.copy = NULL) {...
+    # dictionary.dataframe <- function(list) {...
 
 #End Region
 
@@ -206,6 +207,17 @@ Microsoft.VisualBasic.Data <- function() {
 	  meta;
 	}
 
+	dictionary.dataframe <- function(list) {
+		frame <- c();
+		
+		for(name in names(list)) {
+			frame <- rbind(frame, c(name, list[[name]]));
+		}
+		
+		colnames(frame) <- c("name", "value");
+		frame;
+	}
+	
 	# register function for namespace export
     list(namespace = GetCurrentFunc(),
 		 description = "Namespace contains some common data operation helpers.",
@@ -218,6 +230,7 @@ Microsoft.VisualBasic.Data <- function() {
 		 	 as.dataframe = .as.dataframe,
 			 ensure.dataframe = .ensure.dataframe,
 			 read.dataset     = .load.dataset,
-			 cmode            = cmode
+			 cmode            = cmode,
+			 dictionary.table = dictionary.dataframe
 	));
 }
