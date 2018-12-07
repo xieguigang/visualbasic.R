@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::f5ef3f2e06e5ee15e063ccf0ec37fc35, Strings.R"
+#Region "Microsoft.ROpen::f4fbb5e7180461011a99d938b304e51b, Strings.R"
 
     # Summaries:
 
@@ -277,7 +277,7 @@ GetTagValue <- function(s, tag = " ") {
     if (i <= 0) {
       list(name = "", value = str);
     } else {
-      name = Mid(str, 1, i - 1);
+      name = Mid(str, 1, i - 2);
       value = Mid(str, i + length(tag)) %=>% Trim;
 
       list(name = name, value = value);

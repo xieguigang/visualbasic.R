@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::267ff99943ad56555bfbe40905a93505, Linq.R"
+#Region "Microsoft.ROpen::c45af1a9885cf6189f88d45f2ae04eff, Linq.R"
 
     # Summaries:
 
@@ -17,7 +17,8 @@
 #' Linq helper in R language.
 #'
 #' @return \enumerate{
-#'     \item \code{WhichIsNotEmpty} returns the index in the input \code{vector}/\code{list} sequence where is not nothing.
+#'     \item \code{WhichIsNotEmpty} returns the index in the input
+#'           \code{vector}/\code{list} sequence where is not nothing.
 #' }
 Microsoft.VisualBasic.Data.Linq <- function() {
 
@@ -58,11 +59,12 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 	# (c(5,6,7,8,9,1,2,3) %=>% Skip)(5)
 	# [1] 1 2 3
 
-	# group data.frame/list by keys
-	#
-	# @param enumerable The data source collection for the group operation, by default is ``data.frame`` type.
-	# @param key The column name or property name for using its corresponding value as the group key
-	# @param type Indicate that the data source ``enumerable`` is a data.frame or list? default is a data.frame.
+	#' group data.frame/list by keys
+	#'
+	#' @param enumerable The data source collection for the group operation, by default is ``data.frame`` type.
+	#' @param key The column name or property name for using its corresponding value as the group key
+	#' @param type Indicate that the data source ``enumerable`` is a data.frame or list?
+	#'        default is a data.frame.
 	GroupBy <- function(enumerable, key, type = c("data.frame", "list")) {
 
 		if (type == "data.frame") {
@@ -75,10 +77,11 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 
 	}
 
-	# Groups the items in a list by s specific property of the list item.
-	#
-	# @param list The data source in list type
-	# @param key The item property name in this list source collection.
+	#' Groups the items in a list by s specific property of the list item.
+	#'
+	#' @param list The data source in list type
+	#' @param key The item property name in this list source collection.
+	#'
 	GroupBy.list <- function(list, key) {
 
 		groups <- list();
@@ -106,10 +109,10 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 		return(groups);
 	}
 
-	# Groups the rows in a dataframe by a specific column as key.
-	#
-	# @param data.frame The data source in data.frame type
-	# @param key The column name for read the column data in target source as the group key.
+	#' Groups the rows in a dataframe by a specific column as key.
+	#'
+	#' @param data.frame The data source in data.frame type
+	#' @param key The column name for read the column data in target source as the group key.
 	GroupBy.dataframe <- function(data.frame, key) {
 
 		groups <- list();
@@ -132,7 +135,7 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 		return(groups);
 	}
 
-	# Group the string collection
+	#' Group the string collection
 	Group <- function(seq, case.Sensitive = FALSE) {
 
 		`%||%` <- function(x, y) if(case.Sensitive) x else y;

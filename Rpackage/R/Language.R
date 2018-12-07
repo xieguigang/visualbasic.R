@@ -94,7 +94,13 @@ Microsoft.VisualBasic.Language <- function() {
 			return(invisible(NULL));
 		}
 
-		if (is.function(rhs) || is(rhs, 'formula'))
+		# 2018-12-07
+		# When call from R terminal, the `is` function works fine
+		# But exceptions will happened when running script from Rscript tool:
+		#
+		# Error in is(rhs, "formula") : could not find function "is"
+		#
+		if (is.function(rhs) || methods::is(rhs, 'formula'))
 			rhs <- list(rhs);
 		if (length(lhs) > length(rhs))
 			rhs <- c(rhs, rep(list(NULL), length(lhs) - length(rhs)));
