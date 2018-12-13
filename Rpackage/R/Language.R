@@ -143,7 +143,7 @@ Microsoft.VisualBasic.Language <- function() {
 	#' @return \code{\%+\%}: A vector of the same mode as x or y for a common mode for \code{union}.
 	#'
 	`%+%` <- function(x, y) {
-    union(x, y);
+		union(x, y);
 	}
 
 	list(namespace = GetCurrentFunc(),
