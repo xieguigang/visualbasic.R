@@ -31,6 +31,10 @@ Namespace module with exports:
 Extension method operator
 
 \code{\%=>\%}: The function value.
+
+\code{\%is\%} have the same function as \code{\%=>\%}, but this function is more
+tend to express of make a assertions.
+
 Union two collection
 
 \code{\%+\%}: A vector of the same mode as x or y for a common mode for \code{union}.

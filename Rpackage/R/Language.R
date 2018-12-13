@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::a868a4b898f81bda444d252652741219, Language.R"
+#Region "Microsoft.ROpen::d319b22f5f299d8a5eaf0bc413007960, Language.R"
 
     # Summaries:
 
@@ -6,6 +6,7 @@
     # `%<=%` <- function(path, value) {...
     # ':=' <- function(lhs, rhs) {...
     # `%=>%` <- function(x, y) {...
+    # `%is%` <- function(x, y) {...
     # `%+%` <- function(x, y) {...
 
 #End Region
@@ -65,7 +66,7 @@ Microsoft.VisualBasic.Language <- function() {
 		# removes the temp helper variable
 		do.call(`rm`, list(t), envir = .globalEnvir);
 
-		return(invisible(NULL))
+		invisible(NULL);
 	}
 
 	# tuple syntax helper
@@ -85,12 +86,12 @@ Microsoft.VisualBasic.Language <- function() {
 	#
 	':=' <- function(lhs, rhs) {
 		frame <- parent.frame();
-		lhs   <- as.list(substitute(lhs))
+		lhs   <- as.list(substitute(lhs));
 
 		if (length(lhs) > 1)
 			lhs <- lhs[-1];
 		if (length(lhs) == 1) {
-			do.call(`=`, list(lhs[[1]], rhs), envir=frame)
+			do.call(`=`, list(lhs[[1]], rhs), envir=frame);
 			return(invisible(NULL));
 		}
 
@@ -100,10 +101,13 @@ Microsoft.VisualBasic.Language <- function() {
 		#
 		# Error in is(rhs, "formula") : could not find function "is"
 		#
-		if (is.function(rhs) || methods::is(rhs, 'formula'))
-			rhs <- list(rhs);
-		if (length(lhs) > length(rhs))
-			rhs <- c(rhs, rep(list(NULL), length(lhs) - length(rhs)));
+		if (is.function(rhs) || methods::is(rhs, 'formula')) {
+		  rhs <- list(rhs);
+		}
+		if (length(lhs) > length(rhs)) {
+		  d   <- length(lhs) - length(rhs);
+		  rhs <- c(rhs, rep(list(NULL), d));
+		}
 
 		for (i in 1:length(lhs))
 			do.call(`=`, list(lhs[[i]], rhs[[i]]), envir=frame);
@@ -117,8 +121,16 @@ Microsoft.VisualBasic.Language <- function() {
 	#' @param y Function with one parameter
 	#'
 	#' @return \code{\%=>\%}: The function value.
+	#'
 	`%=>%` <- function(x, y) {
 		y(x);
+	}
+
+	#' \code{\%is\%} have the same function as \code{\%=>\%}, but this function is more
+	#' tend to express of make a assertions.
+	#'
+	`%is%` <- function(x, y) {
+	  y(x);
 	}
 
 	#' Union two collection
@@ -129,6 +141,7 @@ Microsoft.VisualBasic.Language <- function() {
 	#'        of items (conceptually) with no duplicated values.
 	#'
 	#' @return \code{\%+\%}: A vector of the same mode as x or y for a common mode for \code{union}.
+	#'
 	`%+%` <- function(x, y) {
     union(x, y);
 	}
@@ -140,6 +153,7 @@ Microsoft.VisualBasic.Language <- function() {
 		   "%<=%" = get("%<=%"),
 		   ":="   = get(":="),
 		   "%=>%" = get("%=>%"),
-			 "%+%"  = get("%+%")
+			 "%+%"  = get("%+%"),
+			 "%is%" = get("%is%")
 	));
 }
