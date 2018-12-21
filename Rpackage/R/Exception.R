@@ -1,8 +1,8 @@
-#Region "Microsoft.ROpen::de107d04e22c7af34066172340ba7695, Exception.R"
+#Region "Microsoft.ROpen::95f3a024d841421ef04d9d000e54b03f, Exception.R"
 
     # Summaries:
 
-    # GetCurrentFunc <- function() {...
+    # GetCurrentFunc <- function(offset = 0) {...
 
 #End Region
 
