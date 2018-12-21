@@ -104,6 +104,31 @@ benchmark <- function() {
   }
 }
 
+#' Unify method for get memory size
+#'
+#' @description Provides a unify method for get current R session its
+#' memory usage. For solve the \code{Inf} bug of \code{memory.size}
+#' function on linux platform.
+#'
+memory.size.auto <- function() {
+  if (.Platform$OS.type == "windows") {
+    memory.size;
+  } else {
+
+    # Get pid of current R session.
+    pid <- base::Sys.getpid();
+
+    function() {
+      call  <- sprintf("pmap %s | grep total", pid);
+      total <- system(call, intern = TRUE);
+      # total           123608K
+      total <- Strings.Split(total);
+      total <- total[length(total)];
+      total;
+    }
+  }
+}
+
 #' Get current memory sample
 #'
 #' @details This function is limited one instance
@@ -112,7 +137,8 @@ memory.sample <- function(note = NA) {
   if (!exists("memory_profiling_pool", envir = globalenv())) {
     memory_profiling_pool <- list(
       benchmark = benchmark(),
-      samples   = list()
+      samples   = list(),
+      memory_size = memory.size.auto()
     );
 
     samples <- list();
@@ -125,7 +151,7 @@ memory.sample <- function(note = NA) {
   uid    <- sprintf("T%s", t);
   sample <- list(
     time        = t,
-    memory_size = memory.size(),
+    memory_size = memory_profiling_pool$memory_size(),
     event       = GetCurrentFunc(offset = 1),
     note        = note,
     profiles    = memory.profile(),
