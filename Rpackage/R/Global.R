@@ -127,9 +127,12 @@ Set <- function(...) (globalenv() %=>% Push)(...);
 #'
 #' @examples global(name, value);
 #'
+#' @return \code{NULL}
+#'
 global <- function(name = NULL, value = NULL) {
   assign <- list(name, value);
   do.call(`=`, assign, envir = globalenv());
+  invisible(NULL);
 }
 
 #' Push variable to a given environment

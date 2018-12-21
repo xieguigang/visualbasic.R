@@ -6,6 +6,9 @@
 \usage{
 global(name = NULL, value = NULL)
 }
+\value{
+\code{NULL}
+}
 \description{
 Set variables into the global environment.
 }

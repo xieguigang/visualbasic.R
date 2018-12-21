@@ -108,7 +108,7 @@ benchmark <- function() {
 #'
 memory.sample <- function(note = NA) {
   if (!exists("memory_profiling_pool", envir = globalenv())) {
-    memory_profiling_pool <<- list(
+    memory_profiling_pool <- list(
       benchmark = benchmark(),
       samples   = list()
     );
@@ -131,9 +131,10 @@ memory.sample <- function(note = NA) {
   );
 
   samples[[uid]] <- sample;
-  memory_profiling_pool[[samples]] <<- samples;
+  memory_profiling_pool[["samples"]] <- samples;
 
-  invisible(NULL);
+  # global function returns NULL
+  global("memory_profiling_pool", memory_profiling_pool);
 }
 
 #' Save the memory sampling result
@@ -147,9 +148,13 @@ write.memory.sample <- function(file) {
     return(NULL);
   }
 
-  d       <- data.frame();
+  if (!exists("debug.echo", envir = globalenv())) {
+    debug.echo <- FALSE;
+  }
+
   samples <- memory_profiling_pool[["samples"]];
-  profile <- data.frame();
+  profile <- NULL;
+  d       <- NULL;
 
   for(name in names(samples)) {
     sample  <- samples[[name]];
@@ -168,6 +173,11 @@ write.memory.sample <- function(file) {
   rownames(d)       <- names(samples);
   colnames(d)       <- c("time", "memory_size", "event", "note", "since_last", "since_start");
   rownames(profile) <- names(samples);
+
+  if (debug.echo) {
+    print(head(d));
+    print(head(profile));
+  }
 
   d <- cbind(d, profile);
 
