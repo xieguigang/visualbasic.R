@@ -78,6 +78,8 @@ tick.each <- function(sequence, action) {
 
 #' Benchmark helper
 #'
+#' @details Could running in multiple instance
+#'
 benchmark <- function() {
   start <- unix.timestamp();
   uid   <- sprintf("Tbenchmark_%s", start);
@@ -98,4 +100,70 @@ benchmark <- function() {
          last_checkpoint = t.last
     );
   }
+}
+
+#' Get current memory sample
+#'
+#' @details This function is limited one instance
+#'
+memory.sample <- function(note = NA) {
+  if (!exists("memory_profiling_pool", envir = globalenv())) {
+    memory_profiling_pool <<- list(
+      benchmark = benchmark(),
+      samples   = list()
+    );
+  }
+
+  # Get current time
+  t   <- unix.timestamp();
+  uid <- sprintf("T%s", t);
+
+  memory_profiling_pool[[samples]][[uid]] <<- list(
+    time        = t,
+    memory_size = memory.size(),
+    event       = GetCurrentFunc(offset = 1),
+    note        = note,
+    profiles    = memory.profile(),
+    benchmark   = memory_profiling_pool$benchmark()
+  );
+
+  invisible(NULL);
+}
+
+#' Save the memory sampling result
+#'
+#' @description Write the memory sampling data to a csv table.
+#' If you didn't doing any memory sampling by \code{memory.sample} yet,
+#' then this function will do nothing.
+#'
+write.memory.sample <- function(file) {
+  if (!exists("memory_profiling_pool", envir = globalenv())) {
+    return(NULL);
+  }
+
+  d       <- data.frame();
+  samples <- memory_profiling_pool[["samples"]];
+  profile <- data.frame();
+
+  for(name in names(samples)) {
+    sample  <- samples[[name]];
+    benchmark <- sample$benchmark;
+    profile <- rbind(profile, sample$profiles);
+    d       <- rbind(d, c(
+      sample$time,
+      sample$memory_size,
+      sample$event,
+      sample$note,
+      benchmark$since_last,
+      benchmark$since_start
+    ));
+  }
+
+  rownames(d)       <- names(samples);
+  colnames(d)       <- c("time", "memory_size", "event", "note", "since_last", "since_start");
+  rownames(profile) <- names(samples);
+
+  d <- cbind(d, profile);
+
+  write.csv(d, file = file, row.names = FALSE);
 }

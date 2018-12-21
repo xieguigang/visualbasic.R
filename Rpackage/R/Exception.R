@@ -11,9 +11,9 @@
 #' @description This helper tools is not working
 #'    for the closure function.
 #'
-GetCurrentFunc <- function() {
+GetCurrentFunc <- function(offset = 0) {
     stacks <- sys.calls();
-    name   <- stacks[[length(stacks) - 1]];
+    name   <- stacks[[length(stacks) - 1 - offset]];
     name   <- Strings.Split(toString(name), "\\(")[1];
     name;
 }
