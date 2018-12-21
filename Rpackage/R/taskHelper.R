@@ -112,13 +112,16 @@ memory.sample <- function(note = NA) {
       benchmark = benchmark(),
       samples   = list()
     );
+
+    samples <- list();
+  } else {
+    samples <- memory_profiling_pool[["samples"]];
   }
 
   # Get current time
-  t   <- unix.timestamp();
-  uid <- sprintf("T%s", t);
-
-  memory_profiling_pool[[samples]][[uid]] <<- list(
+  t      <- unix.timestamp();
+  uid    <- sprintf("T%s", t);
+  sample <- list(
     time        = t,
     memory_size = memory.size(),
     event       = GetCurrentFunc(offset = 1),
@@ -126,6 +129,9 @@ memory.sample <- function(note = NA) {
     profiles    = memory.profile(),
     benchmark   = memory_profiling_pool$benchmark()
   );
+
+  samples[[uid]] <- sample;
+  memory_profiling_pool[[samples]] <<- samples;
 
   invisible(NULL);
 }

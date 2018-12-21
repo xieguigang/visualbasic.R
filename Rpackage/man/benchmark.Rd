@@ -9,4 +9,7 @@ benchmark()
 \description{
 Benchmark helper
 }
+\details{
+Could running in multiple instance
+}
 

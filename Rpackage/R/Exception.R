@@ -13,7 +13,13 @@
 #'
 GetCurrentFunc <- function(offset = 0) {
     stacks <- sys.calls();
-    name   <- stacks[[length(stacks) - 1 - offset]];
-    name   <- Strings.Split(toString(name), "\\(")[1];
-    name;
+    frame  <- length(stacks) - 1 - offset;
+
+    if (frame < 1) {
+      name <- "<global>";
+    } else {
+      name <- stacks[[frame]];
+      name <- Strings.Split(toString(name), "\\(")[1];
+      name;
+    }
 }

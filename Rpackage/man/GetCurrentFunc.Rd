@@ -4,7 +4,7 @@
 \alias{GetCurrentFunc}
 \title{Get the name of current function}
 \usage{
-GetCurrentFunc()
+GetCurrentFunc(offset = 0)
 }
 \description{
 This helper tools is not working
