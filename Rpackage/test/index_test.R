@@ -26,3 +26,15 @@ for (j in 1:300000) {
 }
 
 print(test());
+
+
+index <- as.index(i);
+
+test <- benchmark();
+
+
+for (j in 1:300000) {
+	index(x);
+}
+
+print(test());

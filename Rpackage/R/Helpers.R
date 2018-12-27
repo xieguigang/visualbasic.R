@@ -28,6 +28,16 @@
 #'
 swap <- function(a, b) list(a = b, b = a);
 
+as.index <- function(keys) {
+	index <- list();
+	
+	for(key in keys) {
+		index[[key]] = 1;
+	}
+	
+	function(test) !is.null(index[[test]])
+}
+
 #' Get current Linux user
 #'
 #' @description Get user name of current linux login user by bash shell
