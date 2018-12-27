@@ -1,7 +1,8 @@
-#Region "Microsoft.ROpen::6174f2a9c58d1ece2f6adde531b7fc02, Helpers.R"
+#Region "Microsoft.ROpen::986df87c2fcb663742e2c97ccd57d7ed, Helpers.R"
 
     # Summaries:
 
+    # as.index <- function(keys) {...
     # user <- function() {...
     # argv <- function() {...
     # is.argName <- function(x) {if (x %=>% IsNothing) {...
@@ -28,6 +29,13 @@
 #'
 swap <- function(a, b) list(a = b, b = a);
 
+#' Key index helper
+#' 
+#' @description Create a index object for determine that a given id 
+#' is exists in the keys collection or not.
+#'
+#' @param keys This function parameter should be a string character vector. 
+#'
 as.index <- function(keys) {
 	index <- list();
 	

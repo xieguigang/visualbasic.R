@@ -20,7 +20,6 @@ print(test());
 
 test <- benchmark();
 
-
 for (j in 1:300000) {
 	dd <- !is.null(index[[x]])
 }
@@ -31,7 +30,6 @@ print(test());
 index <- as.index(i);
 
 test <- benchmark();
-
 
 for (j in 1:300000) {
 	index(x);
