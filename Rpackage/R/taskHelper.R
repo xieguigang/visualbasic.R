@@ -113,6 +113,7 @@ benchmark <- function() {
 #'
 memory.size.auto <- function() {
   if (.Platform$OS.type == "windows") {
+    # MB
     memory.size;
   } else {
 
@@ -125,6 +126,10 @@ memory.size.auto <- function() {
       # total           123608K
       total <- Strings.Split(total);
       total <- total[length(total)];
+      # convert to MB
+      total <- substr(total, 1, nchar(total) - 1);
+      total <- as.numeric(total) / 1024;
+
       total;
     }
   }
