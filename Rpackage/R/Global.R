@@ -135,24 +135,34 @@ Set <- function(...) (globalenv() %=>% Push)(...);
 #   invisible(NULL);
 # }
 
-#' Get variable in global
+#' Get variable in global environment
 #'
+#' @param name The variable name string that going to
+#'             get its value in global environment.
+#'
+#' @return The variable value of the given variable name. If the variable is
+#'         not exists in global environment, then value \code{NULL} will be
+#'         return.
 global <- function(name) {
-  base::get(name, envir = .GlobalEnv);
+  if (!base::exists(name, envir = .GlobalEnv)) {
+    NULL;
+  } else {
+    base::get(name, envir = .GlobalEnv);
+  }
 }
 
 #' Set variable in global
 #'
 #' @description Set variables into the global environment.
 #'
-#' @examples global(name, value);
+#' @examples global(name) <- value;
 #'
 #' @return \code{NULL}
 #'
 "global<-" <- function(name, value) {
   assign <- list(name, value);
   do.call(`=`, assign, envir = .GlobalEnv);
-  base::get(name, envir = .GlobalEnv);
+  name;
 }
 
 #' Push variable to a given environment

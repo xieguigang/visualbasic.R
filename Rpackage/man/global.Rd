@@ -4,10 +4,20 @@
 \alias{global}
 \title{Set variable in global}
 \usage{
-global(name = NULL, value = NULL)
+global(name)
+}
+\arguments{
+\item{name}{The variable name string that going to
+get its value in global environment.}
 }
 \value{
 \code{NULL}
+
+Get variable in global environment
+
+The variable value of the given variable name. If the variable is
+        not exists in global environment, then value \code{NULL} will be
+        return.
 }
 \description{
 Set variables into the global environment.
