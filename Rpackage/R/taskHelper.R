@@ -88,14 +88,14 @@ benchmark <- function() {
   uid   <- sprintf("Tbenchmark_%s", start);
   last  <- sprintf("%s_last", uid);
 
-  global(last, start);
+  global(last) <- start;
 
   function() {
-    t.last  <- get(last, envir = globalenv());
+    t.last  <- global(last);
     d.last  <- unix.timestamp() - t.last;
     d.start <- unix.timestamp() - start;
 
-    global(last, unix.timestamp());
+    global(last) <- unix.timestamp();
 
     list(since_last      = d.last,
          since_start     = d.start,
@@ -140,7 +140,9 @@ memory.size.auto <- function() {
 #' @details This function is limited one instance
 #'
 memory.sample <- function(note = NA) {
-  if (!exists("memory_profiling_pool", envir = globalenv())) {
+  p <- "memory_profiling_pool";
+
+  if (!exists(p, envir = globalenv())) {
     memory_profiling_pool <- list(
       benchmark = benchmark(),
       samples   = list(),
@@ -167,8 +169,10 @@ memory.sample <- function(note = NA) {
   samples[[uid]] <- sample;
   memory_profiling_pool[["samples"]] <- samples;
 
-  # global function returns NULL
-  global("memory_profiling_pool", memory_profiling_pool);
+  # global function returns NULL  
+  global(p) <- memory_profiling_pool;
+  
+  invisible(NULL);
 }
 
 #' Save the memory sampling result
