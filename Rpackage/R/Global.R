@@ -129,10 +129,30 @@ Set <- function(...) (globalenv() %=>% Push)(...);
 #'
 #' @return \code{NULL}
 #'
-global <- function(name = NULL, value = NULL) {
+# global <- function(name = NULL, value = NULL) {
+#   assign <- list(name, value);
+#   do.call(`=`, assign, envir = globalenv());
+#   invisible(NULL);
+# }
+
+#' Get variable in global
+#'
+global <- function(name) {
+  base::get(name, envir = .GlobalEnv);
+}
+
+#' Set variable in global
+#'
+#' @description Set variables into the global environment.
+#'
+#' @examples global(name, value);
+#'
+#' @return \code{NULL}
+#'
+"global<-" <- function(name, value) {
   assign <- list(name, value);
-  do.call(`=`, assign, envir = globalenv());
-  invisible(NULL);
+  do.call(`=`, assign, envir = .GlobalEnv);
+  base::get(name, envir = .GlobalEnv);
 }
 
 #' Push variable to a given environment
