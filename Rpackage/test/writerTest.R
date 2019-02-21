@@ -6,6 +6,9 @@ print(head(test))
 
 # normal test
 
+ # 用户  系统  流逝 
+# 19.56 10.25 32.76
+
 system.time({
 	
 	write <- "./test.tmp" %=>% File.Open;
@@ -17,6 +20,9 @@ system.time({
 });
 
 # buffer test
+
+# 用户 系统 流逝 
+# 3.02 0.10 3.39
 
 system.time({
 	
