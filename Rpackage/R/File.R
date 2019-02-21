@@ -62,12 +62,14 @@ File.WithExtension <- function(path, ext) {
 #' @return Nothing
 Println <- function(file.txt, content) {
 
-  for(line in content) {
-    cat(line, file = file.txt, append = TRUE);
-    cat("\n", file = file.txt, append = TRUE);
-  }
+  # Add and extra newline after the content data
+  content <- paste0(append(content, ""), collapse = "\n");
+  cat(content,
+      file = file.txt,
+      append = TRUE
+  );
 
-	return(invisible(NULL));
+	invisible(NULL);
 }
 
 #' Open a file for write in text mode
