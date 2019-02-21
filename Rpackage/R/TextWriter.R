@@ -1,3 +1,13 @@
+#Region "Microsoft.ROpen::c01b8204dbaf22c8ec22bc338f56e9f5, TextWriter.R"
+
+    # Summaries:
+
+    # textWriter <- function(path, buffer.Size = 4096) {...
+    # addline <- function(line) {if (!base::exists("buffer", envir = workspace)) {...
+    # close <- function() {...
+
+#End Region
+
 # Helper for write large text file in R language
 
 #' Open a text writer
@@ -56,5 +66,3 @@ textWriter <- function(path, buffer.Size = 4096) {
       addline(sprintf(...));
     });
 }
-
-
