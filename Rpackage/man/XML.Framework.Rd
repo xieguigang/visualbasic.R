@@ -7,7 +7,8 @@
 XML.Framework(write, do.write, rootName)
 }
 \arguments{
-\item{write}{The file write handle from the \code{\link{File.Open}} function}
+\item{write}{The file write handle from the \code{\link{File.Open}} or \code{\link{textWriter}} function.
+It is recommended use \code{\link{textWriter}} function for better performance.}
 
 \item{do.write}{A function pointer that used for describ how to build the output xml file}
 

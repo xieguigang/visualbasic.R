@@ -32,15 +32,21 @@ SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {
 
 #' A framework for write R object to XML file.
 #'
-#' @param write The file write handle from the \code{\link{File.Open}} function
+#' @param write The file write handle from the \code{\link{File.Open}} or \code{\link{textWriter}} function.
+#'    It is recommended use \code{\link{textWriter}} function for better performance.
 #' @param do.write A function pointer that used for describ how to build the output xml file
 #' @param rootName The node name of the generated xml root node.
 #'
 XML.Framework <- function(write, do.write, rootName) {
+    xsd <- "http://www.w3.org/2001/XMLSchema";
+    xsi <- "http://www.w3.org/2001/XMLSchema-instance";
+
     write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-    write("<%s xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">", rootName);
+    write("<%s xmlns:xsd=\"%s\" xmlns:xsi=\"%s\">", rootName, xsd, xsi);
     do.write(write);
     write("</%s>", rootName);
+
+    invisible(NULL);
 }
 
 #' Write R object to Xml
