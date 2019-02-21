@@ -7,19 +7,19 @@
 #'
 #' @return A text writer handler function.
 #'
-textWriter <- function(path, buffer.Size = 8192) {
+textWriter <- function(path, buffer.Size = 16384) {
 
   # Using current environment as workspace
   workspace <- environment();
   flush     <- File.Open(path, FALSE, FALSE);
   assign("buffer", c(), envir = workspace);
 
-  addline <- function(line) {
-	if (!base::exists("buffer", envir = workspace)) {
-		stop(sprintf("Text file '%s' is closed!", path));
-	} else {
-	    chunk <- append(get("buffer", envir = workspace), line);
-	}
+  addline <- function(...) {
+  	if (!base::exists("buffer", envir = workspace)) {
+  		stop(sprintf("Text file '%s' is closed!", path));
+  	} else {
+  	  chunk <- append(get("buffer", envir = workspace), sprintf(...));
+  	}
 
     if (length(chunk) >= buffer.Size) {
       # write current data, and then clear the buffer
