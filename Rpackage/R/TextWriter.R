@@ -37,6 +37,8 @@ textWriter <- function(path, buffer.Size = 8192) {
     rm(flush);
     gc();
   }
+
+  list(writeLine = addline, close = close);
 }
 
 
