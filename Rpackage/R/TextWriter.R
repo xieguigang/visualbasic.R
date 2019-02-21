@@ -11,12 +11,15 @@ textWriter <- function(path, buffer.Size = 8192) {
 
   # Using current environment as workspace
   workspace <- environment();
-  buffer    <- "buffer";
   flush     <- File.Open(path, FALSE, FALSE);
-  assign(buffer, c(), envir = workspace);
+  assign("buffer", c(), envir = workspace);
 
   addline <- function(line) {
-    chunk <- append(get(buffer, envir = workspace), line);
+	if (!base::exists("buffer", envir = workspace)) {
+		stop(sprintf("Text file '%s' is closed!", path));
+	} else {
+	    chunk <- append(get("buffer", envir = workspace), line);
+	}
 
     if (length(chunk) >= buffer.Size) {
       # write current data, and then clear the buffer
@@ -24,18 +27,18 @@ textWriter <- function(path, buffer.Size = 8192) {
       chunk <- c();
     }
 
-    assign(buffer, chunk, envir = workspace);
+    assign("buffer", chunk, envir = workspace);
   }
 
   # Flush the remaining data in buffer and close file.
   close <- function() {
-    chunk <- get(buffer, envir = workspace);
+    chunk <- get("buffer", envir = workspace);
     chunk %=>% flush;
 
-    rm(workspace);
-    rm(chunk);
-    rm(flush);
-    gc();
+    # rm(workspace);
+    # rm(chunk);
+    # rm(flush);
+    # gc();
   }
 
   list(writeLine = addline, close = close);
