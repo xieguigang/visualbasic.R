@@ -5,7 +5,14 @@
 #' @param path The file path string.
 #' @param buffer.Size Buffer size in number of text lines.
 #'
-#' @return A text writer handler function.
+#' @return A text writer handler list object, with members:
+#'
+#' \enumerate{
+#' \item \code{writeline} Write text line through this text writer helper.
+#' \item \code{println} Write text line with \code{sprintf} format helper.
+#' \item \code{close} Flush the remaining text data in buffer and
+#'      then close the file connection and finally dispose the text writer buffer.
+#' }
 #'
 textWriter <- function(path, buffer.Size = 16384) {
 
@@ -14,11 +21,11 @@ textWriter <- function(path, buffer.Size = 16384) {
   flush     <- File.Open(path, FALSE, FALSE);
   assign("buffer", c(), envir = workspace);
 
-  addline <- function(...) {
+  addline <- function(line) {
   	if (!base::exists("buffer", envir = workspace)) {
   		stop(sprintf("Text file '%s' is closed!", path));
   	} else {
-  	  chunk <- append(get("buffer", envir = workspace), sprintf(...));
+  	  chunk <- append(get("buffer", envir = workspace), line);
   	}
 
     if (length(chunk) >= buffer.Size) {
@@ -35,13 +42,18 @@ textWriter <- function(path, buffer.Size = 16384) {
     chunk <- get("buffer", envir = workspace);
     chunk %=>% flush;
 
-    # rm(workspace);
+    rm(list = c("buffer"), envir = workspace);
     # rm(chunk);
     # rm(flush);
-    # gc();
+    gc();
   }
 
-  list(writeLine = addline, close = close);
+  list(
+    writeline = addline,
+    close = close,
+    println = function(...) {
+      addline(sprintf(...));
+    });
 }
 
 

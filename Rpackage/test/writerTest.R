@@ -29,9 +29,10 @@ system.time({
 	write <- "./test2.tmp" %=>% textWriter;
 	
 	for(line in test) {
-		write$writeLine(line);
+		write$writeline(line);
 	}
 	
-	write$close()
-	
+	write$close();
+	# will throw exception after file have been closed
+	write$writeline("");
 });
