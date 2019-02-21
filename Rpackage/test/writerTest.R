@@ -26,7 +26,7 @@ system.time({
 
 system.time({
 	
-	write <- "./test2.tmp" %=>% textWriter;
+	write <- textWriter("./test2.tmp", 8192);
 	
 	for(line in test) {
 		write$writeline(line);
@@ -34,5 +34,36 @@ system.time({
 	
 	write$close();
 	# will throw exception after file have been closed
-	write$writeline("");
+	# write$writeline("");
+});
+
+
+system.time({
+	
+	write <- textWriter("./test2.tmp", 1024);
+	
+	for(line in test) {
+		write$writeline(line);
+	}
+	
+	write$close();
+	# will throw exception after file have been closed
+	# write$writeline("");
+});
+
+
+# buffer test 2
+# 用户 系统 流逝 
+# 3.83 0.04 4.17 
+
+system.time({
+	
+	write <- "./test3.tmp" %=>% textWriter;
+	
+	for(line in test) {
+		# sprintf 会稍微对性能产生一些影响
+		write$println(line);
+	}
+	
+	write$close();
 });

@@ -4,12 +4,13 @@
 \alias{textWriter}
 \title{Open a text writer}
 \usage{
-textWriter(path, buffer.Size = 16384)
+textWriter(path, buffer.Size = 4096)
 }
 \arguments{
 \item{path}{The file path string.}
 
-\item{buffer.Size}{Buffer size in number of text lines.}
+\item{buffer.Size}{Buffer size in number of text lines. This
+parameter dramatically affect the writer performance.}
 }
 \value{
 A text writer handler list object, with members:

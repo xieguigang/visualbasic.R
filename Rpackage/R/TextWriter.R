@@ -3,7 +3,8 @@
 #' Open a text writer
 #'
 #' @param path The file path string.
-#' @param buffer.Size Buffer size in number of text lines.
+#' @param buffer.Size Buffer size in number of text lines. This
+#'      parameter dramatically affect the writer performance.
 #'
 #' @return A text writer handler list object, with members:
 #'
@@ -14,7 +15,7 @@
 #'      then close the file connection and finally dispose the text writer buffer.
 #' }
 #'
-textWriter <- function(path, buffer.Size = 16384) {
+textWriter <- function(path, buffer.Size = 4096) {
 
   # Using current environment as workspace
   workspace <- environment();
