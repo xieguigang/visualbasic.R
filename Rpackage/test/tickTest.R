@@ -1,4 +1,4 @@
-task <- 1:100000;
+task <- 1:1000000;
 
 
 system.time({
@@ -16,7 +16,7 @@ for(i in task) {
 
 system.time({
 
-tick <- tick.helper(length(task));
+tick <- tick.helper(length(task), callback = function(p) warning(p));
 cat("\n");
 	cat("  Progress%: ");
 

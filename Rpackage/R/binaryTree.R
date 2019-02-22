@@ -70,10 +70,10 @@ binaryTree <- function(src, key, key.compares, debug = FALSE, progressHeader = T
   if (len == 1) {
     tree;
   } else {
-    binaryTree.construct.impl(tree, popX, popName, 
-		src, 
-		key, 
-		key.compares, 
+    binaryTree.construct.impl(tree, popX, popName,
+		src,
+		key,
+		key.compares,
 		debug, progressHeader
 	);
   }
@@ -89,13 +89,13 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
 
   if (debug) {
     tick <- tick.helper(length(src) - 1);
-	
+
 	if (progressHeader) {
 		cat("\n");
 		cat(" Progress  ");
 	} else {
 		cat("  ");
-	}    
+	}
   }
 
   # The first element is already include as root node
@@ -164,7 +164,7 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
 		cat("\n\n");
 	} else {
 		cat(" ");
-	}    
+	}
   }
 
   # return the constructed binary tree list.
@@ -281,7 +281,12 @@ numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {
   }
 }
 
-#' @param seq Please ensure that this numeric sequence is not NULL or NA value, or contains elements.
+#' Group a numeric vector without check
+#'
+#' @param seq Please ensure that this numeric sequence is not
+#'       \code{NULL} or \code{NA} value, and it must contains
+#'       more than 1 elements.
+#'
 numeric.group.impl <- function(seq, assert) {
   seq    <- sort(seq);
   groups <- list();
