@@ -128,16 +128,24 @@ Microsoft.VisualBasic.Data <- function() {
 		l;
 	}
 
-	.as.dataframe <- function(list) {
+	#' Convert a list of list object as dataframe
+	#' 
+	#' @param project Column names subset for create a dataframe with selected fields.
+	#'
+	.as.dataframe <- function(list, project = NULL) {
 		list.names <- names(list);
 
 		if (list.names %=>% IsNothing) {
 			list.names <- 1:length(list);
 		}
 
-		# Get all slot name in list members
-		all.prop <- selectMany(list, function(x) names(x));
-		all.prop <- unique(all.prop);
+		if (project %=>% IsNothing) {
+			# Get all slot name in list members
+			all.prop <- selectMany(list, function(x) names(x));
+			all.prop <- unique(all.prop);
+		} else {
+			all.prop <- project;
+		}
 
 		vectors <- lapply(all.prop, function(col) {
 		  sapply(list.names, function(i) {
@@ -158,6 +166,30 @@ Microsoft.VisualBasic.Data <- function() {
 		d;
 	}
 
+	#' Convert a list object as dataframe
+	#'
+	#' @param list A list object, with members is vector
+	#'
+	cbind.dataframe <- function(list, row.names = NULL) {
+		col.names <- names(list);
+		d <- c();
+		
+		for(name in col.names) {
+			d <- cbind(d, list[[name]]);
+		}
+		
+		if (row.names %=>% IsNothing) {
+			row.names <- 1:nrow(d);
+		} else if (length(row.names) == 1) {
+			row.names <- list[[row.names]];
+		}
+		
+		colnames(d) <- col.names;
+		rownames(d) <- row.names;
+		
+		d;
+	}
+	
 	#' ensure the result is a dataframe object
 	#'
 	#' There is a bug in R dataframe subset operation:
@@ -228,6 +260,7 @@ Microsoft.VisualBasic.Data <- function() {
 		 	 .selectMany  = selectMany,
 		 	 list.project = list.project,
 		 	 as.dataframe = .as.dataframe,
+			 cbind.dataframe  = cbind.dataframe,
 			 ensure.dataframe = .ensure.dataframe,
 			 read.dataset     = .load.dataset,
 			 cmode            = cmode,
