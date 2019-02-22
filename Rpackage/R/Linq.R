@@ -136,13 +136,13 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 
 		for (key in names(clusters)) {
 			i <- clusters[[key]];
-			sub <- lapply(cols, function(col) {
+			subv <- lapply(cols, function(col) {
 				v <- columns[[col]];
 				v[i];
 			});
-			names(sub) <- cols;
-			
-			groups[[key]] <- cbind.dataframe(sub);
+			names(subv) <- cols;
+
+			groups[[key]] <- cbind.dataframe(subv);
 		}
 
 		groups;

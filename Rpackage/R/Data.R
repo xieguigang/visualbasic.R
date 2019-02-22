@@ -176,7 +176,7 @@ Microsoft.VisualBasic.Data <- function() {
 		d <- c();
 		
 		if (is.null(col.names)) {
-			stop("The given list object have no names, please use ``names(...) <- ...`` for assign names at first.");
+			stop("The given list object have no names, please use 'names(x) <- ..' for assign names at first.");
 		}
 		
 		for(name in col.names) {

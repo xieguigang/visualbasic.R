@@ -4,7 +4,8 @@ Imports("Microsoft.VisualBasic.Data.Linq");
 
 data <- read.csv("./test_large.csv");
 
-gd <- GroupBy(data, "calibration.check", type = "data.frame");
+key <- "calibration.check"
+gd <- GroupBy(data, key, type = "data.frame");
 
 for(level in names(gd)) {
 
