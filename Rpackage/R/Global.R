@@ -250,9 +250,12 @@ is.nothing <- function(...) IsNothing(...);
 #'
 #' @return A list with element: \code{rows} and \code{cols} to indicate the object size.\cr\cr
 #'
-#'         for x is \code{data.frame}, these two element value will be \code{\link{base::nrows}} and \code{\link{base::ncols}}\cr
-#'         for x is \code{list} or \code{vector}, these two element value will be \code{rows = 1} and \code{cols = \link{length}(x)}\cr
-#'         for x is object like S4 class, these two element value will be \code{[1,1]}\cr
+#' \enumerate{
+#'   \item for x is \code{data.frame}, these two element value will be \code{\link{nrows}} and \code{\link{ncols}}\cr
+#'   \item for x is \code{list} or \code{vector}, these two element value will be
+#'         \code{rows = 1} and \code{cols = \link{length}(x)}\cr
+#'   \item for x is object like S4 class, these two element value will be \code{[1,1]}\cr
+#' }
 #'
 Size <- function(x) {
   type <- GetType(x);
