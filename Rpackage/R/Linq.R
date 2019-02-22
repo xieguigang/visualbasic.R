@@ -115,7 +115,7 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 	#' @param key The column name for read the column data in target source as the group key.
 	GroupBy.dataframe <- function(data.frame, key) {
 
-		keys    <- as.vector(unlist(data.frame[, key]));
+		keys    <- sapply(unlist(data.frame[, key]), toString) %=>% as.character;
 		cols    <- colnames(data.frame);
 		columns <- lapply(cols, function(col) {
 			as.vector(unlist(data.frame[, col]));
@@ -127,7 +127,8 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 
 		for (i in 1:length(keys)) {
 			# group keys and get i index clusters
-			clusters[[keys[i]]] <- append(clusters[[keys[i]]], i);
+			key <- keys[i];
+			clusters[[key]] <- append(clusters[[key]], i);
 		}
 
 		# and then get group data by i index cluster
