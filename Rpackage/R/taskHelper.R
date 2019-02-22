@@ -40,7 +40,7 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100) {
 			assign("cur", round(cur), envir = workspace);
 
 			if (disp.number) {
-			  cat(progress.cur);
+			  cat(cur);
 			  cat(" ");
 			} else {
 			  cat(".");
@@ -173,9 +173,9 @@ memory.sample <- function(note = NA) {
   samples[[uid]] <- sample;
   memory_profiling_pool[["samples"]] <- samples;
 
-  # global function returns NULL  
+  # global function returns NULL
   global(p) <- memory_profiling_pool;
-  
+
   invisible(NULL);
 }
 
