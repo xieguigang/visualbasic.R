@@ -20,7 +20,7 @@
 
 #' VisualBasic namespace imports helper
 #'
-#' @param namespace The namespace function name
+#' @param namespace The namespace function name or function itself
 #' @param overrides A logical flag to indicate that should the imported function
 #'                  can overrides the previous function which they have the same
 #'                  name. By default is can not. If this parameter is set to true,
@@ -31,7 +31,12 @@
 #' @return A string vector contains all of the function names from this namespace
 #'         function that imported to current environment.
 Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {
-	module <- get(namespace)();
+  if (is.character(namespace)) {
+    module <- get(namespace)();
+  } else {
+    module <- namespace();
+    namespace <- module$namespace;
+  }
 
 	if (!("methods" %in% names(module))) {
 		func.list <- module;

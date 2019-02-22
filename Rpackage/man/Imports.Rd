@@ -8,7 +8,7 @@ Imports(namespace, overrides = FALSE, silent = TRUE,
   frame = parent.frame())
 }
 \arguments{
-\item{namespace}{The namespace function name}
+\item{namespace}{The namespace function name or function itself}
 
 \item{overrides}{A logical flag to indicate that should the imported function
 can overrides the previous function which they have the same
