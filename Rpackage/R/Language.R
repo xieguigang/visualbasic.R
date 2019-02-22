@@ -38,6 +38,8 @@
 #' }
 Microsoft.VisualBasic.Language <- function() {
 
+	stack <- environment();
+
 	#' The \code{OR} default expression
 	#'
 	#' @return \code{\%||\%}: The target given value or default value is

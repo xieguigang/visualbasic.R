@@ -172,11 +172,20 @@ xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
 #'
 #' @return If the module argument is a list, then it will returns directly,
 #'   or the function will be evaluate for produce a list value.
+#' If the target module object is a namespace object, then methods result will 
+#' be returned. 
 Eval <- function(module, ...) {
   if (module %=>% is.list) {
     module;
   } else {
-    module(...);
+    v <- module(...);
+	
+	if (("namespace" %in% names(v)) && ("methods" %in% names(v))) {
+		# is a namespace object
+		v$methods;
+	} else {
+		v;
+	}
   }
 }
 
