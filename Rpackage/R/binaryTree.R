@@ -270,7 +270,7 @@ node.find <- function(tree, search, key.compares) {
 numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {
   len = seq %=>% length;
 
-  if ((len == 0) || (seq %=>% IsNothing)) {
+  if ((len == 0) || (seq %=>% is.na)) {
     list();
   } else if (len == 1) {
     single <- list();
@@ -281,6 +281,7 @@ numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {
   }
 }
 
+#' @param seq Please ensure that this numeric sequence is not NULL or NA value, or contains elements.
 numeric.group.impl <- function(seq, assert) {
   seq    <- sort(seq);
   groups <- list();
