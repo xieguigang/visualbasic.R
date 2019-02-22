@@ -20,16 +20,23 @@
 #'
 #' @param total The total elements in the Long time run task that will be processing
 #' @param step The tick interval value for report the task progress value, default is \code{5/100}.
+#' @param callback Callback function that will be invoked at each 5% progress.
 #'
 #' @return A lambda function that using for report the task progress.
 #'
-tick.helper <- function(total, disp.number = TRUE, step = 5 / 100) {
+tick.helper <- function(total, disp.number = TRUE, step = 5 / 100, callback = NULL) {
 
   workspace <- environment();
 
   assign("i", 0, envir = workspace);
   assign("p5", total * step, envir = workspace);
   assign("cur", 0, envir = workspace);
+
+  if (callback %=>% IsNothing) {
+    callback <- function() {
+      # do nothing
+    }
+  }
 
 	return(function() {
 		i <- get("i", envir = workspace) + 1;
@@ -45,6 +52,8 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100) {
 			} else {
 			  cat(".");
 			}
+
+      callback(cur);
 		}
 
     assign("i", i, envir = workspace);
