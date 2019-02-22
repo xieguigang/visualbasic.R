@@ -179,3 +179,7 @@ Eval <- function(module, ...) {
     module(...);
   }
 }
+
+warnings.clear <- function() {
+	assign("last.warning", NULL, envir = baseenv());
+}
