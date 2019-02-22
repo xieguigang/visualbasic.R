@@ -6,6 +6,22 @@
 \usage{
 Microsoft.VisualBasic.Data()
 }
+\arguments{
+\item{project}{Column names subset for create a dataframe with selected fields.
+
+Convert a list object as dataframe}
+
+\item{list}{A list object, with members is vector
+
+ensure the result is a dataframe object
+
+There is a bug in R dataframe subset operation:
+If the subset result just one row,
+Then the subset result will be convert a vector automatically,
+not a dataframe any more. This will cause bugs and code inconsist.
+Using this function to ensure all of your dataframe subset result
+is a dataframe object, not a vector.}
+}
 \description{
 Common data operation helper function
 }
@@ -23,13 +39,6 @@ Common data operation helper function
          the csv file will be using as the rownames and the first row will be
          using as the colnames.
 }
-ensure the result is a dataframe object
-
-There is a bug in R dataframe subset operation:
-If the subset result just one row,
-Then the subset result will be convert a vector automatically,
-not a dataframe any more. This will cause bugs and code inconsist.
-Using this function to ensure all of your dataframe subset result
-is a dataframe object, not a vector.
+Convert a list of list object as dataframe
 }
 
