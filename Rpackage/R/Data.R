@@ -187,7 +187,7 @@ Microsoft.VisualBasic.Data <- function() {
 		colnames(d) <- col.names;
 		rownames(d) <- row.names;
 		
-		d;
+		.as.matrix(d);
 	}
 	
 	#' ensure the result is a dataframe object
