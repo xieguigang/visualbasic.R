@@ -140,7 +140,8 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 				v <- columns[[col]];
 				v[i];
 			});
-
+			names(sub) <- cols;
+			
 			groups[[key]] <- cbind.dataframe(sub);
 		}
 
