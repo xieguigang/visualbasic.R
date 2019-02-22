@@ -25,17 +25,19 @@
 #'
 tick.helper <- function(total, disp.number = TRUE, step = 5 / 100) {
 
-  progress.i   <<- 0;
-	progress.p5  <<- total * step;
-	progress.cur <<- 0;
+  workspace <- environment();
+
+  assign("i", 0, envir = workspace);
+  assign("p5", total * step, envir = workspace);
+  assign("cur", 0, envir = workspace);
 
 	return(function() {
-		progress.i <<- progress.i + 1;
+		i <- get("i", envir = workspace) + 1;
 
-		if (progress.i >= progress.p5) {
-			progress.i   <<- 1;
-			progress.cur <<- progress.cur + step * 100;
-			progress.cur <<- round(progress.cur);
+		if (i >= get("p5", envir = workspace)) {
+			i <- 1;
+      cur <- get("cur", envir = workspace) + step * 100;
+			assign("cur", round(cur), envir = workspace);
 
 			if (disp.number) {
 			  cat(progress.cur);
@@ -44,6 +46,8 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100) {
 			  cat(".");
 			}
 		}
+
+    assign("i", i, envir = workspace);
 	});
 }
 
