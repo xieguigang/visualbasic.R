@@ -61,14 +61,22 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 
 	#' group data.frame/list by keys
 	#'
-	#' @param enumerable The data source collection for the group operation, by default is ``data.frame`` type.
-	#' @param key The column name or property name for using its corresponding value as the group key
+	#' @param enumerable The data source collection for the group operation,
+	#'     by default is ``data.frame`` type.
+	#' @param key The column name string (or a column projector function in data.frame)
+	#'     or property name (in list) for using its corresponding value as the group
+	#'     key
 	#' @param type Indicate that the data source ``enumerable`` is a data.frame or list?
 	#'        default is a data.frame.
-	GroupBy <- function(enumerable, key, type = c("data.frame", "list")) {
+	#'
+	GroupBy <- function(
+	  enumerable,
+    key,
+    type = c("data.frame", "list"),
+    verbose = FALSE) {
 
 		if (type == "data.frame") {
-			GroupBy.dataframe(data.frame = enumerable, key = key);
+			GroupBy.dataframe(data.frame = enumerable, key = key, verbose = verbose);
 		} else if (type == "list") {
 			GroupBy.list(list = enumerable, key = key);
 		} else {
@@ -112,10 +120,17 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 	#' Groups the rows in a dataframe by a specific column as key.
 	#'
 	#' @param data.frame The data source in data.frame type
-	#' @param key The column name for read the column data in target source as the group key.
-	GroupBy.dataframe <- function(data.frame, key) {
+	#' @param key The column name in string mode or column projector function
+	#'     for read the column data in target source as the group key.
+	GroupBy.dataframe <- function(data.frame, key, verbose = FALSE) {
 
-		keys    <- sapply(unlist(data.frame[, key]), toString) %=>% as.character;
+	  if (is.character(key)) {
+	    keys <- as.vector(unlist(data.frame[, key]));
+	    keys <- sapply(keys, toString) %=>% as.character;
+	  } else {
+	    keys <- key(data.frame);
+	  }
+
 		cols    <- colnames(data.frame);
 		columns <- lapply(cols, function(col) {
 			as.vector(unlist(data.frame[, col]));
@@ -123,16 +138,25 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 		names(columns) <- cols;
 		cbind.dataframe <- Eval(Microsoft.VisualBasic.Data)$cbind.dataframe;
 
-		clusters <- list();
+		if (verbose) {
+		  print("group keys and get i index clusters");
+		}
 
-		for (i in 1:length(keys)) {
-			# group keys and get i index clusters
-			key <- keys[i];
-			clusters[[key]] <- append(clusters[[key]], i);
+		# group keys and get i index clusters
+		unique_keys <- keys %=>% unique
+		clusters <- lapply(unique_keys, function(unique_key) which(keys == unique_key));
+    names(clusters) <- unique_keys;
+
+		if (verbose) {
+		  printf("Unique key(size=%s)", length(unique_keys));
 		}
 
 		# and then get group data by i index cluster
 		groups <- list();
+
+		tick <- tick.helper(length(unique_keys));
+		cat("\n");
+		cat("  Progress%: ");
 
 		for (key in names(clusters)) {
 			i <- clusters[[key]];
@@ -143,7 +167,10 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 			names(subv) <- cols;
 
 			groups[[key]] <- cbind.dataframe(subv);
+			tick();
 		}
+
+		cat("\n\n");
 
 		groups;
 	}
