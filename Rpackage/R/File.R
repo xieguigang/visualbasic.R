@@ -136,7 +136,7 @@ ReadAllLines <- function(file.txt) {
 
 FileReader <- function(path) {
   p       <- file(path, open = "r");
-  read    <- function() readLines(conn);
+  read    <- function() readLines(p);
   release <- function() close(p);
 
   list(invoke = read, dispose = release);
