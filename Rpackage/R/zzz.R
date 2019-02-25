@@ -14,10 +14,18 @@
 
 .onLoad <- function(libname, pkgname) {
 
-  cat("\n");
+  echo <- getOption("echo");
+
+  if (is.null(echo) || is.na(echo)) {
+    echo <- FALSE;
+  }
+
+  if (echo) {
+    cat("\n");
+  }
 
 	# Doing some initialize work at here
-	Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = FALSE);
+	Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = !echo);
 
 	# https://stackoverflow.com/questions/45983899/getnamespaceexports-called-from-within-onload-package-function
   # .onLoad function is running before current package loaded
@@ -29,22 +37,29 @@
     Select(function(line) Strings.Split(line)[1])$
     ToArray();
 
-  cat("\n");
-  cat("Namespace modules in current package:\n\n");
+	if (echo) {
+	  cat("\n");
+	  cat("Namespace modules in current package:\n\n");
+	}
 
-  for (namespace in index) {
-    module <- do.call(namespace, list());
-    cat(module$namespace);
-    cat("\t\t");
-    cat(module$description);
-    cat("\n");
-  }
+	if (echo) {
+	  for (namespace in index) {
+	    module <- do.call(namespace, list());
 
-  cat("\n");
-  cat("If any problem with this package, open an issue on github:\n\n");
-  cat("    https://github.com/xieguigang/visualbasic.R");
-  cat("\n\n");
-  cat("Or contact the author: \n\n");
-  cat("    xieguigang <xie.guigang@gcmodeller.org>");
-  cat("\n\n");
+	    cat(module$namespace);
+	    cat("\t\t");
+	    cat(module$description);
+	    cat("\n");
+	  }
+	}
+
+	if (echo) {
+	  cat("\n");
+	  cat("If any problem with this package, open an issue on github:\n\n");
+	  cat("    https://github.com/xieguigang/visualbasic.R");
+	  cat("\n\n");
+	  cat("Or contact the author: \n\n");
+	  cat("    xieguigang <xie.guigang@gcmodeller.org>");
+	  cat("\n\n");
+	}
 }

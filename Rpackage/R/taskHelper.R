@@ -261,11 +261,10 @@ slave <- function(closure) {
   closure   <- capture.output(closure);
   slave_cli <- "R -q --no-restore --no-save --slave -e \"VisualBasic.R::slave_closure();\"";
 
+  # arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
   system(slave_cli, intern = FALSE,
-         ignore.stdout = TRUE, ignore.stderr = FALSE,
-         wait = TRUE, input = closure,
-         show.output.on.console = TRUE,
-         minimized = FALSE,
-         invisible = TRUE
+         ignore.stderr = FALSE,
+         wait = TRUE,
+         input = closure
   );
 }
