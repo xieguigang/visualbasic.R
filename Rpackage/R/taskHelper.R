@@ -250,3 +250,22 @@ slave_closure <- function(closure = "stdin") {
 
   eval(parse(text = closure))();
 }
+
+#' Run closure in a new R process
+#'
+#' @description This is usually using for memory size optimization.
+#'
+#' @param closure should be a function without any parameter. And have no function returns.
+#'
+slave <- function(closure) {
+  closure   <- capture.output(closure);
+  slave_cli <- "R -q --no-restore --no-save --slave -e \"VisualBasic.R::slave_closure();\"";
+
+  system(slave_cli, intern = FALSE,
+         ignore.stdout = TRUE, ignore.stderr = FALSE,
+         wait = TRUE, input = closure,
+         show.output.on.console = TRUE,
+         minimized = FALSE,
+         invisible = TRUE
+  );
+}
