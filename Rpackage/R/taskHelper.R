@@ -235,3 +235,18 @@ write.memory.sample <- function(file) {
 
   write.csv(d, file = file, row.names = FALSE);
 }
+
+#' Run a closure string
+#'
+#' @description The closure string could be content from stdin or user input text.
+#'
+#' @param closure A string vector that can represent as a function, which should have no parameter.
+#'    By default, the closure text is read from stdin.
+#'
+slave_closure <- function(closure = "stdin") {
+  if (closure == "stdin") {
+    closure <- ReadAllText("stdin");
+  }
+
+  eval(parse(text = closure))();
+}

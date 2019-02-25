@@ -123,7 +123,7 @@ ensure_dir_exists <- function(path) {
 #' @return Returns the text file content in one piece, not split in lines.
 #'
 ReadAllText <- function(file.txt) {
-	paste0(file.txt %=>% ReadAllLines, collapse = "\n");
+	paste0(ReadAllLines(file.txt), collapse = "\n");
 }
 
 #' Read all text line
@@ -131,10 +131,13 @@ ReadAllText <- function(file.txt) {
 #' @description Read all text lines from a specific text file.
 #'
 ReadAllLines <- function(file.txt) {
-  conn  <- file(file.txt, open = "r");
-  lines <- readLines(conn);
+  using(FileReader(file.txt));
+}
 
-  conn %=>% close;
+FileReader <- function(path) {
+  p       <- file(path, open = "r");
+  read    <- function() readLines(conn);
+  release <- function() close(p);
 
-  lines;
+  list(invoke = read, dispose = release);
 }

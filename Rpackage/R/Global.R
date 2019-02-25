@@ -351,3 +351,16 @@ GetType <- function(x) {
 primitiveTypes <- function() {
 	list(object = 0, data.frame = 1, list = 2, vector = 3);
 }
+
+#' Auto dispose
+#'
+#' @param proc This proc object should contains
+#'    a \code{dispose} function for release resource and
+#'    a \code{invoke} function to run your code.
+#'
+using <- function(proc) {
+  out <- proc$invoke();
+  proc$dispose();
+
+  out;
+}
