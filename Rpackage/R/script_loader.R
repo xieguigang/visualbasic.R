@@ -76,4 +76,98 @@ flash_load <- function(dir = getwd()) {
 	invisible(NULL);
 }
 
-# flash_load();
+#' Get commandline
+#'
+#' @note
+#'
+#' Commandline parser for cli expression pattern like:
+#'
+#' \code{Rscript script.R /name /arg1 value1 /arg2 value2 /boolean1 /arg3 value3}
+#'
+argv <- function() {
+
+  cli <- commandArgs();
+
+  if (.Platform$OS.type == "windows") {
+    # commandline on windows
+    #
+    # [1] "D:\\R\\bin\\x64\\Rterm.exe"
+    # [2] "--slave"
+    # [3] "--no-restore"
+    # [4] "--file=D:\\smartnucl_integrative\\biodeepDB\\internal/Rscripts/mz_calculator.R"
+    # [5] "--args"
+    # [6] "-1"
+    # [7] "745.0911"
+    # [8] "./data/temp/mz_calculator_TMgNO9CQ"
+
+    cli <- cli[6:length(cli)];
+  } else {
+    # commandline on linux
+    #
+    # [1] "/usr/local/software/R-3.4.3/lib64/R/bin/exec/R"
+    # [2] "--slave"
+    # [3] "--no-restore"
+    # [4] "--file=./mz_calculator.R"
+    # [5] "--args"
+    # [6] "-1"
+    # [7] "745.0911"
+    # [8] "./mz_calculator_TMgNO9CQ"
+
+    cli <- cli[6:length(cli)];
+  }
+
+  name <- cli[1];
+  args <- list();
+  i    <- 2;
+  is.argName <- function(x) {
+    if (x %=>% IsNothing) {
+      return (FALSE);
+    }
+
+    base::startsWith(x, "/")  ||
+      base::startsWith(x, "--") ||
+      base::startsWith(x, "-");
+  }
+
+  while(i < length(cli)) {
+    argName = cli[i];
+
+    if (cli[i + 1] %=>% is.argName) {
+      # If the next element is the command argument name
+      # then the current element is a logical flag
+      args[argName] = TRUE;
+    } else {
+      args[argName] = cli[i + 1];
+      i = i + 1;
+    }
+  }
+
+  getNextToken <- function(flag) {
+    cli[which(cli == flag) + 1];
+  }
+
+  list(argv = cli,
+       commandName = name,
+       args = args,
+       nextToken = getNextToken
+  );
+}
+
+#' Create cli tokens
+#'
+#' @description Add quote char wrapper for commandline argument token
+#' which have whitespace inside.
+#'
+#' @param arguments A character vector
+#'
+cliToken <- function(arguments) {
+  sapply(arguments, function(a) {
+    # Add quote char wrapper for argument token
+    # which have whitespace inside
+    if (InStr(a, " ") > -1) {
+      sprintf("\"%s\"", a);
+    } else {
+      a;
+    }
+  }) %=>% as.vector;
+}

@@ -268,18 +268,12 @@ slave <- function(closure, arguments = NULL) {
     # arguments <- "";
   } else if (is.character(arguments)) {
     # string concatenations directly for strings
-    arguments <- sapply(arguments, function(a) {
-      # Add quote char wrapper for argument token which have whitespace
-      if (InStr(a, " ") > -1) {
-        sprintf("\"%s\"", a);
-      } else {
-        a;
-      }
-    });
-    arguments <- Strings.Join(arguments);
+    arguments <- arguments %=>% cliToken %=>% Strings.Join;
   } else {
     # key-value pairs arguments
-
+    arguments <- sapply(names(arguments), function(key) {
+      sprintf("%s %s", key, arguments[[key]] %=>% cliToken);
+    }) %=>% as.vector %=>% Strings.Join;
   }
 
   if (!IsNothing(arguments)) {
