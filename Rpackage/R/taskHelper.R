@@ -277,7 +277,7 @@ slave <- function(closure, arguments = NULL) {
   }
 
   if (!IsNothing(arguments)) {
-    slave_cli <- sprintf("%s %s", slave_cli, arguments);
+    slave_cli <- sprintf("%s --args %s", slave_cli, arguments);
   }
 
   # arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
