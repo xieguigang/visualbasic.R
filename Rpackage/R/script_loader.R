@@ -89,10 +89,10 @@ flash_load <- function(dir = getwd()) {
 #'
 argv <- function() {
 
-  args <- commandArgs();
+  arguments <- commandArgs();
 
   # get all of the tokens after --args flag
-  i <- which(args == "--args");
+  i <- which(arguments == "--args");
 
   if (length(i) == 0) {
     # No additional arguments
@@ -104,7 +104,7 @@ argv <- function() {
       i <- i[1] + 1;
     }
 
-    cli <- args[i:length(args)];
+    cli <- arguments[i:length(arguments)];
   }
 
   name <- cli[1];
@@ -137,7 +137,7 @@ argv <- function() {
   }
 
   getNextToken <- function(flag) {
-    args[which(args == flag) + 1];
+    arguments[which(arguments == flag) + 1];
   }
 
   list(argv = cli,
