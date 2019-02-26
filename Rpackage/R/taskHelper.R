@@ -275,7 +275,7 @@ slave <- function(closure, arguments = NULL, debug = FALSE) {
     commandName <- "";
   } else {
     # key-value pairs arguments
-    commandName <- arguments[["commandName"]];
+    commandName <- arguments[["commandName"]] %||% "";
     arguments[["commandName"]] <- NULL;
     arguments <- sapply(names(arguments), function(key) {
       sprintf("%s %s", key, arguments[[key]] %=>% cliToken);
