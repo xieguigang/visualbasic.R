@@ -98,7 +98,7 @@ argv <- function() {
     # No additional arguments
     cli <- c();
   } else {
-    i <- i[1];
+    i <- i[1] + 2;
     cli <- args[i:length(args)];
   }
 
