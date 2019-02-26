@@ -247,6 +247,9 @@ slave_closure <- function(closure = "stdin") {
   if (closure == "stdin") {
     closure <- ReadAllText("stdin");
   }
+  if (argv()$nextToken("--debug") == "TRUE") {
+    print(closure);
+  }
 
   eval(parse(text = closure))();
 }
