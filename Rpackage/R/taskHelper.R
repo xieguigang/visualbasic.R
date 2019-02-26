@@ -268,7 +268,7 @@ slave_closure <- function(closure = "stdin") {
 #' @param closure A function tostring result.
 #'
 stripREnvironmentInfo <- function(closure) {
-  gsub("[<].+?[>]", "", closure, perl=TRUE);
+  gsub("[<][a-z]+[:].+?[>]", "", closure, perl=TRUE);
 }
 
 #' Run closure in a new R process

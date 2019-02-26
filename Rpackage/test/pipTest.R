@@ -23,3 +23,8 @@ slave <- function(closure) {
 slave_closure <- function(closure) {
 	eval(parse(text = closure))()
 }
+
+
+dd <- function() { function(){ "<dsffsdfsfs>"} }
+
+capture.output(dd()) %=>% stripREnvironmentInfo
