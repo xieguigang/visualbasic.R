@@ -84,36 +84,22 @@ flash_load <- function(dir = getwd()) {
 #'
 #' \code{Rscript script.R /name /arg1 value1 /arg2 value2 /boolean1 /arg3 value3}
 #'
+#' The \code{nextToken} function in the returns list object is
+#' usually using for get value by a given key name.
+#'
 argv <- function() {
 
-  cli <- commandArgs();
+  args <- commandArgs();
 
-  if (.Platform$OS.type == "windows") {
-    # commandline on windows
-    #
-    # [1] "D:\\R\\bin\\x64\\Rterm.exe"
-    # [2] "--slave"
-    # [3] "--no-restore"
-    # [4] "--file=D:\\smartnucl_integrative\\biodeepDB\\internal/Rscripts/mz_calculator.R"
-    # [5] "--args"
-    # [6] "-1"
-    # [7] "745.0911"
-    # [8] "./data/temp/mz_calculator_TMgNO9CQ"
+  # get all of the tokens after --args flag
+  i <- which(args == "--args");
 
-    cli <- cli[6:length(cli)];
+  if (length(i) == 0) {
+    # No additional arguments
+    cli <- c();
   } else {
-    # commandline on linux
-    #
-    # [1] "/usr/local/software/R-3.4.3/lib64/R/bin/exec/R"
-    # [2] "--slave"
-    # [3] "--no-restore"
-    # [4] "--file=./mz_calculator.R"
-    # [5] "--args"
-    # [6] "-1"
-    # [7] "745.0911"
-    # [8] "./mz_calculator_TMgNO9CQ"
-
-    cli <- cli[6:length(cli)];
+    i <- i[1];
+    cli <- args[i:length(args)];
   }
 
   name <- cli[1];
@@ -125,8 +111,8 @@ argv <- function() {
     }
 
     base::startsWith(x, "/")  ||
-      base::startsWith(x, "--") ||
-      base::startsWith(x, "-");
+    base::startsWith(x, "--") ||
+    base::startsWith(x, "-");
   }
 
   while(i < length(cli)) {
@@ -136,14 +122,17 @@ argv <- function() {
       # If the next element is the command argument name
       # then the current element is a logical flag
       args[argName] = TRUE;
+      offset <- 1;
     } else {
       args[argName] = cli[i + 1];
-      i = i + 1;
+      offset <- 2;
     }
+
+    i = i + offset;
   }
 
   getNextToken <- function(flag) {
-    cli[which(cli == flag) + 1];
+    args[which(args == flag) + 1];
   }
 
   list(argv = cli,

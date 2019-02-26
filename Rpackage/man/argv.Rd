@@ -13,5 +13,8 @@ Get commandline
 Commandline parser for cli expression pattern like:
 
 \code{Rscript script.R /name /arg1 value1 /arg2 value2 /boolean1 /arg3 value3}
+
+The \code{nextToken} function in the returns list object is
+usually using for get value by a given key name.
 }
 
