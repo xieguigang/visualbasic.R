@@ -257,7 +257,9 @@ slave_closure <- function(closure = "stdin") {
 #'
 #' @param closure should be a function without any parameter. And have no function returns.
 #' @param arguments The additional commandline arguments that will pass to the child process.
-#'     This parameter should be a named list or character vector.
+#'     This parameter should be a named list or character vector. If the argument list object
+#'     contains a \code{commandName} member, then it will generates a VisualBasic style
+#'     commandline arguments, which can be processed by \code{\link{argv}} function.
 #'
 slave <- function(closure, arguments = NULL, debug = FALSE) {
   closure   <- capture.output(closure);
@@ -266,18 +268,22 @@ slave <- function(closure, arguments = NULL, debug = FALSE) {
   if (IsNothing(arguments)) {
     # Do nothing
     # arguments <- "";
+    commandName <- "";
   } else if (is.character(arguments)) {
     # string concatenations directly for strings
     arguments <- arguments %=>% cliToken %=>% Strings.Join;
+    commandName <- "";
   } else {
     # key-value pairs arguments
+    commandName <- arguments[["commandName"]];
+    arguments[["commandName"]] <- NULL;
     arguments <- sapply(names(arguments), function(key) {
       sprintf("%s %s", key, arguments[[key]] %=>% cliToken);
     }) %=>% as.vector %=>% Strings.Join;
   }
 
   if (!IsNothing(arguments)) {
-    slave_cli <- sprintf("%s --args %s", slave_cli, arguments);
+    slave_cli <- sprintf("%s --args %s %s", slave_cli, commandName, arguments);
   }
 
   if (debug) {

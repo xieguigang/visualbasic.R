@@ -10,7 +10,9 @@ slave(closure, arguments = NULL, debug = FALSE)
 \item{closure}{should be a function without any parameter. And have no function returns.}
 
 \item{arguments}{The additional commandline arguments that will pass to the child process.
-This parameter should be a named list or character vector.}
+This parameter should be a named list or character vector. If the argument list object
+contains a \code{commandName} member, then it will generates a VisualBasic style
+commandline arguments, which can be processed by \code{\link{argv}} function.}
 }
 \description{
 This is usually using for memory size optimization.
