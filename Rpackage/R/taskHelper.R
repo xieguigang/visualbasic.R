@@ -256,10 +256,30 @@ slave_closure <- function(closure = "stdin") {
 #' @description This is usually using for memory size optimization.
 #'
 #' @param closure should be a function without any parameter. And have no function returns.
+#' @param arguments The additional commandline arguments that will pass to the child process.
+#'     This parameter should be a named list or character vector.
 #'
-slave <- function(closure) {
+slave <- function(closure, arguments = NULL) {
   closure   <- capture.output(closure);
   slave_cli <- "R -q --no-restore --no-save --slave -e \"VisualBasic.R::slave_closure();\"";
+
+  if (IsNothing(arguments)) {
+    arguments <- "";
+  } else if (is.character(arguments)) {
+    # string concatenations directly for strings
+    arguments <- sapply(arguments, function(a) {
+      # Add quote char wrapper for argument token which have whitespace
+      if (InStr(a, " ") > -1) {
+        sprintf("\"%s\"", a);
+      } else {
+        a;
+      }
+    });
+    arguments <- Strings.Join(arguments);
+  } else {
+    # key-value pairs arguments
+
+  }
 
   # arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
   system(slave_cli, intern = FALSE,
