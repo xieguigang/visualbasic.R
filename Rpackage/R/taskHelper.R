@@ -264,7 +264,8 @@ slave <- function(closure, arguments = NULL) {
   slave_cli <- "R -q --no-restore --no-save --slave -e \"VisualBasic.R::slave_closure();\"";
 
   if (IsNothing(arguments)) {
-    arguments <- "";
+    # Do nothing
+    # arguments <- "";
   } else if (is.character(arguments)) {
     # string concatenations directly for strings
     arguments <- sapply(arguments, function(a) {
@@ -279,6 +280,10 @@ slave <- function(closure, arguments = NULL) {
   } else {
     # key-value pairs arguments
 
+  }
+
+  if (!IsNothing(arguments)) {
+    slave_cli <- sprintf("%s %s", slave_cli, arguments);
   }
 
   # arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
