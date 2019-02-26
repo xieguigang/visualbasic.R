@@ -10,7 +10,7 @@ as.index(keys)
 \item{keys}{This function parameter should be a string character vector.}
 }
 \description{
-Create a index object for determine that a given id 
+Create a index object for determine that a given id
 is exists in the keys collection or not.
 }
 

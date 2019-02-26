@@ -7,7 +7,7 @@
 \method{log}{close}(print.warnings = FALSE)
 }
 \arguments{
-\item{print.warnings}{Print all of the warnings before close 
+\item{print.warnings}{Print all of the warnings before close
 the log writer? Default is not print warnings.}
 }
 \description{

@@ -12,7 +12,7 @@ Eval(module, ...)
 \value{
 If the module argument is a list, then it will returns directly,
   or the function will be evaluate for produce a list value.
-If the target module object is a namespace object, then methods result will 
+If the target module object is a namespace object, then methods result will
 be returned.
 }
 \description{

@@ -4,10 +4,13 @@
 \alias{slave}
 \title{Run closure in a new R process}
 \usage{
-slave(closure)
+slave(closure, arguments = NULL)
 }
 \arguments{
 \item{closure}{should be a function without any parameter. And have no function returns.}
+
+\item{arguments}{The additional commandline arguments that will pass to the child process.
+This parameter should be a named list or character vector.}
 }
 \description{
 This is usually using for memory size optimization.
