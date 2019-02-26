@@ -98,7 +98,12 @@ argv <- function() {
     # No additional arguments
     cli <- c();
   } else {
-    i <- i[1] + 2;
+    if (.Platform$OS.type == "windows") {
+      i <- i[1] + 2;
+    } else {
+      i <- i[1] + 1;
+    }
+
     cli <- args[i:length(args)];
   }
 

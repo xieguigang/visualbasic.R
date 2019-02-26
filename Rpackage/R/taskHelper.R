@@ -259,7 +259,7 @@ slave_closure <- function(closure = "stdin") {
 #' @param arguments The additional commandline arguments that will pass to the child process.
 #'     This parameter should be a named list or character vector.
 #'
-slave <- function(closure, arguments = NULL) {
+slave <- function(closure, arguments = NULL, debug = FALSE) {
   closure   <- capture.output(closure);
   slave_cli <- "R -q --no-restore --no-save --slave -e \"VisualBasic.R::slave_closure();\"";
 
@@ -278,6 +278,10 @@ slave <- function(closure, arguments = NULL) {
 
   if (!IsNothing(arguments)) {
     slave_cli <- sprintf("%s --args %s", slave_cli, arguments);
+  }
+
+  if (debug) {
+    print(slave_cli);
   }
 
   # arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only

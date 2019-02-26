@@ -4,7 +4,7 @@
 \alias{slave}
 \title{Run closure in a new R process}
 \usage{
-slave(closure, arguments = NULL)
+slave(closure, arguments = NULL, debug = FALSE)
 }
 \arguments{
 \item{closure}{should be a function without any parameter. And have no function returns.}
