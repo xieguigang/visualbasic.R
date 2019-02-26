@@ -251,7 +251,24 @@ slave_closure <- function(closure = "stdin") {
     print(closure);
   }
 
-  eval(parse(text = closure))();
+  # probably contains R Environment information, like
+  # <bytecode: 0x1872cbb0>\n<environment: 0x241cc710>
+  #
+  eval(parse(text = stripREnvironmentInfo(closure)))();
+}
+
+#' Removes R environment info
+#'
+#' @description A function is convert to string by \code{capture.output} function
+#'    may contains some R environment information like:
+#'    \code{<bytecode: 0x1872cbb0><environment: 0x241cc710>}. The information could make
+#'    the \code{eval(parse(text = closure))} process failure. This helper tools
+#'    will try to removes such environment information text.
+#'
+#' @param closure A function tostring result.
+#'
+stripREnvironmentInfo <- function(closure) {
+  gsub("[<].+?[>]", "", closure, perl=TRUE);
 }
 
 #' Run closure in a new R process
