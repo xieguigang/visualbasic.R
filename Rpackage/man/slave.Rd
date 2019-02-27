@@ -4,7 +4,7 @@
 \alias{slave}
 \title{Run closure in a new R process}
 \usage{
-slave(closure, arguments = NULL, debug = FALSE)
+slave(closure, arguments = NULL, parallel = FALSE, debug = FALSE)
 }
 \arguments{
 \item{closure}{should be a function without any parameter. And have no function returns.}
@@ -13,6 +13,9 @@ slave(closure, arguments = NULL, debug = FALSE)
 This parameter should be a named list or character vector. If the argument list object
 contains a \code{commandName} member, then it will generates a VisualBasic style
 commandline arguments, which can be processed by \code{\link{argv}} function.}
+
+\item{parallel}{This not parallel, the slave closure function calls will block running of
+R program at here. By default is not running in parallel mode.}
 }
 \description{
 This is usually using for memory size optimization.

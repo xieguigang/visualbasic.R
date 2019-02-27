@@ -280,8 +280,10 @@ stripREnvironmentInfo <- function(closure) {
 #'     This parameter should be a named list or character vector. If the argument list object
 #'     contains a \code{commandName} member, then it will generates a VisualBasic style
 #'     commandline arguments, which can be processed by \code{\link{argv}} function.
+#' @param parallel This not parallel, the slave closure function calls will block running of
+#'     R program at here. By default is not running in parallel mode.
 #'
-slave <- function(closure, arguments = NULL, debug = FALSE) {
+slave <- function(closure, arguments = NULL, parallel = FALSE, debug = FALSE) {
   closure   <- capture.output(closure);
   slave_cli <- "R -q --no-restore --no-save --slave -e \"VisualBasic.R::slave_closure();\"";
 
@@ -313,7 +315,7 @@ slave <- function(closure, arguments = NULL, debug = FALSE) {
   # arguments 'show.output.on.console', 'minimized' and 'invisible' are for Windows only
   system(slave_cli, intern = FALSE,
          ignore.stderr = FALSE,
-         wait = TRUE,
+         wait = !parallel,
          input = closure
   );
 }
