@@ -74,18 +74,16 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100, callback = NU
 #' @details \code{\link{tick.helper}}
 #'
 tick.each <- function(sequence, action) {
-  out  <- list();
   tick <- tick.helper(length(sequence));
   i <- 1;
 
   cat("\n");
   cat("  Progress%: ");
 
-  for (x in sequence) {
-    out[[i]] <- action(x);
-    i = i + 1;
+  out <- lapply(1:length(sequence), function(i) {
     tick();
-  }
+    action(sequence[i]);
+  });
 
   cat("\n");
   cat("\n");
