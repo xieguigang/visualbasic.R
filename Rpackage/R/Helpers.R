@@ -37,12 +37,10 @@ swap <- function(a, b) list(a = b, b = a);
 #' @param keys This function parameter should be a string character vector.
 #'
 as.index <- function(keys) {
-	index <- list();
-
-	for(key in keys) {
-		index[[key]] = 1;
-	}
-
+	keys  <- unique(keys);
+	index <- lapply(keys, function(key) 1);
+	names(index) <- keys;
+	
 	function(test) !is.null(index[[test]])
 }
 
