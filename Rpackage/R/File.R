@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::10b677e754939ad4c397e1fe2ef8d137, File.R"
+#Region "Microsoft.ROpen::6394a67bc0db06b6110d096807234b06, File.R"
 
     # Summaries:
 
@@ -10,6 +10,7 @@
     # ensure_dir_exists <- function(path) {if (!dir.exists(path)) {...
     # ReadAllText <- function(file.txt) {...
     # ReadAllLines <- function(file.txt) {...
+    # FileReader <- function(path) {...
 
 #End Region
 
