@@ -38,7 +38,7 @@ as.index <- function(keys) {
 	keys  <- unique(keys);
 	index <- lapply(keys, function(key) 1);
 	names(index) <- keys;
-	
+
 	function(test) !is.null(index[[test]])
 }
 
@@ -107,4 +107,33 @@ log.echo <- function(...) {
 #'
 unix.timestamp <- function() {
   as.numeric(Sys.time()) * 1000;
+}
+
+#' fill data vector
+#'
+#' @param list Target value vector
+#' @param baselist A vector provide length or a vector length integer number.
+#'
+#' @return A vector that with equals length with \code{baselist} vector.
+#'
+vector.fill <- function(list, baselist) {
+  if (is.integer(baselist) && length(baselist) == 1) {
+    baselen <- baselist;
+  } else {
+    baselen <- length(baselist);
+  }
+
+	if (length(list) == 1) {
+		rep(list, baselen);
+	} else if ( length(list) < baselen ) {
+		last = length(list);
+
+		for (i in (last + 1):10000) {
+			list[i] = list[last];
+		}
+
+		list;
+	} else {
+		list;
+	}
 }
