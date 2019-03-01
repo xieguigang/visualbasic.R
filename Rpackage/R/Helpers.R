@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::8bab0eec0d9db7fdf1f1eafc557eb2fc, Helpers.R"
+#Region "Microsoft.ROpen::14b4edbd1f891395e5ab41bd59c3495f, Helpers.R"
 
     # Summaries:
 
@@ -9,6 +9,7 @@
     # log.close <- function(print.warnings = FALSE) {if (print.warnings) {...
     # log.echo <- function(...) {...
     # unix.timestamp <- function() {...
+    # vector.fill <- function(list, baselist) {if (is.integer(baselist) && length(baselist) == 1) {...
 
 #End Region
 
