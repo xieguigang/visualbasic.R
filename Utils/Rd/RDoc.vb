@@ -12,6 +12,13 @@ Public Class RDoc
     Public Property description As Doc
     Public Property examples As String
 
+    Public Function GetHtmlDoc() As String
+
+    End Function
+
+    Public Function GetMarkdownDoc() As String
+
+    End Function
 End Class
 
 Public Class Item
