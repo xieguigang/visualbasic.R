@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.FileIO.Path
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Text
@@ -71,7 +72,7 @@ Module Program
         Dim out$ = args!out Or src
 
         For Each path As String In ls - l - r - "*.R" <= src
-            Dim relativePath$ = ProgramPathSearchTool.RelativePath(
+            Dim relativePath$ = PathExtensions.RelativePath(
                 pcFrom:=src,
                 pcTo:=path,
                 appendParent:=False
