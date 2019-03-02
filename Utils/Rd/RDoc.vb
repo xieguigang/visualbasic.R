@@ -1,4 +1,5 @@
-﻿
+﻿Imports Microsoft.VisualBasic.Text.Xml.Models
+
 ''' <summary>
 ''' The R document model
 ''' </summary>
@@ -11,9 +12,20 @@ Public Class RDoc
     Public Property arguments As Item()
     Public Property description As Doc
     Public Property examples As String
+    ''' <summary>
+    ''' 整个文档内的注释，这个属性值不是对目标函数对象的注释
+    ''' </summary>
+    ''' <returns></returns>
+    Public Property comments As String
 
     Public Function GetHtmlDoc() As String
+        Dim html As New XmlBuilder
 
+        If Not comments.StringEmpty Then
+            Call html.AddComment(comments)
+        End If
+
+        Return html.ToString
     End Function
 
     Public Function GetMarkdownDoc() As String
