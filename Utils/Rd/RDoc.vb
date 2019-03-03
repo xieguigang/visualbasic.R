@@ -1,13 +1,19 @@
-﻿Imports Microsoft.VisualBasic.Text.Xml.Models
+﻿Imports Microsoft.VisualBasic.ComponentModel.Collection.Generic
+Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel.Repository
+Imports Microsoft.VisualBasic.Text.Xml.Models
 
 ''' <summary>
 ''' The R document model
 ''' </summary>
-Public Class RDoc
+Public Class RDoc : Implements INamedValue
 
-    Public Property name As String
+#Region "Identifier"
+    ' 这两个是纯字符串的对象标记信息 
+    Public Property name As String Implements IKeyedEntity(Of String).Key
     Public Property [alias] As String
-    Public Property title As String
+#End Region
+
+    Public Property title As Doc
     Public Property usage As String
     Public Property arguments As Item()
     Public Property description As Doc
@@ -33,13 +39,17 @@ Public Class RDoc
     End Function
 End Class
 
-Public Class Item
-    Public Property name As String
+Public Class Item : Implements INamedValue
+
+    Public Property name As String Implements IKeyedEntity(Of String).Key
     Public Property description As Doc
+
 End Class
 
 Public Class Enumerate
+
     Public Property items As Doc()
+
 End Class
 
 #Region "Doc content model"

@@ -6,7 +6,12 @@ Public Class DocParser
 
     Dim text As Pointer(Of Char)
     Dim buffer As New List(Of Char)
+    ''' <summary>
+    ''' 标签栈的名称缓存
+    ''' </summary>
+    Dim nameBuffer As New List(Of Char)
     Dim parserEscape As New Escapes
+    Dim contentStack As New Stack(Of Char)
 
     ''' <summary>
     ''' Rd文件之中的注释为单行注释
@@ -16,7 +21,9 @@ Public Class DocParser
 
     Public Class Escapes
 
-        Public docComment As Boolean = False
+        Public docComment As Boolean
+        Public stackOpen As Boolean
+        Public stackNameParser As Boolean
 
     End Class
 
@@ -47,10 +54,34 @@ Public Class DocParser
         If c = "%"c AndAlso buffer = 0 Then
             ' 以%符号起始，并且缓存为空，则说明是一条注释文本
             parserEscape.docComment = True
+        ElseIf c = "{"c AndAlso parserEscape.stackNameParser Then
+            ' 结束解析标签名称
+            parserEscape.stackNameParser = False
+            parserEscape.stackOpen = True
         ElseIf c = ASCII.CR OrElse c = ASCII.LF Then
-
+            If parserEscape.docComment Then
+                ' 单行注释
+                docComments = docComments & New String(buffer.PopAll)
+            End If
+        ElseIf parserEscape.stackNameParser Then
+            nameBuffer += c
         ElseIf parserEscape.docComment Then
             buffer += c
+        ElseIf c = "\"c Then
+            ' 不是注释部分的文本
+            ' 则通过\符号起始的是一个标签栈
+            parserEscape.stackNameParser = True
         End If
     End Sub
+End Class
+
+Public Class ContentParser
+
+    Sub New(text As Pointer(Of Char))
+
+    End Sub
+
+    Public Function GetcurrentContent() As Doc
+
+    End Function
 End Class
