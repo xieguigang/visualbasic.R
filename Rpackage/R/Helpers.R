@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::14b4edbd1f891395e5ab41bd59c3495f, Helpers.R"
+#Region "Microsoft.ROpen::58e3764cbcf32488c73ce5ed0ce212e7, Helpers.R"
 
     # Summaries:
 
@@ -10,6 +10,7 @@
     # log.echo <- function(...) {...
     # unix.timestamp <- function() {...
     # vector.fill <- function(list, baselist) {if (is.integer(baselist) && length(baselist) == 1) {...
+    # alloca <- function(len, list = FALSE) {if (list) {...
 
 #End Region
 

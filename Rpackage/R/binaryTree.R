@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::284c81a55fc2d45669c376b31dca2269, binaryTree.R"
+#Region "Microsoft.ROpen::429ad72f331b645c404915af8b70da8e, binaryTree.R"
 
     # Summaries:
 
@@ -71,11 +71,11 @@ binaryTree <- function(src, key, key.compares, debug = FALSE, progressHeader = T
     tree;
   } else {
     binaryTree.construct.impl(tree, popX, popName,
-		src,
-		key,
-		key.compares,
-		debug, progressHeader
-	);
+  		src,
+  		key,
+  		key.compares,
+  		debug, progressHeader
+  	);
   }
 }
 
@@ -90,12 +90,12 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
   if (debug) {
     tick <- tick.helper(length(src) - 1);
 
-	if (progressHeader) {
-		cat("\n");
-		cat(" Progress  ");
-	} else {
-		cat("  ");
-	}
+  	if (progressHeader) {
+  		cat("\n");
+  		cat(" Progress  ");
+  	} else {
+  		cat("  ");
+  	}
   }
 
   # The first element is already include as root node
@@ -160,11 +160,11 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
   }
 
   if (debug) {
-	if (progressHeader) {
-		cat("\n\n");
-	} else {
-		cat(" ");
-	}
+  	if (progressHeader) {
+  		cat("\n\n");
+  	} else {
+  		cat(" ");
+  	}
   }
 
   # return the constructed binary tree list.
