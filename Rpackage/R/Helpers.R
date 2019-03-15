@@ -138,3 +138,19 @@ vector.fill <- function(list, baselist) {
 		list;
 	}
 }
+
+#' Memory preallocation
+#'
+#' @description Memory preallocation for vector or list. Apply this preallocation operation
+#'   for each vector or list can make great performance improvements.
+#'
+#' @param len A integer preallocation size.
+#' @param list Generate a empty list? By default is FALSE, means generate a empty vector.
+#'
+alloca <- function(len, list = FALSE) {
+  if (list) {
+    lapply(1:len, function(i) NA);
+  } else {
+    rep(NA, len = len);
+  }
+}
