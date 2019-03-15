@@ -36,7 +36,10 @@ binarySearch <- function(source, find, key, compares = function(a, b) a - b) {
     }
 }
 
+#' Binary search on a \code{list}
+#'
 #' @seealso \code{\link{binarySearch.impl.generic}}
+#'
 binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) {
     i <- binarySearch.impl.generic(
         function(i) key(list[[i]]),
@@ -56,7 +59,9 @@ binarySearch.list <- function(list, find, key, compares = function(a, b) a - b) 
 #'
 #' @description A internal private function which find the index of the element in the
 #' input sequence which match a specific target key.
-#' This function returns the index i of the input sequence.
+#'
+#' @return This function returns the index i of the input sequence.
+#'
 binarySearch.impl.generic <- function(ikey, .length, find, compares) {
     L <- 1;
     R <- .length;
@@ -120,6 +125,7 @@ binarySearch.dataframe <- function(dataframe, find, key, compares = function(a, 
 #' @param desc A logical flag to indicated that sort the input sequence in ASC or DESC mode?
 #'
 #' @return A data sequence which its elements has been reordered.
+#'
 sort.list <- function(list, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {
     if (!is.function(key)) {
         getkey <- function(x) x[[key]];
@@ -150,6 +156,7 @@ sort.list <- function(list, key, key.numeric = function(v) as.numeric(v), desc =
 #'                    column/indexer values to the numeric values which is use for
 #'                    sort the rows based on these numeric value comparsion.
 #' @param desc Sort in descending order? by default is not.
+#'
 sort.dataframe <- function(dataframe, key, key.numeric = function(v) as.numeric(v), desc = FALSE) {
     dataframe[order(key.numeric(dataframe[, key]), decreasing = desc), ];
 }
