@@ -78,7 +78,7 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 		if (type == "data.frame") {
 			GroupBy.dataframe(data.frame = enumerable, key = key, verbose = verbose);
 		} else if (type == "list") {
-			GroupBy.list(list = enumerable, key = key);
+			GroupBy.list(list = enumerable, key = key, verbose = verbose);
 		} else {
 			stop("Not supported!");
 		}
@@ -90,8 +90,29 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 	#' @param list The data source in list type
 	#' @param key The item property name in this list source collection.
 	#'
-	GroupBy.list <- function(list, key) {
+	GroupBy.list <- function(list, key, verbose) {
 
+		# should removes all of the null element at first
+		# or error happens:
+		# Error in groups[[group.key]] :
+		#    attempt to select less than one element in get1index
+	
+		notNulls <- lapply(list, function(x) !IsNothing(x[[key]])) %=>% unlist %=>% as.logical;
+				
+		if (sum(notNulls) < length(notNulls)) {
+			# remove null elements
+			list <- list[notNulls];
+			
+			msg <- "GroupBy(list, '%s', 'list'): Some element is NULL from your list source, these NULL element will be removed automatic";
+			msg <- sprintf(msg, toString(key));
+			
+			if (verbose) {
+				printf("\n%s\n", msg);
+			}
+			
+			warning(msg);
+		}
+	
 		groups <- list();
 		tick   <- tick.helper(length(list));
 		cat("\n");
