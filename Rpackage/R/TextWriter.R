@@ -57,6 +57,8 @@ textWriter <- function(path, buffer.Size = 4096) {
     # rm(chunk);
     # rm(flush);
     gc();
+	
+	invisible(NULL);
   }
 
   list(
