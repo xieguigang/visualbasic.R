@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::58e3764cbcf32488c73ce5ed0ce212e7, Helpers.R"
+#Region "Microsoft.ROpen::2e36c04d474464d071a9159d8fabfeb0, Helpers.R"
 
     # Summaries:
 
@@ -35,19 +35,28 @@ swap <- function(a, b) list(a = b, b = a);
 #' is exists in the keys collection or not.
 #'
 #' @param keys This function parameter should be a string character vector.
+#'   If this parameter its value is null, then this function will returns all
+#'   of the keys that in target index closure.
 #'
 as.index <- function(keys) {
 	keys  <- unique(keys);
 	index <- lapply(keys, function(key) 1);
 	names(index) <- keys;
 
-	function(test) !is.null(index[[test]])
+	function(test = NULL) {
+		if (is.null(test)) {
+			keys;
+		} else {
+			!is.null(index[[test]]);
+		}
+	}
 }
 
 #' Get current Linux user
 #'
 #' @description Get user name of current linux login user by bash shell
 #'   This function only works on Linux platform.
+#'
 user <- function() {
   cli = "echo \"echo $USER\" | bash";
   system(cli, intern = TRUE);

@@ -7,7 +7,9 @@
 as.index(keys)
 }
 \arguments{
-\item{keys}{This function parameter should be a string character vector.}
+\item{keys}{This function parameter should be a string character vector.
+If this parameter its value is null, then this function will returns all
+of the keys that in target index closure.}
 }
 \description{
 Create a index object for determine that a given id
