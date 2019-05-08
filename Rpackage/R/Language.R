@@ -147,6 +147,13 @@ Microsoft.VisualBasic.Language <- function() {
 	`%+%` <- function(x, y) {
 		union(x, y);
 	}
+	
+	`%-%` <- function(x, y) {
+		# removes y from x collection
+		ni <- sapply(x, function(xi) xi %in% y) %=>% as.vector; 
+		x <- x[!ni];
+		x;
+	}
 
 	list(namespace = GetCurrentFunc(),
 		 description = "R language syntax helpers",
@@ -156,6 +163,7 @@ Microsoft.VisualBasic.Language <- function() {
 		   ":="   = get(":="),
 		   "%=>%" = get("%=>%"),
 			 "%+%"  = get("%+%"),
+			 "%-%"  = get("%-%"),
 			 "%is%" = get("%is%")
 	));
 }
