@@ -42,14 +42,16 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100, callback = NU
     }
   }
 
-	return(function() {
-		i <- get("i", envir = workspace) + 1;
+  return(function() {
+	i <- get("i", envir = workspace) + 1;
 
 		if (i >= get("p5", envir = workspace)) {
 			i <- 1;
-      cur <- get("cur", envir = workspace) + step * 100;
-			assign("cur", round(cur), envir = workspace);
+            cur <- get("cur", envir = workspace) + step * 100;
+			assign("cur", cur, envir = workspace);
 
+			cur <- round(cur);
+			
 			if (disp.number) {
 			  cat(cur);
 			  cat(" ");
@@ -57,11 +59,11 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100, callback = NU
 			  cat(".");
 			}
 
-      callback(cur);
+            callback(cur);
 		}
 
-    assign("i", i, envir = workspace);
-	});
+        assign("i", i, envir = workspace);
+  });
 }
 
 #' Display progress for elements' action
