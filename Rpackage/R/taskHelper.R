@@ -70,23 +70,24 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100, callback = NU
 #'
 #' @param sequence A list or vector object.
 #' @param action A function that will applied on each element
-#'    in the input sequence.
+#'    in the input sequence. Element result is also generate from here
 #'
-#' @return action result on each elements
+#' @return lapply action result on each elements
 #'
 #' @details \code{\link{tick.helper}}
 #'
 tick.each <- function(sequence, action) {
-  tick <- tick.helper(length(sequence));
-  i <- 1;
+  len <- length(sequence);
+  tick <- tick.helper(len);
+  iteration <- function(i) {
+     tick();
+	 action(sequence[i]);
+  }
 
   cat("\n");
   cat("  Progress%: ");
 
-  out <- lapply(1:length(sequence), function(i) {
-    tick();
-    action(sequence[i]);
-  });
+  out <- lapply(1:len, iteration);
 
   cat("\n");
   cat("\n");

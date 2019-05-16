@@ -10,10 +10,10 @@ tick.each(sequence, action)
 \item{sequence}{A list or vector object.}
 
 \item{action}{A function that will applied on each element
-in the input sequence.}
+in the input sequence. Element result is also generate from here}
 }
 \value{
-action result on each elements
+lapply action result on each elements
 }
 \description{
 Only works on the \code{vector} or \code{list}
