@@ -1,16 +1,10 @@
-Package: VisualBasic.R
+Package: CGR_confidence
 Type: Package
-Title: VisualBasic.NET function port to R
+Title: CGR confidence test
 Version: 1.0.142
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
-Description: This package provides some common programming feature in VB.NET
-    to R language, these includes,
-       1. Syntax tweaks for R language
-       2. Linq like common data operation for R
-       3. Common string helper functions
-       4. R Package development tools 
-       5. File format helper tools, like XML.
+Description: CGR confidence test for identification analysis.
 License: MIT License
 Encoding: UTF-8
 LazyData: true
