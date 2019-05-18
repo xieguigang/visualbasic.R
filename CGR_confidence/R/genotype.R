@@ -12,7 +12,7 @@ measure.range <- function(samples, foldchange = genotype.foldchange()) {
   high <- genotype(average, sd, 1, foldchange);
   low <- genotype(average, sd, -1, foldchange);
 
-  list(low = low, high = high);
+  list(low = low, high = high, foldchange = foldchange);
 }
 
 #' genotype range
