@@ -21,7 +21,9 @@ measure.range <- function(samples, foldchange = genotype.foldchange()) {
 #' @param sd Standard error of the samples normal data.
 #'
 genotype <- function(avg, sd, direction, foldchange = genotype.foldchange()) {
-
+  lapply(foldchange, function(level) {
+    avg + direction * level * sd;
+  });
 }
 
 genotype.foldchange <- function() {
