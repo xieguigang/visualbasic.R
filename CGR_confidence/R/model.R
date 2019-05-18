@@ -10,19 +10,49 @@ knowledge_base <- function(samples, markers, foldchange = genotype.foldchange())
     kb <- lapply(markers, function(marker) {
         data <- negative[, marker] %=>% as.vector %=>% as.numeric;
         range <- measure.range(samples = data, foldchange = foldchange);
-        frequency <- list();
-        frequency$low <- (sapply(1:length(foldchange), function(level) {
-            count.level(data, range$low, level);
-        }) %=>% as.vector) / length(data);
-        frequency$high <- (sapply(1:length(foldchange), function(level) {
-            count.level(data, range$high, level);
-        }) %=>% as.vector) / length(data);
+        frequency <- counts(data, range, foldchange);
+        frequency$low <- frequency$low / length(data);
+        frequency$high <- frequency$high / length(data);
 
-        
+        data <- positive[, marker] %=>% as.vector %=>% as.numeric;
+        risk <- counts(data, range, foldchange);
+        risk$low <- lapply(risk$low, function(x) log(x+1));
+        risk$high <- lapply(risk$high, function(x) log(x+1));
+
+        list(freq = frequency, risk = risk %=>% impute_missing.by_min);
     });
 
     names(kb) <- markers;
     kb;
+}
+
+impute_missing.by_min <- function(risk) {
+    names <- names(risk$low);
+    all <- sapply(names, function(name) risk$low[[name]]) %=>% as.vector;
+    all <- all %+% (sapply(names, function(name) risk$high[[name]]) %=>% as.vector);
+    all <- all[all > 0];
+    min <- min(all);
+
+    for (name in names) {
+        if (risk$low[[name]] == 0) {
+            risk$low[[name]] <- min;
+        }
+        if (risk$high[[name]] == 0) {
+            risk$high[[name]] <- min;
+        }
+    }
+
+    risk;
+}
+
+counts <- function(data, range, foldchange) {
+    list(low = sapply(1:length(foldchange), function(level) {
+            count.level(data, range$low, level);
+        }) %=>% as.vector, 
+        high = sapply(1:length(foldchange), function(level) {
+            count.level(data, range$high, level);
+        }) %=>% as.vector
+    );
 }
 
 count.level <- function(data, ranges, level) {
