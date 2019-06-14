@@ -5,11 +5,29 @@
 #'
 #' @return A genotype data model
 #'
-measure.range <- function(samples) {
+measure.range <- function(samples, foldchange = genotype.foldchange()) {
   data <- normal(samples %=>% quartile, samples);
   average <- mean(data);
-  sd <-
+  sd <- sd(data) / sqrt(length(data));
+  high <- genotype(average, sd, 1, foldchange);
+  low <- genotype(average, sd, -1, foldchange);
 
+  list(low = low, high = high, foldchange = foldchange);
+}
+
+#' genotype range
+#'
+#' @param avg Average value of the samples normal data.
+#' @param sd Standard error of the samples normal data.
+#'
+genotype <- function(avg, sd, direction, foldchange = genotype.foldchange()) {
+  lapply(foldchange, function(level) {
+    avg + direction * level * sd;
+  });
+}
+
+genotype.foldchange <- function() {
+  list(normal = 1.125, moderate = 2.5, critical = 5);
 }
 
 quartile <- function(samples) {
