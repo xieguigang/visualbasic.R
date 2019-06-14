@@ -167,9 +167,13 @@ global <- function(name) {
 #'
 #' @return \code{NULL}
 #'
-"global<-" <- function(name, value) {
-  assign <- list(name, value);
+"global<-" <- function(...) {
+	# https://stackoverflow.com/questions/10449366/levels-what-sorcery-is-this
+	# 
+
+  assign <- list(...);
   do.call(`=`, assign, envir = .GlobalEnv);
+  name <- assign[[1]];
   name;
 }
 
