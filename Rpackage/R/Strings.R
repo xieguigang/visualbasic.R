@@ -293,11 +293,20 @@ GetTagValue <- function(s, tag = " ") {
 #'
 #' @description Determine that target string is null or empty or not??
 #'
-#' @return Logical vector
+#' @return Logical vector, if the input parameter s is NULL, then this function 
+#'      will also returns a logical value TRUE.    
+#'
 Strings.Empty <- function(s, NA.empty = FALSE) {
-	sapply(s, function(x) {
+	test <- sapply(s, function(x) {
 	  IsNothing(x, stringAsFactor = NA.empty);
 	}) %=>% as.logical;
+	
+	# parameter s input is NULL
+	if (length(test) == 0) {
+		TRUE;
+	} else {
+		test;
+	}
 }
 
 #' Text similarity score
