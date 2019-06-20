@@ -62,6 +62,41 @@ user <- function() {
   system(cli, intern = TRUE);
 }
 
+#' Get system memory info
+#'
+#' @return A list contains two slot: \code{Mem} for installed physical memory 
+#'    and \code{Swap} for swap memory.
+#'    All of the memory data that returns from this function is in byte size 
+#'    unit \code{MB}.
+#'
+memory <- function() {
+  # [biodeepdb@localhost tyr]$ free -m
+  #                total        used        free      shared  buff/cache   available
+  #  Mem:          64225        2285       37886          39       24053       61283
+  #  Swap:         16127        1482       14645
+  cli = "free -m";
+  std_out <- system(cli, intern = TRUE);
+  Mem  <- Strings.Split(std_out[2], "\\s+");
+  Mem  <- Mem[2:length(Mem)] %=>% as.numeric;
+  Mem  <- list(
+    total = Mem[1],
+    used  = Mem[2],
+    free  = Mem[3],
+    shared = Mem[4],
+    "buff/cache" = Mem[5],
+    available = Mem[6]
+  );
+  Swap <- Strings.Split(std_out[3], "\\s+");
+  Swap <- Swap[2:length(Swap)] %=>% as.numeric;
+  Swap <- list(
+    total = Swap[1],
+    used  = Swap[2],
+    free  = Swap[3]
+  );
+
+  list(Mem = Mem, Swap = Swap);
+}
+
 #' R logging helper by \code{sink}
 #'
 #' @description This function can create the parent dir for the given
