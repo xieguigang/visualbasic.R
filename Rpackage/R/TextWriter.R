@@ -68,3 +68,20 @@ textWriter <- function(path, buffer.Size = 4096) {
       addline(sprintf(...));
     });
 }
+
+#' Remove non-printable ASCII characters
+#'
+#' @description Remove non-printable ASCII characters from a file with this Unix command. 
+#'  (https://alvinalexander.com/blog/post/linux-unix/how-remove-non-printable-ascii-characters-file-unix)
+#'
+#' @param file The file path of the target text file. 
+#' @param saveAs The clean file save location, by default is the original location.
+#'
+#' @details This functin only works in unix system.
+#'
+tr <- function(file, saveAs = file) {
+  cli <- 'tr -cd \'\\11\\12\\15\\40-\\176\' < "%s" > "%s"';
+  cli <- sprintf(cli, file, saveAs);
+
+  system(cli, intern = TRUE);
+}
