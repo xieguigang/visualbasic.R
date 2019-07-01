@@ -4,7 +4,7 @@
 \alias{global<-}
 \title{Set variable in global}
 \usage{
-global(name) <- value
+global(...) <- value
 }
 \value{
 \code{NULL}
