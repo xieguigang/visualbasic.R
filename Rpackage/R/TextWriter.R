@@ -80,8 +80,25 @@ textWriter <- function(path, buffer.Size = 4096) {
 #' @details This functin only works in unix system.
 #'
 tr <- function(file, saveAs = file) {
+  out <- saveAs;
+  
+  if (file == saveAs) {
+	# 20190701 if the saveas is the input file
+	# this will required additional processing
+	# or we just get empty blank output file....
+	saveAs <- tempfile(pattern = "tr_temp");
+  }
+  
   cli <- 'tr -cd \'\\11\\12\\15\\40-\\176\' < "%s" > "%s"';
   cli <- sprintf(cli, file, saveAs);
 
   system(cli, intern = TRUE);
+  
+  if (file == out) {
+	# copy back the result file
+	cli <- sprintf('cat "%s" > "%s"', saveAs, file);
+	system(cli, intern = TRUE);
+  }
+  
+  invisible(NULL);
 }

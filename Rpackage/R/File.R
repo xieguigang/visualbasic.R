@@ -142,3 +142,14 @@ FileReader <- function(path) {
 
   list(invoke = read, dispose = release);
 }
+
+#' Create an empty file
+#'
+#' @description Create an empty file at specific location, if the target file 
+#'   is already exists, then all of the original contents of target file will 
+#'   be removed. 
+#'
+EmptyFile <- function(outfile) {
+close( file( outfile, open="w" ) );
+invisible(NULL);
+}
