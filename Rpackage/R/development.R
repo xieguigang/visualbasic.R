@@ -67,7 +67,7 @@ package.version <- function(package = "VisualBasic.R") {
     #
     # Warning message:
     #   In library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,:
-    #   there is no package called ‘package’
+    #   there is no package called 'package'
 
     # require(package);
   }
