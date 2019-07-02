@@ -65,7 +65,7 @@ binaryTree <- function(src, key, key.compares, debug = FALSE, progressHeader = T
 
   # the root node
   x           <- popX(1);
-  tree[["1"]] <- .node(key(x), x, popName(1));
+  tree[["1"]] <- binaryTree.node(key(x), x, popName(1));
 
   if (len == 1) {
     tree;
@@ -127,7 +127,7 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
         # left
         if (xnext$left == -1) {
           # append to left;
-          node <- .node(xkey, x, name);
+          node <- binaryTree.node(xkey, x, name);
           xkey <- as.character(i);
           tree[[xkey]] <- node;
           tree[[pnext]]$left <- xkey;
@@ -141,7 +141,7 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
         # right
         if (xnext$right == -1) {
           # append to right
-          node <- .node(xkey, x, name);
+          node <- binaryTree.node(xkey, x, name);
           xkey <- as.character(i);
           tree[[xkey]] <- node;
           tree[[pnext]]$right <- xkey;
@@ -173,7 +173,7 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
 
 #' Create a new tree node
 #'
-.node <- function(key, x, name) {
+binaryTree.node <- function(key, x, name) {
   values         <- list();
   values[[name]] <- x;
 
