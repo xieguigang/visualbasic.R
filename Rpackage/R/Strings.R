@@ -190,12 +190,16 @@ Distinct <- function(words) {
 }
 
 #' Locate substring position
+#' 
+#' @details The char start position is 1
 #'
 #' @return -1 means no match
 #'
 InStr <- function(s, substring) {
-	match <- regexpr(substring, s);
-	match[1];
+	sapply(s, function(str) {
+		match <- regexpr(substring, str);
+		match[1];
+	}) %=>% as.numeric;
 }
 
 #' String length
