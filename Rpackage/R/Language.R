@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::84b99345906d6284deb5c6f92bd80cc1, Language.R"
+#Region "Microsoft.ROpen::74d13c93b528d971127b2453392acfcf, Language.R"
 
     # Summaries:
 
@@ -8,6 +8,7 @@
     # `%=>%` <- function(x, y) {...
     # `%is%` <- function(x, y) {...
     # `%+%` <- function(x, y) {...
+    # `%-%` <- function(x, y) {...
 
 #End Region
 

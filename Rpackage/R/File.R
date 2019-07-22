@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::6394a67bc0db06b6110d096807234b06, File.R"
+#Region "Microsoft.ROpen::429dc4873a540d79682b2623dd44aeab, File.R"
 
     # Summaries:
 
@@ -11,6 +11,7 @@
     # ReadAllText <- function(file.txt) {...
     # ReadAllLines <- function(file.txt) {...
     # FileReader <- function(path) {...
+    # EmptyFile <- function(outfile) {...
 
 #End Region
 
