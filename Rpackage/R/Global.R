@@ -233,7 +233,7 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 
 	  # vector have multiple elements, is not nothing
 	} else if (length(x) > 1) {
-	  TRUE;
+	  FALSE;
 
 		# 2018-6-25 Empty string object can not compare with S4 directly.
 		# So this function will determine the data type of X at first and
