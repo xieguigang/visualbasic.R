@@ -39,18 +39,27 @@ swap <- function(a, b) list(a = b, b = a);
 #'   If this parameter its value is null, then this function will returns all
 #'   of the keys that in target index closure.
 #'
+#' @return If the given \code{keys} is NULL or a single NA value, then NULL value will be returns.
+#'         Otherwise, returns a index function.
+#'
 as.index <- function(keys) {
-	keys  <- unique(keys);
-	index <- lapply(keys, function(key) 1);
-	names(index) <- keys;
+  if (keys %=>% IsNothing) {
+    NULL;
+  } else {
+    keys  <- unique(keys);
+    # create a list at here
+    # and then use this list object as index
+    index <- lapply(keys, function(key) 1);
+    names(index) <- keys;
 
-	function(test = NULL) {
-		if (is.null(test)) {
-			keys;
-		} else {
-			!is.null(index[[test]]);
-		}
-	}
+    function(test = NULL) {
+      if (is.null(test)) {
+        keys;
+      } else {
+        !is.null(index[[test]]);
+      }
+    }
+  }
 }
 
 #' Get current Linux user
@@ -65,9 +74,9 @@ user <- function() {
 
 #' Get system memory info
 #'
-#' @return A list contains two slot: \code{Mem} for installed physical memory 
+#' @return A list contains two slot: \code{Mem} for installed physical memory
 #'    and \code{Swap} for swap memory.
-#'    All of the memory data that returns from this function is in byte size 
+#'    All of the memory data that returns from this function is in byte size
 #'    unit \code{MB}.
 #'
 memory <- function() {

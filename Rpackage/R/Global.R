@@ -169,7 +169,7 @@ global <- function(name) {
 #'
 "global<-" <- function(...) {
 	# https://stackoverflow.com/questions/10449366/levels-what-sorcery-is-this
-	# 
+	#
 
   assign <- list(...);
   do.call(`=`, assign, envir = .GlobalEnv);
@@ -225,8 +225,15 @@ Push <- function(envir = parent.frame()) {
 #'
 IsNothing <- function(x, stringAsFactor = FALSE) {
 
-	if (is.null(x) || is.na(x) || length(x) == 0) {
+	if (is.null(x) || length(x) == 0) {
 		TRUE;
+	} else if (length(x) == 1 && is.na(x)) {
+	  # fix bugs for the c(NA, NA, NA, NA) is true.
+	  TRUE;
+
+	  # vector have multiple elements, is not nothing
+	} else if (length(x) > 1) {
+	  TRUE;
 
 		# 2018-6-25 Empty string object can not compare with S4 directly.
 		# So this function will determine the data type of X at first and
@@ -241,7 +248,7 @@ IsNothing <- function(x, stringAsFactor = FALSE) {
 		} else if (x == "") {
 			TRUE;
 		} else {
-			return (x %in% c("NULL", "null", "na", "NA"));
+			x %in% c("NULL", "null", "na", "NA");
 		}
 	}
 }
