@@ -7,9 +7,9 @@
 memory()
 }
 \value{
-A list contains two slot: \code{Mem} for installed physical memory 
+A list contains two slot: \code{Mem} for installed physical memory
    and \code{Swap} for swap memory.
-   All of the memory data that returns from this function is in byte size 
+   All of the memory data that returns from this function is in byte size
    unit \code{MB}.
 }
 \description{
