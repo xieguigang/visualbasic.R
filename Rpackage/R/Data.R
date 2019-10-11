@@ -255,6 +255,12 @@ Microsoft.VisualBasic.Data <- function() {
 		frame;
 	}
 	
+	delete_byIndex <- function(v, index) {
+		t <- rep(TRUE, time = length(v));
+		t[index] <- FALSE;
+		v[t];
+	}
+	
 	# register function for namespace export
     list(namespace = GetCurrentFunc(),
 		 description = "Namespace contains some common data operation helpers.",
@@ -269,6 +275,7 @@ Microsoft.VisualBasic.Data <- function() {
 			 ensure.dataframe = .ensure.dataframe,
 			 read.dataset     = .load.dataset,
 			 cmode            = cmode,
-			 dictionary.table = dictionary.dataframe
+			 dictionary.table = dictionary.dataframe,
+			 removes.index    = delete_byIndex
 	));
 }
