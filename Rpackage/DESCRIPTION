@@ -1,7 +1,7 @@
 Package: VisualBasic.R
 Type: Package
 Title: VisualBasic.NET function port to R
-Version: 1.0.147
+Version: 1.0.148
 Author: xieguigang <xie.guigang@gcmodeller.org>
 Maintainer: xieguigang <xie.guigang@gcmodeller.org>
 Description: This package provides some common programming feature in VB.NET
@@ -14,6 +14,4 @@ Description: This package provides some common programming feature in VB.NET
 License: MIT License
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1
-
-
+RoxygenNote: 6.1.1

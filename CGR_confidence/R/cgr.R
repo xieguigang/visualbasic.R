@@ -1,0 +1,3 @@
+foldchange <- function(kb, phenotype) {
+    
+}
