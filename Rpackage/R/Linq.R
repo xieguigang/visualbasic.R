@@ -73,10 +73,10 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 	  enumerable,
     key,
     type = c("data.frame", "list"),
-    verbose = FALSE) {
+    verbose = FALSE, show.progress = FALSE) {
 
 		if (type == "data.frame") {
-			GroupBy.dataframe(data.frame = enumerable, key = key, verbose = verbose);
+			GroupBy.dataframe(data.frame = enumerable, key = key, verbose = verbose, show.progress = show.progress);
 		} else if (type == "list") {
 			GroupBy.list(list = enumerable, key = key, verbose = verbose);
 		} else {
@@ -96,23 +96,23 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 		# or error happens:
 		# Error in groups[[group.key]] :
 		#    attempt to select less than one element in get1index
-	
+
 		notNulls <- lapply(list, function(x) !IsNothing(x[[key]])) %=>% unlist %=>% as.logical;
-				
+
 		if (sum(notNulls) < length(notNulls)) {
 			# remove null elements
 			list <- list[notNulls];
-			
+
 			msg <- "GroupBy(list, '%s', 'list'): Some element is NULL from your list source, these NULL element will be removed automatic";
 			msg <- sprintf(msg, toString(key));
-			
+
 			if (verbose) {
 				printf("\n%s\n", msg);
 			}
-			
+
 			warning(msg);
 		}
-	
+
 		groups <- list();
 		tick   <- tick.helper(length(list));
 		cat("\n");
@@ -143,7 +143,7 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 	#' @param data.frame The data source in data.frame type
 	#' @param key The column name in string mode or column projector function
 	#'     for read the column data in target source as the group key.
-	GroupBy.dataframe <- function(data.frame, key, verbose = FALSE) {
+	GroupBy.dataframe <- function(data.frame, key, verbose = FALSE, show.progress = FALSE) {
 
 	  if (is.character(key)) {
 	    keys <- as.vector(unlist(data.frame[, key]));
@@ -175,9 +175,15 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 		# and then get group data by i index cluster
 		groups <- list();
 
-		tick <- tick.helper(length(unique_keys));
-		cat("\n");
-		cat("  Progress%: ");
+		if (show.progress) {
+		  tick <- tick.helper(length(unique_keys));
+		  cat("\n");
+		  cat("  Progress%: ");
+		} else {
+		  tick <- function() {
+		    # do nothing
+		  }
+		}
 
 		for (key in names(clusters)) {
 			i <- clusters[[key]];
@@ -191,7 +197,9 @@ Microsoft.VisualBasic.Data.Linq <- function() {
 			tick();
 		}
 
-		cat("\n\n");
+		if (show.progress) {
+		  cat("\n\n");
+		}
 
 		groups;
 	}
