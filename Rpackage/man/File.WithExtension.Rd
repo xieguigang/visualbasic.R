@@ -9,4 +9,3 @@ File.WithExtension(path, ext)
 \description{
 Case insensitive
 }
-

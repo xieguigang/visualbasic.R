@@ -4,7 +4,8 @@
 \alias{binaryTree}
 \title{Build a binary tree list}
 \usage{
-binaryTree(src, key, key.compares, debug = FALSE, progressHeader = TRUE)
+binaryTree(src, key, key.compares, debug = FALSE,
+  progressHeader = TRUE)
 }
 \arguments{
 \item{src}{the input data sequence, which can be \code{data.frame}, \code{list} or
@@ -27,4 +28,3 @@ A binary tree S4 class object
 \description{
 This function build a binary tree list.
 }
-

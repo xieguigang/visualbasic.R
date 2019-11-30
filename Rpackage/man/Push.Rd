@@ -17,4 +17,3 @@ Push variable to a given environment
 For push to current environment, then you can using code for assign \code{envir}
   parameter: \code{curEnv=environment()}
 }
-

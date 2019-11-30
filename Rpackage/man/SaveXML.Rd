@@ -17,4 +17,3 @@ SaveXML(x, file.xml, rootName = "Rlang.xml")
 Serialize any R object to a specific XML file, for save data in a more
   human readable format.
 }
-

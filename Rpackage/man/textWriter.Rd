@@ -25,4 +25,3 @@ A text writer handler list object, with members:
 \description{
 Open a text writer
 }
-

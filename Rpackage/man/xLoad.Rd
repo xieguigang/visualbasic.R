@@ -27,4 +27,3 @@ search the given rda file in directories:
   \item \code{../data} The \code{data} folder in current workspace's parent directory.
 }
 }
-
