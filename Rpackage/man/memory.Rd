@@ -15,4 +15,3 @@ A list contains two slot: \code{Mem} for installed physical memory
 \description{
 Get system memory info
 }
-

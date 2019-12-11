@@ -13,4 +13,3 @@ Returns a function name character vector which its name is stared by token like:
 \description{
 List all VisualBasic namespace
 }
-

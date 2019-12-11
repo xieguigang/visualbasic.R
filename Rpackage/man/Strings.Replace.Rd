@@ -35,4 +35,3 @@ Replace returns the following values.IfReplace returns Find
 Returns a string in which a specified substring has been
          replaced with another substring a specified number of times.
 }
-

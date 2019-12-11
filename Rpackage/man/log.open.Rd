@@ -13,4 +13,3 @@
 This function can create the parent dir for the given
    log file safely.
 }
-

@@ -13,4 +13,3 @@ cliToken(arguments)
 Add quote char wrapper for commandline argument token
 which have whitespace inside.
 }
-

@@ -30,4 +30,3 @@ Enumerator object constructor function for create a VB.NET Linq like data
     sequence wrapper. This constructor function will create a list which contains a
     sequence source and sevral linq data helper extension functions
 }
-

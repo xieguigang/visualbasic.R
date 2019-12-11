@@ -10,4 +10,3 @@ GetCurrentFunc(offset = 0)
 This helper tools is not working
    for the closure function.
 }
-

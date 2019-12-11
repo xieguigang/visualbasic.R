@@ -24,34 +24,11 @@
     cat("\n");
   }
 
-	# Doing some initialize work at here
-	Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = !echo);
-
-	# https://stackoverflow.com/questions/45983899/getnamespaceexports-called-from-within-onload-package-function
-  # .onLoad function is running before current package loaded
-  # So a lot of the helper function in current loadding package can
-  # not be called directly.
-  index <- base::system.file("INDEX", package="VisualBasic.R") %=>% readLines %=>% Enumerator;
-  index <- index$
-    Where(function(line) InStr(line, "Microsoft.VisualBasic") > 0)$
-    Select(function(line) Strings.Split(line)[1])$
-    ToArray();
-
-	if (echo) {
-	  cat("\n");
-	  cat("Namespace modules in current package:\n\n");
-	}
-
-	if (echo) {
-	  for (namespace in index) {
-	    module <- do.call(namespace, list());
-
-	    cat(module$namespace);
-	    cat("\t\t");
-	    cat(module$description);
-	    cat("\n");
-	  }
-	}
+  tryCatch({
+    .PackageStartupJob(echo);
+  }, error = function(ex) {
+    warning(ex);
+  });
 
 	if (echo) {
 	  cat("\n");
@@ -62,4 +39,35 @@
 	  cat("    xieguigang <xie.guigang@gcmodeller.org>");
 	  cat("\n\n");
 	}
+}
+
+.PackageStartupJob <- function(echo) {
+  # Doing some initialize work at here
+  Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = !echo);
+
+  # https://stackoverflow.com/questions/45983899/getnamespaceexports-called-from-within-onload-package-function
+  # .onLoad function is running before current package loaded
+  # So a lot of the helper function in current loadding package can
+  # not be called directly.
+  index <- base::system.file("INDEX", package="VisualBasic.R") %=>% readLines %=>% Enumerator;
+  index <- index$
+    Where(function(line) InStr(line, "Microsoft.VisualBasic") > 0)$
+    Select(function(line) Strings.Split(line)[1])$
+    ToArray();
+
+  if (echo) {
+    cat("\n");
+    cat("Namespace modules in current package:\n\n");
+  }
+
+  if (echo) {
+    for (namespace in index) {
+      module <- do.call(namespace, list());
+
+      cat(module$namespace);
+      cat("\t\t");
+      cat(module$description);
+      cat("\n");
+    }
+  }
 }

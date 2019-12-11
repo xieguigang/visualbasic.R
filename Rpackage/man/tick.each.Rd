@@ -21,4 +21,3 @@ Only works on the \code{vector} or \code{list}
 \details{
 \code{\link{tick.helper}}
 }
-

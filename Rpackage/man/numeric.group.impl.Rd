@@ -14,4 +14,3 @@ more than 1 elements.}
 \description{
 Group a numeric vector without check
 }
-

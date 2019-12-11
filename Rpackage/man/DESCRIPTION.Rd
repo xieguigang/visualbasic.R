@@ -13,4 +13,3 @@ DESCRIPTION(packageName)
 This function is an alias of function
     \code{\link{parse.package.description}}
 }
-
