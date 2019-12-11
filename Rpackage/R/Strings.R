@@ -190,7 +190,7 @@ Distinct <- function(words) {
 }
 
 #' Locate substring position
-#' 
+#'
 #' @details The char start position is 1
 #'
 #' @return -1 means no match
@@ -275,7 +275,7 @@ substr.Right <- function(x, n) {
 }
 
 GetTagValue <- function(s, tag = " ") {
-  sapply(s, function(str) {
+  lapply(s, function(str) {
     i <- InStr(str, tag);
 
     if (i <= 0) {
@@ -297,14 +297,14 @@ GetTagValue <- function(s, tag = " ") {
 #'
 #' @description Determine that target string is null or empty or not??
 #'
-#' @return Logical vector, if the input parameter s is NULL, then this function 
-#'      will also returns a logical value TRUE.    
+#' @return Logical vector, if the input parameter s is NULL, then this function
+#'      will also returns a logical value TRUE.
 #'
 Strings.Empty <- function(s, NA.empty = FALSE) {
 	test <- sapply(s, function(x) {
 	  IsNothing(x, stringAsFactor = NA.empty);
 	}) %=>% as.logical;
-	
+
 	# parameter s input is NULL
 	if (length(test) == 0) {
 		TRUE;
