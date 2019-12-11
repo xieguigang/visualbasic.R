@@ -282,7 +282,7 @@ GetTagValue <- function(s, tag = " ") {
       list(name = "", value = str);
     } else {
       name = Mid(str, 1, i - 2);
-      value = Mid(str, i + length(tag)) %=>% Trim;
+      value = Mid(str, i + length(tag)+ 1) %=>% Trim;
 
       list(name = name, value = value);
     }
