@@ -13,7 +13,7 @@ Strings.Empty(s, NA.empty = FALSE)
 equals to \code{chr("NA")} as empty too? Default is not.}
 }
 \value{
-Logical vector, if the input parameter s is NULL, then this function 
+Logical vector, if the input parameter s is NULL, then this function
      will also returns a logical value TRUE.
 }
 \description{
