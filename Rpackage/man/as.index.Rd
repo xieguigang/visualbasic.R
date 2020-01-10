@@ -19,3 +19,4 @@ If the given \code{keys} is NULL or a single NA value, then NULL value will be r
 Create a index object for determine that a given id
 is exists in the keys collection or not.
 }
+

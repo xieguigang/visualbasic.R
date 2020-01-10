@@ -11,3 +11,4 @@ Write the memory sampling data to a csv table.
 If you didn't doing any memory sampling by \code{memory.sample} yet,
 then this function will do nothing.
 }
+

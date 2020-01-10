@@ -22,3 +22,4 @@ A list with element: \code{rows} and \code{cols} to indicate the object size.\cr
 \description{
 Returns the object size
 }
+

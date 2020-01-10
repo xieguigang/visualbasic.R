@@ -24,3 +24,4 @@ be a single scalar value.}
 \description{
 Compute Levenshtein distance between two strings
 }
+

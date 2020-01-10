@@ -47,8 +47,10 @@ This function is usually piped with the \code{Group} function}
     \item \code{WhichIsNotEmpty} returns the index in the input
           \code{vector}/\code{list} sequence where is not nothing.
 }
+
 group data.frame/list by keys
 }
 \description{
 Linq helper in R language.
 }
+

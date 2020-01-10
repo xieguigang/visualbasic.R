@@ -9,3 +9,4 @@ name.similarity(sa, sb)
 \description{
 Text similarity score
 }
+

@@ -12,3 +12,4 @@ node.find(tree, search, key.compares)
 \description{
 Find a node value by a given search key
 }
+

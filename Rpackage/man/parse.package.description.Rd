@@ -4,8 +4,8 @@
 \alias{parse.package.description}
 \title{Parse DESCRIPTION file}
 \usage{
-parse.package.description(file = base::system.file("DESCRIPTION", package
-  = "VisualBasic.R"))
+parse.package.description(file = base::system.file("DESCRIPTION", package =
+  "VisualBasic.R"))
 }
 \arguments{
 \item{file}{\code{DESCRIPTION} file handle}
@@ -17,3 +17,4 @@ Returns a list of named value that parsed from the \code{DESCRIPTION}
 \description{
 Parse DESCRIPTION file
 }
+

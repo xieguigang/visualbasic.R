@@ -15,3 +15,4 @@ This function is an alias of the \code{\link{IsNothing}} function.
 \seealso{
 \code{\link{IsNothing}}
 }
+

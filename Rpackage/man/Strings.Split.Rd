@@ -30,3 +30,4 @@ String array. If Expression is a zero-length string (\code{""}), Split returns
 Returns a zero-based, one-dimensional array containing a specified
              number of substrings.
 }
+
