@@ -1,8 +1,9 @@
-#Region "Microsoft.ROpen::f44ced39ed98e80552879b2833cfd5c5, zzz.R"
+#Region "Microsoft.ROpen::8e25e181848c036c090395cddf19a649, zzz.R"
 
-# Summaries:
+    # Summaries:
 
-# .onLoad <- function(libname, pkgname) {...
+    # .onLoad <- function(libname, pkgname) {...
+    # .PackageStartupJob <- function(echo) {...
 
 #End Region
 
