@@ -47,6 +47,8 @@ File.ExtensionName <- function(path) {
 #'
 #' @description Case insensitive
 #'
+#' @param ext File extension name without dot.
+#'
 File.WithExtension <- function(path, ext) {
 	ext.parsed <- File.ExtensionName(path);
 	tolower(ext.parsed) == tolower(ext);
@@ -146,9 +148,9 @@ FileReader <- function(path) {
 
 #' Create an empty file
 #'
-#' @description Create an empty file at specific location, if the target file 
-#'   is already exists, then all of the original contents of target file will 
-#'   be removed. 
+#' @description Create an empty file at specific location, if the target file
+#'   is already exists, then all of the original contents of target file will
+#'   be removed.
 #'
 EmptyFile <- function(outfile) {
 close( file( outfile, open="w" ) );
