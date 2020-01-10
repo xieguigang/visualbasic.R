@@ -30,15 +30,15 @@
     warning(ex);
   });
 
-	if (echo) {
-	  cat("\n");
-	  cat("If any problem with this package, open an issue on github:\n\n");
-	  cat("    https://github.com/xieguigang/visualbasic.R");
-	  cat("\n\n");
-	  cat("Or contact the author: \n\n");
-	  cat("    xieguigang <xie.guigang@gcmodeller.org>");
-	  cat("\n\n");
-	}
+  if (echo) {
+    cat("\n");
+    cat("If any problem with this package, open an issue on github:\n\n");
+    cat("    https://github.com/xieguigang/visualbasic.R");
+    cat("\n\n");
+    cat("Or contact the author: \n\n");
+    cat("    xieguigang <xie.guigang@gcmodeller.org>");
+    cat("\n\n");
+  }
 }
 
 .PackageStartupJob <- function(echo) {
