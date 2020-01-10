@@ -1,8 +1,8 @@
-#Region "Microsoft.ROpen::de698636df817aa2838440ae28554054, XML.R"
+#Region "Microsoft.ROpen::c148bcc6eec0752ed41b25b889a7531f, XML.R"
 
     # Summaries:
 
-    # SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {XML.Framework(	write= File.Open(file.txt = file.xml),	do.write = function(write) {...
+    # SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {XML.Framework(  write = File.Open(file.txt = file.xml),  do.write = function(write) {...
     # XML.Framework <- function(write, do.write, rootName) {...
     # Xml.Write.Any <- function(x, indent, write, name = NULL) {if (is.data.frame(x) || is.matrix(x)) {...
     # Xml.Write.Vector <- function(vector, indent, write, name = NULL) {if (is.numeric(vector)) {...
@@ -21,13 +21,13 @@
 #' @param rootName The name of the generated xml root node.
 #'
 SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {
-	XML.Framework(
-		write    = File.Open(file.txt = file.xml),
-		do.write = function(write) {
-		  Xml.Write.Any(x, "", write);
-		},
-		rootName = rootName
-	);
+  XML.Framework(
+    write    = File.Open(file.txt = file.xml),
+    do.write = function(write) {
+      Xml.Write.Any(x, "", write);
+    },
+    rootName = rootName
+  );
 }
 
 #' A framework for write R object to XML file.
@@ -38,15 +38,15 @@ SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {
 #' @param rootName The node name of the generated xml root node.
 #'
 XML.Framework <- function(write, do.write, rootName) {
-    xsd <- "http://www.w3.org/2001/XMLSchema";
-    xsi <- "http://www.w3.org/2001/XMLSchema-instance";
+  xsd <- "http://www.w3.org/2001/XMLSchema";
+  xsi <- "http://www.w3.org/2001/XMLSchema-instance";
 
-    write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-    write("<%s xmlns:xsd=\"%s\" xmlns:xsi=\"%s\">", rootName, xsd, xsi);
-    do.write(write);
-    write("</%s>", rootName);
+  write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
+  write("<%s xmlns:xsd=\"%s\" xmlns:xsi=\"%s\">", rootName, xsd, xsi);
+  do.write(write);
+  write("</%s>", rootName);
 
-    invisible(NULL);
+  invisible(NULL);
 }
 
 #' Write R object to Xml
@@ -62,20 +62,20 @@ XML.Framework <- function(write, do.write, rootName) {
 #'
 Xml.Write.Any <- function(x, indent, write, name = NULL) {
 
-	if (is.data.frame(x) || is.matrix(x)) {
+  if (is.data.frame(x) || is.matrix(x)) {
 
-	  Xml.Write.Matrix(x, indent, write, name);
+    Xml.Write.Matrix(x, indent, write, name);
 
-	} else if (is.list(x)) {
+  } else if (is.list(x)) {
 
     Xml.Write.List(x, indent, write, name);
 
   } else {
-  	if (length(x) == 1) {
-  		write('%s<%s value="%s" />', indent, name, x);
-  	} else {
-  	  Xml.Write.Vector(x, indent, write, name);
-  	}
+    if (length(x) == 1) {
+      write('%s<%s value="%s" />', indent, name, x);
+    } else {
+      Xml.Write.Vector(x, indent, write, name);
+    }
   }
 
   invisible(NULL);
@@ -114,32 +114,32 @@ Xml.Write.Any <- function(x, indent, write, name = NULL) {
 #'   }
 #'
 Xml.Write.Vector <- function(vector, indent, write, name = NULL) {
-    if (is.numeric(vector)) {
-        if (is.null(name)) name = "numeric";
+  if (is.numeric(vector)) {
+    if (is.null(name)) name = "numeric";
 
-        line <- paste0(vector, collapse = " ");
-        line <- sprintf("%s<%s vector=\"%s\" />", indent, name, line);
-    } else if (is.logical(vector)) {
-        if (is.null(name)) name = "logical";
+    line <- paste0(vector, collapse = " ");
+    line <- sprintf("%s<%s vector=\"%s\" />", indent, name, line);
+  } else if (is.logical(vector)) {
+    if (is.null(name)) name = "logical";
 
-        line <- paste0(vector, collapse = " ");
-        line <- sprintf("%s<%s vector=\"%s\" />", indent, name, line);
-    } else if (is.character(vector)) {
-        if (is.null(name)) name = "strings";
+    line <- paste0(vector, collapse = " ");
+    line <- sprintf("%s<%s vector=\"%s\" />", indent, name, line);
+  } else if (is.character(vector)) {
+    if (is.null(name)) name = "strings";
 
-        write(sprintf("%s<%s>", indent, name));
-        for (line in vector) {
-            write(sprintf("%s%s<string>%s</string>", indent, indent, line));
-        }
-        write(sprintf("%s</%s>", indent, name));
-
-        return(0);
-    } else {
-        print(vector);
-        stop(mode(vector));
+    write(sprintf("%s<%s>", indent, name));
+    for (line in vector) {
+      write(sprintf("%s%s<string>%s</string>", indent, indent, line));
     }
+    write(sprintf("%s</%s>", indent, name));
 
-    write(line);
+    return(0);
+  } else {
+    print(vector);
+    stop(mode(vector));
+  }
+
+  write(line);
 }
 
 #' Write the matrix/dataframe as XML node
@@ -163,28 +163,28 @@ Xml.Write.Vector <- function(vector, indent, write, name = NULL) {
 #'
 Xml.Write.Matrix <- function(matrix, indent, write, node.name = NULL) {
 
-	colnames  <- colnames(matrix);
-	rownames  <- rownames(matrix);
-	.list     <- .as.list(matrix);
-    node.name <- node.name %||% "table";
+  colnames  <- colnames(matrix);
+  rownames  <- rownames(matrix);
+  .list     <- .as.list(matrix);
+  node.name <- node.name %||% "table";
 
-	write('%s<table name="%s" nrow="%s">', indent, node.name, nrow(matrix));
+  write('%s<table name="%s" nrow="%s">', indent, node.name, nrow(matrix));
 
-	for (i in 1:nrow(matrix)) {
-		write('%s%s<tr rowname="%s">', indent, indent, rownames[i]);
-		tr <- .list[[i]];
+  for (i in 1:nrow(matrix)) {
+    write('%s%s<tr rowname="%s">', indent, indent, rownames[i]);
+    tr <- .list[[i]];
 
-		for (name in colnames) {
-			value <- tr[[name]];
-			value <- sprintf('<td name="%s" value="%s" />', name, value);
-			value <- sprintf("%s%s%s%s", indent, indent, indent, value);
+    for (name in colnames) {
+      value <- tr[[name]];
+      value <- sprintf('<td name="%s" value="%s" />', name, value);
+      value <- sprintf("%s%s%s%s", indent, indent, indent, value);
 
-			write(value);
-		}
-		write('%s%s</tr>', indent, indent);
-	}
+      write(value);
+    }
+    write('%s%s</tr>', indent, indent);
+  }
 
-	write('%s</table>', indent);
+  write('%s</table>', indent);
 }
 
 #' Write the \code{list} as XML node
@@ -193,32 +193,32 @@ Xml.Write.Matrix <- function(matrix, indent, write, node.name = NULL) {
 #'
 Xml.Write.List <- function(list, indent, write, node.name = NULL) {
 
-    name.list <- names(list);
-    name.xml  <- names(list);
+  name.list <- names(list);
+  name.xml  <- names(list);
 
-    if (is.null(name.list) || is.na(name.list)) {
-        # Indexing by index numeric value, when without names
-        name.list <- 1:length(list);
-        name.xml  <- sprintf("node%s", name.list);
-    }
+  if (is.null(name.list) || is.na(name.list)) {
+    # Indexing by index numeric value, when without names
+    name.list <- 1:length(list);
+    name.xml  <- sprintf("node%s", name.list);
+  }
 
-    node.indent = indent;
+  node.indent = indent;
 
-    if (!is.null(node.name)) {
-        write('%s<item name=\"%s\">', indent, node.name);
-        node.indent = sprintf("%s%s", indent, indent);
-    }
+  if (!is.null(node.name)) {
+    write('%s<item name=\"%s\">', indent, node.name);
+    node.indent = sprintf("%s%s", indent, indent);
+  }
 
-    for (i in 1:length(list)) {
+  for (i in 1:length(list)) {
 
-        index <- name.list[i];
-        name  <- name.xml[i];
-        x     <- list[[index]];
+    index <- name.list[i];
+    name  <- name.xml[i];
+    x     <- list[[index]];
 
-        Xml.Write.Any(x, node.indent, write, name);
-    }
+    Xml.Write.Any(x, node.indent, write, name);
+  }
 
-    if (!is.null(node.name)) {
-        write("%s</item>", indent);
-    }
+  if (!is.null(node.name)) {
+    write("%s</item>", indent);
+  }
 }

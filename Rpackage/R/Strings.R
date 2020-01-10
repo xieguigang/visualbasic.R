@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::a68fbdf76cd91fd6886b2676ea48ba11, Strings.R"
+#Region "Microsoft.ROpen::50ef1da65bb2c6aa78ac718b7fdf9eb1, Strings.R"
 
     # Summaries:
 
@@ -16,12 +16,13 @@
     # Distinct <- function(words) {...
     # InStr <- function(s, substring) {sapply(s, function(str) {...
     # Strings.Len <- function(s) {sapply(s, function(str) {  if (IsNothing(str)) {...
+    # Strings.Trim <- function(str, removes) {sapply(str, function(s) {...
     # Trim <- function(str) {...
     # LTrim <- function(str) {...
     # RTrim <- function(str) {...
     # Mid <- function(s, start, length = NA) {if (IsNothing(length)) {...
     # substr.Right <- function(x, n) {...
-    # GetTagValue <- function(s, tag = " ") {sapply(s, function(str) {...
+    # GetTagValue <- function(s, tag = " ") {lapply(s, function(str) {...
     # Strings.Empty <- function(s, NA.empty = FALSE) {test <- sapply(s, function(x) {...
     # name.similarity <- function(sa, sb) {...
     # levenshtein.distance <- function(source, target,type= c('distance','matrix'),insert.fun= function(x) 1,delete.fun= function(x) 1,substitute.fun = function(s,t) ifelse(s==t,0,1)) {...
@@ -68,22 +69,22 @@ ChrW <- function(code) {
 #'        returns a single-element array containing the entire Expression string.
 Strings.Split <- function(Expression, Delimiter = " ", Compare = 0) {
 
-	useBytes <- TRUE;
+  useBytes <- TRUE;
 
-	if (Compare != 0) {
-		useBytes <- FALSE;
-	}
+  if (Compare != 0) {
+    useBytes <- FALSE;
+  }
 
-	out <- strsplit(x=Expression, split=Delimiter, fixed=FALSE, perl=TRUE, useBytes=useBytes);
-	out <- as.vector(out[[1]]);
+  out <- strsplit(x=Expression, split=Delimiter, fixed=FALSE, perl=TRUE, useBytes=useBytes);
+  out <- as.vector(out[[1]]);
 
-	out;
+  out;
 }
 
 #' Split string using regexp
 #'
 split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
-	Strings.Split(expression, delimiter, limit, compare);
+  Strings.Split(expression, delimiter, limit, compare);
 }
 
 # Public Shared Function Join(SourceArray As String(), Optional Delimiter As String =  ) As String
@@ -103,17 +104,17 @@ split <- function(expression, delimiter = " ", limit = -1, compare = 0) {
 #' @return Returns a string created by joining a number of substrings contained in an
 #'      array.
 Strings.Join <- function(SourceArray, Delimiter = " ") {
-	paste0(SourceArray, collapse = Delimiter);
+  paste0(SourceArray, collapse = Delimiter);
 }
 
 #' Contact string tokens
 #'
 join <- function(sourceArray, delimiter) {
-	Strings.Join(sourceArray, delimiter);
+  Strings.Join(sourceArray, delimiter);
 }
 
 # Public Shared Function LCase(Value As String) As String
-    # Member of Microsoft.VisualBasic.Strings
+# Member of Microsoft.VisualBasic.Strings
 
 #' String to lowercase
 #'
@@ -123,13 +124,13 @@ join <- function(sourceArray, delimiter) {
 #'
 #' @return Returns a string or character converted to lowercase.
 Strings.LCase <- function(Value) {
-	tolower(Value);
+  tolower(Value);
 }
 
 #' String to lowercase
 #'
 lcase <- function(value) {
-	Strings.LCase(value);
+  Strings.LCase(value);
 }
 
 # Public Shared Function Replace(Expression As String, Find As String, Replacement As String, Optional Start As Integer = 1, Optional Count As Integer = -1, Optional Compare As Microsoft.VisualBasic.CompareMethod = 0) As String
@@ -158,11 +159,11 @@ lcase <- function(value) {
 #'        or Nothing, or Start is greater than length of Expression Nothing Count is 0
 #'        Copy of Expression
 Strings.Replace <- function(Expression, Find, Replacement) {
-	gsub(Find, Replacement, Expression, fixed = TRUE);
+  gsub(Find, Replacement, Expression, fixed = TRUE);
 }
 
 # Public Shared Function UCase(Value As String) As String
-    # Member of Microsoft.VisualBasic.Strings
+# Member of Microsoft.VisualBasic.Strings
 
 #' String in uppercase
 #'
@@ -174,32 +175,32 @@ Strings.Replace <- function(Expression, Find, Replacement) {
 #' @return Returns a string or character containing the specified string
 #'         converted to uppercase.
 Strings.UCase <- function(Value) {
-	toupper(Value);
+  toupper(Value);
 }
 
 #' String in uppercase
 #'
 ucase <- function(value) {
-	Strings.UCase(value);
+  Strings.UCase(value);
 }
 
 #' Get unique string
 #'
 Distinct <- function(words) {
-	unique(tolower(words));
+  unique(tolower(words));
 }
 
 #' Locate substring position
-#' 
+#'
 #' @details The char start position is 1
 #'
 #' @return -1 means no match
 #'
 InStr <- function(s, substring) {
-	sapply(s, function(str) {
-		match <- regexpr(substring, str);
-		match[1];
-	}) %=>% as.numeric;
+  sapply(s, function(str) {
+    match <- regexpr(substring, str);
+    match[1];
+  }) %=>% as.numeric;
 }
 
 #' String length
@@ -215,6 +216,12 @@ Strings.Len <- function(s) {
     } else {
       nchar(str);
     }
+  }) %=>% as.vector;
+}
+
+Strings.Trim <- function(str, removes) {
+  sapply(str, function(s) {
+    gsub(paste("^[", removes, "]+|[", removes, "]+$", sep = "", collapse = ""), "", str);
   }) %=>% as.vector;
 }
 
@@ -275,14 +282,14 @@ substr.Right <- function(x, n) {
 }
 
 GetTagValue <- function(s, tag = " ") {
-  sapply(s, function(str) {
+  lapply(s, function(str) {
     i <- InStr(str, tag);
 
     if (i <= 0) {
       list(name = "", value = str);
     } else {
       name = Mid(str, 1, i - 2);
-      value = Mid(str, i + length(tag)) %=>% Trim;
+      value = Mid(str, i + length(tag)+ 1) %=>% Trim;
 
       list(name = name, value = value);
     }
@@ -297,27 +304,27 @@ GetTagValue <- function(s, tag = " ") {
 #'
 #' @description Determine that target string is null or empty or not??
 #'
-#' @return Logical vector, if the input parameter s is NULL, then this function 
-#'      will also returns a logical value TRUE.    
+#' @return Logical vector, if the input parameter s is NULL, then this function
+#'      will also returns a logical value TRUE.
 #'
 Strings.Empty <- function(s, NA.empty = FALSE) {
-	test <- sapply(s, function(x) {
-	  IsNothing(x, stringAsFactor = NA.empty);
-	}) %=>% as.logical;
-	
-	# parameter s input is NULL
-	if (length(test) == 0) {
-		TRUE;
-	} else {
-		test;
-	}
+  test <- sapply(s, function(x) {
+    IsNothing(x, stringAsFactor = NA.empty);
+  }) %=>% as.logical;
+
+  # parameter s input is NULL
+  if (length(test) == 0) {
+    TRUE;
+  } else {
+    test;
+  }
 }
 
 #' Text similarity score
 name.similarity <- function(sa, sb) {
-	l.max       <- max(nchar(c(sa, sb)));
-	similarity  <- (l.max - levenshtein.distance(sa,sb)) / l.max;
-	similarity;
+  l.max       <- max(nchar(c(sa, sb)));
+  similarity  <- (l.max - levenshtein.distance(sa,sb)) / l.max;
+  similarity;
 }
 
 #' Compute Levenshtein distance between two strings
@@ -332,37 +339,37 @@ name.similarity <- function(sa, sb) {
 #'                    be a single scalar value.
 #'
 levenshtein.distance <- function(source, target,
-	type           = c('distance','matrix'),
-	insert.fun     = function(x) 1,
-	delete.fun     = function(x) 1,
-	substitute.fun = function(s,t) ifelse(s==t,0,1)) {
+                                 type           = c('distance','matrix'),
+                                 insert.fun     = function(x) 1,
+                                 delete.fun     = function(x) 1,
+                                 substitute.fun = function(s,t) ifelse(s==t,0,1)) {
 
-	type       <- match.arg(type);
-	source.vec <- strsplit(source,'')[[1]];
-	target.vec <- strsplit(target,'')[[1]];
+  type       <- match.arg(type);
+  source.vec <- strsplit(source,'')[[1]];
+  target.vec <- strsplit(target,'')[[1]];
 
-	if(length(source.vec)==0 & length(target.vec)==0) return(0);
-	if(length(source.vec)==0) return(sum(sapply(target.vec,insert.fun)));
-	if(length(target.vec)==0) return(sum(sapply(source.vec,delete.fun)));
+  if(length(source.vec)==0 & length(target.vec)==0) return(0);
+  if(length(source.vec)==0) return(sum(sapply(target.vec,insert.fun)));
+  if(length(target.vec)==0) return(sum(sapply(source.vec,delete.fun)));
 
-	ns <- length(source.vec) + 1
-	nt <- length(target.vec) + 1
+  ns <- length(source.vec) + 1
+  nt <- length(target.vec) + 1
 
-	d     <- matrix(0, nrow=ns, ncol=nt, dimnames=list(c('#',source.vec),c('#',target.vec)));
-	d[,1] <- 0:(ns-1);
-	d[1,] <- 0:(nt-1);
+  d     <- matrix(0, nrow=ns, ncol=nt, dimnames=list(c('#',source.vec),c('#',target.vec)));
+  d[,1] <- 0:(ns-1);
+  d[1,] <- 0:(nt-1);
 
-	for(j in 2:nt) {
-		for(i in 2:ns) {
-			d[i,j] <- min( d[i-1, j]   + delete.fun(source.vec[i-1]),
-						   d[i,   j-1] + insert.fun(target.vec[j-1]),
-						   d[i-1, j-1] + substitute.fun(source.vec[i-1], target.vec[j-1]) );
-		}
-	}
+  for(j in 2:nt) {
+    for(i in 2:ns) {
+      d[i,j] <- min( d[i-1, j]   + delete.fun(source.vec[i-1]),
+                     d[i,   j-1] + insert.fun(target.vec[j-1]),
+                     d[i-1, j-1] + substitute.fun(source.vec[i-1], target.vec[j-1]) );
+    }
+  }
 
-	switch(type,
-		'distance' = d[ns,nt],
-		'matrix'   = d);
+  switch(type,
+         'distance' = d[ns,nt],
+         'matrix'   = d);
 }
 
 #' Regex string helpers

@@ -17,3 +17,4 @@ Nothing
 This function is using for solving the code compatibility
 between the R package and R script.
 }
+

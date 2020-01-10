@@ -18,3 +18,4 @@ Remove non-printable ASCII characters from a file with this Unix command.
 \details{
 This functin only works in unix system.
 }
+

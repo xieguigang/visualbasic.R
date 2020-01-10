@@ -17,3 +17,4 @@ It is recommended use \code{\link{textWriter}} function for better performance.}
 \description{
 A framework for write R object to XML file.
 }
+

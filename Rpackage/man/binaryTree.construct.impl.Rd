@@ -10,3 +10,4 @@ binaryTree.construct.impl(tree, popX, popName, src, key = NULL,
 \description{
 Binary tree build implementation
 }
+

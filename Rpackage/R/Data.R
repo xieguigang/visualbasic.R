@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::afa40e6a5e8db07be8feedd46f4c8d24, Data.R"
+#Region "Microsoft.ROpen::eedb9d2af4ef3bee1d1e4b9fa7b47f15, Data.R"
 
     # Summaries:
 
@@ -13,6 +13,7 @@
     # .load.dataset <- function(file) {...
     # cmode <- function(meta, col, mode, col.copy = NULL) {...
     # dictionary.dataframe <- function(list) {...
+    # delete_byIndex <- function(v, index) {...
 
 #End Region
 

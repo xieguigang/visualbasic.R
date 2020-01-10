@@ -9,3 +9,4 @@ ucase(value)
 \description{
 String in uppercase
 }
+

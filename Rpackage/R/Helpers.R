@@ -1,8 +1,8 @@
-#Region "Microsoft.ROpen::d7e478c6b0e6c0c1a92ee7dd87b66587, Helpers.R"
+#Region "Microsoft.ROpen::6ae65b1c62ea166c23b53642165af4ce, Helpers.R"
 
     # Summaries:
 
-    # as.index <- function(keys) {...
+    # as.index <- function(keys) {if (keys %=>% IsNothing) {...
     # user <- function() {...
     # memory <- function() {...
     # log.open <- function(file.path) {...
@@ -134,14 +134,14 @@ Now <- function() {
 #'
 log.close <- function(print.warnings = FALSE) {
 
-	if (print.warnings) {
-		cat("\n\n");
-		print(warnings());
-		cat("\n\n");
-	}
+  if (print.warnings) {
+    cat("\n\n");
+    print(warnings());
+    cat("\n\n");
+  }
 
-	cat(sprintf("\n---------------EndOfLog @ %s-----------------\n\n", Now()));
-	sink();
+  cat(sprintf("\n---------------EndOfLog @ %s-----------------\n\n", Now()));
+  sink();
 }
 
 #' Print a log text onto screen
@@ -179,19 +179,19 @@ vector.fill <- function(list, baselist) {
     baselen <- length(baselist);
   }
 
-	if (length(list) == 1) {
-		rep(list, baselen);
-	} else if ( length(list) < baselen ) {
-		last = length(list);
+  if (length(list) == 1) {
+    rep(list, baselen);
+  } else if ( length(list) < baselen ) {
+    last = length(list);
 
-		for (i in (last + 1):10000) {
-			list[i] = list[last];
-		}
+    for (i in (last + 1):10000) {
+      list[i] = list[last];
+    }
 
-		list;
-	} else {
-		list;
-	}
+    list;
+  } else {
+    list;
+  }
 }
 
 #' Memory preallocation

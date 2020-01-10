@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::e36ba539910f806024fd21b2b86a7047, taskHelper.R"
+#Region "Microsoft.ROpen::9152f0591778519692068ade480657c4, taskHelper.R"
 
     # Summaries:
 
@@ -44,26 +44,26 @@ tick.helper <- function(total, disp.number = TRUE, step = 5 / 100, callback = NU
   }
 
   return(function() {
-	i <- get("i", envir = workspace) + 1;
+    i <- get("i", envir = workspace) + 1;
 
-		if (i >= get("p5", envir = workspace)) {
-			i <- 1;
-            cur <- get("cur", envir = workspace) + step * 100;
-			assign("cur", cur, envir = workspace);
+    if (i >= get("p5", envir = workspace)) {
+      i <- 1;
+      cur <- get("cur", envir = workspace) + step * 100;
+      assign("cur", cur, envir = workspace);
 
-			cur <- round(cur);
-			
-			if (disp.number) {
-			  cat(cur);
-			  cat(" ");
-			} else {
-			  cat(".");
-			}
+      cur <- round(cur);
 
-            callback(cur);
-		}
+      if (disp.number) {
+        cat(cur);
+        cat(" ");
+      } else {
+        cat(".");
+      }
 
-        assign("i", i, envir = workspace);
+      callback(cur);
+    }
+
+    assign("i", i, envir = workspace);
   });
 }
 
@@ -83,8 +83,8 @@ tick.each <- function(sequence, action) {
   len <- length(sequence);
   tick <- tick.helper(len);
   iteration <- function(i) {
-     tick();
-	 action(sequence[i]);
+    tick();
+    action(sequence[i]);
   }
 
   cat("\n");

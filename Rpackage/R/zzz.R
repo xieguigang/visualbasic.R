@@ -1,8 +1,9 @@
-#Region "Microsoft.ROpen::f44ced39ed98e80552879b2833cfd5c5, zzz.R"
+#Region "Microsoft.ROpen::8e25e181848c036c090395cddf19a649, zzz.R"
 
     # Summaries:
 
     # .onLoad <- function(libname, pkgname) {...
+    # .PackageStartupJob <- function(echo) {...
 
 #End Region
 
@@ -30,15 +31,15 @@
     warning(ex);
   });
 
-	if (echo) {
-	  cat("\n");
-	  cat("If any problem with this package, open an issue on github:\n\n");
-	  cat("    https://github.com/xieguigang/visualbasic.R");
-	  cat("\n\n");
-	  cat("Or contact the author: \n\n");
-	  cat("    xieguigang <xie.guigang@gcmodeller.org>");
-	  cat("\n\n");
-	}
+  if (echo) {
+    cat("\n");
+    cat("If any problem with this package, open an issue on github:\n\n");
+    cat("    https://github.com/xieguigang/visualbasic.R");
+    cat("\n\n");
+    cat("Or contact the author: \n\n");
+    cat("    xieguigang <xie.guigang@gcmodeller.org>");
+    cat("\n\n");
+  }
 }
 
 .PackageStartupJob <- function(echo) {

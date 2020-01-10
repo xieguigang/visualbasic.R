@@ -14,3 +14,4 @@ node.right(tree, node)
 \description{
 Get the right node of current node
 }
+

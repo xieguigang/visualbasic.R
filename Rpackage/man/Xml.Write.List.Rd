@@ -12,3 +12,4 @@ Write the \code{list} as XML node
 \details{
 A R list object is a kind of dictionary object in VB.NET
 }
+

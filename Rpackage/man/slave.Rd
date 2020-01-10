@@ -20,3 +20,4 @@ R program at here. By default is not running in parallel mode.}
 \description{
 This is usually using for memory size optimization.
 }
+
