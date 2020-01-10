@@ -1,17 +1,17 @@
 #Region "Microsoft.ROpen::d7e478c6b0e6c0c1a92ee7dd87b66587, Helpers.R"
 
-    # Summaries:
+# Summaries:
 
-    # as.index <- function(keys) {...
-    # user <- function() {...
-    # memory <- function() {...
-    # log.open <- function(file.path) {...
-    # Now <- function() {...
-    # log.close <- function(print.warnings = FALSE) {if (print.warnings) {...
-    # log.echo <- function(...) {...
-    # unix.timestamp <- function() {...
-    # vector.fill <- function(list, baselist) {if (is.integer(baselist) && length(baselist) == 1) {...
-    # alloca <- function(len, list = FALSE) {if (list) {...
+# as.index <- function(keys) {...
+# user <- function() {...
+# memory <- function() {...
+# log.open <- function(file.path) {...
+# Now <- function() {...
+# log.close <- function(print.warnings = FALSE) {if (print.warnings) {...
+# log.echo <- function(...) {...
+# unix.timestamp <- function() {...
+# vector.fill <- function(list, baselist) {if (is.integer(baselist) && length(baselist) == 1) {...
+# alloca <- function(len, list = FALSE) {if (list) {...
 
 #End Region
 
@@ -134,14 +134,14 @@ Now <- function() {
 #'
 log.close <- function(print.warnings = FALSE) {
 
-	if (print.warnings) {
-		cat("\n\n");
-		print(warnings());
-		cat("\n\n");
-	}
+  if (print.warnings) {
+    cat("\n\n");
+    print(warnings());
+    cat("\n\n");
+  }
 
-	cat(sprintf("\n---------------EndOfLog @ %s-----------------\n\n", Now()));
-	sink();
+  cat(sprintf("\n---------------EndOfLog @ %s-----------------\n\n", Now()));
+  sink();
 }
 
 #' Print a log text onto screen
@@ -179,19 +179,19 @@ vector.fill <- function(list, baselist) {
     baselen <- length(baselist);
   }
 
-	if (length(list) == 1) {
-		rep(list, baselen);
-	} else if ( length(list) < baselen ) {
-		last = length(list);
+  if (length(list) == 1) {
+    rep(list, baselen);
+  } else if ( length(list) < baselen ) {
+    last = length(list);
 
-		for (i in (last + 1):10000) {
-			list[i] = list[last];
-		}
+    for (i in (last + 1):10000) {
+      list[i] = list[last];
+    }
 
-		list;
-	} else {
-		list;
-	}
+    list;
+  } else {
+    list;
+  }
 }
 
 #' Memory preallocation
