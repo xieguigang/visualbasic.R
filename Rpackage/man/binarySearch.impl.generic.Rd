@@ -13,4 +13,3 @@ This function returns the index i of the input sequence.
 A internal private function which find the index of the element in the
 input sequence which match a specific target key.
 }
-

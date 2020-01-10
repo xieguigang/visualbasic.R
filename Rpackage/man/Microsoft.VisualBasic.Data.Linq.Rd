@@ -52,4 +52,3 @@ group data.frame/list by keys
 \description{
 Linq helper in R language.
 }
-

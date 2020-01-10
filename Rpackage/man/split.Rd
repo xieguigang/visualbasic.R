@@ -9,4 +9,3 @@ split(expression, delimiter = " ", limit = -1, compare = 0)
 \description{
 Split string using regexp
 }
-

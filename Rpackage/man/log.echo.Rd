@@ -12,4 +12,3 @@
 \description{
 Print a log text onto screen
 }
-

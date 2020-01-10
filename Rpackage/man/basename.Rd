@@ -12,4 +12,3 @@ basename(path)
 \description{
 Get the file name of a given file path without extension name.
 }
-

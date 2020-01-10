@@ -17,4 +17,3 @@ Returns a string or character containing the specified string
 Returns a string or character containing the specified string
         converted to uppercase.
 }
-

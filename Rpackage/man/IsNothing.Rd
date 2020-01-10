@@ -28,4 +28,3 @@ Determine that target object is nothing or not, by using predicates: \code{is.nu
 \seealso{
 This function has an alias name: \code{\link{is.nothing}}.
 }
-

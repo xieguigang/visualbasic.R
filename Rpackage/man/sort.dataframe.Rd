@@ -20,4 +20,3 @@ sort the rows based on these numeric value comparsion.}
 \description{
 Sort a dataframe by a specific given column name or key indexer.
 }
-

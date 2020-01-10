@@ -24,6 +24,24 @@
     cat("\n");
   }
 
+  tryCatch({
+    .PackageStartupJob(echo);
+  }, error = function(ex) {
+    warning(ex);
+  });
+
+	if (echo) {
+	  cat("\n");
+	  cat("If any problem with this package, open an issue on github:\n\n");
+	  cat("    https://github.com/xieguigang/visualbasic.R");
+	  cat("\n\n");
+	  cat("Or contact the author: \n\n");
+	  cat("    xieguigang <xie.guigang@gcmodeller.org>");
+	  cat("\n\n");
+	}
+}
+
+.PackageStartupJob <- function(echo) {
   # Doing some initialize work at here
   Imports("Microsoft.VisualBasic.Language", frame = globalenv(), silent = !echo);
 
@@ -51,15 +69,5 @@
       cat(module$description);
       cat("\n");
     }
-  }
-
-  if (echo) {
-    cat("\n");
-    cat("If any problem with this package, open an issue on github:\n\n");
-    cat("    https://github.com/xieguigang/visualbasic.R");
-    cat("\n\n");
-    cat("Or contact the author: \n\n");
-    cat("    xieguigang <xie.guigang@gcmodeller.org>");
-    cat("\n\n");
   }
 }

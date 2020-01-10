@@ -15,4 +15,3 @@ A numeric vector for string length.
 \description{
 String length
 }
-

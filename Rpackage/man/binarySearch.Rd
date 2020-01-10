@@ -26,4 +26,3 @@ Perform binary search on a sortted sequence.
 If there are duplicated items in the \code{source} sequence, then
          you should group the items at first and then perfamence the binary search.
 }
-

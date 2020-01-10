@@ -19,4 +19,3 @@ Open a given file and returns the handle for write this file in text mode.
   The returned lambda function is a wrapper for function \code{link{sprintf}} and
   \code{cat} function.
 }
-

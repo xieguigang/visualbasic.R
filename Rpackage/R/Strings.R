@@ -218,6 +218,12 @@ Strings.Len <- function(s) {
   }) %=>% as.vector;
 }
 
+Strings.Trim <- function(str, removes) {
+  sapply(str, function(s) {
+    gsub(paste("^[", removes, "]+|[", removes, "]+$", sep = "", collapse = ""), "", str);
+  }) %=>% as.vector;
+}
+
 #' Returns string w/o leading or trailing whitespace
 #'
 #' @description https://stackoverflow.com/questions/2261079/how-to-trim-leading-and-trailing-whitespace-in-r
@@ -275,14 +281,14 @@ substr.Right <- function(x, n) {
 }
 
 GetTagValue <- function(s, tag = " ") {
-  sapply(s, function(str) {
+  lapply(s, function(str) {
     i <- InStr(str, tag);
 
     if (i <= 0) {
       list(name = "", value = str);
     } else {
       name = Mid(str, 1, i - 2);
-      value = Mid(str, i + length(tag)) %=>% Trim;
+      value = Mid(str, i + length(tag)+ 1) %=>% Trim;
 
       list(name = name, value = value);
     }
