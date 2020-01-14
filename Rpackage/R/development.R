@@ -32,7 +32,7 @@ parse.package.description <- function(file = base::system.file("DESCRIPTION", pa
             if (name != "") {
                 description[[name]] = last;
             }
-            c(name, last) := GetTagValue(line, ":");
+            c(name, last) := GetTagValue(line, ":")[[1]];
         }
     }
 
