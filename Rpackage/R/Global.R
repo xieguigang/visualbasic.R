@@ -19,7 +19,7 @@
 
 #End Region
 
-#' VisualBasic namespace imports helper
+#' namespace imports helper
 #'
 #' @param namespace The namespace function name or function itself
 #' @param overrides A logical flag to indicate that should the imported function
@@ -28,9 +28,13 @@
 #'                  then a warning message will be generated for mention you that
 #'                  which functions are overrided.
 #' @param frame The envrionment location, by default is current function scope
+#' @param silent The function will keeps silent on processing the symbol imports. If this 
+#'     parameter is set to \code{false}, then it means all of the verbose debug message
+#'     will print on the console screen.
 #'
 #' @return A string vector contains all of the function names from this namespace
 #'         function that imported to current environment.
+#'
 Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {
   if (is.character(namespace)) {
     module <- get(namespace)();
@@ -85,7 +89,7 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
 
 	# invisible(NULL);
 	if (silent) {
-	  invisible(NULL);
+	  invisible(func.list);
 	} else {
 	  names(func.list);
 	}
