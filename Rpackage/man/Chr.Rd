@@ -9,4 +9,3 @@ Chr(ascii)
 \description{
 Convert the ascii code vector to character vector
 }
-

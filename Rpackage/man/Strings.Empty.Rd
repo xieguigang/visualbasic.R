@@ -19,4 +19,3 @@ Logical vector, if the input parameter s is NULL, then this function
 \description{
 Determine that target string is null or empty or not??
 }
-

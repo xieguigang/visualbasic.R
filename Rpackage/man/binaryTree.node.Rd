@@ -9,4 +9,3 @@ binaryTree.node(key, x, name)
 \description{
 Create a new tree node
 }
-

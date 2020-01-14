@@ -9,4 +9,3 @@ ReadAllLines(file.txt)
 \description{
 Read all text lines from a specific text file.
 }
-

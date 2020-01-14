@@ -17,4 +17,3 @@ A vector that with equals length with \code{baselist} vector.
 \description{
 fill data vector
 }
-

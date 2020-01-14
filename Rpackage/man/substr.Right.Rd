@@ -15,4 +15,3 @@ substr.Right(x, n)
 This function working in the reverse direction of function
      \code{\link{Mid}}
 }
-

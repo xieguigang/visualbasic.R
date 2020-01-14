@@ -4,7 +4,8 @@
 \alias{binarySearch.dataframe}
 \title{Binary Search on a \code{dataframe}}
 \usage{
-binarySearch.dataframe(dataframe, find, key, compares = function(a, b) a - b)
+binarySearch.dataframe(dataframe, find, key, compares = function(a, b) a
+  - b)
 }
 \arguments{
 \item{dataframe}{A dataframe object}
@@ -31,4 +32,3 @@ For the \code{compares} lambda function, it should accept two parameter and in f
 \seealso{
 \code{\link{binarySearch.impl.generic}}
 }
-

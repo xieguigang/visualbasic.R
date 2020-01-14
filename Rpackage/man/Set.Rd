@@ -16,4 +16,3 @@ list(x11 = 15555, y22 = FALSE) \%=>\% Set
 \seealso{
 \code{\link{Push}}
 }
-

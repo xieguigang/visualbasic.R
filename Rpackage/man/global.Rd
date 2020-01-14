@@ -26,4 +26,3 @@ Set variables into the global environment.
 global(name, value);
 
 }
-

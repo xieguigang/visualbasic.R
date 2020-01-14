@@ -15,4 +15,3 @@ of the current group or not?}
 \description{
 Group a numeric vector elements by a given test condition
 }
-

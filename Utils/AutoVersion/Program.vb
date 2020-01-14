@@ -3,7 +3,6 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.FileIO.Path
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Language.UnixBash
 Imports Microsoft.VisualBasic.Text
@@ -71,11 +70,12 @@ Module Program
         Dim src$ = args <= "/src"
         Dim out$ = args!out Or src
 
-        For Each path As String In ls - l - r - "*.R" <= src
+        For Each path As String In (ls - l - r - "*.R" <= src).ToArray
             Dim relativePath$ = PathExtensions.RelativePath(
                 pcFrom:=src,
                 pcTo:=path,
-                appendParent:=False
+                appendParent:=False,
+                fixZipPath:=True
             )
             Dim output$ = $"{out}/{relativePath}"
 

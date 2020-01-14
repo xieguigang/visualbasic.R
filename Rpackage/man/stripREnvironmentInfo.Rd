@@ -16,4 +16,3 @@ A function is convert to string by \code{capture.output} function
    the \code{eval(parse(text = closure))} process failure. This helper tools
    will try to removes such environment information text.
 }
-
