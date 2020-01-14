@@ -9,7 +9,7 @@ slide.windows <- function(win_size = 2, step = 1, ...) {
   keys <- names(data);
   out <- list();
 
-  for(i in seq(1, length(data[[1]]), by= step)) {
+  for(i in seq(1, length(data[[1]])-step, by= step)) {
     range <- i:(i + win_size -1);
     element <- list();
 
