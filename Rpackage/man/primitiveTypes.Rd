@@ -15,3 +15,4 @@ Enumerate some primitive type in R language, these enumeration value have:
 \item \code{vector} = 3
 }
 }
+

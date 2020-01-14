@@ -13,3 +13,4 @@ By default, the closure text is read from stdin.}
 \description{
 The closure string could be content from stdin or user input text.
 }
+

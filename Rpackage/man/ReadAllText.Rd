@@ -15,3 +15,4 @@ Returns the text file content in one piece, not split in lines.
 \description{
 Read all text from a specific file
 }
+

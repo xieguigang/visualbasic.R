@@ -1,4 +1,4 @@
-#Region "Microsoft.ROpen::213745dfd1c98d092ea42618b3e7aed7, Global.R"
+#Region "Microsoft.ROpen::9eb888c40fcab55a2c64fb5f958713ca, Global.R"
 
     # Summaries:
 
@@ -9,7 +9,7 @@
     # global <- function(name) {if (!base::exists(name, envir = .GlobalEnv)) {...
     # "global<-" <- function(...) {...
     # Push <- function(envir = parent.frame()) {function(...) {...
-    # IsNothing <- function(x, stringAsFactor = FALSE) {if (is.null(x) || is.na(x) || length(x) == 0) {...
+    # IsNothing <- function(x, stringAsFactor = FALSE) {if (is.null(x) || length(x) == 0) {...
     # Size <- function(x) {...
     # printf <- function(...) {...
     # LogException <- function(ex, logFile, append = FALSE) {...
@@ -43,29 +43,29 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
     namespace <- module$namespace;
   }
 
-	if (!("methods" %in% names(module))) {
-		func.list <- module;
-	} else {
-		func.list <- module$methods;
-	}
+  if (!("methods" %in% names(module))) {
+    func.list <- module;
+  } else {
+    func.list <- module$methods;
+  }
 
-	overrideMsg <- "overrides '%s' from namespace `%s`";
+  overrideMsg <- "overrides '%s' from namespace `%s`";
 
-	for (name in names(func.list)) {
-		if (exists(name, envir = frame)) {
-			if (overrides) {
-				warning(sprintf(overrideMsg, name, namespace));
-			} else {
-				next;
-			}
-		}
+  for (name in names(func.list)) {
+    if (exists(name, envir = frame)) {
+      if (overrides) {
+        warning(sprintf(overrideMsg, name, namespace));
+      } else {
+        next;
+      }
+    }
 
-		assign <- list(name, func.list[[name]]);
-		do.call(`=`, assign, envir = frame);
-	}
+    assign <- list(name, func.list[[name]]);
+    do.call(`=`, assign, envir = frame);
+  }
 
-	if ("modules" %in% names(module)) {
-	  # Is also contains export variable modules
+  if ("modules" %in% names(module)) {
+    # Is also contains export variable modules
     modules <- module$modules;
 
     for(name in names(modules)) {
@@ -89,7 +89,7 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
 
 	# invisible(NULL);
 	if (silent) {
-	  invisible(func.list);
+	  invisible(names(func.list));
 	} else {
 	  names(func.list);
 	}
@@ -172,8 +172,8 @@ global <- function(name) {
 #' @return \code{NULL}
 #'
 "global<-" <- function(...) {
-	# https://stackoverflow.com/questions/10449366/levels-what-sorcery-is-this
-	#
+  # https://stackoverflow.com/questions/10449366/levels-what-sorcery-is-this
+  #
 
   assign <- list(...);
   do.call(`=`, assign, envir = .GlobalEnv);
@@ -189,23 +189,23 @@ global <- function(name) {
 #' @details For push to current environment, then you can using code for assign \code{envir}
 #'   parameter: \code{curEnv=environment()}
 Push <- function(envir = parent.frame()) {
-   function(...) {
-     x <- list(...);
+  function(...) {
+    x <- list(...);
 
-     if ((length(x) == 1)                      &&
-         (GetType(x) == primitiveTypes()$list) &&
-         (names(x) %=>% IsNothing)) {
+    if ((length(x) == 1)                      &&
+        (GetType(x) == primitiveTypes()$list) &&
+        (names(x) %=>% IsNothing)) {
 
-       x <- x[[1]];
-     }
+      x <- x[[1]];
+    }
 
-     for (var in names(x)) {
-       assign <- list(var, x[[var]]);
-       do.call(`=`, assign, envir = envir);
-     }
+    for (var in names(x)) {
+      assign <- list(var, x[[var]]);
+      do.call(`=`, assign, envir = envir);
+    }
 
-     invisible(NULL);
-   }
+    invisible(NULL);
+  }
 }
 
 #' Determine that target is Nothing in VB way
@@ -229,32 +229,32 @@ Push <- function(envir = parent.frame()) {
 #'
 IsNothing <- function(x, stringAsFactor = FALSE) {
 
-	if (is.null(x) || length(x) == 0) {
-		TRUE;
-	} else if (length(x) == 1 && is.na(x)) {
-	  # fix bugs for the c(NA, NA, NA, NA) is true.
-	  TRUE;
+  if (is.null(x) || length(x) == 0) {
+    TRUE;
+  } else if (length(x) == 1 && is.na(x)) {
+    # fix bugs for the c(NA, NA, NA, NA) is true.
+    TRUE;
 
-	  # vector have multiple elements, is not nothing
-	} else if (length(x) > 1) {
-	  FALSE;
+    # vector have multiple elements, is not nothing
+  } else if (length(x) > 1) {
+    FALSE;
 
-		# 2018-6-25 Empty string object can not compare with S4 directly.
-		# So this function will determine the data type of X at first and
-	  # then perfermance the compares.
-		# Error in x == "" : Only compares (1)vector or list type
-	} else if (!is.character(x)) {
-		FALSE;
-	} else {
+    # 2018-6-25 Empty string object can not compare with S4 directly.
+    # So this function will determine the data type of X at first and
+    # then perfermance the compares.
+    # Error in x == "" : Only compares (1)vector or list type
+  } else if (!is.character(x)) {
+    FALSE;
+  } else {
 
-		if (!stringAsFactor) {
-			FALSE;
-		} else if (x == "") {
-			TRUE;
-		} else {
-			x %in% c("NULL", "null", "na", "NA");
-		}
-	}
+    if (!stringAsFactor) {
+      FALSE;
+    } else if (x == "") {
+      TRUE;
+    } else {
+      x %in% c("NULL", "null", "na", "NA");
+    }
+  }
 }
 
 #' Determine that target is Nothing in VB way
@@ -342,17 +342,17 @@ LogException <- function(ex, logFile, append = FALSE) {
 #' @return One of the value member from enumeration function
 #'         \code{\link{primitiveTypes}}.
 GetType <- function(x) {
-	types <- primitiveTypes();
+  types <- primitiveTypes();
 
-	if (is.data.frame(x) || is.matrix(x)) {
-		types$data.frame;
-	} else if (is.list(x)) {
-		types$list;
-	} else if (is.vector(x)){
-		types$vector;
-	} else {
-		types$object;
-	}
+  if (is.data.frame(x) || is.matrix(x)) {
+    types$data.frame;
+  } else if (is.list(x)) {
+    types$list;
+  } else if (is.vector(x)){
+    types$vector;
+  } else {
+    types$object;
+  }
 }
 
 #' Enumerate some primitive type in R
@@ -365,7 +365,7 @@ GetType <- function(x) {
 #' \item \code{vector} = 3
 #' }
 primitiveTypes <- function() {
-	list(object = 0, data.frame = 1, list = 2, vector = 3);
+  list(object = 0, data.frame = 1, list = 2, vector = 3);
 }
 
 #' Auto dispose

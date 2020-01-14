@@ -15,3 +15,4 @@ Returns a string or character converted to lowercase.
 \description{
 Returns a string or character converted to lowercase.
 }
+

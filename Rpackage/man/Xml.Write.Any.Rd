@@ -20,3 +20,4 @@ Xml.Write.Any(x, indent, write, name = NULL)
 Choose different XML write function based on the input object
    type.
 }
+

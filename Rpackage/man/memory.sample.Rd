@@ -12,3 +12,4 @@ Get current memory sample
 \details{
 This function is limited one instance
 }
+

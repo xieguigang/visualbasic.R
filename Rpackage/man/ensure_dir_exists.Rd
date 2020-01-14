@@ -10,3 +10,4 @@ ensure_dir_exists(path)
 If the directory path is not exists on
 the file system, then this function will create it.
 }
+

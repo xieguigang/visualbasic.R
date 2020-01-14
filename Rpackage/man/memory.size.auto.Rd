@@ -11,3 +11,4 @@ Provides a unify method for get current R session its
 memory usage. For solve the \code{Inf} bug of \code{memory.size}
 function on linux platform.
 }
+

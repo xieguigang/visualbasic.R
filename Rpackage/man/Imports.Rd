@@ -25,3 +25,4 @@ A string vector contains all of the function names from this namespace
 \description{
 VisualBasic namespace imports helper
 }
+

@@ -10,3 +10,4 @@ user()
 Get user name of current linux login user by bash shell
   This function only works on Linux platform.
 }
+

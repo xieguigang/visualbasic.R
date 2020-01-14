@@ -15,3 +15,4 @@ Locate substring position
 \details{
 The char start position is 1
 }
+
