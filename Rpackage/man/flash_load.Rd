@@ -16,4 +16,3 @@ Nothing.
 Load all of the R script in a given working directory,
    by default is load all script in current directory.
 }
-

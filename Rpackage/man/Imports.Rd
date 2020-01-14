@@ -2,7 +2,7 @@
 % Please edit documentation in R/Global.R
 \name{Imports}
 \alias{Imports}
-\title{VisualBasic namespace imports helper}
+\title{namespace imports helper}
 \usage{
 Imports(namespace, overrides = FALSE, silent = TRUE,
   frame = parent.frame())
@@ -16,6 +16,10 @@ name. By default is can not. If this parameter is set to true,
 then a warning message will be generated for mention you that
 which functions are overrided.}
 
+\item{silent}{The function will keeps silent on processing the symbol imports. If this
+parameter is set to \code{false}, then it means all of the verbose debug message
+will print on the console screen.}
+
 \item{frame}{The envrionment location, by default is current function scope}
 }
 \value{
@@ -23,6 +27,5 @@ A string vector contains all of the function names from this namespace
         function that imported to current environment.
 }
 \description{
-VisualBasic namespace imports helper
+namespace imports helper
 }
-

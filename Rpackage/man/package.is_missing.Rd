@@ -16,4 +16,3 @@ A logical value to indicate that the given package is missing from
 \description{
 Determine a given package is missing?
 }
-

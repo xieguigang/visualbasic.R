@@ -13,4 +13,3 @@ the log writer? Default is not print warnings.}
 \description{
 Close current log file
 }
-

@@ -9,4 +9,3 @@ Now()
 \description{
 Gets current time string value
 }
-

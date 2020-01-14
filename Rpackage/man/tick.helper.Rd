@@ -22,4 +22,3 @@ Helper function for display the progress in percentage value of a
 
              Only avaliable for single thread R app
 }
-

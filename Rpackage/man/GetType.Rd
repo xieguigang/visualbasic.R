@@ -18,4 +18,3 @@ This function returns on of the member value from enumeration function
 \code{\link{primitiveTypes}}
 based on the type of the variable \code{x}
 }
-

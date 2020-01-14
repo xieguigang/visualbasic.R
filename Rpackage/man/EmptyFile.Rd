@@ -7,8 +7,7 @@
 EmptyFile(outfile)
 }
 \description{
-Create an empty file at specific location, if the target file 
-  is already exists, then all of the original contents of target file will 
+Create an empty file at specific location, if the target file
+  is already exists, then all of the original contents of target file will
   be removed.
 }
-

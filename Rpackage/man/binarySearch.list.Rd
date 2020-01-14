@@ -12,4 +12,3 @@ Binary search on a \code{list}
 \seealso{
 \code{\link{binarySearch.impl.generic}}
 }
-

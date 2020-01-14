@@ -24,4 +24,3 @@ A data sequence which its elements has been reordered.
 We assume that all of the elements in the input list is list object, and the key attribute
 should exists in each list element.
 }
-

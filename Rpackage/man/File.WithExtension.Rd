@@ -6,7 +6,9 @@
 \usage{
 File.WithExtension(path, ext)
 }
+\arguments{
+\item{ext}{File extension name without dot.}
+}
 \description{
 Case insensitive
 }
-

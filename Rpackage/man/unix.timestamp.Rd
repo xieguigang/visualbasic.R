@@ -12,4 +12,3 @@ timestamp in milliseconds
 \description{
 https://stackoverflow.com/questions/40059573/r-get-current-time-in-milliseconds
 }
-

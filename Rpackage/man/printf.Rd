@@ -12,4 +12,3 @@ printf(...)
 \description{
 Simulate the C \code{printf} function
 }
-

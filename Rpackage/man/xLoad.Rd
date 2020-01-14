@@ -12,6 +12,9 @@ If this parameter is empty string, then load function will
 throw error;
 If the rda data object could not be found, this function just givens warnings.}
 }
+\value{
+A character vector of the names of objects created, invisibly.
+}
 \description{
 Load \code{rda} data in a unified method
 }
@@ -27,4 +30,3 @@ search the given rda file in directories:
   \item \code{../data} The \code{data} folder in current workspace's parent directory.
 }
 }
-
