@@ -71,11 +71,12 @@ Module Program
         Dim src$ = args <= "/src"
         Dim out$ = args!out Or src
 
-        For Each path As String In ls - l - r - "*.R" <= src
+        For Each path As String In (ls - l - r - "*.R" <= src).ToArray
             Dim relativePath$ = PathExtensions.RelativePath(
                 pcFrom:=src,
                 pcTo:=path,
-                appendParent:=False
+                appendParent:=False,
+                fixZipPath:=True
             )
             Dim output$ = $"{out}/{relativePath}"
 
