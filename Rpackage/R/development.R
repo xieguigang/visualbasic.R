@@ -127,16 +127,27 @@ DESCRIPTION <- function(packageName) {
 #'   \item \code{../data} The \code{data} folder in current workspace's parent directory.
 #' }
 #'
+#' @return A character vector of the names of objects created, invisibly.
+#'
 xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
 
   load.file <- function(rda) {
-    load(rda, envir = envir);
+    if (File.WithExtension(rda, "csv")) {
+      # load csv file as dataframe
+      # use file name as variable name
+      names <- make.names(basename(rda));
+      data <- read.csv(rda);
+      assign <- list(names, data);
+      do.call(`=`, assign, envir = envir);
+    } else {
+      names <- load(rda, envir = envir);
+    }
 
     if (verbose) {
       printf(" -> load_from_file::%s", rda);
     }
 
-    NULL;
+    invisible(names);
   }
 
   if (file.exists(rdaName)) {
