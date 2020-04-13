@@ -173,6 +173,11 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
 
 #' Create a new tree node
 #'
+#' @param x a node content data object
+#'
+#' @details the initial node content data object \code{x} is already includes into the 
+#'     \code{members} slot of the created new binary tree node list object.
+#'
 binaryTree.node <- function(key, x, name) {
   values         <- list();
   values[[name]] <- x;
