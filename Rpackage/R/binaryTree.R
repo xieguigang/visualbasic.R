@@ -175,7 +175,7 @@ binaryTree.construct.impl <- function(tree, popX, popName, src,
 #'
 #' @param x a node content data object
 #'
-#' @details the initial node content data object \code{x} is already includes into the 
+#' @details the initial node content data object \code{x} is already includes into the
 #'     \code{members} slot of the created new binary tree node list object.
 #'
 binaryTree.node <- function(key, x, name) {
@@ -262,59 +262,4 @@ node.find <- function(tree, search, key.compares) {
 
   # no result
   NULL;
-}
-
-#' Group a numeric vector
-#'
-#' @description Group a numeric vector elements by a given test condition
-#'
-#' @param seq A numeric sequence
-#' @param assert A given test condition for test if a number is a member
-#'               of the current group or not?
-#'
-numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {
-  len = seq %=>% length;
-
-  if ((len == 0) || (seq %=>% is.na)) {
-    list();
-  } else if (len == 1) {
-    single <- list();
-    single[[as.character(seq)]] = seq;
-    single;
-  } else {
-    numeric.group.impl(seq, assert);
-  }
-}
-
-#' Group a numeric vector without check
-#'
-#' @param seq Please ensure that this numeric sequence is not
-#'       \code{NULL} or \code{NA} value, and it must contains
-#'       more than 1 elements.
-#'
-numeric.group.impl <- function(seq, assert) {
-  seq    <- sort(seq);
-  groups <- list();
-  a      <- seq[1];
-  block  <- c(a);
-
-  for (i in 2:length(seq)) {
-    x <- seq[i];
-
-    if (assert(a, x)) {
-      block <- append(block, x);
-    } else {
-      key           <- mean(block) %=>% as.character;
-      groups[[key]] <- block;
-      block         <- c(x);
-      a             <- x;
-    }
-  }
-
-  if (length(block) > 0) {
-    key           <- mean(block) %=>% as.character;
-    groups[[key]] <- block;
-  }
-
-  groups;
 }

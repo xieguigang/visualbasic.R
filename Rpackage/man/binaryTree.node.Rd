@@ -6,6 +6,13 @@
 \usage{
 binaryTree.node(key, x, name)
 }
+\arguments{
+\item{x}{a node content data object}
+}
 \description{
 Create a new tree node
+}
+\details{
+the initial node content data object \code{x} is already includes into the
+    \code{members} slot of the created new binary tree node list object.
 }
