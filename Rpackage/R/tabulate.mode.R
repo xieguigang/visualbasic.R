@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::9a9c815ca663002c227b1de86196d7e6, tabulate.mode.R"
+
+    # Summaries:
+
+    # tabulate.mode <- function(x, extends = TRUE) {if (length(x) == 1) {...
+
+#End Region
+
 #' Evaluate mean value
 #'
 tabulate.mode <- function(x, extends = TRUE) {

@@ -1,3 +1,13 @@
+#Region "Microsoft.ROpen::abeedd04349faa108015c12e345dbdd4, linearCluster.R"
+
+    # Summaries:
+
+    # numeric.group <- function(seq, assert = function(x, y) abs(x - y) <= 1) {...
+    # numeric.group.impl <- function(seq, assert) {...
+    # numeric.block <- function(seq, assert = function(x,y) abs(x-y) <= 1) {...
+    # numeric.block.impl <- function(seq, assert) {...
+
+#End Region
 
 #' Group a numeric vector
 #'
