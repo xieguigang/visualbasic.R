@@ -1,6 +1,10 @@
 #' Evaluate mean value
 #'
 tabulate.mode <- function(x, extends = TRUE) {
+  if (length(x) == 1) {
+    return(x);
+  }
+
   # do fixed width bin cuts
 	delta <- (max(x) - min(x)) / 5;
 
