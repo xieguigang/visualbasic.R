@@ -37,13 +37,22 @@ SaveXML <- function(x, file.xml, rootName = "Rlang.xml") {
 #' @param do.write A function pointer that used for describ how to build the output xml file
 #' @param rootName The node name of the generated xml root node.
 #'
-XML.Framework <- function(write, do.write, rootName) {
+XML.Framework <- function(write, do.write, rootName, xmlns = NULL) {
   xsd <- "http://www.w3.org/2001/XMLSchema";
   xsi <- "http://www.w3.org/2001/XMLSchema-instance";
 
+  # write xml declare
   write("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-  write("<%s xmlns:xsd=\"%s\" xmlns:xsi=\"%s\">", rootName, xsd, xsi);
+  # write xml root
+  if (IsNothing(xmlns)) {
+	  write("<%s xmlns:xsd=\"%s\" xmlns:xsi=\"%s\">", rootName, xsd, xsi);
+  } else {
+	  write("<%s xmlns=\"%s\" xmlns:xsd=\"%s\" xmlns:xsi=\"%s\">", rootName, xmlns, xsd, xsi);
+  }
+  
+  # write xml body data
   do.write(write);
+  # close xml root tag
   write("</%s>", rootName);
 
   invisible(NULL);
