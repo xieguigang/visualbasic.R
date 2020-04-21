@@ -35,7 +35,7 @@
 Microsoft.VisualBasic.Data <- function() {
 
 	# data.frame rows to list collection
-	.as.list <- function(d, rowname.as.listname = FALSE) {
+	.as.list <- function(d, rowname.as.listname = FALSE, namesKey = NULL) {
 
 		.list <- list();
 		list  <- .to.list(d);
@@ -57,6 +57,12 @@ Microsoft.VisualBasic.Data <- function() {
 		  if (!IsNothing(names)) {
 		    names(.list) <- names;
 		  }
+		} else if (!IsNothing(namesKey)) {
+			if (!namesKey %in% colnames(d)) {
+				stop(sprintf("invalid column name '%s' for assign list names!", namesKey));
+			} else {
+				names(.list) <- as.character(as.vector(d[, namesKey]));
+			}
 		}
 
 		.list;
