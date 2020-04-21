@@ -158,7 +158,7 @@ memory.size.auto <- function() {
 #'
 #' @details This function is limited one instance
 #'
-memory.sample <- function(note = NA) {
+memory.sample <- function(note = NA, println = FALSE) {
   p <- "memory_profiling_pool";
 
   if (!exists(p, envir = globalenv())) {
@@ -172,6 +172,11 @@ memory.sample <- function(note = NA) {
   } else {
     samples <- memory_profiling_pool[["samples"]];
   }
+
+if (println && !IsNothing(note)) {
+	cat(note);
+	cat("\n");
+}
 
   # Get current time
   t      <- unix.timestamp();
