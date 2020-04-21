@@ -4,7 +4,8 @@
 \alias{Imports}
 \title{namespace imports helper}
 \usage{
-Imports(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame())
+Imports(namespace, overrides = FALSE, silent = TRUE,
+  frame = parent.frame())
 }
 \arguments{
 \item{namespace}{The namespace function name or function itself}

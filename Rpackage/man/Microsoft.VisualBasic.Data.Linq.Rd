@@ -10,12 +10,20 @@ Microsoft.VisualBasic.Data.Linq()
 \item{enumerable}{The data source collection for the group operation,
 by default is ``data.frame`` type.}
 
+\item{key}{The column name string (or a column projector function in data.frame)
+or property name (in list) for using its corresponding value as the group
+key}
+
 \item{type}{Indicate that the data source ``enumerable`` is a data.frame or list?
        default is a data.frame.
 
 Groups the items in a list by s specific property of the list item.}
 
 \item{list}{The data source in list type}
+
+\item{key}{The item property name in this list source collection.
+
+Groups the rows in a dataframe by a specific column as key.}
 
 \item{data.frame}{The data source in data.frame type}
 

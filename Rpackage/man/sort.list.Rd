@@ -4,7 +4,8 @@
 \alias{sort.list}
 \title{Sort the \code{list} object}
 \usage{
-\method{sort}{list}(list, key, key.numeric = function(v) as.numeric(v), desc = FALSE)
+\method{sort}{list}(list, key, key.numeric = function(v) as.numeric(v),
+  desc = FALSE)
 }
 \arguments{
 \item{list}{The input list object}
