@@ -4,7 +4,7 @@
 \alias{XML.Framework}
 \title{A framework for write R object to XML file.}
 \usage{
-XML.Framework(write, do.write, rootName)
+XML.Framework(write, do.write, rootName, xmlns = NULL)
 }
 \arguments{
 \item{write}{The file write handle from the \code{\link{File.Open}} or \code{\link{textWriter}} function.
