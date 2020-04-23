@@ -4,8 +4,7 @@
 \alias{sort.dataframe}
 \title{Sort the \code{dataframe}}
 \usage{
-\method{sort}{dataframe}(dataframe, key, key.numeric = function(v)
-  as.numeric(v), desc = FALSE)
+\method{sort}{dataframe}(dataframe, key, key.numeric = function(v) as.numeric(v), desc = FALSE)
 }
 \arguments{
 \item{key}{The key column name or a lambda function to summary the

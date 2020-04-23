@@ -7,10 +7,6 @@
 Microsoft.VisualBasic.Language()
 }
 \arguments{
-\item{x}{Function parameter}
-
-\item{y}{Function with one parameter}
-
 \item{x}{vectors (of the same mode) containing a sequence
 of items (conceptually) with no duplicated values.}
 
@@ -47,9 +43,9 @@ Syntax tweaks helpers
 }
 \examples{
 
-1. Tuple syntax:\\cr
+1. Tuple syntax:\cr
 
-\\code{
+\code{
 f <- function() list(TRUE, c(1,1,1,1,1));
 c(x,y) := f();
 
@@ -58,6 +54,6 @@ c(x,y) := f();
 # > y
 # [1] 1 1 1 1 1
 }
-The \\code{OR} default expression
+The \code{OR} default expression
 
 }

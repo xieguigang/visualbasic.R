@@ -4,9 +4,14 @@
 \alias{levenshtein.distance}
 \title{Compute Levenshtein distance between two strings}
 \usage{
-levenshtein.distance(source, target, type = c("distance", "matrix"),
-  insert.fun = function(x) 1, delete.fun = function(x) 1,
-  substitute.fun = function(s, t) ifelse(s == t, 0, 1))
+levenshtein.distance(
+  source,
+  target,
+  type = c("distance", "matrix"),
+  insert.fun = function(x) 1,
+  delete.fun = function(x) 1,
+  substitute.fun = function(s, t) ifelse(s == t, 0, 1)
+)
 }
 \arguments{
 \item{source}{Source string.}
