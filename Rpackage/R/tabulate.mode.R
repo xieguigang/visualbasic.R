@@ -1,22 +1,45 @@
+#Region "Microsoft.ROpen::9a9c815ca663002c227b1de86196d7e6, tabulate.mode.R"
+
+    # Summaries:
+
+    # tabulate.mode <- function(x, extends = TRUE) {if (length(x) == 1) {...
+
+#End Region
+
 #' Evaluate mean value
 #'
 tabulate.mode <- function(x, extends = TRUE) {
+  if (length(x) == 0) {
+    NA;
+  } else if (length(x) == 1) {
+    x;
+  } else if (length(x) == 2) {
+    mean(x);
+  } else {
+    # returns the mean value which with outlier removed
+    mean(tabulate.bin(x, extends));
+  }
+}
+
+#' get data that removes outlier
+#'
+tabulate.bin <- function(x, extends = TRUE) {
   # do fixed width bin cuts
-	delta <- (max(x) - min(x)) / 5;
+  delta <- (max(x) - min(x)) / 5;
 
-	it <- min(x);
-	a1 <- x[x >= it & x < (it + delta)];
-	it <- it + delta;
-	a2 <- x[x >= it & x < (it + delta)];
-	it <- it + delta;
-	a3 <- x[x >= it & x < (it + delta)];
-	it <- it + delta;
-	a4 <- x[x >= it & x < (it + delta)];
-	it <- it + delta;
-	a5 <- x[x >= it & x < (it + delta)];
+  it <- min(x);
+  a1 <- x[x >= it & x < (it + delta)];
+  it <- it + delta;
+  a2 <- x[x >= it & x < (it + delta)];
+  it <- it + delta;
+  a3 <- x[x >= it & x < (it + delta)];
+  it <- it + delta;
+  a4 <- x[x >= it & x < (it + delta)];
+  it <- it + delta;
+  a5 <- x[x >= it & x < (it + delta)];
 
-	# get the max size bin box
-	i <- which.max(c(length(a1), length(a2), length(a3), length(a4), length(a5)));
+  # get the max size bin box
+  i <- which.max(c(length(a1), length(a2), length(a3), length(a4), length(a5)));
   bin <- list(a1,a2,a3,a4,a5);
 
   if (extends) {
@@ -34,6 +57,5 @@ tabulate.mode <- function(x, extends = TRUE) {
     a <- bin[[i]];
   }
 
-  # returns the mean value which with outlier removed
-	mean(a);
+  a;
 }

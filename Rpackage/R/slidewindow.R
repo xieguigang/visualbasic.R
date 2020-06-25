@@ -1,3 +1,10 @@
+#Region "Microsoft.ROpen::8bdb40a929b5b227279b574092bf91e0, slidewindow.R"
+
+    # Summaries:
+
+    # slide.windows <- function(win_size = 2, step = 1, ...) {...
+
+#End Region
 
 #' Create slide windows
 #'

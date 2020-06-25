@@ -4,7 +4,7 @@
 \alias{memory.sample}
 \title{Get current memory sample}
 \usage{
-memory.sample(note = NA)
+memory.sample(note = NA, println = FALSE)
 }
 \description{
 Get current memory sample

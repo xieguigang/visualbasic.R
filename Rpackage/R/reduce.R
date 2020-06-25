@@ -1,3 +1,10 @@
+#Region "Microsoft.ROpen::7d4aa40f447910586a8c63f31a388150, reduce.R"
+
+    # Summaries:
+
+    # reduce <- function(x, aggregate = function(a, b) a + b, init.val = 0) {...
+
+#End Region
 
 #' Reduce the vector dataset
 #'
