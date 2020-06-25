@@ -4,7 +4,7 @@
 \alias{commandlineArgs}
 \title{build commandline}
 \usage{
-commandlineArgs()
+commandlineArgs(commandName, args = list())
 }
 \description{
 a helper function for build a command line string

@@ -20,6 +20,12 @@
 #' @param no_trunc Don’t truncate output
 #'
 images = function(all = FALSE, digests = FALSE, no_trunc = FALSE) {
+  args = list(
+    all      = list("--all"      = all),
+    digests  = list("--digests"  = digests),
+    no_trunc = list("--no-trunc" = no_trunc)
+  );
 
+  stdout = system(commandlineArgs("images", args));
 
 }
