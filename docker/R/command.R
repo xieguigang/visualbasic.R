@@ -68,4 +68,21 @@ run = function(container, commandline, workdir = "/", name = NULL, volume = NULL
   stdout;
 }
 
+#' docker ps
+#'
+#' @description List containers
+#' @details list containers
+#'
+#' @param all Show all containers (default shows just running)
+#' @param no_trunc Don’t truncate output
+#' @param size Display total file sizes
+#'
+ps = function(all = FALSE, no_trunc = FALSE, size = FALSE) {
+  args = list(
+    all      = list("--all"      = all),
+    no_trunc = list("--no-trunc" = no_trunc),
+    size     = list("--size"     = size)
+  );
 
+  stdout = system(commandlineArgs("ps", args));
+}
