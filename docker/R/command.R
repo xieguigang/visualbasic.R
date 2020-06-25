@@ -29,3 +29,36 @@ images = function(all = FALSE, digests = FALSE, no_trunc = FALSE) {
   stdout = system(commandlineArgs("images", args));
 
 }
+
+#' docker run
+#'
+#' @description Run a command in a new container
+#' @details The docker run command first creates a writeable container
+#' layer over the specified image, and then starts it using the specified
+#' command. That is, docker run is equivalent to the API
+#' \code{/containers/create} then \code{/containers/(id)/start}. A stopped
+#' container can be restarted with all its previous changes intact using
+#' docker start. See docker ps -a to view a list of all containers.
+#' The docker run command can be used in combination with docker commit to
+#' change the command that a container runs. There is additional detailed
+#' information about docker run in the Docker run reference.
+#' For information on connecting a container to a network, see the
+#' \code{Docker network overview}.
+#'
+#' @param workdir Working directory inside the container
+#' @param name Assign a name to the container
+#' @param volume Bind mount a volume
+#'
+run = function(container, commandline, workdir = "/", name = NULL, volume = NULL) {
+  args = list(
+    workdir = list("--workdir" = workdir),
+    name    = list("--name"    = name),
+    volume  = list("--volume"  = volumeBind(volume))
+  );
+
+  cli    = sprintf("%s %s %s", commandlineArgs("run", args), container, commandline);
+  stdout = system(cli);
+  stdout;
+}
+
+
