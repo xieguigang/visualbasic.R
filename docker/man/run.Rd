@@ -12,7 +12,7 @@ run(container, commandline, workdir = "/", name = NULL,
 
 \item{name}{Assign a name to the container}
 
-\item{volume}{Bind mount a volume}
+\item{volume}{Bind mount a volume, see \link{volumeBind}.}
 }
 \description{
 Run a command in a new container
@@ -29,4 +29,7 @@ change the command that a container runs. There is additional detailed
 information about docker run in the Docker run reference.
 For information on connecting a container to a network, see the
 \code{Docker network overview}.
+}
+\seealso{
+volumeBind
 }

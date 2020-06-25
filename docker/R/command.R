@@ -47,7 +47,9 @@ images = function(all = FALSE, digests = FALSE, no_trunc = FALSE) {
 #'
 #' @param workdir Working directory inside the container
 #' @param name Assign a name to the container
-#' @param volume Bind mount a volume
+#' @param volume Bind mount a volume, see \link{volumeBind}.
+#'
+#' @seealso volumeBind
 #'
 run = function(container, commandline, workdir = "/", name = NULL, volume = NULL) {
   args = list(
