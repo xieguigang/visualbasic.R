@@ -13,3 +13,6 @@ volumeBind(v)
 \description{
 create volume binding
 }
+\seealso{
+\link{run}
+}

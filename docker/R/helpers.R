@@ -4,6 +4,8 @@
 #' @param v a list object should in data structure like:
 #' \code{list(anyname = list(host = ..., virtual = ...))}
 #'
+#' @seealso \link{run}
+#'
 volumeBind = function(v) {
   if (is.null(v) || is.na(v)) {
     NULL;

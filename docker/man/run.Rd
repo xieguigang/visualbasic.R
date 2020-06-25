@@ -24,12 +24,14 @@ command. That is, docker run is equivalent to the API
 \code{/containers/create} then \code{/containers/(id)/start}. A stopped
 container can be restarted with all its previous changes intact using
 docker start. See docker ps -a to view a list of all containers.
+
 The docker run command can be used in combination with docker commit to
 change the command that a container runs. There is additional detailed
 information about docker run in the Docker run reference.
+
 For information on connecting a container to a network, see the
 \code{Docker network overview}.
 }
 \seealso{
-volumeBind
+\link{volumeBind}
 }
