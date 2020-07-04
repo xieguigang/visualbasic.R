@@ -8,4 +8,4 @@ Description: Run docker through R
 License: MIT
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.0
