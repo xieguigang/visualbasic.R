@@ -57,13 +57,22 @@ images = function(all = FALSE, digests = FALSE, no_trunc = FALSE) {
 #' @seealso \link{volumeBind}
 #'
 run = function(container, commandline, workdir = "/", name = NULL, volume = NULL) {
+  if (is.null(volume)) {
+    volume = list();
+  }
+
+  volume$docker.sock = list(host = "/var/run/docker.sock", virtual = "/var/run/docker.sock");
+  volume$docker      = list(host = "$(which docker)", virtual = "/bin/docker");
+
   args = list(
     workdir = list("--workdir" = workdir),
     name    = list("--name"    = name),
     volume  = list("--volume"  = volumeBind(volume))
   );
 
-  cli    = sprintf("%s %s %s", commandlineArgs("run", args), container, commandline);
+  cli    = sprintf("%s --privileged=true %s %s", commandlineArgs("run", args), container, commandline);
+  print(cli);
+
   stdout = system(cli);
   stdout;
 }
