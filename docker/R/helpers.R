@@ -11,7 +11,7 @@ volumeBind = function(v) {
     NULL;
   } else {
     unlist(sapply(v, function(mapping) {
-      sprintf("%s:%s", mapping[["host"]], mapping[["virtual"]]);
+      sprintf("%s:%s", normalizePath(mapping[["host"]]), normalizePath(mapping[["virtual"]]));
     }));
   }
 }

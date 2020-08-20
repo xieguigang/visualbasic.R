@@ -65,7 +65,7 @@ run = function(container, commandline, workdir = "/", name = NULL, volume = NULL
   volume$docker      = list(host = "$(which docker)", virtual = "/bin/docker");
 
   args = list(
-    workdir = list("--workdir" = workdir),
+    workdir = list("--workdir" = normalizePath(workdir)),
     name    = list("--name"    = name),
     volume  = list("--volume"  = volumeBind(volume))
   );
