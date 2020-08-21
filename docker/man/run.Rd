@@ -4,7 +4,14 @@
 \alias{run}
 \title{docker run}
 \usage{
-run(container, commandline, workdir = "/", name = NULL, volume = NULL)
+run(
+  container,
+  commandline,
+  workdir = "/",
+  name = NULL,
+  volume = NULL,
+  tty = FALSE
+)
 }
 \arguments{
 \item{workdir}{Working directory inside the container}

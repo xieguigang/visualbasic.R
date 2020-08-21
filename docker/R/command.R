@@ -56,7 +56,7 @@ images = function(all = FALSE, digests = FALSE, no_trunc = FALSE) {
 #'
 #' @seealso \link{volumeBind}
 #'
-run = function(container, commandline, workdir = "/", name = NULL, volume = NULL) {
+run = function(container, commandline, workdir = "/", name = NULL, volume = NULL, tty = FALSE) {
   if (is.null(volume)) {
     volume = list();
   }
@@ -69,8 +69,10 @@ run = function(container, commandline, workdir = "/", name = NULL, volume = NULL
     name    = list("--name"    = name),
     volume  = list("--volume"  = volumeBind(volume))
   );
+  tty = ifelse(tty, "-t", "");
 
-  cli    = sprintf("%s --privileged=true %s %s", commandlineArgs("run", args), container, commandline);
+  cli    = "%s %s --privileged=true %s %s";
+  cli    = sprintf(cli, commandlineArgs("run", args), tty, container, commandline);
   print(cli);
 
   stdout = system(cli);
