@@ -1,8 +1,25 @@
-read_table.auto <- function(path, check.names = FALSE) {
-  if (!isTsv(path)) {
-    read.csv(path, row.names = 1, header = T, check.names = check.names);
+read_table.auto <- function(path, row.names = TRUE, check.names = FALSE) {
+  if (is.null(row.names) || is.na(row.names) || !row.names) {
+    row.names = NULL;
   } else {
-    read.table(path, header = TRUE, sep = "\t", row.names = 1, check.names = check.names);
+    row.names = 1;
+  }
+
+  if (!isTsv(path)) {
+    read.csv(
+      file        = path,
+      row.names   = row.names,
+      header      = T,
+      check.names = check.names
+    );
+  } else {
+    read.table(
+      file        = path,
+      header      = TRUE,
+      sep         = "\t",
+      row.names   = row.names,
+      check.names = check.names
+    );
   }
 }
 
