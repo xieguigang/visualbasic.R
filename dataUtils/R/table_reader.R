@@ -5,6 +5,9 @@ read_table.auto <- function(path, row.names = TRUE, check.names = FALSE) {
     row.names = 1;
   }
 
+  print("rownames:");
+  print(row.names);
+
   if (!isTsv(path)) {
     read.csv(
       file        = path,
