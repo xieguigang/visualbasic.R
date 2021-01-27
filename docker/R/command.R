@@ -65,15 +65,16 @@ run = function(container, commandline, workdir = "/", name = NULL, volume = NULL
   volume$docker      = list(host = "$(which docker)", virtual = "/bin/docker");
 
   args = list(
-    workdir = list("--workdir" = normalizePath(workdir)),
     name    = list("--name"    = name),
-    volume  = list("--volume"  = volumeBind(volume))
+    volume  = list("--volume"  = volumeBind(volume)),
+    workdir = list("--workdir" = normalizePath(workdir))
   );
   tty = ifelse(tty, "-t", "");
 
   cli    = "%s %s --privileged=true %s %s";
   cli    = sprintf(cli, commandlineArgs("run", args), tty, container, commandline);
   print(cli);
+	writeLines(cli, con = sprintf("%s/docker.sh", workdir));
 
   stdout = system(cli);
   stdout;
