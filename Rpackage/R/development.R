@@ -126,6 +126,8 @@ DESCRIPTION <- function(packageName) {
 #'   \item \code{./data} The \code{data} folder in the current workspace.
 #'   \item \code{../data} The \code{data} folder in current workspace's parent directory.
 #' }
+#' 
+#' You can add a custom search path by set options of \code{options(libdir = ...)}
 #'
 #' @return A character vector of the names of objects created, invisibly.
 #'
@@ -158,6 +160,15 @@ xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
   # And then search as relative path mode
   # If the file is not found in absolute path mode.
   search.path <- c(".", "./data", "../data");
+
+	if (!is.null(options("libdir")[[1]])) {
+		search.path = append(options("libdir")[[1]], search.path);
+		
+		if (verbose) {
+			print("search data from lib dir:");
+			print(search.path);
+		}		
+	}
 
   for(directory in search.path) {
     rda <- sprintf("%s/%s", directory, rdaName);

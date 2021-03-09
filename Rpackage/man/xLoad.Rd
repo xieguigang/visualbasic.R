@@ -29,4 +29,6 @@ search the given rda file in directories:
   \item \code{./data} The \code{data} folder in the current workspace.
   \item \code{../data} The \code{data} folder in current workspace's parent directory.
 }
+
+You can add a custom search path by set options of \code{options(libdir = ...)}
 }
