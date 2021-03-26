@@ -175,7 +175,13 @@ xLoad <- function(rdaName, envir = globalenv(), verbose = FALSE) {
 
     if (file.exists(rda)) {
       return(rda %=>% load.file);
-    }
+    } else {
+	  rda <- sprintf("%s/%s.rda", directory, rdaName);
+	  
+	  if (file.exists(rda)) {
+		return(rda %=>% load.file);
+	  }
+	}
   }
 
   # It is a package internal data file.
