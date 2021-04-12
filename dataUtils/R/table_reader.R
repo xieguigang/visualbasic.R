@@ -1,4 +1,6 @@
-read_table.auto <- function(path, row.names = TRUE, check.names = FALSE) {
+read_table.auto <- function(path, row.names = TRUE, check.names = FALSE, check.empty = TRUE) {
+  options(stringsAsFactors = FALSE);
+  
   if (is.null(row.names) || is.na(row.names) || !row.names) {
     row.names = NULL;
   } else {
@@ -9,21 +11,40 @@ read_table.auto <- function(path, row.names = TRUE, check.names = FALSE) {
   print(row.names);
 
   if (!isTsv(path)) {
-    read.csv(
+    table = read.csv(
       file        = path,
-      row.names   = row.names,
+      row.names   = NULL,
       header      = T,
       check.names = check.names
     );
   } else {
-    read.table(
+    table = read.table(
       file        = path,
       header      = TRUE,
       sep         = "\t",
-      row.names   = row.names,
+      row.names   = NULL,
       check.names = check.names
     );
   }
+  
+  if (check.empty) {
+	i = sapply(1:nrow(table), function(j) {
+		v = as.vector(unlist(table[j, ]));
+		v = sapply(v, function(x) is.na(x) || x == "");		
+		
+		!all(v);
+	});
+	
+	table = table[i, ];
+  }
+  
+  if (!is.null(row.names)) {
+	rnames = as.vector(table[, row.names]);
+	table[, row.names] = NULL;
+	rownames(table) = rnames;
+  }
+  
+  table;
 }
 
 #' determine file format from file name
