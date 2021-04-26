@@ -1,5 +1,8 @@
+#' Translate R code as R# code
+#'
 closureText = function(closure) {
 	closure = gsub("%>%", ":>", capture.output(closure), fixed = TRUE);
+	trim    = function (x) sub("\\s+$", "", x)
 	
 	if (closure[1] == "function() {") {
 		# write by hand
@@ -9,5 +12,11 @@ closureText = function(closure) {
 		closure = closure[3:(length(closure) - 3)];
 	}
 	
-	closure;
+	sapply(trim(closure), function(line) {
+		if (endsWith(line, ":>")) {
+			line;
+		} else {
+			sprintf("%s;", line);
+		}
+	}) %=>% as.vector;
 }
