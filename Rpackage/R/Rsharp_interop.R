@@ -13,7 +13,13 @@ closureText = function(closure) {
 	}
 	
 	sapply(trim(closure), function(line) {
-		if (endsWith(line, ":>")) {
+		if (endsWith(line, ":>") || 
+			endsWith(line, "%do%") || 
+			endsWith(line, "%dopar%") || 
+			endsWith(line, "{") ||
+			endsWith(line, ",") || 
+			endsWith(line, ")")) {
+			
 			line;
 		} else {
 			sprintf("%s;", line);
