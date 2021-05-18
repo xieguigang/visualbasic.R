@@ -162,7 +162,7 @@ cliToken <- function(arguments) {
   sapply(arguments, function(a) {
     # Add quote char wrapper for argument token
     # which have whitespace inside
-    if (InStr(a, " ") > -1) {
+    if ((InStr(a, " ") > -1) || (InStr(a, "[(]") > -1) || (InStr(a, "[)]") > -1)) {
       sprintf("\"%s\"", a);
     } else {
       a;
