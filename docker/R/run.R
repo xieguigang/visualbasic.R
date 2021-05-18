@@ -18,12 +18,23 @@
 #' @param workdir Working directory inside the container
 #' @param name Assign a name to the container
 #' @param volume Bind mount a volume, see \link{volumeBind}.
+#' @param lambda R function that running in \code{R#} environment. 
 #'
 #' @seealso \link{volumeBind}
 #'
-run = function(container, commandline, workdir = "/", name = NULL, volume = NULL, tty = FALSE) {
+run = function(container, commandline,
+               workdir   = "/",
+               name      = NULL,
+               volume    = NULL,
+               tty       = FALSE,
+			   lambda    = NULL,
+               framework = c("bash", ".netcore5", "mono")) {
+
   if (is.null(volume)) {
     volume = list();
+  }
+  if (! dir.exists(workdir) ) {
+	dir.create(workdir, recursive = TRUE);
   }
 
   volume$docker.sock = list(host = "/var/run/docker.sock", virtual = "/var/run/docker.sock");
@@ -36,10 +47,12 @@ run = function(container, commandline, workdir = "/", name = NULL, volume = NULL
   );
   tty = ifelse(tty, "-t", "");
 
-  cli    = "%s %s --privileged=true %s %s";
+  cli    = "%s %s -i --privileged=true %s %s";
   cli    = sprintf(cli, commandlineArgs("run", args), tty, container, commandline);
   print(cli);
-	writeLines(cli, con = sprintf("%s/docker.sh", workdir));
+  
+  # just for debug view
+  writeLines(cli, con = sprintf("%s/docker.sh", workdir));
 
   stdout = system(cli);
   stdout;
