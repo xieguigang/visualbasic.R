@@ -18,7 +18,7 @@
 #' @param workdir Working directory inside the container
 #' @param name Assign a name to the container
 #' @param volume Bind mount a volume, see \link{volumeBind}.
-#' @param lambda R function that running in \code{R#} environment. 
+#' @param lambda R function that running in \code{R#} environment.
 #'
 #' @seealso \link{volumeBind}
 #'
@@ -27,14 +27,14 @@ run = function(container, commandline,
                name      = NULL,
                volume    = NULL,
                tty       = FALSE,
-			   lambda    = NULL,
+               lambda    = NULL,
                framework = c("bash", ".netcore5", "mono")) {
 
   if (is.null(volume)) {
     volume = list();
   }
   if (! dir.exists(workdir) ) {
-	dir.create(workdir, recursive = TRUE);
+    dir.create(workdir, recursive = TRUE);
   }
 
   volume$docker.sock = list(host = "/var/run/docker.sock", virtual = "/var/run/docker.sock");
@@ -47,10 +47,20 @@ run = function(container, commandline,
   );
   tty = ifelse(tty, "-t", "");
 
+  if ("function" == class(commandline)) {
+    # running a R# closure from R environment
+    dynamicsName = base::basename(dirname(tempfile()));
+    dynamics     = sprintf("%s/.docker/%s.R", workdir, dynamicsName);
+    commandline  = VisualBasic.R::closureText(closure = commandline);
+    dir.create(sprintf("%s/.docker/", workdir), recursive = TRUE);
+    writeLines(commandline, con = dynamics);
+    commandline = sprintf("Rscript .docker/%s.R", dynamicsName);
+  }
+
   cli    = "%s %s -i --privileged=true %s %s";
   cli    = sprintf(cli, commandlineArgs("run", args), tty, container, commandline);
   print(cli);
-  
+
   # just for debug view
   writeLines(cli, con = sprintf("%s/docker.sh", workdir));
 
