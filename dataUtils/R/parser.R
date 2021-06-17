@@ -13,21 +13,21 @@ parseSize = function(value, default = list(w = 1400, h = 1200)) {
         } else {
             return(default);
         }
-    } elseif (class(value) == "character") {
+    } else if (class(value) == "character") {
         value = strsplit(value[1], "\\s*,\\s*", perl = TRUE);
         value = as.numeric(value);
         value = list(
             w = value[1],
             h = value[2]
         );
-    } elseif (class(value) == "numeric") {
+    } else if (class(value) == "numeric") {
         value = list(
             w = value[1],
             h = value[2]
         );
-    } elseif (class(value) == "list") {
+    } else if (class(value) == "list") {
         # do nothing
-    } elseif(is.null(default)) {
+    } else if(is.null(default)) {
         stop(sprintf("invalid object type of the parameter value: %s", class(value)));
     } else {
         value = default;
