@@ -1,11 +1,11 @@
 #' parse size value
-#' 
+#'
 #' @param value value can be character, numeric and list
 #' @param default the default size value is the parser test failure on the
 #'      value parameter.
-#' 
+#'
 #' @return a list object that contains fields \code{w} and \code{h}.
-#' 
+#'
 parseSize = function(value, default = list(w = 1400, h = 1200)) {
     if (length(value) == 0 || is.null(value) || is.na(value)) {
         if (is.null(default)) {
@@ -14,7 +14,7 @@ parseSize = function(value, default = list(w = 1400, h = 1200)) {
             return(default);
         }
     } else if (class(value) == "character") {
-        value = strsplit(value[1], "\\s*,\\s*", perl = TRUE);
+        value = unlist(strsplit(value[1], "\\s*,\\s*", perl = TRUE));
         value = as.numeric(value);
         value = list(
             w = value[1],
