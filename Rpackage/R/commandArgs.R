@@ -30,9 +30,11 @@ commandArgs = function(..., debug = FALSE) {
         required = as.logical(schema[["required"]]);
 
         if (!cmdl$hasArg(argName)) {
-            if (required) stop(schema[2]);
-
-            value = schema[2];
+            if (required) {
+                stop(schema[2]);
+            } else {
+                value = as.vector(unlist(schema[2]));
+            }
         } else {
             value = cmdl$nextToken(argName);
         }
@@ -45,6 +47,7 @@ commandArgs = function(..., debug = FALSE) {
     }
 
     if (debug) {
+        cat("\n");
         cat("-------------------end of debug echo--------------------");
         cat("\n\n\n");
     }
