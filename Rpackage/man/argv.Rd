@@ -4,7 +4,7 @@
 \alias{argv}
 \title{Get commandline}
 \usage{
-argv()
+argv(arguments = base::commandArgs())
 }
 \description{
 Get commandline

@@ -91,10 +91,7 @@ flash_load <- function(dir = getwd()) {
 #' The \code{nextToken} function in the returns list object is
 #' usually using for get value by a given key name.
 #'
-argv <- function() {
-
-  arguments <- commandArgs();
-
+argv = function(arguments = base::commandArgs()) {
   # get all of the tokens after --args flag
   i <- which(arguments == "--args");
 
@@ -140,14 +137,19 @@ argv <- function() {
     i = i + offset;
   }
 
-  getNextToken <- function(flag) {
+  getNextToken = function(flag) {
     arguments[which(arguments == flag) + 1];
+  }
+
+  hasArg = function(flag) {
+    any(arguments == flag);
   }
 
   list(argv = cli,
        commandName = name,
        args = args,
-       nextToken = getNextToken
+       nextToken = getNextToken,
+       hasArg = hasArg
   );
 }
 
