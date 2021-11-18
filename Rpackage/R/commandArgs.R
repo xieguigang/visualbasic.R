@@ -24,9 +24,9 @@ commandArgs = function(..., debug = FALSE) {
         required = as.logical(schema[["required"]]);
 
         if (!cmdl$hasArg(argName)) {
-            if (required) stop(schema[1]);
+            if (required) stop(schema[2]);
 
-            value = schema[1];
+            value = schema[2];
         } else {
             value = cmdl$nextToken(argName);
         }
