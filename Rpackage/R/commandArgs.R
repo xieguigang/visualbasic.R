@@ -44,6 +44,11 @@ commandArgs = function(..., debug = FALSE) {
         data[[argName]] = value;
     }
 
+    if (debug) {
+        cat("-------------------end of debug echo--------------------");
+        cat("\n\n\n");
+    }
+
     data;
 }
 
