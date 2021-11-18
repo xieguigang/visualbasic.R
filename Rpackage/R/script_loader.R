@@ -97,7 +97,7 @@ argv = function(arguments = base::commandArgs()) {
 
   if (length(i) == 0) {
     # No additional arguments
-    cli <- c();
+    .load_argv(cli = c());
   } else {
     if (.Platform$OS.type == "windows") {
       i <- i[1] + 2;
@@ -105,9 +105,11 @@ argv = function(arguments = base::commandArgs()) {
       i <- i[1] + 1;
     }
 
-    cli <- arguments[i:length(arguments)];
+    .load_argv(cli = arguments[i:length(arguments)]);
   }
+}
 
+.load_argv = function(cli) {
   name <- cli[1];
   args <- list();
   i    <- 2;
@@ -138,11 +140,11 @@ argv = function(arguments = base::commandArgs()) {
   }
 
   getNextToken = function(flag) {
-    arguments[which(arguments == flag) + 1];
+    cli[which(cli == flag) + 1];
   }
 
   hasArg = function(flag) {
-    any(arguments == flag);
+    any(cli == flag);
   }
 
   list(argv = cli,

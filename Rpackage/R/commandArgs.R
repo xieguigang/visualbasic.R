@@ -2,6 +2,12 @@ commandArgs = function(..., debug = FALSE) {
     argv = list(...);
     cmdl = VisualBasic.R::argv();
 
+    if (length(debug) > 0 && !is.logical(debug)) {
+        # is a string array?
+        cmdl  = .load_argv(cli = debug);
+        debug = TRUE;
+    }
+
     if (length(argv) == 0) {
         return(cmdl);
     } else if (debug) {
