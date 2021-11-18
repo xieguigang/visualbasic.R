@@ -22,10 +22,11 @@ commandArgs = function(..., debug = FALSE) {
     }
 
     data = list();
+    allNames = names(argv);
 
     # validation
     # and get result string
-    for(argName in names(argv)) {
+    for(argName in allNames) {
         schema = argv[[argName]];
         required = as.logical(schema[["required"]]);
 
@@ -40,7 +41,7 @@ commandArgs = function(..., debug = FALSE) {
         }
 
         # string interpolation
-        value = cmdl_interpolate(value, cmdl);
+        value = cmdl_interpolate(value, cmdl, allNames);
         argName = gsub("(^[/-]+)|([/-]+$)", "", argName);
         argName = gsub("[-]+", ".", argName);
         data[[argName]] = value;
@@ -59,6 +60,17 @@ cmdl_helpDoc = function(argv) {
     stop("not implemented!");
 }
 
-cmdl_interpolate = function(value, cmdl) {
+cmdl_interpolate = function(value, cmdl, allNames) {
+    for(name in allNames) {
+        str = cmdl$nextToken(name);
+
+        if (IsNothing(str)) {
+            str = "";
+        }
+
+        flag = sprintf("${%s}", name);
+        value = gsub(flag, str, value, fixed = TRUE);
+    }
+
     value;
 }
