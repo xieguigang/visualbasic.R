@@ -58,7 +58,7 @@ Microsoft.VisualBasic.Data <- function() {
         names(.list) <- names;
       }
     } else if (!IsNothing(namesKey)) {
-      if (!namesKey %in% colnames(d)) {
+      if (!(namesKey %in% colnames(d))) {
         stop(sprintf("invalid column name '%s' for assign list names!", namesKey));
       } else {
         names(.list) <- as.character(as.vector(d[, namesKey]));

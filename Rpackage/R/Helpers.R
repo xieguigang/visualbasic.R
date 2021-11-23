@@ -68,8 +68,12 @@ as.index <- function(keys) {
 #'   This function only works on Linux platform.
 #'
 user <- function() {
-  cli = "echo \"echo $USER\" | bash";
-  system(cli, intern = TRUE);
+  if (get_os() %in% c("osx", "linux")) {
+    cli = "echo \"echo $USER\" | bash";
+    system(cli, intern = TRUE);
+  } else {
+    "unknown";
+  }
 }
 
 #' Get system memory info
