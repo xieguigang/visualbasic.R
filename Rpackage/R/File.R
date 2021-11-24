@@ -1,19 +1,31 @@
 #Region "Microsoft.ROpen::89c7709a2485e6ddc2023b1f0a609670, File.R"
 
-    # Summaries:
+# Summaries:
 
-    # basename <- function(path) {...
-    # File.ExtensionName <- function(path) {...
-    # File.WithExtension <- function(path, ext) {...
-    # Println <- function(file.txt, content) {...
-    # File.Open <- function(file.txt, append = FALSE, format = TRUE) {...
-    # ensure_dir_exists <- function(path) {if (!dir.exists(path)) {...
-    # ReadAllText <- function(file.txt) {...
-    # ReadAllLines <- function(file.txt) {...
-    # FileReader <- function(path) {...
-    # EmptyFile <- function(outfile) {...
+# basename <- function(path) {...
+# File.ExtensionName <- function(path) {...
+# File.WithExtension <- function(path, ext) {...
+# Println <- function(file.txt, content) {...
+# File.Open <- function(file.txt, append = FALSE, format = TRUE) {...
+# ensure_dir_exists <- function(path) {if (!dir.exists(path)) {...
+# ReadAllText <- function(file.txt) {...
+# ReadAllLines <- function(file.txt) {...
+# FileReader <- function(path) {...
+# EmptyFile <- function(outfile) {...
 
 #End Region
+
+normalizeFileName = function(name) {
+  name = gsub("*", "_", name, fixed = TRUE);
+  name = gsub("|", "_", name, fixed = TRUE);
+  name = gsub("/", "_", name, fixed = TRUE);
+  name = gsub("\\", "_", name, fixed = TRUE);
+  name = gsub(">", "_", name, fixed = TRUE);
+  name = gsub("<", "_", name, fixed = TRUE);
+  name = gsub(":", "_", name, fixed = TRUE);
+  
+  name;
+}
 
 #' File name without extension name
 #'
@@ -22,25 +34,25 @@
 #' @param path File path string vector.
 #'
 basename <- function(path) {
-	Linq   <- Microsoft.VisualBasic.Data.Linq();
+  Linq   <- Microsoft.VisualBasic.Data.Linq();
 
-	sapply(path, function(file.path) {
-	  file   <- base::basename(file.path);
-	  tokens <- Strings.Split(file, "\\.");
-	  tokens <- Linq$methods$Take(tokens, length(tokens) - 1);
+  sapply(path, function(file.path) {
+    file   <- base::basename(file.path);
+    tokens <- Strings.Split(file, "\\.");
+    tokens <- Linq$methods$Take(tokens, length(tokens) - 1);
 
-	  Strings.Join(tokens, ".");
-	}) %=>% as.character;
+    Strings.Join(tokens, ".");
+  }) %=>% as.character;
 }
 
 #' Get file extension name
 #'
 File.ExtensionName <- function(path) {
-	Linq   <- Microsoft.VisualBasic.Data.Linq();
-    file   <- base::basename(path);
-	tokens <- Strings.Split(file, "\\.");
+  Linq   <- Microsoft.VisualBasic.Data.Linq();
+  file   <- base::basename(path);
+  tokens <- Strings.Split(file, "\\.");
 
-	Linq$methods$Last(tokens);
+  Linq$methods$Last(tokens);
 }
 
 #' Determine path end with a given extension name
@@ -50,8 +62,8 @@ File.ExtensionName <- function(path) {
 #' @param ext File extension name without dot.
 #'
 File.WithExtension <- function(path, ext) {
-	ext.parsed <- File.ExtensionName(path);
-	tolower(ext.parsed) == tolower(ext);
+  ext.parsed <- File.ExtensionName(path);
+  tolower(ext.parsed) == tolower(ext);
 }
 
 #' Append text content to file
@@ -73,7 +85,7 @@ Println <- function(file.txt, content) {
       append = TRUE
   );
 
-	invisible(NULL);
+  invisible(NULL);
 }
 
 #' Open a file for write in text mode
@@ -93,11 +105,11 @@ File.Open <- function(file.txt, append = FALSE, format = TRUE) {
     try(dir.create(dir, recursive = TRUE));
   }
 
-	if (!append) {
-		cat(NULL, file = file.txt, append = FALSE);
-	}
+  if (!append) {
+    cat(NULL, file = file.txt, append = FALSE);
+  }
 
-	# printf <- function(...) invisible(print(sprintf(...)));
+  # printf <- function(...) invisible(print(sprintf(...)));
   if (format) {
     function(...) {
       invisible(Println(file.txt, sprintf(...)));
@@ -127,7 +139,7 @@ ensure_dir_exists <- function(path) {
 #' @return Returns the text file content in one piece, not split in lines.
 #'
 ReadAllText <- function(file.txt) {
-	paste0(ReadAllLines(file.txt), collapse = "\n");
+  paste0(ReadAllLines(file.txt), collapse = "\n");
 }
 
 #' Read all text line
@@ -153,6 +165,6 @@ FileReader <- function(path) {
 #'   be removed.
 #'
 EmptyFile <- function(outfile) {
-close( file( outfile, open="w" ) );
-invisible(NULL);
+  close( file( outfile, open="w" ) );
+  invisible(NULL);
 }
