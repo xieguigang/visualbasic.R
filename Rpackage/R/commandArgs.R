@@ -1,3 +1,13 @@
+#Region "Microsoft.ROpen::6f96e30e0d0ca3c9e330e97dff72c7bc, commandArgs.R"
+
+    # Summaries:
+
+    # commandArgs = function(..., debug = FALSE) {...
+    # cmdl_helpDoc = function(argv) {...
+    # cmdl_interpolate = function(value, cmdl, allNames) {...
+
+#End Region
+
 commandArgs = function(..., debug = FALSE) {
     argv = list(...);
     cmdl = VisualBasic.R::argv();

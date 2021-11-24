@@ -1,3 +1,10 @@
+#Region "Microsoft.ROpen::5555d9c2afa5ae1d49c81c729f1324d4, test\writerTest.R"
+
+    # Summaries:
+
+
+#End Region
+
 require(VisualBasic.R)
 
 test <- "./test_large.csv" %=>% ReadAllLines

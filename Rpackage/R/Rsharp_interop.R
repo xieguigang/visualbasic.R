@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::4c05eb3546997fcb339ec5c26e886e0a, Rsharp_interop.R"
+
+    # Summaries:
+
+    # closureText = function(closure) {...
+
+#End Region
+
 #' Translate R code as R# code
 #'
 closureText = function(closure) {

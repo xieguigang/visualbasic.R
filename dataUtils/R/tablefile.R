@@ -1,3 +1,12 @@
+#Region "Microsoft.ROpen::a1500592a3c593ccffe69243e56756d4, tablefile.R"
+
+    # Summaries:
+
+    # isTsv <- function(path) {...
+    # write_table.auto <- function(data, path) {...
+
+#End Region
+
 #' determine file format from file name
 #'
 #' @param path tsv: \code{*.txt}, \code{*.xls}; csv: \code{*.csv}

@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::9e6ab778ba83ac667c5831bcd047ef3d, test\visitTest.R"
+
+    # Summaries:
+
+    # alloca <- function(len, list = FALSE) {...
+
+#End Region
+
 times <- 1:8000000;
 
 x <- 9;

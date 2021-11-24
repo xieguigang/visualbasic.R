@@ -1,3 +1,13 @@
+#Region "Microsoft.ROpen::dc9ad44044bd07649baa4ed117d9c0f6, test\pipTest.R"
+
+    # Summaries:
+
+    # slave <- function(closure) {...
+    # slave_closure <- function(closure) {...
+    # dd <- function() {...
+
+#End Region
+
 #!/usr/bin/Rscript 
 
 print(readLines(file("stdin")));

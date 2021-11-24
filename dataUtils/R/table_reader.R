@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::dea3937340b6d7c1a8b35cb5d0a02a4e, table_reader.R"
+
+    # Summaries:
+
+    # read_table.auto <- function(path, row.names = TRUE, check.names = FALSE, check.empty = TRUE) {...
+
+#End Region
+
 read_table.auto <- function(path, row.names = TRUE, check.names = FALSE, check.empty = TRUE) {
   options(stringsAsFactors = FALSE);
 

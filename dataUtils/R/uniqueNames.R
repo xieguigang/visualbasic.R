@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::1dd9bd372509b65b661f52e0264aabe7, uniqueNames.R"
+
+    # Summaries:
+
+    # uniqueNames = function(names) {...
+
+#End Region
+
 uniqueNames = function(names) {
   nhits   = list();
   uniques = c();

@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::c5aabb2d636a53bcac7c4af83044b0ce, test\pipeline_test.R"
+
+    # Summaries:
+
+    # `>` <- function(x, y) {...
+
+#End Region
+
 # "test.txt" %=>% ReadAllText %=>% File.Open("file_copy.txt"); 
 
 
