@@ -5,7 +5,29 @@
 #'
 service = function(debug = getOption("debug")) {
 	renv = .searchREnv(debug);
-	commandArgs = "dotnet %s";
+	session_port = .port();
+	session_id = .ssid();
+	commandArgs = "dotnet %s --session --port %s --ssid %s --workspace \"%s\"";
+	commandArgs = sprintf(commandArgs, renv, session_port, session_id, getwd());
+	
+	system(commandArgs, 
+		show.output.on.console = FALSE, 
+		wait = FALSE
+	);
+	
+	new("Rsession",
+		port  = session_port,
+		ssid  = session_id,
+		debug = debug
+	);
+}
+
+.ssid = function() {
+
+}
+
+.port = function(debug) {
+
 }
 
 .searchREnv = function(debug) {
@@ -15,7 +37,7 @@ service = function(debug = getOption("debug")) {
 .sessionClass = function() {
 	setClass("Rsession", representation(
 		port  = "numeric",
-		key   = "character",
+		ssid  = "character",
 		debug = "logical"
 	));
 }
@@ -28,5 +50,5 @@ service = function(debug = getOption("debug")) {
 #'
 invoke = function(func, argv, session) {
 	url = "http://localhost:%s/exec?func=%s&session=%s&debug=%s";
-	url = sprintf(url, session@port, func, session@key, session@debug);
+	url = sprintf(url, session@port, func, session@ssid, session@debug);
 }
