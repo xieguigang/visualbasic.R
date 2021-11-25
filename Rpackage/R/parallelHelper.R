@@ -2,7 +2,7 @@
 
     # Summaries:
 
-    # getClusterCores <- function(level = c("full", "half", "parallel", "single")) {if (IsNothing(level)) {...
+    # getClusterCores <- function(level = c("full", "half", "parallel", "single")) {...
 
 #End Region
 

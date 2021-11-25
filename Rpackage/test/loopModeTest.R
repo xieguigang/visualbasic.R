@@ -1,3 +1,12 @@
+#Region "Microsoft.ROpen::34cdaf824deb6743d6516d73115ce1fb, test\loopModeTest.R"
+
+    # Summaries:
+
+    # tick.each_lapply <- function(sequence, action) {...
+    # tick.each_forloop <- function(sequence, action) {...
+
+#End Region
+
 require(VisualBasic.R)
 
 tick.each_lapply <- function(sequence, action) {

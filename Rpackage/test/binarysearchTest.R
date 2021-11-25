@@ -1,3 +1,13 @@
+#Region "Microsoft.ROpen::e5f134ba8ccd2baee752d542b41277d9, test\binarysearchTest.R"
+
+    # Summaries:
+
+    # tolerance <- function(a, b) {...
+    # benchmark.b <- function() {...
+    # benchmark.n <- function() {...
+
+#End Region
+
 d <- read.csv("./identify.csv");
 
 tolerance <- function(a, b) {

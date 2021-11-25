@@ -1,8 +1,9 @@
-#Region "Microsoft.ROpen::9a9c815ca663002c227b1de86196d7e6, tabulate.mode.R"
+#Region "Microsoft.ROpen::9f9609233ae6110a21149b29f67566ef, tabulate.mode.R"
 
     # Summaries:
 
-    # tabulate.mode <- function(x, extends = TRUE) {if (length(x) == 1) {...
+    # tabulate.mode <- function(x, extends = TRUE) {...
+    # tabulate.bin <- function(x, extends = TRUE) {...
 
 #End Region
 

@@ -1,3 +1,10 @@
+#Region "Microsoft.ROpen::47701c2be8f33a2d42a61e6d0b5b2b79, test\linq_test.R"
+
+    # Summaries:
+
+
+#End Region
+
 require(VisualBasic.R)
 
 imports("microsoft.visualbasic.data.linq");

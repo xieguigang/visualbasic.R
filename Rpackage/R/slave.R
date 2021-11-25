@@ -1,3 +1,12 @@
+#Region "Microsoft.ROpen::4d97e1e2608d38e0a10c359b07076218, slave.R"
+
+    # Summaries:
+
+    # slave_closure <- function(closure = "stdin") {...
+    # stripREnvironmentInfo <- function(closure) {...
+    # slave <- function(closure, arguments = NULL, parallel = FALSE, debug = FALSE) {...
+
+#End Region
 
 #' Run a closure string
 #'

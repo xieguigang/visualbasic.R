@@ -1,3 +1,13 @@
+#Region "Microsoft.ROpen::5a32a532b0db8ce78286f25ad708df75, test\commandlineTest.R"
+
+    # Summaries:
+
+    # argv2 <- function() {...
+    # is.argName <- function(x) {...
+    # getNextToken <- function(flag) {...
+
+#End Region
+
 require(VisualBasic.R);
 
 argv2 <- function() {

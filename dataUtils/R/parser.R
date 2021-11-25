@@ -1,3 +1,11 @@
+#Region "Microsoft.ROpen::7ebe388ad580502dc0f0549f3a43e4e5, parser.R"
+
+    # Summaries:
+
+    # parseSize = function(value, default = list(w = 1400, h = 1200)) {...
+
+#End Region
+
 #' parse size value
 #'
 #' @param value value can be character, numeric and list
