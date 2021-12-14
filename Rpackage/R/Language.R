@@ -129,8 +129,9 @@ Microsoft.VisualBasic.Language <- function() {
     y(x);
   }
 
-  #' \code{\%is\%} have the same function as \code{\%=>\%}, but this function is more
-  #' tend to express of make a assertions.
+  #' \code{\%is\%} have the same function as \code{\%=>\%}, 
+  #' but this function is more tend to express of make a 
+  #' assertions.
   #'
   `%is%` <- function(x, y) {
     y(x);
@@ -143,7 +144,8 @@ Microsoft.VisualBasic.Language <- function() {
   #' @param y vectors (of the same mode) containing a sequence
   #'        of items (conceptually) with no duplicated values.
   #'
-  #' @return \code{\%+\%}: A vector of the same mode as x or y for a common mode for \code{union}.
+  #' @return \code{\%+\%}: A vector of the same mode as x or y 
+  #'    for a common mode for \code{union}.
   #'
   `%+%` <- function(x, y) {
     union(x, y);

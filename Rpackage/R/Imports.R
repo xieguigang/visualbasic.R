@@ -4,18 +4,23 @@
 #' @param namespace The namespace function name or function itself
 #' @param overrides A logical flag to indicate that should the imported function
 #'                  can overrides the previous function which they have the same
-#'                  name. By default is can not. If this parameter is set to true,
-#'                  then a warning message will be generated for mention you that
-#'                  which functions are overrided.
+#'                  name. By default is can not. If this parameter is set to 
+#'                  true, then a warning message will be generated for mention 
+#'                  you that which functions are overrided.
 #' @param frame The envrionment location, by default is current function scope
-#' @param silent The function will keeps silent on processing the symbol imports. If this
-#'     parameter is set to \code{false}, then it means all of the verbose debug message
-#'     will print on the console screen.
+#' @param silent The function will keeps silent on processing the symbol 
+#'         imports. If this parameter is set to \code{false}, then it means 
+#'         all of the verbose debug message will print on the console 
+#'         screen.
 #'
-#' @return A string vector contains all of the function names from this namespace
-#'         function that imported to current environment.
+#' @return A string vector contains all of the function names from this 
+#'         namespace function that imported to current environment.
 #'
-Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {
+Imports <- function(namespace, 
+                    overrides = FALSE, 
+                    silent    = TRUE, 
+                    frame     = parent.frame()) {
+
   if (is.character(namespace)) {
     module <- get(namespace)();
   } else {
@@ -23,10 +28,10 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
     namespace <- module$namespace;
   }
 
-  if (!("methods" %in% names(module))) {
-    func.list <- module;
+  func.list <- if (!("methods" %in% names(module))) {
+    module;
   } else {
-    func.list <- module$methods;
+    module$methods;
   }
 
   overrideMsg <- "overrides '%s' from namespace `%s`";
@@ -67,7 +72,6 @@ Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.
     print(names(func.list));
   }
 
-  # invisible(NULL);
   if (silent) {
     invisible(names(func.list));
   } else {

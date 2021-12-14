@@ -17,17 +17,22 @@
 
 #' Enumerator object constructor
 #'
-#' @description Enumerator object constructor function for create a VB.NET Linq like data
-#'     sequence wrapper. This constructor function will create a list which contains a
-#'     sequence source and sevral linq data helper extension functions
+#' @description Enumerator object constructor function for create a
+#'     VB.NET Linq like data sequence wrapper. This constructor
+#'     function will create a list which contains a sequence source 
+#'     and sevral linq data helper extension functions
 #'
-#' @param src A generic type data sequence, which can be a \code{dataframe}, \code{list}, or \code{vector}.
+#' @param src A generic type data sequence, which can be a 
+#'     \code{dataframe}, \code{list}, or \code{vector}.
 #'
 #' @return A generic enumerator list object, which it contains:
 #'         \enumerate{
 #'         \item \code{src} The generic data sequence input
-#'         \item \code{where} Extension function for select values by test on condition for each element if they are true
-#'         \item \code{select} Project the input data sequence source to another form.
+#'         \item \code{where} Extension function for select values 
+#'                by test on condition for each element if they are 
+#'                true
+#'         \item \code{select} Project the input data sequence 
+#'                source to another form.
 #'         \item \code{toarray} Get the input source data sequence.
 #'         \item \code{orderBy}
 #'         \item \code{orderByDescending}

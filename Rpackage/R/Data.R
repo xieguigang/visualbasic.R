@@ -140,7 +140,8 @@ Microsoft.VisualBasic.Data <- function() {
 
   #' Convert a list of list object as dataframe
   #'
-  #' @param project Column names subset for create a dataframe with selected fields.
+  #' @param project Column names subset for create a 
+  #'      dataframe with selected fields.
   #'
   .as.dataframe <- function(list, project = NULL) {
     list.names <- names(list);

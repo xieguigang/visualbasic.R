@@ -40,8 +40,9 @@ swap <- function(a, b) list(a = b, b = a);
 #'   If this parameter its value is null, then this function will returns all
 #'   of the keys that in target index closure.
 #'
-#' @return If the given \code{keys} is NULL or a single NA value, then NULL value will be returns.
-#'         Otherwise, returns a index function.
+#' @return If the given \code{keys} is NULL or a single NA value, 
+#'         then NULL value will be returns. Otherwise, returns a 
+#'         index function.
 #'
 as.index <- function(keys) {
   if (keys %=>% IsNothing) {
@@ -201,11 +202,13 @@ vector.fill <- function(list, baselist) {
 
 #' Memory preallocation
 #'
-#' @description Memory preallocation for vector or list. Apply this preallocation operation
-#'   for each vector or list can make great performance improvements.
+#' @description Memory preallocation for vector or list. 
+#'   Apply this preallocation operation for each vector 
+#'   or list can make great performance improvements.
 #'
 #' @param len A integer preallocation size.
-#' @param list Generate a empty list? By default is FALSE, means generate a empty vector.
+#' @param list Generate a empty list? By default is FALSE, 
+#'   means generate a empty vector.
 #'
 alloca <- function(len, list = FALSE) {
   if (list) {

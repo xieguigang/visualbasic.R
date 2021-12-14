@@ -80,11 +80,14 @@ global <- function(name) {
 
 #' Push variable to a given environment
 #'
-#' @return This function returns a lambda function that can used for assign variable value
-#'    to a given environment.
+#' @return This function returns a lambda function 
+#'    that can used for assign variable value to 
+#'    a given environment.
 #'
-#' @details For push to current environment, then you can using code for assign \code{envir}
+#' @details For push to current environment, then 
+#'   you can using code for assign \code{envir}
 #'   parameter: \code{curEnv=environment()}
+#' 
 Push <- function(envir = parent.frame()) {
   function(...) {
     x <- list(...);
@@ -117,10 +120,12 @@ Push <- function(envir = parent.frame()) {
 #'                       the string value like \code{NULL}, \code{NA}, etc
 #'                       as Nothing?
 #'
-#' @details Determine that target object is nothing or not, by using predicates: \code{is.null},
-#'    \code{is.na}, \code{length(x) == 0}. And if the function parameter \code{stringAsFactor} is
-#'    true, then string comparision for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} will
-#'    be applied.
+#' @details Determine that target object is nothing or not, by 
+#'    using predicates: \code{is.null}, \code{is.na}, 
+#'    \code{length(x) == 0}. And if the function parameter 
+#'    \code{stringAsFactor} is true, then string comparision 
+#'    for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} 
+#'    will be applied.
 #'
 #' @seealso This function has an alias name: \code{\link{is.nothing}}.
 #'
@@ -166,13 +171,17 @@ is.nothing <- function(...) IsNothing(...);
 #'
 #' @param x R object in any type
 #'
-#' @return A list with element: \code{rows} and \code{cols} to indicate the object size.\cr\cr
+#' @return A list with element: \code{rows} and \code{cols} to 
+#'    indicate the object size.\cr\cr
 #'
 #' \enumerate{
-#'   \item for x is \code{data.frame}, these two element value will be \code{\link{nrows}} and \code{\link{ncols}}\cr
-#'   \item for x is \code{list} or \code{vector}, these two element value will be
-#'         \code{rows = 1} and \code{cols = \link{length}(x)}\cr
-#'   \item for x is object like S4 class, these two element value will be \code{[1,1]}\cr
+#'   \item for x is \code{data.frame}, these two element value 
+#'         will be \code{\link{nrows}} and \code{\link{ncols}}\cr
+#'   \item for x is \code{list} or \code{vector}, these two 
+#'         element value will be \code{rows = 1} and 
+#'         \code{cols = \link{length}(x)}\cr
+#'   \item for x is object like S4 class, these two element 
+#'         value will be \code{[1,1]}\cr
 #' }
 #'
 Size <- function(x) {
@@ -230,9 +239,9 @@ LogException <- function(ex, logFile, append = FALSE) {
 
 #' Determine the R object type
 #'
-#' @description This function returns on of the member value from enumeration function
-#' \code{\link{primitiveTypes}}
-#' based on the type of the variable \code{x}
+#' @description This function returns on of the member 
+#'    value from enumeration function \code{\link{primitiveTypes}}
+#'    based on the type of the variable \code{x}
 #'
 #' @param x Any variable
 #'
@@ -254,13 +263,16 @@ GetType <- function(x) {
 
 #' Enumerate some primitive type in R
 #'
-#' @description Enumerate some primitive type in R language, these enumeration value have:
+#' @description Enumerate some primitive type in R language, 
+#'    these enumeration value have:
+#' 
 #' \enumerate{
-#' \item \code{object} = 0
-#' \item \code{data.frame} = 1
-#' \item \code{list} = 2
-#' \item \code{vector} = 3
+#'   \item \code{object} = 0
+#'   \item \code{data.frame} = 1
+#'   \item \code{list} = 2
+#'   \item \code{vector} = 3
 #' }
+#' 
 primitiveTypes <- function() {
   list(object = 0, data.frame = 1, list = 2, vector = 3);
 }
