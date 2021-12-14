@@ -17,3 +17,4 @@ LazyData: true
 RoxygenNote: 7.1.1
 Imports: Rcpp (>= 1.0.6)
 LinkingTo: Rcpp
+SystemRequirements: C++11

@@ -56,3 +56,4 @@ obj/
 *.cache
 Utils/runtime/VisualBasic
 *.gz
+Rpackage/src/RcppExports.o
