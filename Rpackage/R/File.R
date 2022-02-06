@@ -30,7 +30,8 @@ normalizeFileName = function(name) {
 
 #' File name without extension name
 #'
-#' @description Get the file name of a given file path without extension name.
+#' @description Get the file name of a given file path without 
+#'    extension name.
 #'
 #' @param path File path string vector.
 #'
@@ -91,14 +92,17 @@ Println <- function(file.txt, content) {
 
 #' Open a file for write in text mode
 #'
-#' @description Open a given file and returns the handle for write this file in text mode.
-#'   The returned lambda function is a wrapper for function \code{link{sprintf}} and
-#'   \code{cat} function.
+#' @description Open a given file and returns the handle for 
+#'   write this file in text mode. The returned lambda 
+#'   function is a wrapper for function \code{link{sprintf}} 
+#'   and \code{cat} function.
 #'
 #' @param file.txt Target file path for write in text mode.
-#' @param append A logical flag to indicate append the data to target file or not?
+#' @param append A logical flag to indicate append the data 
+#'   to target file or not?
 #'
 #' @return A lambda function for write text data to file.
+#' 
 File.Open <- function(file.txt, append = FALSE, format = TRUE) {
   dir <- dirname(file.txt);
 
@@ -137,7 +141,8 @@ ensure_dir_exists <- function(path) {
 #'
 #' @param file.txt The target file path for read
 #'
-#' @return Returns the text file content in one piece, not split in lines.
+#' @return Returns the text file content in one piece, 
+#'    not split in lines.
 #'
 ReadAllText <- function(file.txt) {
   paste0(ReadAllLines(file.txt), collapse = "\n");

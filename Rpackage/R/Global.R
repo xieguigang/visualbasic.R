@@ -19,109 +19,6 @@
 
 #End Region
 
-#' namespace imports helper
-#'
-#' @param namespace The namespace function name or function itself
-#' @param overrides A logical flag to indicate that should the imported function
-#'                  can overrides the previous function which they have the same
-#'                  name. By default is can not. If this parameter is set to true,
-#'                  then a warning message will be generated for mention you that
-#'                  which functions are overrided.
-#' @param frame The envrionment location, by default is current function scope
-#' @param silent The function will keeps silent on processing the symbol imports. If this
-#'     parameter is set to \code{false}, then it means all of the verbose debug message
-#'     will print on the console screen.
-#'
-#' @return A string vector contains all of the function names from this namespace
-#'         function that imported to current environment.
-#'
-Imports <- function(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame()) {
-  if (is.character(namespace)) {
-    module <- get(namespace)();
-  } else {
-    module <- namespace();
-    namespace <- module$namespace;
-  }
-
-  if (!("methods" %in% names(module))) {
-    func.list <- module;
-  } else {
-    func.list <- module$methods;
-  }
-
-  overrideMsg <- "overrides '%s' from namespace `%s`";
-
-  for (name in names(func.list)) {
-    if (exists(name, envir = frame)) {
-      if (overrides) {
-        warning(sprintf(overrideMsg, name, namespace));
-      } else {
-        next;
-      }
-    }
-
-    assign <- list(name, func.list[[name]]);
-    do.call(`=`, assign, envir = frame);
-  }
-
-  if ("modules" %in% names(module)) {
-    # Is also contains export variable modules
-    modules <- module$modules;
-
-    for(name in names(modules)) {
-      if (exists(name, envir = frame)) {
-        if (overrides) {
-          warning(sprintf(overrideMsg, name, namespace));
-        } else {
-          next;
-        }
-      }
-
-      assign <- list(name, modules[[name]]);
-      do.call(`=`, assign, envir = frame);
-    }
-  }
-
-  if (!silent) {
-    cat(sprintf("Imports VisualBasic.R::{%s}\n\n", namespace));
-    print(names(func.list));
-  }
-
-  # invisible(NULL);
-  if (silent) {
-    invisible(names(func.list));
-  } else {
-    names(func.list);
-  }
-}
-
-#' Print namespace help
-#'
-#' @description \code{\link{Imports}}
-#'
-#' @param namespace The VisualBasic namespace
-#'
-#' @return Nothing
-MyHelp <- function(namespace) {
-  module <- get(namespace)();
-  str(module);
-  invisible(NULL);
-}
-
-#' List all VisualBasic namespace
-#'
-#' @return Returns a function name character vector which its name is stared by token like:
-#'     \code{Microsoft.VisualBasic}.
-MyList <- function() {
-  index <- base::system.file("INDEX", package="VisualBasic.R") %=>% readLines %=>% Enumerator;
-
-  # Linq pipeline
-  index$
-    Where(function(line) InStr(line, "Microsoft.VisualBasic") > 0)$
-    Select(function(line) Strings.Split(line)[1])$
-    ToArray() %=>% unlist;
-}
-
 #' Set variable in global
 #'
 #' @description Set variables into the global environment.
@@ -183,11 +80,14 @@ global <- function(name) {
 
 #' Push variable to a given environment
 #'
-#' @return This function returns a lambda function that can used for assign variable value
-#'    to a given environment.
+#' @return This function returns a lambda function 
+#'    that can used for assign variable value to 
+#'    a given environment.
 #'
-#' @details For push to current environment, then you can using code for assign \code{envir}
+#' @details For push to current environment, then 
+#'   you can using code for assign \code{envir}
 #'   parameter: \code{curEnv=environment()}
+#' 
 Push <- function(envir = parent.frame()) {
   function(...) {
     x <- list(...);
@@ -220,10 +120,12 @@ Push <- function(envir = parent.frame()) {
 #'                       the string value like \code{NULL}, \code{NA}, etc
 #'                       as Nothing?
 #'
-#' @details Determine that target object is nothing or not, by using predicates: \code{is.null},
-#'    \code{is.na}, \code{length(x) == 0}. And if the function parameter \code{stringAsFactor} is
-#'    true, then string comparision for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} will
-#'    be applied.
+#' @details Determine that target object is nothing or not, by 
+#'    using predicates: \code{is.null}, \code{is.na}, 
+#'    \code{length(x) == 0}. And if the function parameter 
+#'    \code{stringAsFactor} is true, then string comparision 
+#'    for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} 
+#'    will be applied.
 #'
 #' @seealso This function has an alias name: \code{\link{is.nothing}}.
 #'
@@ -269,13 +171,17 @@ is.nothing <- function(...) IsNothing(...);
 #'
 #' @param x R object in any type
 #'
-#' @return A list with element: \code{rows} and \code{cols} to indicate the object size.\cr\cr
+#' @return A list with element: \code{rows} and \code{cols} to 
+#'    indicate the object size.\cr\cr
 #'
 #' \enumerate{
-#'   \item for x is \code{data.frame}, these two element value will be \code{\link{nrows}} and \code{\link{ncols}}\cr
-#'   \item for x is \code{list} or \code{vector}, these two element value will be
-#'         \code{rows = 1} and \code{cols = \link{length}(x)}\cr
-#'   \item for x is object like S4 class, these two element value will be \code{[1,1]}\cr
+#'   \item for x is \code{data.frame}, these two element value 
+#'         will be \code{\link{nrows}} and \code{\link{ncols}}\cr
+#'   \item for x is \code{list} or \code{vector}, these two 
+#'         element value will be \code{rows = 1} and 
+#'         \code{cols = \link{length}(x)}\cr
+#'   \item for x is object like S4 class, these two element 
+#'         value will be \code{[1,1]}\cr
 #' }
 #'
 Size <- function(x) {
@@ -333,9 +239,9 @@ LogException <- function(ex, logFile, append = FALSE) {
 
 #' Determine the R object type
 #'
-#' @description This function returns on of the member value from enumeration function
-#' \code{\link{primitiveTypes}}
-#' based on the type of the variable \code{x}
+#' @description This function returns on of the member 
+#'    value from enumeration function \code{\link{primitiveTypes}}
+#'    based on the type of the variable \code{x}
 #'
 #' @param x Any variable
 #'
@@ -357,13 +263,16 @@ GetType <- function(x) {
 
 #' Enumerate some primitive type in R
 #'
-#' @description Enumerate some primitive type in R language, these enumeration value have:
+#' @description Enumerate some primitive type in R language, 
+#'    these enumeration value have:
+#' 
 #' \enumerate{
-#' \item \code{object} = 0
-#' \item \code{data.frame} = 1
-#' \item \code{list} = 2
-#' \item \code{vector} = 3
+#'   \item \code{object} = 0
+#'   \item \code{data.frame} = 1
+#'   \item \code{list} = 2
+#'   \item \code{vector} = 3
 #' }
+#' 
 primitiveTypes <- function() {
   list(object = 0, data.frame = 1, list = 2, vector = 3);
 }
