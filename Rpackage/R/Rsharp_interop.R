@@ -67,12 +67,7 @@ coerce_listNode = function(node) {
 
 		if (length(node) > 1 && all_equals && all_primitive) {
 			# convert to dataframe
-			tab = data.frame();
-
-			for(key in names(node)) {
-				tab = cbind(tab, node[[key]]);
-			}
-
+			tab = data.frame(node);
 			colnames(tab) = names(node);
 
 			node = tab;
