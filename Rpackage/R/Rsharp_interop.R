@@ -33,3 +33,11 @@ closureText = function(closure) {
 		}
 	}) %=>% as.vector;
 }
+
+decode_rjson = function(json) {
+	require(jsonlite);
+
+	if (is.character(json)) {
+		json = jsonlite::fromJSON(json);
+	}
+}
