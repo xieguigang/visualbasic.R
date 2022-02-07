@@ -62,7 +62,8 @@ coerce_listNode = function(node) {
         TRUE;
       }
     });
-    all_equals = all((size_child == size_child[1]) | size_child == 1) && any(size_child > 1);
+    not_1 = size_child[size_child != 1][1];
+    all_equals = all((size_child == not_1) | size_child == 1) && any(size_child > 1);
     all_primitive = all(type_child);
 
     if (length(node) > 1 && all_equals && all_primitive) {
