@@ -7,7 +7,8 @@
 Microsoft.VisualBasic.Data()
 }
 \arguments{
-\item{project}{Column names subset for create a dataframe with selected fields.
+\item{project}{Column names subset for create a 
+     dataframe with selected fields.
 
 Convert a list object as dataframe}
 

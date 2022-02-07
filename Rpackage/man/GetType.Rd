@@ -14,7 +14,7 @@ One of the value member from enumeration function
         \code{\link{primitiveTypes}}.
 }
 \description{
-This function returns on of the member value from enumeration function
-\code{\link{primitiveTypes}}
-based on the type of the variable \code{x}
+This function returns on of the member 
+   value from enumeration function \code{\link{primitiveTypes}}
+   based on the type of the variable \code{x}
 }

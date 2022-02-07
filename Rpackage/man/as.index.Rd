@@ -12,8 +12,9 @@ If this parameter its value is null, then this function will returns all
 of the keys that in target index closure.}
 }
 \value{
-If the given \code{keys} is NULL or a single NA value, then NULL value will be returns.
-        Otherwise, returns a index function.
+If the given \code{keys} is NULL or a single NA value, 
+        then NULL value will be returns. Otherwise, returns a 
+        index function.
 }
 \description{
 Create a index object for determine that a given id

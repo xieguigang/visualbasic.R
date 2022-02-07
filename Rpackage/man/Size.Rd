@@ -10,13 +10,17 @@ Size(x)
 \item{x}{R object in any type}
 }
 \value{
-A list with element: \code{rows} and \code{cols} to indicate the object size.\cr\cr
+A list with element: \code{rows} and \code{cols} to 
+   indicate the object size.\cr\cr
 
 \enumerate{
-  \item for x is \code{data.frame}, these two element value will be \code{\link{nrows}} and \code{\link{ncols}}\cr
-  \item for x is \code{list} or \code{vector}, these two element value will be
-        \code{rows = 1} and \code{cols = \link{length}(x)}\cr
-  \item for x is object like S4 class, these two element value will be \code{[1,1]}\cr
+  \item for x is \code{data.frame}, these two element value 
+        will be \code{\link{nrows}} and \code{\link{ncols}}\cr
+  \item for x is \code{list} or \code{vector}, these two 
+        element value will be \code{rows = 1} and 
+        \code{cols = \link{length}(x)}\cr
+  \item for x is object like S4 class, these two element 
+        value will be \code{[1,1]}\cr
 }
 }
 \description{

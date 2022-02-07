@@ -11,19 +11,20 @@ Imports(namespace, overrides = FALSE, silent = TRUE, frame = parent.frame())
 
 \item{overrides}{A logical flag to indicate that should the imported function
 can overrides the previous function which they have the same
-name. By default is can not. If this parameter is set to true,
-then a warning message will be generated for mention you that
-which functions are overrided.}
+name. By default is can not. If this parameter is set to 
+true, then a warning message will be generated for mention 
+you that which functions are overrided.}
 
-\item{silent}{The function will keeps silent on processing the symbol imports. If this
-parameter is set to \code{false}, then it means all of the verbose debug message
-will print on the console screen.}
+\item{silent}{The function will keeps silent on processing the symbol 
+imports. If this parameter is set to \code{false}, then it means 
+all of the verbose debug message will print on the console 
+screen.}
 
 \item{frame}{The envrionment location, by default is current function scope}
 }
 \value{
-A string vector contains all of the function names from this namespace
-        function that imported to current environment.
+A string vector contains all of the function names from this 
+        namespace function that imported to current environment.
 }
 \description{
 namespace imports helper

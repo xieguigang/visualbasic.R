@@ -10,7 +10,8 @@ ReadAllText(file.txt)
 \item{file.txt}{The target file path for read}
 }
 \value{
-Returns the text file content in one piece, not split in lines.
+Returns the text file content in one piece, 
+   not split in lines.
 }
 \description{
 Read all text from a specific file

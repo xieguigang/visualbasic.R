@@ -7,7 +7,8 @@
 Enumerator(src)
 }
 \arguments{
-\item{src}{A generic type data sequence, which can be a \code{dataframe}, \code{list}, or \code{vector}.}
+\item{src}{A generic type data sequence, which can be a 
+\code{dataframe}, \code{list}, or \code{vector}.}
 
 \item{key}{Can be a string name which can select the property of
 the list object or a lambda function for evaluate the
@@ -17,8 +18,11 @@ element object to numeric value.}
 A generic enumerator list object, which it contains:
         \enumerate{
         \item \code{src} The generic data sequence input
-        \item \code{where} Extension function for select values by test on condition for each element if they are true
-        \item \code{select} Project the input data sequence source to another form.
+        \item \code{where} Extension function for select values 
+               by test on condition for each element if they are 
+               true
+        \item \code{select} Project the input data sequence 
+               source to another form.
         \item \code{toarray} Get the input source data sequence.
         \item \code{orderBy}
         \item \code{orderByDescending}
@@ -26,7 +30,8 @@ A generic enumerator list object, which it contains:
 Reorder the elements in the source sequence by a given \code{key}
 }
 \description{
-Enumerator object constructor function for create a VB.NET Linq like data
-    sequence wrapper. This constructor function will create a list which contains a
-    sequence source and sevral linq data helper extension functions
+Enumerator object constructor function for create a
+    VB.NET Linq like data sequence wrapper. This constructor
+    function will create a list which contains a sequence source 
+    and sevral linq data helper extension functions
 }

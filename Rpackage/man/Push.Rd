@@ -7,13 +7,15 @@
 Push(envir = parent.frame())
 }
 \value{
-This function returns a lambda function that can used for assign variable value
-   to a given environment.
+This function returns a lambda function 
+   that can used for assign variable value to 
+   a given environment.
 }
 \description{
 Push variable to a given environment
 }
 \details{
-For push to current environment, then you can using code for assign \code{envir}
+For push to current environment, then 
+  you can using code for assign \code{envir}
   parameter: \code{curEnv=environment()}
 }

@@ -20,10 +20,12 @@ Determine that target is Nothing in VB way.
              All of these situation will be treated as Nothing.
 }
 \details{
-Determine that target object is nothing or not, by using predicates: \code{is.null},
-   \code{is.na}, \code{length(x) == 0}. And if the function parameter \code{stringAsFactor} is
-   true, then string comparision for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} will
-   be applied.
+Determine that target object is nothing or not, by 
+   using predicates: \code{is.null}, \code{is.na}, 
+   \code{length(x) == 0}. And if the function parameter 
+   \code{stringAsFactor} is true, then string comparision 
+   for \code{x == ""}, \code{x == "NULL"}, \code{x == "NA"} 
+   will be applied.
 }
 \seealso{
 This function has an alias name: \code{\link{is.nothing}}.

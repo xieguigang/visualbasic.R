@@ -7,11 +7,13 @@
 primitiveTypes()
 }
 \description{
-Enumerate some primitive type in R language, these enumeration value have:
+Enumerate some primitive type in R language, 
+   these enumeration value have:
+
 \enumerate{
-\item \code{object} = 0
-\item \code{data.frame} = 1
-\item \code{list} = 2
-\item \code{vector} = 3
+  \item \code{object} = 0
+  \item \code{data.frame} = 1
+  \item \code{list} = 2
+  \item \code{vector} = 3
 }
 }
